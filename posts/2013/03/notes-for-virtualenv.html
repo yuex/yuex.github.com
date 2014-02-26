@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>blog.iliork.com - 使用virtualenv要注意的地方</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css" type="text/css"><link rel="stylesheet" href="/theme/css/main.css"><link rel="stylesheet" href="/theme/css/code.css"><script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="/theme/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="/theme/css/flatly.css" type="text/css">-->
+    <!--<link rel="stylesheet" href="/theme/css/main.css" type="text/css">-->
+    <!--<script src="/theme/js/jquery-1.10.2.min.js"></script>-->
+    <!--<script src="/theme/js/jquery-migrate-1.2.1.min.js"></script>-->
+    <!--<script src="/theme/js/bootstrap.min.js"></script>-->
+
+</head>
+
+<body>
+  <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+          <a class="navbar-brand" href="/">blog.iliork.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+              <li >
+                  <a href="/">Home</a>
+                </li>
+
+              <li >
+                  <a href="/about.html">About</a>
+                </li>
+
+              <li >
+                  <a href="/selected.html">Selected</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/tags.html">Tags</a></li>
+                  <li><a href="/categories.html">Categories</a></li>
+                  <li><a href="/archives.html">Chronological</a></li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connect<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/static/images/email.png">Email</a></li>
+                  <li><a href="http://github.com/yuex">Github</a></li>
+                </ul>
+              </li>
+                <li>
+                  <form class="navbar-form navbar-right" role="search"
+                    action="http://www.google.com/cse" 
+                    id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
+                    <div class="form-group">
+                    <div class="input-group" style="width:200px">
+                      <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+                      <input type="text" name="q" class="form-control" placeholder="Search">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                      </span>
+                    </div>
+                    </div>
+                  </form>
+                </li>
+
+
+        </ul>
+      </div>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+      <h1><a href="/posts/2013/03/notes-for-virtualenv.html">使用virtualenv要注意的地方</a></h1>
+    </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 col-md-offset-0">
+        </div>
+
+        <div class="col-md-8">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="/category/python.html">python</a>
+    <b>|</b>
+      <a class="label label-primary" 
+        href="/tag/python.html">python</a>
+      <a class="label label-primary" 
+        href="/tag/virtualenv.html">virtualenv</a>
+    <span class="glyphicon glyphicon-calendar"></span>Mar 02, 2013<span class="glyphicon glyphicon-user"></span>
+    <a href="/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div>
+    <p>virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。</p>
+<p> 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 <code>mkvirtualenv</code> 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。</p>
+<p> 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2，pip 是 pip2，
+而 virtualenv 安装之后，默认的解析是 python2/python/python2.7, pip/pip2.7。如果不检查就直接用习惯的
+pip2 安装的话，新的包就会安装到系统 lib 而不是新建的 virtualenv lib 中了。</p>
+<div class="codehilite"><pre><span class="nv">$ </span>mkvirtualenv foo
+<span class="nv">$ </span>lsvirtualenv foo
+<span class="nv">$ </span>workon foo
+<span class="nv">$ </span>cdvirtualenv
+<span class="nv">$ </span>ll bin
+<span class="o">(</span> 注意查看 python 和 pip 的名称 <span class="o">)</span>
+<span class="nv">$ </span>cdproject
+<span class="nv">$ </span>finish the work
+</pre></div>
+
+
+<p> 另外，安装 virtualenv 的时候也要注意使用的是 pip2 还是 pip3，不同版本下的 virtualenv 的命令解析名称也是不一样的。</p>
+<p> 更多信息，请访问 <a href="http://www.virtualenv.org/">virtualenv</a></p>
+  </div>
+
+  <hr/>
+      <div class="panel panel-primary">
+    <div class="panel-heading ">Related Posts        <a class="accordion-toggle" data-toggle="collapse" 
+          href="#collapseRelated">
+          <span class="badge pull-right">1</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelated">
+        <a href="/posts/2013/09/hands-on-pam-module-and-sshd.html">
+          <li class="list-group-item">动手写PAM模块让sshd支持用户接入控制<span class="pull-right">Sep 29, 2013</span>
+          </li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
+      <ul class="pager">
+        <li class="previous">
+        <a href="/posts/2013/03/differ-optons-from-args-in-shell.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next disabled">
+        <a >
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div class="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "posts/2013/03/notes-for-virtualenv.html";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://blogiliorkcom.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+
+        </div>
+
+        <div class="col-md-2">
+        </div>
+      </div>
+
+      <div id="pagination">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+      <div class="text-muted text-center">
+        <span class="">
+          Powered by <a href="http://docs.getpelican.com">Pelican</a>,
+          theme <a href="http://github.com/yuex/pelican-iliork">iliork</a>.
+          Copyright © <a href="/about.html">yuex</a>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+</body>
+</html>

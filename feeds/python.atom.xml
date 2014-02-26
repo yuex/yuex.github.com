@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>blog.iliork.com</title><link href="http://blog.iliork.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/python.atom.xml" rel="self"></link><id>http://blog.iliork.com/</id><updated>2013-03-02T00:00:00+08:00</updated><entry><title>使用virtualenv要注意的地方</title><link href="http://blog.iliork.com/posts/2013/03/notes-for-virtualenv.html" rel="alternate"></link><updated>2013-03-02T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-02:posts/2013/03/notes-for-virtualenv.html</id><summary type="html">&lt;p&gt;virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。&lt;/p&gt;
+&lt;p&gt; 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 &lt;code&gt;mkvirtualenv&lt;/code&gt; 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。&lt;/p&gt;
+&lt;p&gt; 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2，pip 是 pip2，
+而 virtualenv 安装之后，默认的解析是 python2/python/python2.7, pip/pip2.7。如果不检查就直接用习惯的
+pip2 安装的话，新的包就会安装到系统 lib 而不是新建的 virtualenv lib 中了。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;mkvirtualenv foo
+&lt;span class="nv"&gt;$ &lt;/span&gt;lsvirtualenv foo
+&lt;span class="nv"&gt;$ &lt;/span&gt;workon foo
+&lt;span class="nv"&gt;$ &lt;/span&gt;cdvirtualenv
+&lt;span class="nv"&gt;$ &lt;/span&gt;ll bin
+&lt;span class="o"&gt;(&lt;/span&gt; 注意查看 python 和 pip 的名称 &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;$ &lt;/span&gt;cdproject
+&lt;span class="nv"&gt;$ &lt;/span&gt;finish the work
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 另外，安装 virtualenv 的时候也要注意使用的是 pip2 还是 pip3，不同版本下的 virtualenv 的命令解析名称也是不一样的。&lt;/p&gt;
+&lt;p&gt; 更多信息，请访问 &lt;a href="http://www.virtualenv.org/"&gt;virtualenv&lt;/a&gt;&lt;/p&gt;</summary><category term="python"></category><category term="virtualenv"></category></entry></feed>
