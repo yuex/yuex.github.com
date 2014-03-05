@@ -1,5 +1,10 @@
 @import url("solarized-light.css");
-@import url("//fonts.googleapis.com/css?family=Consolas");
+@font-face {
+  font-family: 'Consolas';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Consolas'), url(http://themes.googleusercontent.com/licensed/font?kit=Zl8GCCaOFFtFoHFpBV1tmfesZW2xOQ-xsNqO47m55DA) format('woff');
+}
 
 code,
 pre {
