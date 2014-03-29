@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="yuex (悟道洞穴人)">
+    <meta name="author" content="yuex">
+    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+
+        <title>利用消耗怒气回血解决野蛮人的战斗恢复问题 · yuex (悟道洞穴人)</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" type="text/css"><link rel="stylesheet" href="/theme/css/main.css"><link rel="stylesheet" href="/theme/css/code.css"><script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="/theme/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="/theme/css/flatly.css" type="text/css">-->
+    <!--<link rel="stylesheet" href="/theme/css/main.css" type="text/css">-->
+    <!--<script src="/theme/js/jquery-1.10.2.min.js"></script>-->
+    <!--<script src="/theme/js/jquery-migrate-1.2.1.min.js"></script>-->
+    <!--<script src="/theme/js/bootstrap.min.js"></script>-->
+
+</head>
+
+<body>
+  <div class="containter" id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--<ul class="nav navbar-nav navbar-left">-->
+          <!--<li>-->
+          <a class="navbar-brand" href="/">yuex (悟道洞穴人)</a>
+          <!--</li>-->
+        <!--</ul>-->
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+          <form class="navbar-form navbar-right" role="search"
+            action="http://www.google.com/cse" 
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+              <input type="text" name="q" class="form-control" placeholder="Search">
+          </form>
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+                <li >
+                  <a href="/">Home</a>
+                </li>
+
+                <li >
+                  <a href="/about.html">About</a>
+                </li>
+
+                <li >
+                  <a href="/selected.html">Selected</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/tags.html">Tags</a></li>
+                  <li><a href="/categories.html">Categories</a></li>
+                  <li><a href="/archives.html">Chronological</a></li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/static/images/email.png">Email</a></li>
+                  <li><a href="http://github.com/yuex">Github</a></li>
+                </ul>
+              </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="page-header">
+        <h1><a href="/posts/2014/03/diablo3-203-barb-build.html">利用消耗怒气回血解决野蛮人的战斗恢复问题</a></h1>
+    </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 col-md-offset-0">
+        </div>
+
+        <div class="col-md-8">
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="/category/product.html">product</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="/tag/diablo3.html">diablo3</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="/archives.html#Year2014">2014</a>-<a href="/archives.html#Year2014Month3">03</a>-<a href="/archives.html#Year2014Month3Day30">30</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div>
+    <h1 id="build">Build 介绍 </h1>
+<p> 在《夺魂之镰》之中，
+由于 “ 生命窃取 ” 的去除和 “ 战斗暴怒 ” 与 “ 狂战之怒 ” 两个技能某些符文的修改，
+在之前版本中广泛流行的 “ 双旋风 ”build 已经跑不起来了。
+作为近战职业之一的野蛮人，寻找新的战斗恢复方式迫在眉睫。
+在本文中我想到和试验了一个围绕被动技能 “ 嗜血狂人 ” 建立的 build，
+可以在不牺牲装备上任何主要属性的前提之下（不会牺牲 dps），
+通过合理搭配稀有装备的属性，让野蛮人达到战撸苦痛 I、II、III 的目的。</p>
+<p> 以下会先说明耗怒回血的原理，之后会根据这个原理展示我目前在用的一个 build。
+需要注意的是这个 build 中的一些非核心技能是由于我个人的偏好而选择的，
+各位读者可以根据原理和自由发挥，选择自己喜欢的技能。
+最后，会针对这个 build 做一些讨论 </p>
+<h1 id="_1"> 耗怒回血的原理 </h1>
+<p> 以下会说明耗怒回血的原理和其有效性，以及装备上必要的词缀选择。</p>
+<h2 id="_2"> 被动技能 " 嗜血狂人 "</h2>
+<p> 游戏中对于 “ 嗜血狂人 ” 效果的描述为 </p>
+<blockquote>
+<p> 毎消耗一点怒气恢复 578 点生命值，治疗量加成为生命之球效果加成的 1%</p>
+</blockquote>
+<p> 这个描述稍有模糊。实际的效果是野蛮人毎点怒气消耗的血量恢复值为
+基础值 578 加上 “ 生命之球与药水恢复量 ” 总和乘以 0.01。
+举例来说，野蛮人从装备上获得的 “ 生命之球与药水恢复量 ” 总和为 113,000，
+则这个加成为 </p>
+<div class="codehilite"><pre><span class="mi">113000</span> <span class="o">*</span> <span class="mf">0.01</span> <span class="o">=</span> <span class="mi">1130</span>
+</pre></div>
+
+
+<p> 这样，实际的毎点怒气消耗的血量恢复将变为 </p>
+<div class="codehilite"><pre><span class="mi">578</span> <span class="o">+</span> <span class="mi">1130</span> <span class="o">=</span> <span class="mi">1708</span>
+</pre></div>
+
+
+<h2 id="_3"> 耗怒回血的有效性 </h2>
+<p> 虽然上面这个数字 1708 看似不起眼，但请注意这是毎点怒气消耗产生的回血量，
+对于一个消耗 20 点怒气的技能（先祖之锤，战斗暴怒），
+实际的血量恢复将会是（怒气消耗降低为 0 的情况下）</p>
+<div class="codehilite"><pre><span class="mi">1708</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">=</span> <span class="mi">34160</span>
+</pre></div>
+
+
+<p> 而一个护甲免伤和抗性免伤都在 75% 左右的野蛮人，
+在苦痛 II 第三幕，血族打击者造成的伤害大约为 15,000 每次，
+而结合主动免伤技能（战吼、霸气无伤反伤、忘却痛苦等），这个数值还要大幅降低。
+我们以主动技能免伤 35%（霸气无双反弹伤害符文）来计算，
+一次先祖之锤带来的血量恢复，相当于 </p>
+<div class="codehilite"><pre><span class="mi">34160</span> <span class="o">/</span> <span class="p">(</span> <span class="mi">15000</span> <span class="o">*</span> <span class="mf">0.65</span> <span class="p">)</span> <span class="o">=</span> <span class="mf">3.50</span>
+</pre></div>
+
+
+<p> 个杂兵的伤害。此外，由于一般怪物的攻击速度要明显低于野蛮人，
+以双持毎秒攻击次数 1.5（考虑了野蛮人的攻击速度加成），
+怪物毎秒攻击次数 1.0（无公开数据，目测）计算，我们前面提到的数字会变为 </p>
+<div class="codehilite"><pre><span class="mf">3.50</span> <span class="o">*</span> <span class="mf">1.5</span> <span class="o">=</span> <span class="mf">5.25</span>
+</pre></div>
+
+
+<p> 换言之，只有当 6 个及以上的杂兵围殴野蛮人的时候，野蛮人才会出现血量下降。
+而血族打击者的模型较大，6 个左右基本上会将野蛮人包围起来，
+所以野蛮人不会再受到额外血族打击者的攻击伤害。
+此外，如果野蛮人的 dps 不是很低的话，选择合适的难度，
+基本可以在血族打击者造成明显血量下降之前将其消灭。
+所以野蛮人实际可以承受的围殴数字还要高很多。</p>
+<p> 虽然游戏当中的怪物各类多种多样，但是他们的伤害大小、攻击速度、模型大小，
+基本符合 “ 体型越大，攻击速度越慢，伤害越高 ” 的规律。因此，上面所讲的例子当中，
+野蛮人被围殴时，可能受到的总伤害量并不会有太大的变化。</p>
+<blockquote>
+<p> 我要打十个！
+  <small> 甄子丹 </small></p>
+</blockquote>
+<h2 id="_4"> 耗怒回血的词缀成本 </h2>
+<p> 相比于 “ 毎秒生命恢复 ” 和 “ 击中生命恢复 ”，耗怒回血最大的不同是词缀成本非常低。
+秒回和击回做为装备上的主要属性，会占据一个主要属性词缀。
+而每一件装备上只能有 4 个主要属性，选择秒回和击回，
+就意味着必须要牺牲一条可以提升 dps 或者 ehp 的词缀。
+相比之下，耗怒回血所需要的 “ 生命之球与药水恢复 ” 在装备上是做为次要属性出现的，
+完全可以在不牺牲 dps 和 ehp 的情况下兼顾。例如，
+已经有 4 条不错的主要属性（力量 / 体能 / 全抗 / 镶孔，或者力量 / 爆击 / 爆伤 / 攻速）
+的稀有装备可以考虑将其中的次要属性重铸为 “ 生命之球与药水恢复量 +N”；
+而已经有 “ 生命之球与药水恢复量 +N” 这条次要属性的装备，
+可以考虑将其中一条不太好主要属性重铸为更有用的属性，
+如秒回重铸为体能或者全抗。
+如此一来，也能使得装备上的词缀利用更充分（其它次要属性大部分为可有可无的属性）。</p>
+<p> 除此之外，“ 生命之球与药水恢复量 ” 本身也是一条不错的词缀。
+目前，生命药水的效果是恢复英雄 60% 的生命，以一个血量 450,000 的野蛮人为例，
+一次生命药水可以恢复血量 </p>
+<div class="codehilite"><pre><span class="mi">450</span><span class="p">,</span><span class="mo">000</span> <span class="o">*</span> <span class="mf">0.60</span> <span class="o">=</span> <span class="mi">270</span><span class="p">,</span><span class="mo">000</span>
+</pre></div>
+
+
+<p>“ 生命之球与药水恢复量 ” 可以出现在肩 / 胸 / 足 / 项链 / 戒指 1/ 戒指 2，共 6 件装备上，
+词缀取值范围约 14,000~20,000，以 17,000 计算，6 件装备可以产生的加成总量为 </p>
+<div class="codehilite"><pre><span class="mi">17</span><span class="p">,</span><span class="mo">000</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">=</span> <span class="mi">102</span><span class="p">,</span><span class="mo">000</span>
+</pre></div>
+
+
+<p> 所以使用一次生命药水，可以恢复生命 </p>
+<div class="codehilite"><pre><span class="mi">102</span><span class="p">,</span><span class="mo">000</span> <span class="o">+</span> <span class="mi">270</span><span class="p">,</span><span class="mo">000</span> <span class="o">=</span> <span class="mi">372</span><span class="p">,</span><span class="mo">000</span>
+</pre></div>
+
+
+<p> 的生命。这相当于 83% 的生命量。换言之，
+当野蛮人需要使用生命药水时（一般是血量低于 20% 的时候），
+一个生命药水就可以将野蛮人的生命全部补满。</p>
+<blockquote>
+<p> 三精牌葡萄糖酸锌口服液，我只喝红瓶的！
+  <small> 佚名 </small></p>
+</blockquote>
+<h1 id="_5"> 技能选择 </h1>
+<p> 这里给出我的技能搭配结果，</p>
+<ul>
+<li> 鼠标左键：狂乱（狂人）</li>
+<li> 鼠标右键：跃击（亚瑞特呼唤）</li>
+<li> 一号按键：先祖之锤（恶魔铁砧）</li>
+<li> 二号按键：霸气无双（制敌先机）</li>
+<li> 三号按键：战斗暴怒（血溅八方）</li>
+<li> 四号按键：战吼（迎敌怒喝）</li>
+<li> 被动技能：无可饶恕，迷信，势不可当，嗜血狂人 </li>
+</ul>
+<p> 以下会针对常见的几种情况讨论技能使用 </p>
+<h2 id="_6"> 伤害输出 </h2>
+<p> 先祖之锤配合战斗暴怒（血溅八方），即可以作为单体输出，
+也可以利用溅射伤害作为小范围群体输出。之所以选择恶魔铁贴，是因为所带的减速效果，
+在击杀哥布林和远程怪时，具有非常好的控制效果。
+此外，战斗暴怒本身的伤害和爆击提升也非常不错。
+霸气无双可以作为额外的伤害输出补充，而且霸气无双的发动并不打断先祖之锤。</p>
+<h2 id="_7"> 耗怒回血 </h2>
+<p> 站桩砸先祖之锤是最主要的耗怒回血方式。注意霸气无双的反伤 CD 好了就用。
+战斗暴怒的 20 点怒气消耗也可以作为额外的回血手段。</p>
+<h2 id="_8"> 怒气产生技能 </h2>
+<p> 无可饶恕提供稳定的毎秒怒气累积。战吼（迎敌怒喝）加怒气提供了不错的怒气爆发，
+但可以视情况切换（顽抗战吼）加抗性，或者（鼓舞土气）加秒回。
+迷信提供了某些精英战中额外的怒气产生，踩着好几个瘟疫和亵渎砸先祖之锤，
+怒气可以达到不衰退。狂乱作为额外的怒气补充，来应对某些尴尬的情况。
+这里选择了（狂人）加伤害，可以根据喜好选择其它符文。</p>
+<blockquote>
+<p> 我拿了欧洲冠军，所以我是特别的那一个。
+  <small> 穆里尼奥 </small></p>
+</blockquote>
+<h2 id="_9"> 伤害减免技能 </h2>
+<p> 战吼提供护甲加成，队友也能享受得到。
+霸气无双（制敌先机）提供了 35% 的伤害减免。虽然这不是野蛮人减伤最高的技能，
+但结合先祖之锤在满怒时的高爆击，可以很快地触发霸气无双的爆击减 CD，
+提供非常不错的伤害减免覆盖。更可贵的是这 35% 的伤害减免会反弹给攻击者。
+其它还可以考虑威吓怒吼。忘却痛苦 CD 过长，目前来看不是一个太好的选择。</p>
+<h2 id="_10"> 走位 </h2>
+<p> 这里选择了跃击（亚瑞特的呼唤），可以提供一些基本的走位，
+同时具有小范围拉怪的能力，可以视情况选择其它符文。
+其它技能还可以选择狂暴冲锋（韧劲）加怒气、（绝情猛攻）减 CD、
+旋风斩（烈风剪）加怒气。要注意的是，旋风斩是个消耗 10 点怒气的技能，
+配合耗怒回血，等于是享受了（集血斩）这个符文，
+喜欢旋风斩的朋友可以尝试开着霸气无双的反伤来转怪群，回血又回怒，感觉不错。</p>
+<h2 id="_11"> 免疫控制 </h2>
+<p> 势不可当做为主要的控制免疫技能，提供 30% 的时间缩短，
+而且有一定机率恢复 20% 的生命，经常在血不满的情况下被控制，然后瞬间血就满了。
+这个被动技能还可以通过装备上的另外一个次要属性 “ 控场时间缩短 ” 来进一步缩短时间，
+感觉应该可以达到被控制一下，立刻解除，还有机会恢复 20% 的血量。
+实际上装备上的时间缩短加上这个被动，是可以达到 100% 控场时间缩短的，
+但是不确定是否 100% 控场时间缩短之后还会触发势不可挡的回血特效。
+由于目前装备有限，这个我还没有进行测试。</p>
+<h1 id="_12"> 装备选择 </h1>
+<h2 id="_13"> 武器 </h2>
+<p> 由于耗怒回血需要较快地倾泻怒气，所以推荐使用双持。
+此外，双持武器的高攻速也有利于快速将霸气无双的 CD 置零。</p>
+<h2 id="_14"> 生命之球恢复词缀选择 </h2>
+<p> 如前所述，“ 生命之球与药水恢复量 +N” 可能出现在肩 / 胸 / 足 / 项链 / 戒指 1/ 戒指 2，
+共 6 个位置，取值范围为 14,000~20,000，可以期待的总量是 170,000，
+会提供毎点耗怒恢复 1700 点生命。</p>
+<p> 已经有 4 条不错的主要属性的稀有装备，
+例如力量 / 体能 / 全抗 / 镶孔，或者力量 / 爆击 / 爆伤 / 攻速，
+可以考虑将其中的次要属性重铸为 “ 生命之球与药水恢复量 +N”；
+而已经有 “ 生命之球与药水恢复量 +N” 这条次要属性的装备，
+可以考虑将其中一条不太好主要属性重铸为更有用的属性，
+如秒回重铸为体能或者全抗。</p>
+<h2 id="_15"> 控场时间缩短词缀选择 </h2>
+<p> 这个词缀可以出现在头 / 项链 / 戒指 1/ 戒指 2，共 4 个位置，取值范围为 10%~20%。
+由于是次要属性，可以考虑在保证生命之球回复加成的前提，尽量兼顾这条词缀 </p>
+<h2 id="_16"> 消耗怒气回血 </h2>
+<p> 重型腰带上，这条词缀会以主要属性的方式出现，是否重铸或保留这条词缀，
+大家可以根据情况决定，由于这条词缀的上限不超过 200，
+所以即使没有，也不会产生很大的影响。
+此外，要注意的是不朽之王的套装奖励也有这条词缀 </p>
+<h1 id="_17"> 巅峰点数 </h1>
+<p> 额外需要注意的是辅肋中不要使用 “ 能量消耗降低 ”，因为就是需要用怒气消耗来恢复血量。
+这里推荐使用击中生命恢复，可以提供额外的战斗恢复补充。</p>
+<h1 id="_18"> 优劣比较 </h1>
+<p> 优势 </p>
+<ul>
+<li> 渐进的装备更新路线，可以从稀有装备慢慢过渡到传奇，没有特定传奇装备的要求 </li>
+<li> 充分利用了装备上的次要属性，不浪费 </li>
+</ul>
+<p> 劣势 </p>
+<ul>
+<li> 无怒气时，非常危险。可以考虑巅峰点数选择击中恢复，提供额外的生命恢复手段 </li>
+</ul>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+        <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+        <a href="/posts/2014/01/technical-writing.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div class="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "posts/2014/03/diablo3-203-barb-build.html";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://blogiliorkcom.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+
+        </div>
+
+        <div class="col-md-2">
+        </div>
+      </div>
+
+      <div id="pagination">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          Powered by
+          <a href="http://docs.getpelican.com">Pelican</a>
+          and
+          <a href="http://getbootstrap.com/">Bootstrap</a>.
+          Theme <a href="http://github.com/yuex/pelican-iliork">iliork</a>.
+        </p>
+        <!--<p id="footer-text" class="navbar-text text-center">-->
+          <!--Copyright © <a href="/about.html">yuex</a>-->
+        <!--</p>-->
+      </div>
+    </div>
+  </nav>
+
+</body>
+</html>
