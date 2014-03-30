@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.iliork.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.iliork.com/</id><updated>2014-03-30T00:00:00+08:00</updated><entry><title>利用消耗怒气回血解决野蛮人的战斗恢复问题</title><link href="http://blog.iliork.com/posts/2014/03/diablo3-203-barb-build.html" rel="alternate"></link><updated>2014-03-30T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-03-30:posts/2014/03/diablo3-203-barb-build.html</id><summary type="html">&lt;h1 id="build"&gt;Build 介绍 &lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.iliork.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.iliork.com/</id><updated>2014-03-30T00:00:00+08:00</updated><entry><title>利用耗怒回血解决野蛮人的战斗恢复问题</title><link href="http://blog.iliork.com/posts/2014/03/diablo3-barb-build.html" rel="alternate"></link><updated>2014-03-30T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-03-30:posts/2014/03/diablo3-barb-build.html</id><summary type="html">&lt;h1 id="build"&gt;Build 介绍 &lt;/h1&gt;
 &lt;p&gt; 在《夺魂之镰》之中，
 由于 “ 生命窃取 ” 的去除和 “ 战斗暴怒 ” 与 “ 狂战之怒 ” 两个技能某些符文的修改，
 在之前版本中广泛流行的 “ 双旋风 ”build 已经跑不起来了。
@@ -7,10 +7,21 @@
 在本文中我想到和试验了一个围绕被动技能 “ 嗜血狂人 ” 建立的 build，
 可以在不牺牲装备上任何主要属性的前提之下（不会牺牲 dps），
 通过合理搭配稀有装备的属性，让野蛮人达到战撸苦痛 I、II、III 的目的。&lt;/p&gt;
-&lt;p&gt; 以下会先说明耗怒回血的原理，之后会根据这个原理展示我目前在用的一个 build。
-需要注意的是这个 build 中的一些非核心技能是由于我个人的偏好而选择的，
-各位读者可以根据原理和自由发挥，选择自己喜欢的技能。
-最后，会针对这个 build 做一些讨论 &lt;/p&gt;
+&lt;p&gt; 以下会先说明耗怒回血的原理，接着会根据这个原理展示我目前在用的几个 build，
+和几个可能的变种 build。最后是装备选择和巅峰点数的选择。
+各位读者可以根据耗怒回血的原理自由发挥，选择自己喜欢的技能奋战《夺魂之镰》。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 耐性不够的朋友可以直接跳转到 “ 技能选择 ” 章节 &lt;/strong&gt;，但我还是建议你看完原理部分，&lt;/p&gt;
+&lt;h1 id="build_1"&gt;Build 特点 &lt;/h1&gt;
+&lt;p&gt; 优势 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 治疗的提升不以牺牲 dps 和 ehp 为前提，充分利用装备上的词缀，让三者可以共同提升，互不干扰 &lt;/li&gt;
+&lt;li&gt; 渐进的装备更新路线，不需要特定传奇的支持，野蛮人可以从稀有装备慢慢过渡到传奇 &lt;/li&gt;
+&lt;li&gt; 较好的技能兼容，围绕耗怒回血，可以选择先祖之锤，旋风斩，跃击，抛尸，山崩地裂等多个技能打造个性化的 build。这是一个 build，却又不是仅仅一个 build，选你所爱，爱你所选，自行车谁爱骑谁骑 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 劣势 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 无怒气时，非常危险。可以考虑巅峰点数选择击中恢复，提供额外的生命恢复手段 &lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id="_1"&gt; 耗怒回血的原理 &lt;/h1&gt;
 &lt;p&gt; 以下会说明耗怒回血的原理和其有效性，以及装备上必要的词缀选择。&lt;/p&gt;
 &lt;h2 id="_2"&gt; 被动技能 " 嗜血狂人 "&lt;/h2&gt;
@@ -103,51 +114,53 @@
 当野蛮人需要使用生命药水时（一般是血量低于 20% 的时候），
 一个生命药水就可以将野蛮人的生命全部补满。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt; 三精牌葡萄糖酸锌口服液，我只喝红瓶的！
-  &lt;small&gt; 佚名 &lt;/small&gt;&lt;/p&gt;
+&lt;p&gt; 三精牌葡萄糖酸锌口服液，我只喝红瓶的！&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id="_5"&gt; 技能选择 &lt;/h1&gt;
-&lt;p&gt; 这里给出我的技能搭配结果，&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt; 鼠标左键：狂乱（狂人）&lt;/li&gt;
-&lt;li&gt; 鼠标右键：跃击（亚瑞特呼唤）&lt;/li&gt;
-&lt;li&gt; 一号按键：先祖之锤（恶魔铁砧）&lt;/li&gt;
-&lt;li&gt; 二号按键：霸气无双（制敌先机）&lt;/li&gt;
-&lt;li&gt; 三号按键：战斗暴怒（血溅八方）&lt;/li&gt;
-&lt;li&gt; 四号按键：战吼（迎敌怒喝）&lt;/li&gt;
-&lt;li&gt; 被动技能：无可饶恕，迷信，势不可当，嗜血狂人 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 以下会针对常见的几种情况讨论技能使用 &lt;/p&gt;
+&lt;p&gt; 这里会先会针对伤害输出、耗怒回血、怒气产生、走位等 内容做一点讨论，
+之后会根据讨论结果给出几个可以兼容几种常见的技能的 build 变种。
+各位读者可以进一步发挥 &lt;/p&gt;
 &lt;h2 id="_6"&gt; 伤害输出 &lt;/h2&gt;
 &lt;p&gt; 先祖之锤配合战斗暴怒（血溅八方），即可以作为单体输出，
-也可以利用溅射伤害作为小范围群体输出。之所以选择恶魔铁贴，是因为所带的减速效果，
-在击杀哥布林和远程怪时，具有非常好的控制效果。
-此外，战斗暴怒本身的伤害和爆击提升也非常不错。
-霸气无双可以作为额外的伤害输出补充，而且霸气无双的发动并不打断先祖之锤。&lt;/p&gt;
+也可以利用溅射伤害作为小范围群体输出。
+这里我推荐恶魔铁贴这个符文，是因为所带的减速效果，
+在击杀哥布林和远程怪时，具有非常好的控制效果。&lt;/p&gt;
+&lt;p&gt; 山崩地裂的怒气消耗减 CD 和耗怒回血一样，需要的快速消耗怒气。
+将其做为主要的输出技能也是不错的选择。&lt;/p&gt;
+&lt;p&gt; 上古之矛（巨岩怒掷）消耗所有怒气，也是个不错的输出技能。&lt;/p&gt;
 &lt;h2 id="_7"&gt; 耗怒回血 &lt;/h2&gt;
-&lt;p&gt; 站桩砸先祖之锤是最主要的耗怒回血方式。注意霸气无双的反伤 CD 好了就用。
-战斗暴怒的 20 点怒气消耗也可以作为额外的回血手段。&lt;/p&gt;
+&lt;p&gt; 站桩砸先祖之锤是最主要的耗怒回血方式，提供了一种小量持续的生命恢复。&lt;/p&gt;
+&lt;p&gt; 上古之矛（巨岩怒掷）消耗所有怒气，可以做为一个大治疗存在。&lt;/p&gt;
+&lt;p&gt; 战斗暴怒的 20 点怒气消耗也可以作为额外的回血手段。&lt;/p&gt;
 &lt;h2 id="_8"&gt; 怒气产生技能 &lt;/h2&gt;
-&lt;p&gt; 无可饶恕提供稳定的毎秒怒气累积。战吼（迎敌怒喝）加怒气提供了不错的怒气爆发，
-但可以视情况切换（顽抗战吼）加抗性，或者（鼓舞土气）加秒回。
-迷信提供了某些精英战中额外的怒气产生，踩着好几个瘟疫和亵渎砸先祖之锤，
-怒气可以达到不衰退。狂乱作为额外的怒气补充，来应对某些尴尬的情况。
-这里选择了（狂人）加伤害，可以根据喜好选择其它符文。&lt;/p&gt;
+&lt;p&gt; 无可饶恕提供稳定的毎秒怒气累积。&lt;/p&gt;
+&lt;p&gt; 战吼（迎敌怒喝）加怒气提供了不错的怒气爆发，
+可以视情况切换（顽抗战吼）加抗性，或者（鼓舞土气）加秒回。&lt;/p&gt;
+&lt;p&gt; 迷信提供了某些精英战中额外的怒气产生，踩着好几个瘟疫和亵渎砸先祖之锤，
+怒气可以达到不衰退。&lt;/p&gt;
+&lt;p&gt; 山崩地裂可以搭配被动技能大地之怒，来提供怒气。这里我推荐（天崩地裂）这个符文，
+累积 3 次，想用就用。&lt;/p&gt;
+&lt;p&gt; 狂暴冲锋（韧劲）毎击中一个敌人就产生 10 点怒气，还可以提供一个走位方式。&lt;/p&gt;
+&lt;p&gt; 狂乱等主要技能作为额外的怒气补充，可以用来应对某些尴尬的情况。
+这里我推荐选择了（狂人）加伤害，可以根据喜好选择其它符文。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt; 我拿了欧洲冠军，所以我是特别的那一个。
-  &lt;small&gt; 穆里尼奥 &lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;I'm the special one.
+  &lt;small&gt;Mourinho&lt;/small&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id="_9"&gt; 伤害减免技能 &lt;/h2&gt;
-&lt;p&gt; 战吼提供护甲加成，队友也能享受得到。
-霸气无双（制敌先机）提供了 35% 的伤害减免。虽然这不是野蛮人减伤最高的技能，
+&lt;p&gt; 战吼提供护甲加成，队友也能享受得到。&lt;/p&gt;
+&lt;p&gt; 霸气无双（制敌先机）提供了 35% 的伤害减免。虽然这不是野蛮人减伤最高的技能，
 但结合先祖之锤在满怒时的高爆击，可以很快地触发霸气无双的爆击减 CD，
-提供非常不错的伤害减免覆盖。更可贵的是这 35% 的伤害减免会反弹给攻击者。
-其它还可以考虑威吓怒吼。忘却痛苦 CD 过长，目前来看不是一个太好的选择。&lt;/p&gt;
+提供非常不错的伤害减免覆盖。更可贵的是这 35% 的伤害减免会反弹给攻击者。&lt;/p&gt;
+&lt;p&gt; 威吓怒吼也是个不错的选择，虽然减伤比例低，但是覆盖时间更长，操作更安逸。&lt;/p&gt;
+&lt;p&gt; 忘却痛苦 CD 过长，目前来看不是一个太好的选择。&lt;/p&gt;
 &lt;h2 id="_10"&gt; 走位 &lt;/h2&gt;
-&lt;p&gt; 这里选择了跃击（亚瑞特的呼唤），可以提供一些基本的走位，
-同时具有小范围拉怪的能力，可以视情况选择其它符文。
-其它技能还可以选择狂暴冲锋（韧劲）加怒气、（绝情猛攻）减 CD、
-旋风斩（烈风剪）加怒气。要注意的是，旋风斩是个消耗 10 点怒气的技能，
+&lt;p&gt; 跃击可以提供一种霸气的走位方式，我推荐使用（亚瑞特的呼唤）
+同时具有小范围拉怪的能力，组队时有不错的救驾队友的功能，可以视情况选择其它符文。
+在某些特定地图中，跃击还可以像传送一样达到快速旅行的目的。&lt;/p&gt;
+&lt;p&gt; 狂暴冲锋的（韧劲）加怒气、（绝情猛攻）减 CD，都是不错的走位技能，
+有传奇支持后，冲锋这个技能会更神。&lt;/p&gt;
+&lt;p&gt; 旋风斩（烈风剪）加怒气。要注意的是，旋风斩是个消耗 10 点怒气的技能，
 配合耗怒回血，等于是享受了（集血斩）这个符文，
 喜欢旋风斩的朋友可以尝试开着霸气无双的反伤来转怪群，回血又回怒，感觉不错。&lt;/p&gt;
 &lt;h2 id="_11"&gt; 免疫控制 &lt;/h2&gt;
@@ -158,11 +171,81 @@
 实际上装备上的时间缩短加上这个被动，是可以达到 100% 控场时间缩短的，
 但是不确定是否 100% 控场时间缩短之后还会触发势不可挡的回血特效。
 由于目前装备有限，这个我还没有进行测试。&lt;/p&gt;
-&lt;h1 id="_12"&gt; 装备选择 &lt;/h1&gt;
-&lt;h2 id="_13"&gt; 武器 &lt;/h2&gt;
+&lt;p&gt; 狂战之怒由于超长的 CD，目前来看性价比不高。&lt;/p&gt;
+&lt;h2 id="_12"&gt; 技能变种 &lt;/h2&gt;
+&lt;h3 id="1"&gt; 变种 1：组队坦克 &lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 撼山易，撼岳家军难 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="barb-build-tank" src="/static/images/diablo3-build/barb-build-tank.png" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 鼠标左键：狂乱（狂人）&lt;/li&gt;
+&lt;li&gt; 鼠标右键：跃击（亚瑞特呼唤）&lt;/li&gt;
+&lt;li&gt; 一号按键：先祖之锤（恶魔铁砧）&lt;/li&gt;
+&lt;li&gt; 二号按键：霸气无双（制敌先机）&lt;/li&gt;
+&lt;li&gt; 三号按键：战斗暴怒（血溅八方）&lt;/li&gt;
+&lt;li&gt; 四号按键：战吼（迎敌怒喝）&lt;/li&gt;
+&lt;li&gt; 被动技能：无可饶恕，迷信，嗜血狂人，势不可当 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 先祖之锤结合霸气无双的反伤，站桩扛精英游刃有余；
+配合战斗暴怒（血溅八方）也有不错的群伤能力。
+这里推荐（恶魔铁砧）减速符文，击杀哥布林和组队控制精英怪可以更游刃有余。&lt;/p&gt;
+&lt;p&gt; 跃击相比冲锋和旋风斩，移动速度要快很多，这里选择（亚瑞特呼唤）具有拉怪功能，
+非常适合组队救驾。试想一下，某个女猎魔人正在被杂兵纠缠骚扰，一名野蛮人从天而降，
+英雄救美，何等霸气。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 我的意中人是个盖世英雄，有一天他会踩着七色的云彩来娶我。
+  &lt;small&gt; 大话西游 &lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="2"&gt; 变种 2：旋风斩 &lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 其疾如风，其徐如林，侵掠如火，不动如山
+  &lt;small&gt; 孙子兵法 ・ 军争 &lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="barb-build-whirlwind" src="/static/images/diablo3-build/barb-build-whirlwind.png" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 鼠标左键：狂乱（狂乱先驱）&lt;/li&gt;
+&lt;li&gt; 鼠标右键：旋风斩（烈风剪）&lt;/li&gt;
+&lt;li&gt; 一号按键：先祖之锤（恶魔铁砧）&lt;/li&gt;
+&lt;li&gt; 二号按键：霸气无双（制敌先机）&lt;/li&gt;
+&lt;li&gt; 三号按键：战斗暴怒（血溅八方）&lt;/li&gt;
+&lt;li&gt; 四号按键：山崩地裂（天崩地裂）&lt;/li&gt;
+&lt;li&gt; 被动技能：无可饶恕，迷信，嗜血狂人，大地之怒 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 这个变种中使用山崩地裂（天崩地裂）配合大地之怒提供较高的怒气产生。
+由于放弃了势不可当的控制减免，需要通过装备上的控场减免来弥补。&lt;/p&gt;
+&lt;p&gt; 旋风斩推荐（烈风剪）回怒，一旦怒气偏少，只要停下来放一个山崩地裂就可以继续上路了 &lt;/p&gt;
+&lt;p&gt; 这里，狂乱选择了（狂乱先驱）增加移动速度，让旋风斩更流畅。&lt;/p&gt;
+&lt;p&gt; 此外，先祖站桩过程中，使用山崩地裂还可以提供额外的伤害输出。&lt;/p&gt;
+&lt;h3 id="3"&gt; 变种 3：巨岩怒掷 &lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 力拔山兮气盖世
+  &lt;small&gt; 垓下歌 &lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="barb-build-rock" src="/static/images/diablo3-build/barb-build-rock.png" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 鼠标左键：狂乱（天袭）&lt;/li&gt;
+&lt;li&gt; 鼠标右键：跃击（烈风剪）&lt;/li&gt;
+&lt;li&gt; 一号按键：上古之矛（巨岩怒掷）&lt;/li&gt;
+&lt;li&gt; 二号按键：霸气无双（制敌先机）&lt;/li&gt;
+&lt;li&gt; 三号按键：战斗暴怒（血溅八方）&lt;/li&gt;
+&lt;li&gt; 四号按键：战吼（迎敌怒喝）&lt;/li&gt;
+&lt;li&gt; 被动技能：无可饶恕，迷信，嗜血狂人，怒意高涨 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 旋风斩用来提供小量的生命恢复，同时提供走位。&lt;/p&gt;
+&lt;p&gt; 巨岩怒掷作为主要的输出技能，同时提供大量的生命恢复。
+因此，当血量下降到 40% 时使用巨岩怒掷会有比较好的利用率。&lt;/p&gt;
+&lt;p&gt; 因为装备水平不高的时候，怒气产生的比较慢，所以这里选择了怒意高涨，
+战吼（迎敌怒喝），和旋风斩（烈风剪）。同时无怒气就不能进行耗怒回血，
+所以这里选择了狂乱（天袭），来让精英战中的怒气累积更安全。&lt;/p&gt;
+&lt;p&gt; 由于经常处于怒气匮乏和贫血的状态，大家可以关注下
+踏泥铁头靴的 “ 生命损失提高移动速度 ” 和清水羽织的 “ 生命低于 20% 攻击一定爆击 ”，
+当然还有夺魂者裹腕的 “ 生命之球恢复 25% 主要能理 ”。&lt;/p&gt;
+&lt;h1 id="_13"&gt; 装备选择 &lt;/h1&gt;
+&lt;h2 id="_14"&gt; 武器 &lt;/h2&gt;
 &lt;p&gt; 由于耗怒回血需要较快地倾泻怒气，所以推荐使用双持。
 此外，双持武器的高攻速也有利于快速将霸气无双的 CD 置零。&lt;/p&gt;
-&lt;h2 id="_14"&gt; 生命之球恢复词缀选择 &lt;/h2&gt;
+&lt;h2 id="_15"&gt; 生命之球恢复词缀选择 &lt;/h2&gt;
 &lt;p&gt; 如前所述，“ 生命之球与药水恢复量 +N” 可能出现在肩 / 胸 / 足 / 项链 / 戒指 1/ 戒指 2，
 共 6 个位置，取值范围为 14,000~20,000，可以期待的总量是 170,000，
 会提供毎点耗怒恢复 1700 点生命。&lt;/p&gt;
@@ -172,27 +255,17 @@
 而已经有 “ 生命之球与药水恢复量 +N” 这条次要属性的装备，
 可以考虑将其中一条不太好主要属性重铸为更有用的属性，
 如秒回重铸为体能或者全抗。&lt;/p&gt;
-&lt;h2 id="_15"&gt; 控场时间缩短词缀选择 &lt;/h2&gt;
+&lt;h2 id="_16"&gt; 控场时间缩短词缀选择 &lt;/h2&gt;
 &lt;p&gt; 这个词缀可以出现在头 / 项链 / 戒指 1/ 戒指 2，共 4 个位置，取值范围为 10%~20%。
 由于是次要属性，可以考虑在保证生命之球回复加成的前提，尽量兼顾这条词缀 &lt;/p&gt;
-&lt;h2 id="_16"&gt; 消耗怒气回血 &lt;/h2&gt;
+&lt;h2 id="_17"&gt; 消耗怒气回血 &lt;/h2&gt;
 &lt;p&gt; 重型腰带上，这条词缀会以主要属性的方式出现，是否重铸或保留这条词缀，
 大家可以根据情况决定，由于这条词缀的上限不超过 200，
 所以即使没有，也不会产生很大的影响。
 此外，要注意的是不朽之王的套装奖励也有这条词缀 &lt;/p&gt;
-&lt;h1 id="_17"&gt; 巅峰点数 &lt;/h1&gt;
+&lt;h1 id="_18"&gt; 巅峰点数 &lt;/h1&gt;
 &lt;p&gt; 额外需要注意的是辅肋中不要使用 “ 能量消耗降低 ”，因为就是需要用怒气消耗来恢复血量。
-这里推荐使用击中生命恢复，可以提供额外的战斗恢复补充。&lt;/p&gt;
-&lt;h1 id="_18"&gt; 优劣比较 &lt;/h1&gt;
-&lt;p&gt; 优势 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt; 渐进的装备更新路线，可以从稀有装备慢慢过渡到传奇，没有特定传奇装备的要求 &lt;/li&gt;
-&lt;li&gt; 充分利用了装备上的次要属性，不浪费 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 劣势 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt; 无怒气时，非常危险。可以考虑巅峰点数选择击中恢复，提供额外的生命恢复手段 &lt;/li&gt;
-&lt;/ul&gt;</summary><category term="diablo3"></category></entry><entry><title>如何撰写技术文档</title><link href="http://blog.iliork.com/posts/2014/01/technical-writing.html" rel="alternate"></link><updated>2014-01-29T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-01-29:posts/2014/01/technical-writing.html</id><summary type="html">&lt;p&gt; 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。&lt;/p&gt;
+这里推荐使用击中生命恢复，可以提供额外的战斗恢复补充。&lt;/p&gt;</summary><category term="diablo3"></category></entry><entry><title>如何撰写技术文档</title><link href="http://blog.iliork.com/posts/2014/01/technical-writing.html" rel="alternate"></link><updated>2014-01-29T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-01-29:posts/2014/01/technical-writing.html</id><summary type="html">&lt;p&gt; 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。&lt;/p&gt;
 &lt;p&gt; 如果你时间非常有限，我推荐以下两个文档 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
