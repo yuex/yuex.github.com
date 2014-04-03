@@ -18,6 +18,10 @@ body {
 
 /* Set the fixed height of the footer here */
 #footer {
+   /* firefox, 'important' highest priority, ignore following overwriting */
+  min-height: 60px;
+  height: auto !important;
+  /* for IE, it wont recoganize 'important' and 'min-height */
   height: 60px;
   border-width: 0;
 }
