@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.iliork.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.iliork.com/</id><updated>2014-03-30T00:00:00+08:00</updated><entry><title>利用耗怒回血解决野蛮人的战斗恢复问题</title><link href="http://blog.iliork.com/posts/2014/03/diablo3-barb-build.html" rel="alternate"></link><updated>2014-03-30T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-03-30:posts/2014/03/diablo3-barb-build.html</id><summary type="html">&lt;h1 id="build"&gt;Build 介绍 &lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.iliork.com/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.iliork.com/</id><updated>2014-03-30T00:00:00+08:00</updated><entry><title>利用耗怒回血解决野蛮人的战斗恢复问题</title><link href="http://blog.iliork.com/post/2014/03/diablo3-barb-build.html" rel="alternate"></link><updated>2014-03-30T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-03-30:post/2014/03/diablo3-barb-build.html</id><summary type="html">&lt;h1 id="build"&gt;Build 介绍 &lt;/h1&gt;
 &lt;p&gt; 在《夺魂之镰》之中，
 由于 “ 生命窃取 ” 的去除和 “ 战斗暴怒 ” 与 “ 狂战之怒 ” 两个技能某些符文的修改，
 在之前版本中广泛流行的 “ 双旋风 ”build 已经跑不起来了。
@@ -177,7 +177,7 @@
 &lt;blockquote&gt;
 &lt;p&gt; 撼山易，撼岳家军难 &lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="barb-build-tank" src="/static/images/diablo3-build/barb-build-tank.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="barb-build-tank" src="/image/diablo3-build/barb-build-tank.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; 鼠标左键：狂乱（狂人）&lt;/li&gt;
 &lt;li&gt; 鼠标右键：跃击（亚瑞特呼唤）&lt;/li&gt;
@@ -202,7 +202,7 @@
 &lt;p&gt; 其疾如风，其徐如林，侵掠如火，不动如山
   &lt;small&gt; 孙子兵法 ・ 军争 &lt;/small&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="barb-build-whirlwind" src="/static/images/diablo3-build/barb-build-whirlwind.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="barb-build-whirlwind" src="/image/diablo3-build/barb-build-whirlwind.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; 鼠标左键：狂乱（狂乱先驱）&lt;/li&gt;
 &lt;li&gt; 鼠标右键：旋风斩（烈风剪）&lt;/li&gt;
@@ -222,7 +222,7 @@
 &lt;p&gt; 力拔山兮气盖世
   &lt;small&gt; 垓下歌 &lt;/small&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="barb-build-rock" src="/static/images/diablo3-build/barb-build-rock.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="barb-build-rock" src="/image/diablo3-build/barb-build-rock.jpg" /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; 鼠标左键：狂乱（天袭）&lt;/li&gt;
 &lt;li&gt; 鼠标右键：跃击（烈风剪）&lt;/li&gt;
@@ -268,7 +268,7 @@
 这里推荐使用击中生命恢复，可以提供额外的战斗恢复补充。&lt;/p&gt;
 &lt;h1 id="_19"&gt; 结语 &lt;/h1&gt;
 &lt;p&gt; 是男人就要刚正面 &lt;/p&gt;
-&lt;p&gt;&lt;img alt="barb-xuyunlong" src="/static/images/diablo3-build/barb-xuyunlong.jpg" /&gt;&lt;/p&gt;</summary><category term="diablo3"></category></entry><entry><title>如何撰写技术文档</title><link href="http://blog.iliork.com/posts/2014/01/technical-writing.html" rel="alternate"></link><updated>2014-01-29T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-01-29:posts/2014/01/technical-writing.html</id><summary type="html">&lt;p&gt; 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="barb-xuyunlong" src="/image/diablo3-build/barb-xuyunlong.jpg" /&gt;&lt;/p&gt;</summary><category term="diablo3"></category></entry><entry><title>如何撰写技术文档</title><link href="http://blog.iliork.com/post/2014/01/technical-writing.html" rel="alternate"></link><updated>2014-01-29T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2014-01-29:post/2014/01/technical-writing.html</id><summary type="html">&lt;p&gt; 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。&lt;/p&gt;
 &lt;p&gt; 如果你时间非常有限，我推荐以下两个文档 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -313,7 +313,7 @@
 &lt;dd&gt;ISBN: 9789578302006。该书从句子合成与简化的角度来讲解英语语法，深入浅出，将繁杂语法规则精炼为几条原则，来教会读者触类旁通。由于出版社倒闭，该书已经绝版，有一些扫描版流传于网络 &lt;/dd&gt;
 &lt;/dl&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</summary></entry><entry><title>动手写PAM模块让sshd支持用户接入控制</title><link href="http://blog.iliork.com/posts/2013/09/hands-on-pam-module-and-sshd.html" rel="alternate"></link><updated>2013-09-29T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-09-29:posts/2013/09/hands-on-pam-module-and-sshd.html</id><summary type="html">&lt;p&gt; 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。&lt;/p&gt;
+&lt;/ul&gt;</summary></entry><entry><title>动手写PAM模块让sshd支持用户接入控制</title><link href="http://blog.iliork.com/post/2013/09/hands-on-pam-module-and-sshd.html" rel="alternate"></link><updated>2013-09-29T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-09-29:post/2013/09/hands-on-pam-module-and-sshd.html</id><summary type="html">&lt;p&gt; 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。&lt;/p&gt;
 &lt;p&gt; 想当然的做法是用 /etc/security/limits.conf 中的 maxlogins 解决。但是这个是有问题的，maxlogins 是要用户登录到 shell 才会统计的。pam_limits.so 中读取的是 utmp，这个是存在 /var/run/utmp 中的，用 &lt;code&gt;w&lt;/code&gt; 可以查看。而 &lt;code&gt;ssh -N&lt;/code&gt; 是不会被 utmp 记录为 login 的。所以，如果用上篇 blog 中的方法实践的话，用户可以用 &lt;code&gt;ssh -N&lt;/code&gt; 绕过所有的接入控制。一般而言，这也不是什么大问题，因为用户 &lt;code&gt;ssh -N&lt;/code&gt; 接入的话，只能做端口转发这一件事情。而若 sshd 禁用端口转发的话，这个也就只能用来攻击了，而这种又太容易防范了（做贼还要用真名吗），所以也不会够成实质性的威胁。&lt;/p&gt;
 &lt;p&gt; 但对于希望把端口转发做为一项服务的某来话，这就是个大问题了。一项服务，如果不能进行用户权限控制的话，那只能算是自己给自己开了一个安全漏洞。解决的方法，最好就是 ssh 可以提供相应的功能。但目前来看，似乎不太可能。而且即使有这个可能，自己动手 commit 的话，直到 merge 也要太长的周期。所以某转而来调研 pam 是不是也能实现这个功能。&lt;/p&gt;
 &lt;p&gt; 答案是肯定的。而且更加方便的方法是用 pam_script.so 来做这件事。在进行账户验证的时候，执行脚本，来完成对 ssh 接入用户数和用户 ip 的检查，从而完成对单个账号登录和单个 ip 登录数目的限制。可惜的是，pam 的发行包中没有 pam_script 这个模块。网上可以找到一些别人写的，但大多语焉不详，有的是 doc 一笔带过，有的是编译无法一次通过。此外，某发现这些 pam_script.so 的实现，都只能针对 auth，password 和 session 进行插入，而独没有 account。根据 &lt;code&gt;man pam&lt;/code&gt; 中的解释 &lt;/p&gt;
@@ -322,7 +322,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt; 似乎 account 才是最符合某的接入控制需求的。所以，某决定还是自己动手写一个简单的 pam_script.so 吧。对于如何写一个 pam module，可以参考 &lt;a href="http://www.rkeene.org/projects/info/wiki/222"&gt; 这个 &lt;/a&gt; 和 &lt;a href="http://www.freebsd.org/doc/en/articles/pam/article.html#pam-sample-module"&gt; 这个 &lt;/a&gt;。因为我只做 account 用，所以只要实现 &lt;code&gt;pam_sm_acct_mgmt&lt;/code&gt; 就可以了。只要在 C 中指定一个脚本路径，然后用一些参数调用这个脚本，并读取返回值就可以了。而外部脚本，可以使用 shell script，也可以使用 python，对登录数目的统计可以用 &lt;code&gt;ps&lt;/code&gt; 和 &lt;code&gt;netstat&lt;/code&gt;，只要检查完把结果返回给 &lt;code&gt;pam_script.so&lt;/code&gt; 就可以了。&lt;/p&gt;
 &lt;p&gt; 最后一步，不要忘记把 &lt;code&gt;pam_script.so&lt;/code&gt; 加入到 /etc/pam.d/sshd 中 &lt;/p&gt;
-&lt;p&gt; 因为目前某的 vps 还在做小范围的测试，代码要晚点才能放到 github 上。&lt;/p&gt;</summary><category term="sshd"></category><category term="pam"></category><category term="python"></category></entry><entry><title>配置sshd使用pam认证小结</title><link href="http://blog.iliork.com/posts/2013/09/config-sshd-using-pam.html" rel="alternate"></link><updated>2013-09-25T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-09-25:posts/2013/09/config-sshd-using-pam.html</id><summary type="html">&lt;p&gt; 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 &lt;code&gt;ssh -D&lt;/code&gt;。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。&lt;/p&gt;
+&lt;p&gt; 因为目前某的 vps 还在做小范围的测试，代码要晚点才能放到 github 上。&lt;/p&gt;</summary><category term="sshd"></category><category term="pam"></category><category term="python"></category></entry><entry><title>配置sshd使用pam认证小结</title><link href="http://blog.iliork.com/post/2013/09/config-sshd-using-pam.html" rel="alternate"></link><updated>2013-09-25T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-09-25:post/2013/09/config-sshd-using-pam.html</id><summary type="html">&lt;p&gt; 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 &lt;code&gt;ssh -D&lt;/code&gt;。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。&lt;/p&gt;
 &lt;p&gt;ssh＋pam＋chroot 各模块的功能如下 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ssh/sshd：client and server，支持密码用户 &lt;/li&gt;
@@ -348,7 +348,7 @@ account    include      password&lt;span class="o"&gt;-&lt;/span&gt;auth
 
 
 &lt;p&gt; 此外还要在 /etc/security/access.conf 中写入具体的登陆控制，可以参考其中的 comments，支持用户和 ip 区分。注意这两个文件都是顺序解析的，First Come Firs Serve。所以要注意写入规则的顺序。&lt;/p&gt;
-&lt;p&gt; 对于这样建立的 socks 伺服并非没有问题，比如 bandwidth 的限额。&lt;/p&gt;</summary><category term="sshd"></category><category term="pam"></category></entry><entry><title>terminal切换小结</title><link href="http://blog.iliork.com/posts/2013/09/terminal-switching.html" rel="alternate"></link><updated>2013-09-24T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-09-24:posts/2013/09/terminal-switching.html</id><summary type="html">&lt;p&gt; 早就听说 xterm 和 urxvt 是轻量高可配置，所以想利用周末的时间把某现在在用的 terminator 切换到 xterm 或者 urxvt。结果放弃了。倒不是因为配置太过复杂，而是某觉得，在进行了一定配置之后，对比需求 / 成本 / 收益觉得，这样的配置不能称之为有效。某认为将这些东西总结一下，可能有助于有同样切换初衷的同学少走一些弯路。&lt;/p&gt;
+&lt;p&gt; 对于这样建立的 socks 伺服并非没有问题，比如 bandwidth 的限额。&lt;/p&gt;</summary><category term="sshd"></category><category term="pam"></category></entry><entry><title>terminal切换小结</title><link href="http://blog.iliork.com/post/2013/09/terminal-switching.html" rel="alternate"></link><updated>2013-09-24T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-09-24:post/2013/09/terminal-switching.html</id><summary type="html">&lt;p&gt; 早就听说 xterm 和 urxvt 是轻量高可配置，所以想利用周末的时间把某现在在用的 terminator 切换到 xterm 或者 urxvt。结果放弃了。倒不是因为配置太过复杂，而是某觉得，在进行了一定配置之后，对比需求 / 成本 / 收益觉得，这样的配置不能称之为有效。某认为将这些东西总结一下，可能有助于有同样切换初衷的同学少走一些弯路。&lt;/p&gt;
 &lt;p&gt; 某切换 terminal 的初始需求 :&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt; 可全屏 &lt;/li&gt;
@@ -392,7 +392,7 @@ account    include      password&lt;span class="o"&gt;-&lt;/span&gt;auth
 &lt;p&gt;&lt;a href="http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ"&gt;http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/FAQ&lt;/a&gt; search "reverse video"&amp;#160;&lt;a class="footnote-backref" href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary><category term="terminal"></category><category term="xterm"></category><category term="urxvt"></category></entry><entry><title>Archlinux环境下pdf注记工具推荐</title><link href="http://blog.iliork.com/posts/2013/03/pdf-annotation.html" rel="alternate"></link><updated>2013-03-16T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-16:posts/2013/03/pdf-annotation.html</id><summary type="html">&lt;p&gt; 从事学术工作的朋友可能像笔者一样，经常会遇到要帮助别人修改文章，或者自己阅读文献要进行批注的情况。由于并不是人人都使用 Linux 和 Latex，所以一般大家会默认地将写好的文章转换为 pdf 格式，然后再进行修改 &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。这样在 Linux 下选择一款得心应手的带有注记功能的 pdf viewer 软件就十分重要了。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="terminal"></category><category term="xterm"></category><category term="urxvt"></category></entry><entry><title>Archlinux环境下pdf注记工具推荐</title><link href="http://blog.iliork.com/post/2013/03/pdf-annotation.html" rel="alternate"></link><updated>2013-03-16T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-16:post/2013/03/pdf-annotation.html</id><summary type="html">&lt;p&gt; 从事学术工作的朋友可能像笔者一样，经常会遇到要帮助别人修改文章，或者自己阅读文献要进行批注的情况。由于并不是人人都使用 Linux 和 Latex，所以一般大家会默认地将写好的文章转换为 pdf 格式，然后再进行修改 &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。这样在 Linux 下选择一款得心应手的带有注记功能的 pdf viewer 软件就十分重要了。&lt;/p&gt;
 &lt;p&gt; 在 Archlinux 上，有如下几种选择 &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Okular          - extra, kde&lt;/li&gt;
@@ -423,7 +423,7 @@ account    include      password&lt;span class="o"&gt;-&lt;/span&gt;auth
 &lt;p&gt; 使用 word 的朋友，一定要先在 windows 上用 word 将 doc 文档转换好 pdf 再发给 Linux 的朋友进行修改。Linux 下虽然也可以对 doc 进行转换，但转换效果并不理想。&amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary><category term="pdf"></category><category term="archlinux"></category></entry><entry><title>在shell中区分option与args</title><link href="http://blog.iliork.com/posts/2013/03/differ-optons-from-args-in-shell.html" rel="alternate"></link><updated>2013-03-02T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-02:posts/2013/03/differ-optons-from-args-in-shell.html</id><summary type="html">&lt;p&gt; 使用 &lt;code&gt;--&lt;/code&gt;。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="pdf"></category><category term="archlinux"></category></entry><entry><title>在shell中区分option与args</title><link href="http://blog.iliork.com/post/2013/03/differ-optons-from-args-in-shell.html" rel="alternate"></link><updated>2013-03-02T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-02:post/2013/03/differ-optons-from-args-in-shell.html</id><summary type="html">&lt;p&gt; 使用 &lt;code&gt;--&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt; 如下，&lt;code&gt;-rf&lt;/code&gt; 会解析为 option，而 &lt;code&gt;--help&lt;/code&gt; 会解析为 args&lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rm -rf -- --help
 &lt;/pre&gt;&lt;/div&gt;
@@ -436,7 +436,7 @@ account    include      password&lt;span class="o"&gt;-&lt;/span&gt;auth
 &lt;p&gt;&lt;code&gt;man bash&lt;/code&gt; 之后 &lt;code&gt;/--&lt;/code&gt;，可以了解更多信息 &amp;#160;&lt;a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary><category term="bash"></category></entry><entry><title>使用virtualenv要注意的地方</title><link href="http://blog.iliork.com/posts/2013/03/notes-for-virtualenv.html" rel="alternate"></link><updated>2013-03-02T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-02:posts/2013/03/notes-for-virtualenv.html</id><summary type="html">&lt;p&gt;virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。&lt;/p&gt;
+&lt;/div&gt;</summary><category term="bash"></category></entry><entry><title>使用virtualenv要注意的地方</title><link href="http://blog.iliork.com/post/2013/03/notes-for-virtualenv.html" rel="alternate"></link><updated>2013-03-02T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.iliork.com,2013-03-02:post/2013/03/notes-for-virtualenv.html</id><summary type="html">&lt;p&gt;virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。&lt;/p&gt;
 &lt;p&gt; 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 &lt;code&gt;mkvirtualenv&lt;/code&gt; 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。&lt;/p&gt;
 &lt;p&gt; 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2，pip 是 pip2，
 而 virtualenv 安装之后，默认的解析是 python2/python/python2.7, pip/pip2.7。如果不检查就直接用习惯的

@@ -5,9 +5,9 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="yuex (悟道洞穴人)">
     <meta name="author" content="yuex">
-    <link rel="icon" type="image/png" href="/static/images/favicon.png">
+    <link rel="icon" type="image/png" href="/image/favicon.png">
 
-        <title>如何撰写技术文档 · yuex (悟道洞穴人)</title>
+        <title>动手写PAM模块让sshd支持用户接入控制 · yuex (悟道洞穴人)</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -82,7 +82,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="/static/images/email.png">Email</a></li>
+                  <li><a href="/image/email.png">Email</a></li>
                   <li><a href="http://github.com/yuex">Github</a></li>
                 </ul>
               </li>
@@ -98,7 +98,7 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="page-header">
-        <h1><a href="/posts/2014/01/technical-writing.html">如何撰写技术文档</a></h1>
+        <h1><a href="/post/2013/09/hands-on-pam-module-and-sshd.html">动手写PAM模块让sshd支持用户接入控制</a></h1>
     </div>
 
         </div>
@@ -112,10 +112,17 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="/category/writing.html">writing</a>
+      href="/category/linux.html">linux</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="/tag/sshd.html">sshd</a>
+        <a class="label label-primary" 
+          href="/tag/pam.html">pam</a>
+        <a class="label label-primary" 
+          href="/tag/python.html">python</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="/archives.html#Year2014">2014</a>-<a href="/archives.html#Year2014Month1">01</a>-<a href="/archives.html#Year2014Month1Day29">29</a>
+      <a href="/archives.html#Year2013">2013</a>-<a href="/archives.html#Year2013Month9">09</a>-<a href="/archives.html#Year2013Month9Day29">29</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -125,63 +132,54 @@
   <hr/>
 
   <div>
-    <p> 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。</p>
-<p> 如果你时间非常有限，我推荐以下两个文档 </p>
-<ul>
-<li>
-<dl>
-<dt>Michael Ernst's <a href="http://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html">Writing a Technical Paper</a></dt>
-<dd>Michael Ernst 给出一些关于会议论文写作的建议，包含了从文章构思、提纲拟定、写作风格、图表表现、命名、处理评审意见等多个方面。此外，Michael 的个人主页上还有很多有益于学术生涯的其它方面的建议，也非常值得一读。</dd>
-</dl>
-</li>
-<li>
-<dl>
-<dt>Norman Ramsey's <a href="http://www.cs.tufts.edu/~nr/pubs/two-abstract.html">Learning Technical Writing in Two Hours per Week</a></dt>
-<dd>Norman Ramsey 总结了 9 条科技写作原则，并设计了 7 个练习来帮助掌握这些原则。相比 Michael 的建议，Norman 的建议更精炼，更适合用来强化掌握。</dd>
-</dl>
-</li>
-</ul>
-<p> 如果你时间多一点，我额外推荐两本书 </p>
-<ul>
-<li>
-<dl>
-<dt>The Elements of Style, William Strunk Jr. and E.B. White</dt>
-<dd>ISBN: 9780205632640。需要注意的是，Strunk 的原版和 E.B. White 修订后的版本有比较大的不同。这里推荐的是 White 修订后的版本。</dd>
-</dl>
-</li>
-<li>
-<dl>
-<dt>Style: Toward Clarity and Grace, Joseph M. Williams</dt>
-<dd> 一句话评价稍后奉上 </dd>
-</dl>
-</li>
-</ul>
-<p> 如果还想提高英语读写的话，我推荐以下两本书 </p>
-<ul>
-<li>
-<dl>
-<dt>Triple Your Reading Speed, Wade E. Cutler</dt>
-<dd> 本书讲述了速读术的基本原理，并辅以相应练习来帮助读者掌握。当然，掌握原理后的认真练习仍然是必不可少的。外研社出过一版该书的影印版，ISBN: 9787560045399</dd>
-</dl>
-</li>
-<li>
-<dl>
-<dt> 文法俱乐部，旋元佑 </dt>
-<dd>ISBN: 9789578302006。该书从句子合成与简化的角度来讲解英语语法，深入浅出，将繁杂语法规则精炼为几条原则，来教会读者触类旁通。由于出版社倒闭，该书已经绝版，有一些扫描版流传于网络 </dd>
-</dl>
-</li>
-</ul>
+    <p> 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。</p>
+<p> 想当然的做法是用 /etc/security/limits.conf 中的 maxlogins 解决。但是这个是有问题的，maxlogins 是要用户登录到 shell 才会统计的。pam_limits.so 中读取的是 utmp，这个是存在 /var/run/utmp 中的，用 <code>w</code> 可以查看。而 <code>ssh -N</code> 是不会被 utmp 记录为 login 的。所以，如果用上篇 blog 中的方法实践的话，用户可以用 <code>ssh -N</code> 绕过所有的接入控制。一般而言，这也不是什么大问题，因为用户 <code>ssh -N</code> 接入的话，只能做端口转发这一件事情。而若 sshd 禁用端口转发的话，这个也就只能用来攻击了，而这种又太容易防范了（做贼还要用真名吗），所以也不会够成实质性的威胁。</p>
+<p> 但对于希望把端口转发做为一项服务的某来话，这就是个大问题了。一项服务，如果不能进行用户权限控制的话，那只能算是自己给自己开了一个安全漏洞。解决的方法，最好就是 ssh 可以提供相应的功能。但目前来看，似乎不太可能。而且即使有这个可能，自己动手 commit 的话，直到 merge 也要太长的周期。所以某转而来调研 pam 是不是也能实现这个功能。</p>
+<p> 答案是肯定的。而且更加方便的方法是用 pam_script.so 来做这件事。在进行账户验证的时候，执行脚本，来完成对 ssh 接入用户数和用户 ip 的检查，从而完成对单个账号登录和单个 ip 登录数目的限制。可惜的是，pam 的发行包中没有 pam_script 这个模块。网上可以找到一些别人写的，但大多语焉不详，有的是 doc 一笔带过，有的是编译无法一次通过。此外，某发现这些 pam_script.so 的实现，都只能针对 auth，password 和 session 进行插入，而独没有 account。根据 <code>man pam</code> 中的解释 </p>
+<blockquote>
+<p>account - provide account verification types of service: has the user's password expired?; is this user permitted access to the requested service?</p>
+</blockquote>
+<p> 似乎 account 才是最符合某的接入控制需求的。所以，某决定还是自己动手写一个简单的 pam_script.so 吧。对于如何写一个 pam module，可以参考 <a href="http://www.rkeene.org/projects/info/wiki/222"> 这个 </a> 和 <a href="http://www.freebsd.org/doc/en/articles/pam/article.html#pam-sample-module"> 这个 </a>。因为我只做 account 用，所以只要实现 <code>pam_sm_acct_mgmt</code> 就可以了。只要在 C 中指定一个脚本路径，然后用一些参数调用这个脚本，并读取返回值就可以了。而外部脚本，可以使用 shell script，也可以使用 python，对登录数目的统计可以用 <code>ps</code> 和 <code>netstat</code>，只要检查完把结果返回给 <code>pam_script.so</code> 就可以了。</p>
+<p> 最后一步，不要忘记把 <code>pam_script.so</code> 加入到 /etc/pam.d/sshd 中 </p>
+<p> 因为目前某的 vps 还在做小范围的测试，代码要晚点才能放到 github 上。</p>
   </div>
 
   <hr/>
+      <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a href="#collapseRelated">Related Posts</a>
+        <a class="accordion-toggle" data-toggle="collapse" 
+          title="toggle folding"
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">2</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
+        <a href="/post/2013/09/config-sshd-using-pam.html">
+          <li class="list-group-item">
+配置sshd使用pam认证小结</li>
+        </a>
+        <a href="/post/2013/03/notes-for-virtualenv.html">
+          <li class="list-group-item">
+使用virtualenv要注意的地方</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
 
       <ul class="pager">
         <li class="previous">
-        <a href="/posts/2014/03/diablo3-barb-build.html">
+        <a href="/post/2014/01/technical-writing.html">
           &laquo; Newer</a>
         </li>
         <li class="next">
-        <a href="/posts/2013/09/hands-on-pam-module-and-sshd.html">
+        <a href="/post/2013/09/config-sshd-using-pam.html">
           Older &raquo;</a>
         </li>
       </ul>
@@ -190,7 +188,7 @@
 <div class="comments">
   <div id="disqus_thread"></div>
   <script type="text/javascript">
-    var disqus_identifier = "posts/2014/01/technical-writing.html";
+    var disqus_identifier = "post/2013/09/hands-on-pam-module-and-sshd.html";
     (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = 'http://blogiliorkcom.disqus.com/embed.js';
