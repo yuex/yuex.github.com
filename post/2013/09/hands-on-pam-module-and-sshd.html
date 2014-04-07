@@ -105,20 +105,18 @@
 
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="page-header">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
         <h1><a href="/post/2013/09/hands-on-pam-module-and-sshd.html">动手写PAM模块让sshd支持用户接入控制</a></h1>
     </div>
 
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-2 col-md-offset-0">
-        </div>
-
-        <div class="col-md-8">
+        <div class="row">
 
     <span id="article_info">
     <a class="label label-primary" 
@@ -141,7 +139,7 @@
 
   <hr/>
 
-  <div>
+  <div id="article_content">
     <p> 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。</p>
 <p> 想当然的做法是用 /etc/security/limits.conf 中的 maxlogins 解决。但是这个是有问题的，maxlogins 是要用户登录到 shell 才会统计的。pam_limits.so 中读取的是 utmp，这个是存在 /var/run/utmp 中的，用 <code>w</code> 可以查看。而 <code>ssh -N</code> 是不会被 utmp 记录为 login 的。所以，如果用上篇 blog 中的方法实践的话，用户可以用 <code>ssh -N</code> 绕过所有的接入控制。一般而言，这也不是什么大问题，因为用户 <code>ssh -N</code> 接入的话，只能做端口转发这一件事情。而若 sshd 禁用端口转发的话，这个也就只能用来攻击了，而这种又太容易防范了（做贼还要用真名吗），所以也不会够成实质性的威胁。</p>
 <p> 但对于希望把端口转发做为一项服务的某来话，这就是个大问题了。一项服务，如果不能进行用户权限控制的话，那只能算是自己给自己开了一个安全漏洞。解决的方法，最好就是 ssh 可以提供相应的功能。但目前来看，似乎不太可能。而且即使有这个可能，自己动手 commit 的话，直到 merge 也要太长的周期。所以某转而来调研 pam 是不是也能实现这个功能。</p>
@@ -209,17 +207,15 @@
 
         </div>
 
-        <div class="col-md-2">
+        <div class="row">
         </div>
+
       </div>
 
-      <div id="pagination">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-          </div>
-        </div>
+      <div class="col-md-2">
       </div>
     </div>
+
 
   </div>
 

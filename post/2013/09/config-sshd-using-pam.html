@@ -105,20 +105,18 @@
 
 
     <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="page-header">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
         <h1><a href="/post/2013/09/config-sshd-using-pam.html">配置sshd使用pam认证小结</a></h1>
     </div>
 
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-2 col-md-offset-0">
-        </div>
-
-        <div class="col-md-8">
+        <div class="row">
 
     <span id="article_info">
     <a class="label label-primary" 
@@ -139,7 +137,7 @@
 
   <hr/>
 
-  <div>
+  <div id="article_content">
     <p> 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 <code>ssh -D</code>。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。</p>
 <p>ssh＋pam＋chroot 各模块的功能如下 </p>
 <ul>
@@ -220,17 +218,15 @@ account    include      password<span class="o">-</span>auth
 
         </div>
 
-        <div class="col-md-2">
+        <div class="row">
         </div>
+
       </div>
 
-      <div id="pagination">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-          </div>
-        </div>
+      <div class="col-md-2">
       </div>
     </div>
+
 
   </div>
 
