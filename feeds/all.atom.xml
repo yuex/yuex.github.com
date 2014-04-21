@@ -90,7 +90,8 @@ Arch 官方提供了 AUR ( Arch User Repository )，可以让用户自己提交 
 &lt;li&gt; 参与 &lt;a href="http://wiki.archlinux.org/"&gt;Arch Wiki&lt;/a&gt; 的条目编写和 &lt;a href="http://bbs.archlinux.org/"&gt;Arch Forum&lt;/a&gt; 的讨论吧 &lt;/li&gt;
 &lt;li&gt; 提交向一个自己的 AUR，不过可能你需要了解一下 &lt;a href="https://wiki.archlinux.org/index.php/ABS"&gt;ABS&lt;/a&gt;，当然还有 &lt;a href="https://wiki.archlinux.org/index.php/PKGBUILD"&gt;PKGBUILD&lt;/a&gt; 和 &lt;a href="https://wiki.archlinux.org/index.php/AUR"&gt;AUR&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt; 最后，欢迎入伙！快去编写 &lt;a href="http://wiki.archlinux.org/"&gt;Arch Wiki&lt;/a&gt; 和提交 &lt;a href="https://wiki.archlinux.org/index.php/AUR"&gt;AUR&lt;/a&gt; 包，来纳你的投名状吧！&lt;/p&gt;
+&lt;h1 id="_3"&gt; 结语 &lt;/h1&gt;
+&lt;p&gt; 欢迎入伙！快去编写 &lt;a href="http://wiki.archlinux.org/"&gt;Arch Wiki&lt;/a&gt; 和提交 &lt;a href="https://wiki.archlinux.org/index.php/AUR"&gt;AUR&lt;/a&gt; 包，来纳你的投名状吧！&lt;/p&gt;
 &lt;p&gt; 但请记住，人生总是很艰难，有一股黑暗势力每年都会入侵一次 Arch 的世界。
 它们会以各种方式来破坏 Arch 世界的和谐，包括但不限于 &lt;/p&gt;
 &lt;ul&gt;
