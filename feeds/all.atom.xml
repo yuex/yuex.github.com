@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.yuex.in/</id><updated>2014-04-18T00:00:00+08:00</updated><entry><title>Arch Linux上手指南</title><link href="http://blog.yuex.in/post/2014/04/arch-guide.html" rel="alternate"></link><updated>2014-04-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.yuex.in,2014-04-18:post/2014/04/arch-guide.html</id><summary type="html">&lt;h1 id="_1"&gt; 缘起 &lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.yuex.in/</id><updated>2014-04-18T00:00:00+08:00</updated><entry><title>Arch Linux</title><link href="http://blog.yuex.in/post/2014/04/arch-guide.html" rel="alternate"></link><updated>2014-04-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.yuex.in,2014-04-18:post/2014/04/arch-guide.html</id><summary type="html">&lt;h1 id="_1"&gt; 缘起 &lt;/h1&gt;
 &lt;p&gt; 一直都想写一篇关于 Arch Linux 的博客，可以用来帮助 Arch 新玩家上路，
 又可以总结一下自己入坑三四年来的一些心得。
 年前的时候，我的 Thinkpad X220 双硬盘中的 mSATA SSD 挂了，援救了一下数据和系统。
