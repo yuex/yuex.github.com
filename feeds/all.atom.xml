@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.yuex.in/</id><updated>2014-04-18T00:00:00+08:00</updated><entry><title>Arch Linux上手指南</title><link href="http://blog.yuex.in/post/2014/04/arch-guide.html" rel="alternate"></link><updated>2014-04-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.yuex.in,2014-04-18:post/2014/04/arch-guide.html</id><summary type="html">&lt;h1 id="_1"&gt; 缘起 &lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://blog.yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://blog.yuex.in/</id><updated>2014-10-14T00:00:00+08:00</updated><entry><title>使用bash渲染模板动态生成配置文件</title><link href="http://blog.yuex.in/post/2014/10/bash-template.html" rel="alternate"></link><updated>2014-10-14T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.yuex.in,2014-10-14:post/2014/10/bash-template.html</id><summary type="html">&lt;p&gt; 在使用 bash 自动化一些配置过程的时候，经常会遇到这样一种情况，我们需要向配置文件中写入一些信息，而这些信息是动态的，只有脚本实际运行的时候，才能知道这些信息。比如我需要自动启动一个由多个 docker container 组成的 cluster。这个 cluster 中的多个 container 形成一个 C/S 架构的星形拓扑。为了可以正常通信，client 至少应该知道 server 的 ip 地址。为了使这个部署可以更灵活，一般会选择使用 dhcp 来动态获取地址。所以，我们不能事先把地址写死，必须在 server container 运行之后动态生成 client 的配置文件。当然，我们也可以把脚本写成两步，先起 server，再起 client。但是这种方法自动化的不彻底，没有一下就把所有工作从头做到尾来得爽快，所以这里也就按下不表了。&lt;/p&gt;
+&lt;p&gt; 上面说的这个情况，最直接的方法是用 &lt;code&gt;sed&lt;/code&gt; 配合正则表达一处一处地修改。但是当要修改的地方很多时，这个方法会变得非常繁琐，后期维护也非常困难。我在这里提供一种利用 bash 渲染模板文件动态生成实际使用配置文件的方法。如果你有玩过 jinja2 这种模板语言，这里我要讲的方法和用 jinja2 渲染 template 生成 html 的思路是类似的。&lt;/p&gt;
+&lt;p&gt; 闲言少敘，以下是我要讲的方法的代码片段。其中 &lt;code&gt;${template}&lt;/code&gt; 为模板文件的存放路径，而 &lt;code&gt;$dst&lt;/code&gt; 为生成的配置的文件所欲保存的路径 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;cat &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;template&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; |
+awk &lt;span class="s1"&gt;&amp;#39;$0 !~ /^\s*#.*$/&amp;#39;&lt;/span&gt; |
+sed &lt;span class="s1"&gt;&amp;#39;s/[ &amp;quot;]/\\&amp;amp;/g&amp;#39;&lt;/span&gt; |
+&lt;span class="k"&gt;while &lt;/span&gt;&lt;span class="nb"&gt;read&lt;/span&gt; -r line;do
+    &lt;span class="nb"&gt;eval echo&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;line&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt; &amp;gt;&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;dst&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 以上代码中，&lt;code&gt;awk '$0 !~ /^\s*#.*$/'&lt;/code&gt; 将 &lt;code&gt;cat&lt;/code&gt; 所打印的注释行全部吃掉。&lt;code&gt;sed 's/[ "]/\\&amp;amp;/g'&lt;/code&gt; 将模板文件中的双引号和空格全部转义，用于抵消 &lt;code&gt;eval&lt;/code&gt;。因为我的模板文件中只有这两个 magic character，所以没有处理多余的字符。如果你的模板文件中还使用了其它 magic character，如单引号、圆括弧等，可以根据实际情况修改这一句。&lt;code&gt;while&lt;/code&gt; 循环逐行读入 p 之前管道的输出，&lt;code&gt;-r&lt;/code&gt; 参数保证我们在 &lt;code&gt;sed&lt;/code&gt; 中的转义不会被 &lt;code&gt;read&lt;/code&gt; 吃掉。&lt;code&gt;eval&lt;/code&gt; 将模板中定义的 bash variable 替换为脚本运行时环境中的变量值。最后，将全部结果写入到所欲存储的路径。&lt;/p&gt;
+&lt;p&gt; 以下是我所用的模板中的一个片段（yaml 格式的 storm 配置文件）。&lt;code&gt;${ZK_IP}&lt;/code&gt; 是所需要的一个 zookeeper 实例的 ip 地址，需要在 zookeeper container 运行起来之后才能确定。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="l-Scalar-Plain"&gt;storm.zookeeper.servers&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
+    &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;${ZK_IP}&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 经由上面的代码在运行时渲染后，&lt;code&gt;${ZK_IP}&lt;/code&gt; 会被替换为一个 ipv4 地址，所以实际生成的配置文件可能是这个样子的 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="l-Scalar-Plain"&gt;storm.zookeeper.servers&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
+    &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;172.16.0.1&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 这个就是实际的 storm 实例中会使用的配置文件。&lt;/p&gt;
+&lt;p&gt; 以上 :)&lt;/p&gt;</summary><category term="bash"></category></entry><entry><title>Arch Linux上手指南</title><link href="http://blog.yuex.in/post/2014/04/arch-guide.html" rel="alternate"></link><updated>2014-04-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:blog.yuex.in,2014-04-18:post/2014/04/arch-guide.html</id><summary type="html">&lt;h1 id="_1"&gt; 缘起 &lt;/h1&gt;
 &lt;p&gt; 一直都想写一篇关于 Arch Linux 的博客，可以用来帮助 Arch 新玩家上路，
 又可以总结一下自己入坑三四年来的一些心得。
 年前的时候，我的 Thinkpad X220 双硬盘中的 mSATA SSD 挂了，援救了一下数据和系统。
