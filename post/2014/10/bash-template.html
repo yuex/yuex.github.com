@@ -140,28 +140,35 @@
   <div id="article_content">
     <p> 在使用 bash 自动化一些配置过程的时候，经常会遇到这样一种情况，我们需要向配置文件中写入一些信息，而这些信息是动态的，只有脚本实际运行的时候，才能知道这些信息。比如我需要自动启动一个由多个 docker container 组成的 cluster。这个 cluster 中的多个 container 形成一个 C/S 架构的星形拓扑。为了可以正常通信，client 至少应该知道 server 的 ip 地址。为了使这个部署可以更灵活，一般会选择使用 dhcp 来动态获取地址。所以，我们不能事先把地址写死，必须在 server container 运行之后动态生成 client 的配置文件。当然，我们也可以把脚本写成两步，先起 server，再起 client。但是这种方法自动化的不彻底，没有一下就把所有工作从头做到尾来得爽快，所以这里也就按下不表了。</p>
 <p> 上面说的这个情况，最直接的方法是用 <code>sed</code> 配合正则表达一处一处地修改。但是当要修改的地方很多时，这个方法会变得非常繁琐，后期维护也非常困难。我在这里提供一种利用 bash 渲染模板文件动态生成实际使用配置文件的方法。如果你有玩过 jinja2 这种模板语言，这里我要讲的方法和用 jinja2 渲染 template 生成 html 的思路是类似的。</p>
-<p> 闲言少敘，以下是我要讲的方法的代码片段。其中 <code>${template}</code> 为模板文件的存放路径，而 <code>$dst</code> 为生成的配置的文件所欲保存的路径 </p>
-<div class="codehilite"><pre>cat <span class="k">${</span><span class="nv">template</span><span class="k">}</span> |
+<p> 闲言少敘，以下是我要讲的方法的代码片段。其中 <code>${template}</code> 为模板文件的存放路径，而 <code>${dst}</code> 为生成的配置的文件所欲保存的路径 </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre>cat <span class="k">${</span><span class="nv">template</span><span class="k">}</span> |
 awk <span class="s1">&#39;$0 !~ /^\s*#.*$/&#39;</span> |
 sed <span class="s1">&#39;s/[ &quot;]/\\&amp;/g&#39;</span> |
 <span class="k">while </span><span class="nb">read</span> -r line;do
     <span class="nb">eval echo</span> <span class="k">${</span><span class="nv">line</span><span class="k">}</span>
 <span class="k">done</span> &gt;<span class="k">${</span><span class="nv">dst</span><span class="k">}</span>
 </pre></div>
-
+</td></tr></table>
 
 <p> 以上代码中，<code>awk '$0 !~ /^\s*#.*$/'</code> 将 <code>cat</code> 所打印的注释行全部吃掉。<code>sed 's/[ "]/\\&amp;/g'</code> 将模板文件中的双引号和空格全部转义，用于抵消 <code>eval</code>。因为我的模板文件中只有这两个 magic character，所以没有处理多余的字符。如果你的模板文件中还使用了其它 magic character，如单引号、圆括弧等，可以根据实际情况修改这一句。<code>while</code> 循环逐行读入 p 之前管道的输出，<code>-r</code> 参数保证我们在 <code>sed</code> 中的转义不会被 <code>read</code> 吃掉。<code>eval</code> 将模板中定义的 bash variable 替换为脚本运行时环境中的变量值。最后，将全部结果写入到所欲存储的路径。</p>
 <p> 以下是我所用的模板中的一个片段（yaml 格式的 storm 配置文件）。<code>${ZK_IP}</code> 是所需要的一个 zookeeper 实例的 ip 地址，需要在 zookeeper container 运行起来之后才能确定。</p>
-<div class="codehilite"><pre><span class="l-Scalar-Plain">storm.zookeeper.servers</span><span class="p-Indicator">:</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="l-Scalar-Plain">storm.zookeeper.servers</span><span class="p-Indicator">:</span>
     <span class="p-Indicator">-</span> <span class="s">&quot;${ZK_IP}&quot;</span>
 </pre></div>
-
+</td></tr></table>
 
 <p> 经由上面的代码在运行时渲染后，<code>${ZK_IP}</code> 会被替换为一个 ipv4 地址，所以实际生成的配置文件可能是这个样子的 </p>
-<div class="codehilite"><pre><span class="l-Scalar-Plain">storm.zookeeper.servers</span><span class="p-Indicator">:</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="l-Scalar-Plain">storm.zookeeper.servers</span><span class="p-Indicator">:</span>
     <span class="p-Indicator">-</span> <span class="s">&quot;172.16.0.1&quot;</span>
 </pre></div>
-
+</td></tr></table>
 
 <p> 这个就是实际的 storm 实例中会使用的配置文件。</p>
 <p> 以上 :)</p>
