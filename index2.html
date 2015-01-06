@@ -13,17 +13,9 @@
 
     <!-- Bootstrap core CSS -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" type="text/css"><link rel="stylesheet" href="/theme/css/main.css"><link rel="stylesheet" href="/theme/css/code.css"><script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" type="text/css"><link rel="stylesheet" href="http://yuex.in/theme/css/main.css"><link rel="stylesheet" href="http://yuex.in/theme/css/code.css"><script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="/theme/css/bootstrap.min.css">-->
-    <!--<link rel="stylesheet" href="/theme/css/flatly.css" type="text/css">-->
-    <!--<link rel="stylesheet" href="/theme/css/main.css" type="text/css">-->
-    <!--<script src="/theme/js/jquery-1.10.2.min.js"></script>-->
-    <!--<script src="/theme/js/jquery-migrate-1.2.1.min.js"></script>-->
-    <!--<script src="/theme/js/bootstrap.min.js"></script>-->
 
 </head>
 
@@ -122,7 +114,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="/archives.html#Year2013">2013</a> - <a href="/archives.html#Year2013Month9">September</a>
+        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month9">September</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle1">
@@ -137,7 +129,7 @@
       </div>
 
       <ul class="list-group">
-        <a href="/post/2013/09/config-sshd-using-pam.html">
+        <a href="http://yuex.in/post/2013/09/config-sshd-using-pam.html">
           <li class="list-group-item">
             <h1>配置sshd使用pam认证小结</h1>
           </li>
@@ -147,26 +139,26 @@
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
-      href="/categories.html#linux">
-      <!--href="/category/linux.html">-->linux</a>
+      href="http://yuex.in/categories.html#linux">
+      <!--href="http://yuex.in/category/linux.html">-->linux</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="/tags.html#sshd">
-          <!--href="/tag/sshd.html">-->sshd</a>
+          href="http://yuex.in/tags.html#sshd">
+          <!--href="http://yuex.in/tag/sshd.html">-->sshd</a>
         <a class="label label-primary" 
-          href="/tags.html#pam">
-          <!--href="/tag/pam.html">-->pam</a>
+          href="http://yuex.in/tags.html#pam">
+          <!--href="http://yuex.in/tag/pam.html">-->pam</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="/archives.html#Year2013">2013</a>-<a href="/archives.html#Year2013Month9">09</a>-<a href="/archives.html#Year2013Month9">25</a>
-      <!--<a href="/archives.html#Year2013Month9Day25">25</a>-->
+      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month9">09</a>-<a href="http://yuex.in/archives.html#Year2013Month9">25</a>
+      <!--<a href="http://yuex.in/archives.html#Year2013Month9Day25">25</a>-->
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
     <a href="/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="/post/2013/09/config-sshd-using-pam.html">
+            <a class="pull-right" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html">
               </a>
           </li>
           <li class="list-group-item"><p> 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 <code>ssh -D</code>。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。</p>
@@ -179,11 +171,11 @@
 <h2 id="chroot-jail">chroot ...</h2></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="/post/2013/09/config-sshd-using-pam.html#disqus_thread" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html#disqus_thread" title="comments">
                 <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="/post/2013/09/config-sshd-using-pam.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="/post/2013/09/config-sshd-using-pam.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -193,7 +185,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="/archives.html#Year2013">2013</a> - <a href="/archives.html#Year2013Month9">September</a>
+        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month9">September</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle2">
@@ -208,7 +200,7 @@
       </div>
 
       <ul class="list-group">
-        <a href="/post/2013/09/terminal-switching.html">
+        <a href="http://yuex.in/post/2013/09/terminal-switching.html">
           <li class="list-group-item">
             <h1>terminal切换小结</h1>
           </li>
@@ -218,29 +210,29 @@
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
-      href="/categories.html#linux">
-      <!--href="/category/linux.html">-->linux</a>
+      href="http://yuex.in/categories.html#linux">
+      <!--href="http://yuex.in/category/linux.html">-->linux</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="/tags.html#terminal">
-          <!--href="/tag/terminal.html">-->terminal</a>
+          href="http://yuex.in/tags.html#terminal">
+          <!--href="http://yuex.in/tag/terminal.html">-->terminal</a>
         <a class="label label-primary" 
-          href="/tags.html#xterm">
-          <!--href="/tag/xterm.html">-->xterm</a>
+          href="http://yuex.in/tags.html#xterm">
+          <!--href="http://yuex.in/tag/xterm.html">-->xterm</a>
         <a class="label label-primary" 
-          href="/tags.html#urxvt">
-          <!--href="/tag/urxvt.html">-->urxvt</a>
+          href="http://yuex.in/tags.html#urxvt">
+          <!--href="http://yuex.in/tag/urxvt.html">-->urxvt</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="/archives.html#Year2013">2013</a>-<a href="/archives.html#Year2013Month9">09</a>-<a href="/archives.html#Year2013Month9">24</a>
-      <!--<a href="/archives.html#Year2013Month9Day24">24</a>-->
+      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month9">09</a>-<a href="http://yuex.in/archives.html#Year2013Month9">24</a>
+      <!--<a href="http://yuex.in/archives.html#Year2013Month9Day24">24</a>-->
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
     <a href="/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="/post/2013/09/terminal-switching.html">
+            <a class="pull-right" href="http://yuex.in/post/2013/09/terminal-switching.html">
               </a>
           </li>
           <li class="list-group-item"><p> 早就听说 xterm 和 urxvt 是轻量高可配置，所以想利用周末的时间把某现在在用的 terminator 切换到 xterm 或者 urxvt。结果放弃了。倒不是因为配置太过复杂，而是某觉得，在进行了一定配置之后，对比需求 / 成本 / 收益觉得，这样的配置不能称之为有效。某认为将这些东西总结一下，可能有助于有同样切换初衷的同学少走一些弯路。</p>
@@ -258,11 +250,11 @@
 <p> 第一条 ...</p></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="/post/2013/09/terminal-switching.html#disqus_thread" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/terminal-switching.html#disqus_thread" title="comments">
                 <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="/post/2013/09/terminal-switching.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/terminal-switching.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="/post/2013/09/terminal-switching.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/terminal-switching.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -272,7 +264,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="/archives.html#Year2013">2013</a> - <a href="/archives.html#Year2013Month3">March</a>
+        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month3">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle3">
@@ -287,7 +279,7 @@
       </div>
 
       <ul class="list-group">
-        <a href="/post/2013/03/pdf-annotation.html">
+        <a href="http://yuex.in/post/2013/03/pdf-annotation.html">
           <li class="list-group-item">
             <h1>Archlinux环境下pdf注记工具推荐</h1>
           </li>
@@ -297,26 +289,26 @@
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
-      href="/categories.html#linux">
-      <!--href="/category/linux.html">-->linux</a>
+      href="http://yuex.in/categories.html#linux">
+      <!--href="http://yuex.in/category/linux.html">-->linux</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="/tags.html#pdf">
-          <!--href="/tag/pdf.html">-->pdf</a>
+          href="http://yuex.in/tags.html#pdf">
+          <!--href="http://yuex.in/tag/pdf.html">-->pdf</a>
         <a class="label label-primary" 
-          href="/tags.html#archlinux">
-          <!--href="/tag/archlinux.html">-->archlinux</a>
+          href="http://yuex.in/tags.html#archlinux">
+          <!--href="http://yuex.in/tag/archlinux.html">-->archlinux</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="/archives.html#Year2013">2013</a>-<a href="/archives.html#Year2013Month3">03</a>-<a href="/archives.html#Year2013Month3">16</a>
-      <!--<a href="/archives.html#Year2013Month3Day16">16</a>-->
+      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month3">03</a>-<a href="http://yuex.in/archives.html#Year2013Month3">16</a>
+      <!--<a href="http://yuex.in/archives.html#Year2013Month3Day16">16</a>-->
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
     <a href="/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="/post/2013/03/pdf-annotation.html">
+            <a class="pull-right" href="http://yuex.in/post/2013/03/pdf-annotation.html">
               </a>
           </li>
           <li class="list-group-item"><p> 从事学术工作的朋友可能像笔者一样，经常会遇到要帮助别人修改文章，或者自己阅读文献要进行批注的情况。由于并不是人人都使用 Linux 和 Latex，所以一般大家会默认地将写好的文章转换为 pdf 格式，然后再进行修改 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。这样在 Linux 下选择一款得心应手的带有注记功能的 pdf viewer 软件就十分重要了。</p>
@@ -334,11 +326,11 @@
 <li>acroread - aur ...</li></ul></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="/post/2013/03/pdf-annotation.html#disqus_thread" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/pdf-annotation.html#disqus_thread" title="comments">
                 <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="/post/2013/03/pdf-annotation.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/pdf-annotation.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="/post/2013/03/pdf-annotation.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/pdf-annotation.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -348,7 +340,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="/archives.html#Year2013">2013</a> - <a href="/archives.html#Year2013Month3">March</a>
+        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month3">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle4">
@@ -363,7 +355,7 @@
       </div>
 
       <ul class="list-group">
-        <a href="/post/2013/03/differ-optons-from-args-in-shell.html">
+        <a href="http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html">
           <li class="list-group-item">
             <h1>在shell中区分option与args</h1>
           </li>
@@ -373,23 +365,23 @@
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
-      href="/categories.html#linux">
-      <!--href="/category/linux.html">-->linux</a>
+      href="http://yuex.in/categories.html#linux">
+      <!--href="http://yuex.in/category/linux.html">-->linux</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="/tags.html#bash">
-          <!--href="/tag/bash.html">-->bash</a>
+          href="http://yuex.in/tags.html#bash">
+          <!--href="http://yuex.in/tag/bash.html">-->bash</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="/archives.html#Year2013">2013</a>-<a href="/archives.html#Year2013Month3">03</a>-<a href="/archives.html#Year2013Month3">02</a>
-      <!--<a href="/archives.html#Year2013Month3Day02">02</a>-->
+      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month3">03</a>-<a href="http://yuex.in/archives.html#Year2013Month3">02</a>
+      <!--<a href="http://yuex.in/archives.html#Year2013Month3Day02">02</a>-->
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
     <a href="/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="/post/2013/03/differ-optons-from-args-in-shell.html">
+            <a class="pull-right" href="http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html">
               </a>
           </li>
           <li class="list-group-item"><p> 使用 <code>--</code>。</p>
@@ -408,11 +400,11 @@
 </div></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="/post/2013/03/differ-optons-from-args-in-shell.html#disqus_thread" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html#disqus_thread" title="comments">
                 <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="/post/2013/03/differ-optons-from-args-in-shell.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="/post/2013/03/differ-optons-from-args-in-shell.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -422,7 +414,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="/archives.html#Year2013">2013</a> - <a href="/archives.html#Year2013Month3">March</a>
+        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month3">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle5">
@@ -437,7 +429,7 @@
       </div>
 
       <ul class="list-group">
-        <a href="/post/2013/03/notes-for-virtualenv.html">
+        <a href="http://yuex.in/post/2013/03/notes-for-virtualenv.html">
           <li class="list-group-item">
             <h1>使用virtualenv要注意的地方</h1>
           </li>
@@ -447,26 +439,26 @@
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
-      href="/categories.html#python">
-      <!--href="/category/python.html">-->python</a>
+      href="http://yuex.in/categories.html#python">
+      <!--href="http://yuex.in/category/python.html">-->python</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="/tags.html#python">
-          <!--href="/tag/python.html">-->python</a>
+          href="http://yuex.in/tags.html#python">
+          <!--href="http://yuex.in/tag/python.html">-->python</a>
         <a class="label label-primary" 
-          href="/tags.html#virtualenv">
-          <!--href="/tag/virtualenv.html">-->virtualenv</a>
+          href="http://yuex.in/tags.html#virtualenv">
+          <!--href="http://yuex.in/tag/virtualenv.html">-->virtualenv</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="/archives.html#Year2013">2013</a>-<a href="/archives.html#Year2013Month3">03</a>-<a href="/archives.html#Year2013Month3">02</a>
-      <!--<a href="/archives.html#Year2013Month3Day02">02</a>-->
+      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month3">03</a>-<a href="http://yuex.in/archives.html#Year2013Month3">02</a>
+      <!--<a href="http://yuex.in/archives.html#Year2013Month3Day02">02</a>-->
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
     <a href="/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="/post/2013/03/notes-for-virtualenv.html">
+            <a class="pull-right" href="http://yuex.in/post/2013/03/notes-for-virtualenv.html">
               </a>
           </li>
           <li class="list-group-item"><p>virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。</p>
@@ -474,11 +466,11 @@
 <p> 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2 ...</p></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="/post/2013/03/notes-for-virtualenv.html#disqus_thread" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/notes-for-virtualenv.html#disqus_thread" title="comments">
                 <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="/post/2013/03/notes-for-virtualenv.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/notes-for-virtualenv.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="/post/2013/03/notes-for-virtualenv.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2013/03/notes-for-virtualenv.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -493,11 +485,11 @@
       <ul class="pagination">
 
         <li>
-            <a href="/index.html">&laquo;</a>
+            <a href="http://yuex.in/index.html">&laquo;</a>
         </li>
 
         <li>
-          <a href="/index.html">1<span class="sr-only">(current)</span></a>
+          <a href="http://yuex.in/index.html">1<span class="sr-only">(current)</span></a>
         </li>
         <li class="active">
           <a>2<span class="sr-only">(current)</span></a>
