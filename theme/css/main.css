@@ -51,17 +51,17 @@ body {
  *force footer-text within one line,
  * better display for blank page
  */
-@media (max-width: 410px) {
-  #footer #footer-text #bootstrap { display: none; }
-}
+/*@media (max-width: 410px) {*/
+  /*#footer #footer-text #bootstrap { display: none; }*/
+/*}*/
 
-@media (max-width: 290px) {
-  #footer #footer-text #theme { display: none; }
-}
+/*@media (max-width: 290px) {*/
+  /*#footer #footer-text #theme { display: none; }*/
+/*}*/
 
-@media (max-width: 180px) {
-  #footer #footer-text #engine { display: none; }
-}
+/*@media (max-width: 180px) {*/
+  /*#footer #footer-text #engine { display: none; }*/
+/*}*/
 
 #navbar {
   /*margin-bottom: 0;*/
@@ -97,13 +97,13 @@ body {
   padding-bottom: 20px;
   height: 100%;
 }
-@media (max-width: 767px) {
-  #navbar .navbar-nav >li > a {
-    font-size: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-}
+/*@media (max-width: 767px) {*/
+  /*#navbar .navbar-nav >li > a {*/
+    /*font-size: 16px;*/
+    /*padding-top: 10px;*/
+    /*padding-bottom: 10px;*/
+  /*}*/
+/*}*/
 
 #navbar .dropdown-menu {
   font-size: 15px;
@@ -125,21 +125,21 @@ body {
   height: 40px;
   width: 170px;
 }
-@media (max-width: 767px) {
-  #navbar .navbar-form .form-control {
-    width: 100%;
-  }
-}
+/*@media (max-width: 767px) {*/
+  /*#navbar .navbar-form .form-control {*/
+    /*width: 100%;*/
+  /*}*/
+/*}*/
 
 #navbar .navbar-collapse {
   border-width: 0;
 }
 
-@media (min-width: 768px) {
-  #menuitem-list {
-    margin-right:0;
-  }
-}
+/*@media (min-width: 768px) {*/
+  /*#menuitem-list {*/
+    /*margin-right:0;*/
+  /*}*/
+/*}*/
 
 #navbar .navbar-collapse .navbar-nav {
   border-width: 0;
