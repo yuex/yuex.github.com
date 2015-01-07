@@ -7,7 +7,7 @@
     <meta name="author" content="yuex">
     <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
 
-    <title>404 Error · yuex (悟道洞穴人)</title>
+    <title>Archlinux环境下pdf注记工具推荐 · yuex (悟道洞穴人)</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -116,17 +116,117 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="/404.html">404 Error</a></h1>
+        <h1><a href="/post/2013/03/pdf-annotation.html">Archlinux环境下pdf注记工具推荐</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-<div id="page-content">
-  <blockquote>
-<p> 车到山前必有路 ?</p>
-</blockquote>
+
+    <span id="article_info">
+    <a class="label label-primary" 
+      href="categories.html#linux">linux</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="tags.html#pdf">pdf</a>
+        <a class="label label-primary" 
+          href="tags.html#archlinux">archlinux</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month03">03</a>-<a href="http://yuex.in/archives.html#Year2013Month03">16</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p> 从事学术工作的朋友可能像笔者一样，经常会遇到要帮助别人修改文章，或者自己阅读文献要进行批注的情况。由于并不是人人都使用 Linux 和 Latex，所以一般大家会默认地将写好的文章转换为 pdf 格式，然后再进行修改 <sup id="fnref:1"><a class="footnote-ref" href="#fn:1" rel="footnote">1</a></sup>。这样在 Linux 下选择一款得心应手的带有注记功能的 pdf viewer 软件就十分重要了。</p>
+<p> 在 Archlinux 上，有如下几种选择 </p>
+<ul>
+<li>Okular          - extra, kde</li>
+<li>evince          - extra, gnome</li>
+<li>masterpdfeditor - aur</li>
+<li>xournal         - extra</li>
+<li>mendeleydesktop - aur</li>
+</ul>
+<p> 不过这些都和 Adobe Acrobat 的用户体验有所差距。有些虽然具有 sticky note 和 highlight 功能，但是 export 之后，在某些 pdf viewer 当中查看存在兼容性问题。几经比较，最后笔者选择了如下的组合 </p>
+<ul>
+<li><a href="http://www.tracker-software.com/product/pdf-xchange-viewer">PDF-XChange Viewer</a> - needs wine support</li>
+<li>acroread - aur, acrobat reader linux version</li>
+<li>mendeleydesktop</li>
+</ul>
+<p>PDF-Xchange Viewer 需要 wine 的支持，但却比较好的提供了与 acrobat pro 相同的体验，并且生成的注记内容的兼容性非常好。</p>
+<p>acroread 是 acrobat reader 的 linux 版本，可以用来验证 linux 下生成的 pdf 文档在 windows 上打开的效果。</p>
+<p>mendeleydesktop 的注记功能在输出的时候虽然存在兼容性的问题，但用来做个人的文献整理还是非常不错的。</p>
+<p> 另外，以下字体也比较建议安装 </p>
+<ul>
+<li>ttf-mac-fonts - aur</li>
+<li>ttf-ms-fonts - aur</li>
+</ul>
+<p> 这两个字体基本提供了 mac 和 microsoft 系统常用的字体，可以保证不会出现字体缺少造成相同文档在不同系统上的字体差异 </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p> 使用 word 的朋友，一定要先在 windows 上用 word 将 doc 文档转换好 pdf 再发给 Linux 的朋友进行修改。Linux 下虽然也可以对 doc 进行转换，但转换效果并不理想。&#160;<a class="footnote-backref" href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
 </div>
+  </div>
+
+  <hr/>
+    
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
+        <a class="accordion-toggle" data-toggle="collapse" 
+          title="toggle folding"
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">1</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
+        <a href="http://yuex.in/post/2014/04/arch-guide.html">
+          <li class="list-group-item">
+Arch Linux上手指南</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://yuex.in/post/2013/09/terminal-switching.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div class="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_identifier = "post/2013/03/pdf-annotation.html";
+    (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://blogiliorkcom.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+</div>
+
         </div>
 
         <div class="row">
