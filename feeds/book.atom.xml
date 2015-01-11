@@ -9,9 +9,11 @@
 &lt;li&gt; 数据库操作。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt; 利用 python 速起 http 服务：&lt;code&gt;python -m SimpleHTTPServer&lt;/code&gt;。以后给别人传东西就可以不用 U 盘了。&lt;/p&gt;
-&lt;p&gt;rsync 中 / 的区别。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;rsync -a dir/ dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/ 下
- &lt;code&gt;rsync -a dir  dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/dir/&lt;/p&gt;
+&lt;p&gt;rsync 中 / 的区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rsync -a dir/ dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/ 下 &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsync -a dir  dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/dir/&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;X Window 的替代项目。众所周知，X Window 到现在，时间已经比较长了，不可避免地会有很多历史的包袱，对于平板和智能手机这类的新环境的适应也不会那么灵活，所以有几个新项目出现，以 freedesktop.org 领衔的 &lt;a href="https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)"&gt;Wayland&lt;/a&gt; 和 Canonical 领衔的 &lt;a href="https://en.wikipedia.org/wiki/Mir_(software)"&gt;Mir&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;D-Bus 是 Desktop-Bus 的缩写，是一个消息传递系统，在桌面应用之间提供一个进程间通信机制，由 Red Hat 牵头开发。&lt;/p&gt;
 &lt;p&gt; 另有一个利用把 vim 用作二进制编辑器的技巧。如下 &lt;/p&gt;
