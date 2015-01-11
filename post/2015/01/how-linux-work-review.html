@@ -145,9 +145,11 @@
 <p> 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。</p>
 <p> 使用 mktemp 生成临时文件。只要在 shell 脚本中使用 <code>TEMPFILE=$(mktemp)</code> 就会在 <code>/tmp</code> 中生成一个临时文件，然后可以通过访问 <code>${TEMPFILE}</code> 进行使用，非常方便。</p>
 <p>Shell 脚本的劣势。有以下三点，结合以前的开发经验，还真是这样的：</p>
-<p> 算术计算，特别是浮点运算，基本不可以原生地做；
- 字符串处理 ; 
- 数据库操作。</p>
+<ul>
+<li> 算术计算，特别是浮点运算，基本不可以原生地做；</li>
+<li> 字符串处理 ; </li>
+<li> 数据库操作。</li>
+</ul>
 <p> 利用 python 速起 http 服务：<code>python -m SimpleHTTPServer</code>。以后给别人传东西就可以不用 U 盘了。</p>
 <p>rsync 中 / 的区别。</p>
 <p><code>rsync -a dir/ dest_dir</code> 会把 dir 下所有内容拷贝到 dest_dir/ 下
