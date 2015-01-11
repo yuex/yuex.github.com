@@ -125,6 +125,8 @@
         <div class="row">
     <p>
           <a class="label label-primary" 
+      href="#book">book 1</a>
+    <a class="label label-primary" 
       href="#linux">linux 7</a>
     <a class="label label-primary" 
       href="#product">product 1</a>
@@ -136,6 +138,32 @@
     </p>
 
   <div class="panel-group" id="accordion">
+
+      
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a id="book" href="http://yuex.in/category/book.html">book</a>
+        <a class="accordion-toggle" data-toggle="collapse" 
+          title="toggle folding"
+          href="#bookcollapse">
+          <span class="badge pull-right">1</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="bookcollapse">
+        <a href="http://yuex.in/post/2015/01/how-linux-work-review.html">
+          <li class="list-group-item">
+How Linux Work笔记</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
 
       
   <div class="panel panel-primary">
@@ -289,7 +317,7 @@ Archlinux环境下pdf注记工具推荐</li>
           </span>
           <span id="theme">
             with theme
-            <a href="http://github.com/yuex/pelican-iliork">iliork</a>
+            <a href="http://github.com/yuex/pelican-chameleon">chameleon</a>
           </span>
           <span id="bootstrap">
             on top of

@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2014-10-14T00:00:00+08:00</updated><entry><title>使用bash渲染模板动态生成配置文件</title><link href="http://yuex.in/post/2014/10/bash-template.html" rel="alternate"></link><updated>2014-10-14T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2014-10-14:post/2014/10/bash-template.html</id><summary type="html">&lt;p&gt; 在使用 bash 自动化一些配置过程的时候，经常会遇到这样一种情况，我们需要向配置文件中写入一些信息，而这些信息是动态的，只有脚本实际运行的时候，才能知道这些信息。比如我需要自动启动一个由多个 docker container 组成的 cluster。这个 cluster 中的多个 container 形成一个 C/S 架构的星形拓扑。为了可以正常通信，client 至少应该知道 server 的 ip 地址。为了使这个部署可以更灵活，一般会选择使用 dhcp 来动态获取地址。所以，我们不能事先把地址写死，必须在 server container 运行之后动态生成 client 的配置文件。当然，我们也可以把脚本写成两步，先起 server，再起 client。但是这种方法自动化的不彻底，没有一下就把所有工作从头做到尾来得爽快，所以这里也就按下不表了。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-01-11T00:00:00+08:00</updated><entry><title>How Linux Work笔记</title><link href="http://yuex.in/post/2015/01/how-linux-work-review.html" rel="alternate"></link><updated>2015-01-11T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-11:post/2015/01/how-linux-work-review.html</id><summary type="html">&lt;p&gt; 最近看了一本 Linux 方面的 2014 年新书，是《&lt;a href="http://book.douban.com/subject/26266751/"&gt;How Linux Work&lt;/a&gt;》第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 &lt;a href="http://www.ituring.com.cn/book/1548"&gt; 中文版 &lt;/a&gt;，今年年底前应该可以和大家见面。&lt;/p&gt;
+&lt;p&gt; 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 使用 mktemp 生成临时文件 &lt;/strong&gt;。只要在 shell 脚本中使用 &lt;code&gt;TEMPFILE=$(mktemp)&lt;/code&gt; 就会在 &lt;code&gt;/tmp&lt;/code&gt; 中生成一个临时文件，然后可以通过访问 &lt;code&gt;${TEMPFILE}&lt;/code&gt; 进行使用，非常方便。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shell 脚本的劣势 &lt;/strong&gt;。有以下三点，结合以前的开发经验，还真是这样的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 算术计算，特别是浮点运算，基本不可以原生地做；&lt;/li&gt;
+&lt;li&gt; 字符串处理 ; &lt;/li&gt;
+&lt;li&gt; 数据库操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt; 利用 python 闪电起 http 服务 &lt;/strong&gt;，&lt;code&gt;python -m SimpleHTTPServer&lt;/code&gt;。以后给别人传东西就方便很多了，可以不用 U 盘拷来拷去了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;rsync 中 / 的区别 &lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rsync -a dir/ dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/ 下 &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsync -a dir  dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/dir/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;X Window 的替代项目 &lt;/strong&gt;。众所周知，X Window 到现在，时间已经比较长了，不可避免地会有很多历史的包袱，对于平板和智能手机这类的新环境的适应也不会那么灵活，所以有几个新项目出现，以 freedesktop.org 领衔的 &lt;a href="https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)"&gt;Wayland&lt;/a&gt; 和 Canonical 领衔的 &lt;a href="https://en.wikipedia.org/wiki/Mir_(software)"&gt;Mir&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;D-Bus 是 Desktop-Bus 的缩写 &lt;/strong&gt;，是一个消息传递系统，在桌面应用之间提供一个进程间通信机制，由 Red Hat 牵头开发。&lt;/p&gt;
+&lt;p&gt; 另有一个利用 &lt;strong&gt; 把 vim 用作二进制编辑器 &lt;/strong&gt; 的技巧。如下 &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt; 以 &lt;code&gt;vim -b file&lt;/code&gt; 打开文件 &lt;/li&gt;
+&lt;li&gt; 执行 &lt;code&gt;:%!xxd&lt;/code&gt; 将 ascii 转换为 hex 显示 &lt;/li&gt;
+&lt;li&gt; 在 hex 下进行修改 &lt;/li&gt;
+&lt;li&gt; 执行 &lt;code&gt;:%!xxd -r&lt;/code&gt; 将 hex 转换回 ascii&lt;/li&gt;
+&lt;li&gt; 保存退出 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 以上。&lt;/p&gt;</summary><category term="linux"></category></entry><entry><title>使用bash渲染模板动态生成配置文件</title><link href="http://yuex.in/post/2014/10/bash-template.html" rel="alternate"></link><updated>2014-10-14T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2014-10-14:post/2014/10/bash-template.html</id><summary type="html">&lt;p&gt; 在使用 bash 自动化一些配置过程的时候，经常会遇到这样一种情况，我们需要向配置文件中写入一些信息，而这些信息是动态的，只有脚本实际运行的时候，才能知道这些信息。比如我需要自动启动一个由多个 docker container 组成的 cluster。这个 cluster 中的多个 container 形成一个 C/S 架构的星形拓扑。为了可以正常通信，client 至少应该知道 server 的 ip 地址。为了使这个部署可以更灵活，一般会选择使用 dhcp 来动态获取地址。所以，我们不能事先把地址写死，必须在 server container 运行之后动态生成 client 的配置文件。当然，我们也可以把脚本写成两步，先起 server，再起 client。但是这种方法自动化的不彻底，没有一下就把所有工作从头做到尾来得爽快，所以这里也就按下不表了。&lt;/p&gt;
 &lt;p&gt; 上面说的这个情况，最直接的方法是用 &lt;code&gt;sed&lt;/code&gt; 配合正则表达一处一处地修改。但是当要修改的地方很多时，这个方法会变得非常繁琐，后期维护也非常困难。我在这里提供一种利用 bash 渲染模板文件动态生成实际使用配置文件的方法。如果你有玩过 jinja2 这种模板语言，这里我要讲的方法和用 jinja2 渲染 template 生成 html 的思路是类似的。&lt;/p&gt;
 &lt;p&gt; 闲言少敘，以下是我要讲的方法的代码片段。其中 &lt;code&gt;${template}&lt;/code&gt; 为模板文件的存放路径，而 &lt;code&gt;${dst}&lt;/code&gt; 为生成的配置的文件所欲保存的路径 &lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1

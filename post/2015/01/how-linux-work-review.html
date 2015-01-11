@@ -7,7 +7,7 @@
     <meta name="author" content="yuex">
     <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
 
-        <title>配置sshd使用pam认证小结 · yuex (悟道洞穴人)</title>
+        <title>How Linux Work笔记 · yuex (悟道洞穴人)</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -116,7 +116,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://yuex.in/post/2013/09/config-sshd-using-pam.html">配置sshd使用pam认证小结</a></h1>
+        <h1><a href="http://yuex.in/post/2015/01/how-linux-work-review.html">How Linux Work笔记</a></h1>
     </div>
 
         </div>
@@ -125,15 +125,13 @@
 
     <span id="article_info">
     <a class="label label-primary" 
-      href="http://yuex.in/category/linux.html">linux</a>
+      href="http://yuex.in/category/book.html">book</a>
       <b> · </b>
         <a class="label label-primary" 
-          href="http://yuex.in/tag/sshd.html">sshd</a>
-        <a class="label label-primary" 
-          href="http://yuex.in/tag/pam.html">pam</a>
+          href="http://yuex.in/tag/linux.html">linux</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month09">09</a>-<a href="http://yuex.in/archives.html#Year2013Month09">25</a>
+      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">11</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -143,68 +141,43 @@
   <hr/>
 
   <div id="article_content">
-    <p> 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 <code>ssh -D</code>。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。</p>
-<p>ssh＋pam＋chroot 各模块的功能如下 </p>
+    <p> 最近看了一本 Linux 方面的 2014 年新书，是《<a href="http://book.douban.com/subject/26266751/">How Linux Work</a>》第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 <a href="http://www.ituring.com.cn/book/1548"> 中文版 </a>，今年年底前应该可以和大家见面。</p>
+<p> 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。</p>
+<p><strong> 使用 mktemp 生成临时文件 </strong>。只要在 shell 脚本中使用 <code>TEMPFILE=$(mktemp)</code> 就会在 <code>/tmp</code> 中生成一个临时文件，然后可以通过访问 <code>${TEMPFILE}</code> 进行使用，非常方便。</p>
+<p><strong>Shell 脚本的劣势 </strong>。有以下三点，结合以前的开发经验，还真是这样的：</p>
 <ul>
-<li>ssh/sshd：client and server，支持密码用户 </li>
-<li>pam：提供基于用户名和 ip 地址段的登陆认证和限制 </li>
-<li>chroot：做成一个 chroot jail 限制用户在主机上的权限 </li>
+<li> 算术计算，特别是浮点运算，基本不可以原生地做；</li>
+<li> 字符串处理 ; </li>
+<li> 数据库操作。</li>
 </ul>
-<h2 id="chroot-jail">chroot jail</h2>
-<p> 在 sshd 中添加 </p>
-<div class="codehilite"><pre><span class="n">Match</span> <span class="n">Group</span> <span class="n">groupname</span>
-    <span class="n">ChrootDirectory</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">jail</span>
-</pre></div>
-
-
-<p> 这会使得 groupname 的用户在登陆 ssh 之后，会自动被 chroot 到管理员定义的 jail 到中，这里以 /path/to/jail 为例。这只是办了入狱手续，还要真正的建立监狱才行。chroot 之后，会自动调用 bash，要保证在这个路径下，bash 可以正常使用。只要用 <code>ldd</code> 解析一下 bash 的依赖，然后将所以依赖放到这个路径下就可以了。监狱制成之后，要自己 <code>chroot</code><del> 体验 </del> 验证一下。</p>
-<h2 id="ssh">ssh</h2>
-<p>ssh 的问题主要是客户端。linux 和 mac 用户就不用说了，<code>ssh -D</code> 可以直接参考 manpage，还不会的就去面壁吧。windows 下可以使用 putty，并且 putty 可以事先设置好，直接分发给用户。用户先建立 ssh 连接，再用浏览器 socks 连接到本地绑定的端口。更进一步可以通过安装浏览器插件来根据规则自动地应用 socks，比如 chrome 上可以使用 Proxy Swichy</p>
-<h2 id="pam">pam</h2>
-<p>pam 有两方面的作用，一个是提供基于用户和地址的登陆验证，一个是限制用户使用系统资源。对于资源限制，主要是防止 fork bomb 和限制登陆数目。这两个都可以在 /etc/security/limits.conf 中完成。其实在 centos6 当中，对于 fork bomb 系统有防范，可以参考 /etc/security/limits.d/，这个值是 1024。另外，对于写的权限控制，最简单的方法是把 jail 建立在 /var 来解决，/var 对非 root:root 的用户是没有写的权限的。对于登陆验证，需要在 sshd_config 中打开 <code>UsePam yes</code>，并且在 /etc/pam.d/sshd 中加入 </p>
-<div class="codehilite"><pre>account    required     pam_nologin.so
-account    required     pam_access.so  <span class="c1"># &lt;- added line</span>
-account    include      password<span class="o">-</span>auth
-</pre></div>
-
-
-<p> 此外还要在 /etc/security/access.conf 中写入具体的登陆控制，可以参考其中的 comments，支持用户和 ip 区分。注意这两个文件都是顺序解析的，First Come Firs Serve。所以要注意写入规则的顺序。</p>
-<p> 对于这样建立的 socks 伺服并非没有问题，比如 bandwidth 的限额。</p>
+<p><strong> 利用 python 闪电起 http 服务 </strong>，<code>python -m SimpleHTTPServer</code>。以后给别人传东西就方便很多了，可以不用 U 盘拷来拷去了。</p>
+<p><strong>rsync 中 / 的区别 </strong>。</p>
+<ul>
+<li><code>rsync -a dir/ dest_dir</code> 会把 dir 下所有内容拷贝到 dest_dir/ 下 </li>
+<li><code>rsync -a dir  dest_dir</code> 会把 dir 下所有内容拷贝到 dest_dir/dir/</li>
+</ul>
+<p><strong>X Window 的替代项目 </strong>。众所周知，X Window 到现在，时间已经比较长了，不可避免地会有很多历史的包袱，对于平板和智能手机这类的新环境的适应也不会那么灵活，所以有几个新项目出现，以 freedesktop.org 领衔的 <a href="https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)">Wayland</a> 和 Canonical 领衔的 <a href="https://en.wikipedia.org/wiki/Mir_(software)">Mir</a>。</p>
+<p><strong>D-Bus 是 Desktop-Bus 的缩写 </strong>，是一个消息传递系统，在桌面应用之间提供一个进程间通信机制，由 Red Hat 牵头开发。</p>
+<p> 另有一个利用 <strong> 把 vim 用作二进制编辑器 </strong> 的技巧。如下 </p>
+<ol>
+<li> 以 <code>vim -b file</code> 打开文件 </li>
+<li> 执行 <code>:%!xxd</code> 将 ascii 转换为 hex 显示 </li>
+<li> 在 hex 下进行修改 </li>
+<li> 执行 <code>:%!xxd -r</code> 将 hex 转换回 ascii</li>
+<li> 保存退出 </li>
+</ol>
+<p> 以上。</p>
   </div>
 
   <hr/>
-    
-  <div class="panel panel-primary">
-    <div class="panel-heading panel-title">
-      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
-          title="toggle folding"
-          href="#collapseRelatedcollapse">
-          <span class="badge pull-right">1</span>
-        </a>
-    </div>
-
-    <div class="panel-body hidden"></div>
-
-    <ul class="list-group">
-      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
-        <a href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html">
-          <li class="list-group-item">
-动手写PAM模块让sshd支持用户接入控制</li>
-        </a>
-      </div>
-    </ul>
-
-  </div>
-
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://yuex.in/post/2013/09/terminal-switching.html">
+          <a href="http://yuex.in/post/2014/10/bash-template.html">
           Older &raquo;</a>
         </li>
       </ul>
@@ -213,7 +186,7 @@ account    include      password<span class="o">-</span>auth
 <div class="comments">
   <div id="disqus_thread"></div>
   <script type="text/javascript">
-    var disqus_identifier = "post/2013/09/config-sshd-using-pam.html";
+    var disqus_identifier = "post/2015/01/how-linux-work-review.html";
     (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = 'http://blogiliorkcom.disqus.com/embed.js';
