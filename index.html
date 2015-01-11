@@ -168,11 +168,10 @@
           </li>
           <li class="list-group-item"><p> 最近看了一本 Linux 方面的 2014 年新书，是《<a href="http://book.douban.com/subject/26266751/">How Linux Work</a>》第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 <a href="http://www.ituring.com.cn/book/1548"> 中文版 </a>，今年年底前应该可以和大家见面。</p>
 <p> 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。</p>
-<p><strong> 使用 mktemp 生成临时文件 </strong>。只要在 shell 脚本中使用 <code>TEMPFILE=$(mktemp)</code> 就会在 <code>/tmp</code> 中生成一个临时文件，然后可以通过访问 <code>${TEMPFILE}</code> 进行使用，非常方便。</p>
-<p><strong>Shell 脚本的劣势 </strong>。有以下三点，结合以前的开发经验，还真是这样的：</p>
-<ul>
-<li> 算术计算，特别是浮点运算，基本不可以原生地做；</li>
-<li> 字符串处理 ...</li></ul></li>
+<p> 使用 mktemp 生成临时文件。只要在 shell 脚本中使用 <code>TEMPFILE=$(mktemp)</code> 就会在 <code>/tmp</code> 中生成一个临时文件，然后可以通过访问 <code>${TEMPFILE}</code> 进行使用，非常方便。</p>
+<p>Shell 脚本的劣势。有以下三点，结合以前的开发经验，还真是这样的：</p>
+<p> 算术计算，特别是浮点运算，基本不可以原生地做；
+ 字符串处理 ...</p></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://yuex.in/post/2015/01/how-linux-work-review.html#disqus_thread" title="comments">
