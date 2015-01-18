@@ -130,6 +130,65 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #12
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html">
+          <li class="list-group-item">
+            <h1>Exclusive Queue的一个推广</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary" 
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://yuex.in/tag/system.html">system</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">18</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 <a href="http://greenteapress.com/semaphores/">The Little Book of Semaphores</a>，理清了很多以前了解的不确实的概念。这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref:!rendezvous"><a class="footnote-ref" href="#fn:!rendezvous" rel="footnote">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广。书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。</p>
+<p> 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html" title="comments">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month01">January</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #11
         </span>
       </a>
@@ -146,7 +205,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -166,10 +225,10 @@
             <a class="pull-right" href="http://yuex.in/post/2015/01/how-linux-work-review.html">
               </a>
           </li>
-          <li class="list-group-item"><p> 最近看了一本 Linux 方面的 2014 年新书，是《<a href="http://book.douban.com/subject/26266751/">How Linux Work</a>》第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 <a href="http://www.ituring.com.cn/book/1548"> 中文版 </a>，今年年底前应该可以和大家见面。</p>
+          <li class="list-group-item"><p> 最近看了一本 Linux 方面的 2014 年新书，是 <a href="http://book.douban.com/subject/26266751/">How Linux Work</a> 第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 <a href="http://www.ituring.com.cn/book/1548"> 中文版 </a>，今年年底前应该可以和大家见面。</p>
 <p> 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。</p>
 <p> 使用 mktemp 生成临时文件。只要在 shell 脚本中使用 <code>TEMPFILE=$(mktemp)</code> 就会在 <code>/tmp</code> 中生成一个临时文件，然后可以通过访问 <code>${TEMPFILE}</code> 进行使用，非常方便。</p>
-<p>Shell 脚本的劣势。有以下三点，结合以前的开发经验，还真是这样的：</p>
+<p>Shell 脚本的劣势，有以下三点，结合以前的开发经验，还真是这样的：</p>
 <ul>
 <li> 算术计算，特别是浮点运算，基本不可以原生地做；</li>
 <li> 字符串处理 ...</li></ul></li>
@@ -192,7 +251,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month10">October</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #10
         </span>
@@ -210,7 +269,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -251,7 +310,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month04">April</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #9
         </span>
@@ -269,7 +328,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -320,7 +379,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #8
         </span>
@@ -338,7 +397,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -383,81 +442,6 @@
               <a class="btn btn-primary" href="http://yuex.in/post/2014/03/diablo3-barb-build.html" title="comments">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2014/03/diablo3-barb-build.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month01">January</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #7
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2014/01/technical-writing.html">
-          <li class="list-group-item">
-            <h1>如何撰写技术文档</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary" 
-      href="http://yuex.in/category/writing.html">writing</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2014">2014</a>-<a href="http://yuex.in/archives.html#Year2014Month01">01</a>-<a href="http://yuex.in/archives.html#Year2014Month01">29</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2014/01/technical-writing.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。</p>
-<p> 如果你时间非常有限，我推荐以下两个文档 </p>
-<ul>
-<li>
-<dl>
-<dt>Michael Ernst's <a href="http://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html">Writing a Technical Paper</a></dt>
-<dd>Michael Ernst 给出一些关于会议论文写作的建议，包含了从文章构思、提纲拟定、写作风格、图表表现、命名、处理评审意见等多个方面。此外，Michael 的个人主页上还有很多有益于学术生涯的其它方面的建议，也非常值得一读。</dd>
-</dl>
-</li>
-<li>
-<dl>
-<dt>Norman Ramsey's <a href="http://www.cs.tufts.edu/~nr/pubs/two-abstract.html">Learning Technical Writing in Two Hours per Week</a></dt>
-<dd>Norman Ramsey 总结了 9 条科技写作原则，并设计了 7 个练习来帮助掌握这些原则。相比 Michael 的建议，Norman 的建议更精炼，更适合用来强化掌握。</dd>
-</dl>
-</li>
-</ul>
-<p> 如果你时间多一点，我额外推荐两本书 </p>
-<ul>
-<li>
-<dl>
-<dt>The Elements of Style, William Strunk ...</dt></dl></li></ul></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2014/01/technical-writing.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2014/01/technical-writing.html" title="comments">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2014/01/technical-writing.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
