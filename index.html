@@ -140,7 +140,7 @@
       </div>
 
       <ul class="list-group">
-        <a href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html">
+        <a href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
           <li class="list-group-item">
             <h1>Exclusive Queue的一个推广</h1>
           </li>
@@ -154,6 +154,8 @@
       <b> · </b>
         <a class="label label-primary" 
           href="http://yuex.in/tag/system.html">system</a>
+        <a class="label label-primary" 
+          href="http://yuex.in/tag/semaphore.html">semaphore</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">18</a>
@@ -163,18 +165,20 @@
     <a href="http://yuex.in/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html">
+            <a class="pull-right" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
               </a>
           </li>
-          <li class="list-group-item"><p> 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 <a href="http://greenteapress.com/semaphores/">The Little Book of Semaphores</a>，理清了很多以前了解的不确实的概念。这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref:!rendezvous"><a class="footnote-ref" href="#fn:!rendezvous" rel="footnote">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广。书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。</p>
+          <li class="list-group-item"><p> 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 <a href="http://greenteapress.com/semaphores/">The Little Book of Semaphores</a>，理清了许多以前了解得不很确实的知识。</p>
+<p> 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref:!rendezvous"><a class="footnote-ref" href="#fn:!rendezvous" rel="footnote">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广。</p>
+<p> 书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。</p>
 <p> 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower ...</p></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html#disqus_thread" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html#disqus_thread" title="comments">
                 <span class="glyphicon glyphicon-comment"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html" title="comments">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" title="comments">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-concurrent-queue.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
