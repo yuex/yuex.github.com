@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-01-18T00:00:00+08:00</updated><entry><title>Exclusive Queue的一个推广</title><link href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" rel="alternate"></link><updated>2015-01-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-18:post/2015/01/little-book-exclusive-queue-generalization.html</id><summary type="html">&lt;p&gt; 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 &lt;a href="http://greenteapress.com/semaphores/"&gt;The Little Book of Semaphores&lt;/a&gt;，理清了许多以前了解得不很确实的知识。&lt;/p&gt;
-&lt;p&gt; 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous&lt;sup id="fnref:!rendezvous"&gt;&lt;a class="footnote-ref" href="#fn:!rendezvous" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广。&lt;/p&gt;
-&lt;p&gt; 书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。&lt;/p&gt;
+&lt;p&gt; 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous&lt;sup id="fnref:!rendezvous"&gt;&lt;a class="footnote-ref" href="#fn:!rendezvous" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 &lt;sup id="fnref:!note"&gt;&lt;a class="footnote-ref" href="#fn:!note" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
 &lt;p&gt; 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 &lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -15,7 +14,7 @@
 10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;leaders&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;proceed&lt;/span&gt;
 &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;followers&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;proceed&lt;/span&gt;
 &lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;   &lt;span class="c"&gt;# 用于记录已经到达的 leader 与 follower 个数 &lt;/span&gt;
-&lt;span class="n"&gt;countL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;countF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;     &lt;span class="c"&gt;# 用于记录正在进行 dance 的 leader 与 follower 个数 &lt;/span&gt;
+&lt;span class="n"&gt;countL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;countF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;     &lt;span class="c"&gt;# 用于记录正在进行 dance() 的 leader 与 follower 个数 &lt;/span&gt;
 &lt;span class="n"&gt;mutex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c"&gt;# 用于控制 leader 和 follower 的访问 &lt;/span&gt;
 &lt;span class="n"&gt;mutexCountL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 用于控制 countL 的访问 &lt;/span&gt;
 &lt;span class="n"&gt;mutexCountF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c"&gt;# 用于控制 countF 的访问 &lt;/span&gt;
@@ -25,7 +24,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;Leader 的代码 &lt;/p&gt;
+&lt;p&gt; 以下给出推广问题解的 leader 的代码：&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -68,7 +67,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;Follower 的代码 &lt;/p&gt;
+&lt;p&gt; 以下给出推广问题解的 follower 的代码：&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -109,13 +108,17 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt; 代码以上。不过这里的 n 个 leader 只有在 m 个 follower 全部完成 dance() 之后，才能开始进行第一个 dance()。在 &lt;code&gt;n == m&lt;/code&gt; 的情况下，或者更广泛一点讲，只要 n 和 m 互为整倍数关系时，可以有一个改进，使得 follower 可以完成固定几个 dance() 之后，就 fire 成比例的 rendezvous，这样 follower 和 leader 就可以一定程度上的并发行进了。&lt;/p&gt;
-&lt;p&gt; 以上。&lt;/p&gt;
+&lt;p&gt; 代码，以上。&lt;/p&gt;
+&lt;p&gt; 不过请注意，这里的 n 个 leader 只有在 m 个 follower 全部完成 dance() 之后，才能开始进行第一个 dance()。在 &lt;code&gt;n == m&lt;/code&gt; 的情况下，或者更广泛一点讲，只要 n 和 m 互为整倍数关系时，可以有一个改进，使得固定的一个或几个 follower 完成 dance() 之后，就 fire 成比例的 rendezvous 给 leader。这样 follower 和 leader 就可以一定程度上的并发行进了。&lt;/p&gt;
+&lt;p&gt; 拙文，以上。&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
 &lt;li id="fn:!rendezvous"&gt;
 &lt;p&gt;rendezvous 的词源是 render (to present) + vous (you)，引申为约会、约会地、集会地。具体可以参考 &lt;a href="http://www.etymonline.com/index.php?term=rendezvous"&gt;etymonline&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref:!rendezvous" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:!note"&gt;
+&lt;p&gt; 书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。&amp;#160;&lt;a class="footnote-backref" href="#fnref:!note" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</summary><category term="system"></category><category term="semaphore"></category></entry><entry><title>How Linux Work笔记</title><link href="http://yuex.in/post/2015/01/how-linux-work-review.html" rel="alternate"></link><updated>2015-01-11T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-11:post/2015/01/how-linux-work-review.html</id><summary type="html">&lt;p&gt; 最近看了一本 Linux 方面的 2014 年新书，是 &lt;a href="http://book.douban.com/subject/26266751/"&gt;How Linux Work&lt;/a&gt; 第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 &lt;a href="http://www.ituring.com.cn/book/1548"&gt; 中文版 &lt;/a&gt;，今年年底前应该可以和大家见面。&lt;/p&gt;

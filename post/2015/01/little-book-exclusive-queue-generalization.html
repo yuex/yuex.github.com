@@ -144,8 +144,7 @@
 
   <div id="article_content">
     <p> 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 <a href="http://greenteapress.com/semaphores/">The Little Book of Semaphores</a>，理清了许多以前了解得不很确实的知识。</p>
-<p> 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref:!rendezvous"><a class="footnote-ref" href="#fn:!rendezvous" rel="footnote">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广。</p>
-<p> 书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。</p>
+<p> 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref:!rendezvous"><a class="footnote-ref" href="#fn:!rendezvous" rel="footnote">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 <sup id="fnref:!note"><a class="footnote-ref" href="#fn:!note" rel="footnote">2</a></sup>。</p>
 <p> 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -159,7 +158,7 @@
 10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">n</span> <span class="o">=</span> <span class="n">number</span> <span class="n">of</span> <span class="n">leaders</span> <span class="n">to</span> <span class="n">proceed</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">number</span> <span class="n">of</span> <span class="n">followers</span> <span class="n">to</span> <span class="n">proceed</span>
 <span class="n">leader</span> <span class="o">=</span> <span class="n">follower</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c"># 用于记录已经到达的 leader 与 follower 个数 </span>
-<span class="n">countL</span> <span class="o">=</span> <span class="n">countF</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c"># 用于记录正在进行 dance 的 leader 与 follower 个数 </span>
+<span class="n">countL</span> <span class="o">=</span> <span class="n">countF</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c"># 用于记录正在进行 dance() 的 leader 与 follower 个数 </span>
 <span class="n">mutex</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c"># 用于控制 leader 和 follower 的访问 </span>
 <span class="n">mutexCountL</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># 用于控制 countL 的访问 </span>
 <span class="n">mutexCountF</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># 用于控制 countF 的访问 </span>
@@ -169,7 +168,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>Leader 的代码 </p>
+<p> 以下给出推广问题解的 leader 的代码：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -212,7 +211,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>Follower 的代码 </p>
+<p> 以下给出推广问题解的 follower 的代码：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -253,13 +252,17 @@
 </pre></div>
 </td></tr></table>
 
-<p> 代码以上。不过这里的 n 个 leader 只有在 m 个 follower 全部完成 dance() 之后，才能开始进行第一个 dance()。在 <code>n == m</code> 的情况下，或者更广泛一点讲，只要 n 和 m 互为整倍数关系时，可以有一个改进，使得 follower 可以完成固定几个 dance() 之后，就 fire 成比例的 rendezvous，这样 follower 和 leader 就可以一定程度上的并发行进了。</p>
-<p> 以上。</p>
+<p> 代码，以上。</p>
+<p> 不过请注意，这里的 n 个 leader 只有在 m 个 follower 全部完成 dance() 之后，才能开始进行第一个 dance()。在 <code>n == m</code> 的情况下，或者更广泛一点讲，只要 n 和 m 互为整倍数关系时，可以有一个改进，使得固定的一个或几个 follower 完成 dance() 之后，就 fire 成比例的 rendezvous 给 leader。这样 follower 和 leader 就可以一定程度上的并发行进了。</p>
+<p> 拙文，以上。</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:!rendezvous">
 <p>rendezvous 的词源是 render (to present) + vous (you)，引申为约会、约会地、集会地。具体可以参考 <a href="http://www.etymonline.com/index.php?term=rendezvous">etymonline</a>&#160;<a class="footnote-backref" href="#fnref:!rendezvous" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:!note">
+<p> 书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。&#160;<a class="footnote-backref" href="#fnref:!note" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
