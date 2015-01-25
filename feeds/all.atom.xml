@@ -1,5 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-01-18T00:00:00+08:00</updated><entry><title>Exclusive Queue的一个推广</title><link href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" rel="alternate"></link><updated>2015-01-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-18:post/2015/01/little-book-exclusive-queue-generalization.html</id><summary type="html">&lt;p&gt; 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 &lt;a href="http://greenteapress.com/semaphores/"&gt;The Little Book of Semaphores&lt;/a&gt;，理清了许多以前了解得不很确实的知识。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-01-25T00:00:00+08:00</updated><entry><title>Vim技巧之Smart Quit</title><link href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html" rel="alternate"></link><updated>2015-01-25T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-25:post/2015/01/vim-technique-smart-quit.html</id><summary type="html">&lt;p&gt; 初学 Vim 时，我们都有这样的经历 ——“ 哇，怎么退出？！”。在尝试了 &lt;code&gt;&amp;lt;Ctrl-C&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt; 全都没有效果时，才会注意左下角状态栏的小提示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Type  :quit&amp;lt;Enter&amp;gt;  to exit Vim&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 在小心翼翼地键入这个命令完成退出之后，我们欣喜地自认为已经掌握了 Vim 的退出之法。然而，当我们在 Vim 中进行了一番探索、受了一些嘲弄、做了一些不听使唤的修改后，键入 &lt;code&gt;:q&lt;/code&gt;，准备结束这次不成功的尝试，舒缓一下心神，再进行下一次的试炼之时，Vim 又会无情地用血红的字体提醒你：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;E37: No write since last change (add ! to override)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 很多人的 Vim 之旅便就此止步。许多年之后，那些并未放弃的人们，早已掌握了 Vim 中的大多数奥妙，但时不时地，仍然会在完成一些快速修改，准备退出进行一下验证或者修改下一个文件的时候，遭遇 Vim 的 &lt;code&gt;E37&lt;/code&gt; 嘲弄。Vim 仿佛是在用这种方式训斥你 ——“ 你，图样图森破，上台拿衣服 ”。虽然，无数次地，我们在论坛上、bbs 里，义正言辞地强调 “WYSIWYG，图样图森破，Vim 时尚时尚最时尚 ”，然而在夜深人静的时候，我们扪心自问，深深地明白 Vim 还有很多地方不够完美 &lt;sup id="fnref:!neovim"&gt;&lt;a class="footnote-ref" href="#fn:!neovim" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt; 所以，在这篇文章里，我要展示一个我在用的 Vim 配置，可以让我们在退出的时候，不再经受 &lt;code&gt;E37&lt;/code&gt; 的苦痛折磨。闲言少叙，直接上相关代码。&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt; SmartQuit&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;!&lt;/span&gt;&amp;amp;&lt;span class="nb"&gt;modified&lt;/span&gt;
+        exec &lt;span class="s2"&gt;&amp;quot;quit&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;
+        echohl WarningMsg
+        echo &lt;span class="s2"&gt;&amp;quot;Buffer changed! [^W]w [^S]x [^B^N]q!: &amp;quot;&lt;/span&gt;
+        echohl None
+
+        &lt;span class="k"&gt;let&lt;/span&gt; cmd &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;redraw!&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;ret&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; nr2char&lt;span class="p"&gt;(&lt;/span&gt;getchar&lt;span class="p"&gt;())&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="k"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;^B^N&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;ret&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;
+&lt;span class="c"&gt;            &amp;quot; BOOM! NUKE!&lt;/span&gt;
+            &lt;span class="k"&gt;let&lt;/span&gt; cmd &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;q!&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;elseif&lt;/span&gt; &lt;span class="k"&gt;ret&lt;/span&gt; &lt;span class="p"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;^W&amp;#39;&lt;/span&gt;
+            &lt;span class="k"&gt;let&lt;/span&gt; cmd &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;w&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;elseif&lt;/span&gt; &lt;span class="k"&gt;ret&lt;/span&gt; &lt;span class="p"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;^S&amp;#39;&lt;/span&gt;
+            &lt;span class="k"&gt;let&lt;/span&gt; cmd &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;x&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;endif&lt;/span&gt;
+
+        &lt;span class="k"&gt;try&lt;/span&gt;
+            exec cmd
+        &lt;span class="k"&gt;catch&lt;/span&gt;
+            &lt;span class="k"&gt;redraw&lt;/span&gt;
+            &lt;span class="k"&gt;echoerr&lt;/span&gt; &lt;span class="k"&gt;v&lt;/span&gt;:exception
+            &lt;span class="k"&gt;return&lt;/span&gt;
+        &lt;span class="k"&gt;endtry&lt;/span&gt;
+    &lt;span class="k"&gt;endif&lt;/span&gt;
+endfunc
+
+&lt;span class="nb"&gt;nnoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;C&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; :&lt;span class="k"&gt;call&lt;/span&gt; SmartQuit&lt;span class="p"&gt;()&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt; 这段代码很简单，我们将 &lt;code&gt;&amp;lt;C-c&amp;gt;&lt;/code&gt; 映射到调用 &lt;code&gt;SmartQuit()&lt;/code&gt; 函数。而这个函数会检查当前文件是否已经修改过。若没有修改，则直接退出；若有修改，则会提示你进行保存（&lt;code&gt;&amp;lt;C-w&amp;gt;&lt;/code&gt;）、保存退出（&lt;code&gt;&amp;lt;C-s&amp;gt;&lt;/code&gt;）、强制退出（&lt;code&gt;&amp;lt;C-b&amp;gt;&lt;/code&gt; 或者 &lt;code&gt;&amp;lt;C-n&amp;gt;&lt;/code&gt;）、或者取消操作（&lt;code&gt;&amp;lt;C-c&amp;gt;&lt;/code&gt;）。最后根据选择执行相应的命令。若在这个时候发生异常 &lt;sup id="fnref:!nofilename"&gt;&lt;a class="footnote-ref" href="#fn:!nofilename" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;，会捕获这个异常并输出给用户。需要注意的是，&lt;strong&gt;&lt;code&gt;if match&lt;/code&gt; 及以下 &lt;code&gt;elseif&lt;/code&gt; 各句中的 &lt;code&gt;^B&lt;/code&gt; 等按键是用在 Vim 的 inert 模式中用 &lt;code&gt;&amp;lt;C-v&amp;gt;&amp;lt;C-b&amp;gt;&lt;/code&gt; 输入的 &lt;/strong&gt;，不是直接键入 &lt;code&gt;^B&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt; 当然，如果你不喜欢这几个按键，或者不喜欢那个提示语，可以自行修改以适合自己口味。另外，这个函数在编写的过程中参考了 Stackoverflow 上的一个 &lt;a href="http://stackoverflow.com/a/20075923/2787160"&gt; 回答 &lt;/a&gt;，你也可以进行一下对比，选取合适的部分，再加以发挥形成自己的 SmartQuit。&lt;/p&gt;
+&lt;p&gt; 眼尖的读者可能已经发现了，这个配置是要用 &lt;code&gt;&amp;lt;C-c&amp;gt;&lt;/code&gt; 来进行退出 Vim。其实我们也可以用这个按键代替 &lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt;&lt;sup id="fnref:!esc"&gt;&lt;a class="footnote-ref" href="#fn:!esc" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; 来退出 Vim 中的各个模式。这在 Vim 中是一个默认设置，大多数情况下两者的行为是一致的。但有一个例外，就是用 &lt;code&gt;&amp;lt;C-v&amp;gt;&lt;/code&gt; 和 &lt;code&gt;I&lt;/code&gt; 进行多行首插入时。&lt;code&gt;:h i_ctrl-c&lt;/code&gt; 中写明 &lt;code&gt;&amp;lt;C-c&amp;gt;&lt;/code&gt; 在 insert 模式中不会触发 &lt;code&gt;InsertLeave&lt;/code&gt; 事件，因此也就无法完成多行插入了。解决这个问题，也很简单，只要加入如下配置就好了。&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;inoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;C&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;Esc&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt; 另外，以 MacBook Pro 为代表的新一代的笔电设计，愈发地将 &lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt; 缩小，并置于偏离键盘左上角的位置，对于 Vim 的使用造成了一定的不便，所以非常推荐大家用 &lt;code&gt;&amp;lt;C-c&amp;gt;&lt;/code&gt; 代替 &lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt;。当然，&lt;strong&gt; 前提是要将 &lt;code&gt;&amp;lt;CapsLock&amp;gt;&lt;/code&gt; 设置为 &lt;code&gt;&amp;lt;Ctrl&amp;gt;&lt;/code&gt;&lt;/strong&gt;。否则，频繁使用 &lt;code&gt;&amp;lt;C-c&amp;gt;&lt;/code&gt; 可能还会更痛苦。不过说到底，这个设置的好与不好，要不要采纳，大家还是要在使用中，根据自己的习惯做出适合自己的选择。&lt;/p&gt;
+&lt;p&gt; 以上。&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:!neovim"&gt;
+&lt;p&gt; 目前针对 Vim 有一个名为 &lt;a href="https://github.com/neovim/neovim"&gt;Neovim&lt;/a&gt; 的改良项目。&amp;#160;&lt;a class="footnote-backref" href="#fnref:!neovim" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:!nofilename"&gt;
+&lt;p&gt; 例如，在修改一个无名文件之后进行保存，会提示没有指定文件名。这个也可以用一个 vimscript 函数解决，敬请期待后续文章 ——Smart Write。&amp;#160;&lt;a class="footnote-backref" href="#fnref:!nofilename" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:!esc"&gt;
+&lt;p&gt;&lt;code&gt;:h esc&lt;/code&gt;，Vim 文档中对 &lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt; 的用途进行了详细的描述。&amp;#160;&lt;a class="footnote-backref" href="#fnref:!esc" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary><category term="vim"></category></entry><entry><title>Exclusive Queue的一个推广</title><link href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" rel="alternate"></link><updated>2015-01-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-18:post/2015/01/little-book-exclusive-queue-generalization.html</id><summary type="html">&lt;p&gt; 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 &lt;a href="http://greenteapress.com/semaphores/"&gt;The Little Book of Semaphores&lt;/a&gt;，理清了许多以前了解得不很确实的知识。&lt;/p&gt;
 &lt;p&gt; 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous&lt;sup id="fnref:!rendezvous"&gt;&lt;a class="footnote-ref" href="#fn:!rendezvous" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 &lt;sup id="fnref:!note"&gt;&lt;a class="footnote-ref" href="#fn:!note" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
 &lt;p&gt; 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 &lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
