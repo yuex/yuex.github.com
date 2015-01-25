@@ -3,12 +3,12 @@
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;Type  :quit&amp;lt;Enter&amp;gt;  to exit Vim&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt; 在小心翼翼地键入这个命令完成退出之后，我们欣喜地自认为已经掌握了 Vim 的退出之法。然而，当我们在 Vim 中进行了一番探索、受了一些嘲弄、做了一些不听使唤的修改后，键入 &lt;code&gt;:q&lt;/code&gt;，准备结束这次不成功的尝试，舒缓一下心神，再进行下一次的试炼之时，Vim 又会无情地用血红的字体提醒你：&lt;/p&gt;
+&lt;p&gt; 在小心翼翼地键入这个命令完成退出之后，我们欣喜地自认为已经掌握了 Vim 的退出之法。然而，当我们在 Vim 中进行了一番探索、受了一些嘲弄、做了一些不听使唤的修改后，虔诚地键入 &lt;code&gt;:quit&lt;/code&gt;，准备结束这次不成功的尝试，舒缓一下心神，重新来过之时，Vim 又会无情地用一行血红色的小字警告你：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;E37: No write since last change (add ! to override)&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt; 很多人的 Vim 之旅便就此止步。许多年之后，那些并未放弃的人们，早已掌握了 Vim 中的大多数奥妙，但时不时地，仍然会在完成一些快速修改，准备退出进行一下验证或者修改下一个文件的时候，遭遇 Vim 的 &lt;code&gt;E37&lt;/code&gt; 嘲弄。Vim 仿佛是在用这种方式训斥你 ——“ 你，图样图森破，上台拿衣服 ”。虽然，无数次地，我们在论坛上、bbs 里，义正言辞地强调 “WYSIWYG，图样图森破，Vim 时尚时尚最时尚 ”，然而在夜深人静的时候，我们扪心自问，深深地明白 Vim 还有很多地方不够完美 &lt;sup id="fnref:!neovim"&gt;&lt;a class="footnote-ref" href="#fn:!neovim" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
-&lt;p&gt; 所以，在这篇文章里，我要展示一个我在用的 Vim 配置，可以让我们在退出的时候，不再经受 &lt;code&gt;E37&lt;/code&gt; 的苦痛折磨。闲言少叙，直接上相关代码。&lt;/p&gt;
+&lt;p&gt; 很多人的 Vim 之旅就此便戛然而止。许多年之后，那些并未放弃的人们，早已掌握了 Vim 中的大多数奥妙，但时不时地，仍然会在完成一些快速修改，准备退出进行一下验证或者修改下一个文件的时候，遭遇 Vim 的 &lt;code&gt;E37&lt;/code&gt; 嘲弄。Vim 仿佛是在用这种方式训斥你 ——“ 你，图样图森破，上台拿衣服 ”。虽然，无数次地，我们在论坛上、bbs 里，义正言辞地强调 “WYSIWYG，图样图森破；Vim，时尚时尚最时尚 ”，然而在夜深人静的时候，我们扪心自问，深深明白，Vim 还有很多地方不够完美 &lt;sup id="fnref:!neovim"&gt;&lt;a class="footnote-ref" href="#fn:!neovim" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt; 所以，在这篇文章里，我要展示一个我在用的 Vim 配置，可以让我们在退出的时候，不再遭受 &lt;code&gt;E37&lt;/code&gt; 的痛苦折磨。闲言少叙，直接上相关代码。&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -67,7 +67,7 @@
             &lt;span class="k"&gt;return&lt;/span&gt;
         &lt;span class="k"&gt;endtry&lt;/span&gt;
     &lt;span class="k"&gt;endif&lt;/span&gt;
-endfunc
+&lt;span class="k"&gt;endfunction&lt;/span&gt;
 
 &lt;span class="nb"&gt;nnoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;C&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="k"&gt;c&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; :&lt;span class="k"&gt;call&lt;/span&gt; SmartQuit&lt;span class="p"&gt;()&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
