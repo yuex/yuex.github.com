@@ -15,7 +15,6 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  width: 100% !important;
   /* Negative indent footer by its height */
   margin: 0 auto -81px;
   /* Pad bottom by footer height */
@@ -68,13 +67,8 @@ body {
   #footer #footer-text #engine { display: none; }
 }
 
-/*#navbar-container {*/
-  /*width: 100% !important;*/
-/*}*/
-
 #navbar {
   /*margin-bottom: 0;*/
-  width: 100% !important;
   border-radius: 0;
   font-size: 17px;
   border-width: 0;
