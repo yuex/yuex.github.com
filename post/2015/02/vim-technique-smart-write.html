@@ -7,7 +7,7 @@
     <meta name="author" content="yuex">
     <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
 
-        <title>Vim技巧之Smart Quit · yuex (悟道洞穴人)</title>
+        <title>Vim技巧之Smart Write · yuex (悟道洞穴人)</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -113,7 +113,7 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html">Vim技巧之Smart Quit</a></h1>
+        <h1><a href="http://yuex.in/post/2015/02/vim-technique-smart-write.html">Vim技巧之Smart Write</a></h1>
     </div>
 
         </div>
@@ -128,7 +128,7 @@
           href="http://yuex.in/tag/vim.html">vim</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">25</a>
+      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month02">02</a>-<a href="http://yuex.in/archives.html#Year2015Month02">01</a>
 
     <!--<span class="glyphicon glyphicon-user"></span>-->
       <b> · </b>
@@ -138,16 +138,18 @@
   <hr/>
 
   <div id="article_content">
-    <p> 初学 Vim 时，我们都有这样的经历 ——“ 哇，怎么退出？！”。在尝试了 <code>&lt;Ctrl-C&gt;</code>、<code>&lt;Esc&gt;</code> 全都没有效果时，才会注意左下角状态栏的小提示：</p>
+    <p> 上篇讲到 Smart Quit，通过处理 Vim 中的 <code>E37</code> 异常，让我们可以更畅快地退出 Vim。但这个解法并不完美，例如我们通过 <code>vim</code> 命令编辑无名文件时，Smart Quit 在退出时会尝试用 <code>w</code> 进行保存，但由于当前文件没有文件名，所以会遭遇 Vim 中的 <code>E32</code> 异常 </p>
 <blockquote>
-<p><code>Type  :quit&lt;Enter&gt;  to exit Vim</code></p>
+<p><code>E32: No file name</code></p>
 </blockquote>
-<p> 在小心翼翼地键入这个命令完成退出之后，我们欣喜地自认为已经掌握了 Vim 的退出之法。然而，当我们在 Vim 中进行了一番探索、受了一些嘲弄、做了一些不听使唤的修改后，虔诚地键入 <code>:quit</code>，准备结束这次不成功的尝试，舒缓一下心神，重新来过之时，Vim 又会无情地用一行血红色的小字警告你：</p>
-<blockquote>
-<p><code>E37: No write since last change (add ! to override)</code></p>
-</blockquote>
-<p> 很多人的 Vim 之旅就此便戛然而止。许多年之后，那些并未放弃的人们，早已掌握了 Vim 中的大多数奥妙，但时不时地，仍然会在完成一些快速修改，准备退出进行一下验证或者修改下一个文件的时候，遭遇 Vim 的 <code>E37</code> 嘲弄。Vim 仿佛是在用这种方式训斥你 ——“ 你，图样图森破，上台拿衣服 ”。虽然，无数次地，我们在论坛上、bbs 里，义正言辞地强调 “WYSIWYG，图样图森破；Vim，时尚时尚最时尚 ”，然而在夜深人静的时候，我们扪心自问，深深明白，Vim 还有很多地方不够完美 <sup id="fnref:!neovim"><a class="footnote-ref" href="#fn:!neovim" rel="footnote">1</a></sup>。</p>
-<p> 所以，在这篇文章里，我要展示一个我在用的 Vim 配置，可以让我们在退出的时候，不再遭受 <code>E37</code> 的痛苦折磨。闲言少叙，直接上相关代码。</p>
+<p> 在这篇文章里，我提供一个我在用的 <code>SmartWrite()</code> 函数，来解决 <code>E32</code>。闲言少叙，我们还是直接上代码 </p>
+<p> 首先，我们先将 <code>SmartWrite()</code> 的调用绑定到一个键位，这里暂时用 <code>wq</code> 替代好了。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="k">wq</span> :<span class="k">call</span> SmartWrite<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p> 一个更好的方法是将 <code>;</code> 映射为 <code>&lt;Leader&gt;</code> 键，然后用 <code>&lt;Leader&gt;w</code> 来调用 <code>SmartWrite()</code>，这个键位按起来很方便而且很好记。当然，如果插件较多，按键不够用，我们还可以开启 <code>&lt;Alt&gt;</code> 键来使用更多的组合键。不过这些都不打紧，因为在文章的最后，我们会把 <code>SmartWrite()</code> 的调用整合进 <code>SmartQuit()</code> 中，这样就只要记忆一个 <code>&lt;C-c&gt;</code> 就可以了。</p>
+<p> 接下来，是 <code>SmartWrite()</code> 的代码 </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -176,7 +178,98 @@
 26
 27
 28
-29</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> SmartQuit<span class="p">()</span>
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> SmartWrite<span class="p">(</span>...<span class="p">)</span>
+    <span class="k">let</span> cmd <span class="p">=</span> <span class="s1">&#39;w&#39;</span>
+    <span class="k">if</span> <span class="k">a</span>:<span class="m">0</span> <span class="p">&gt;</span> <span class="m">0</span>
+        <span class="k">let</span> cmd <span class="p">=</span> <span class="k">a</span>:<span class="m">1</span>
+    <span class="k">endif</span>
+    <span class="k">if</span> empty<span class="p">(</span>bufname<span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">))</span>
+        <span class="k">call</span> WriteWithName<span class="p">(</span>cmd<span class="p">)</span>
+    <span class="k">else</span>
+        exec cmd
+    <span class="k">endif</span>
+<span class="k">endfunction</span>
+
+<span class="k">function</span> WriteWithName<span class="p">(</span>cmd<span class="p">)</span>
+    <span class="k">call</span> inputsave<span class="p">()</span>
+
+    <span class="k">let</span> <span class="k">filename</span> <span class="p">=</span> input<span class="p">(</span><span class="s1">&#39;:&#39;</span>.<span class="k">a</span>:cmd.<span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span>
+    <span class="k">let</span> cmds <span class="p">=</span> [<span class="k">a</span>:cmd<span class="p">,</span> <span class="k">filename</span>]
+    <span class="k">if</span> <span class="p">!</span>empty<span class="p">(</span>glob<span class="p">(</span><span class="k">filename</span><span class="p">))</span>
+        <span class="k">redraw</span>
+        echohl WarningMsg
+        echo <span class="s1">&#39;&quot;&#39;</span>.<span class="k">filename</span>.<span class="s1">&#39;&quot; existed. Force &#39;</span>.<span class="k">a</span>:cmd.<span class="s1">&#39; [!] ? [Y/n] &#39;</span>
+        echohl None
+
+        <span class="k">let</span> choice <span class="p">=</span> nr2char<span class="p">(</span>getchar<span class="p">())</span>
+        <span class="k">if</span> choice <span class="p">==</span> <span class="s2">&quot;\&lt;CR&gt;&quot;</span> <span class="p">||</span> choice <span class="p">==</span>? <span class="s1">&#39;y&#39;</span>
+            <span class="k">call</span> CmdExecute<span class="p">(</span>cmds<span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+        <span class="k">endif</span>
+    <span class="k">else</span>
+        <span class="k">call</span> CmdExecute<span class="p">(</span>cmds<span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+    <span class="k">endif</span>
+
+    <span class="k">call</span> inputrestore<span class="p">()</span>
+<span class="k">endfunction</span>
+
+<span class="k">function</span> CmdExecute<span class="p">(</span>cmds<span class="p">,</span> force<span class="p">)</span>
+    <span class="k">if</span> <span class="k">a</span>:force
+        <span class="k">let</span> cmd <span class="p">=</span> <span class="k">a</span>:cmds[<span class="m">0</span>].<span class="s1">&#39;! &#39;</span>.<span class="k">join</span><span class="p">(</span><span class="k">a</span>:cmds[<span class="m">1</span>:]<span class="p">)</span>
+    <span class="k">else</span>
+        <span class="k">let</span> cmd <span class="p">=</span> <span class="k">join</span><span class="p">(</span><span class="k">a</span>:cmds<span class="p">)</span>
+    <span class="k">endif</span>
+
+    <span class="k">if</span> exists<span class="p">(</span><span class="s1">&#39;cmd&#39;</span><span class="p">)</span>
+        exec cmd
+    <span class="k">endif</span>
+<span class="k">endfunction</span>
+</pre></div>
+</td></tr></table>
+
+<p> 好在 Vimscript 并不严格要求函数定义与使用的先后顺序，因为是脚本语言嘛，所以这里就按照逻辑上最自然的先后顺序给出代码了。在 <code>SmartWrite()</code> 中，我们进行一个判断，看当前文件是否有名字。如果有名字，就直接执行默认为写的命令；如果没有名字，就调用 <code>WriteWithName()</code>。这个函数会要求输入一个文件名字，然后会检查是否存在同名的文件。如果存在，会提示是否强制写，默认是只有 <code>&lt;Enter&gt;</code> 和 <code>y</code> 或者 <code>Y</code> 起头的输入，才会进行强制写入。决定之后，会调用 <code>CmdExecute()</code> 来真正执行写入的命令。</p>
+<p> 最后，只要在 <code>SmartQuit()</code> 里进行一下小的调整，就可以将 <code>SmartWrite()</code> 整合进去了。我们赘述如下，注意其中的 <code>&lt;C-w&gt;</code> 和 <code>&lt;C-s&gt;</code> 键的设置，其实是配置了 <strong> 保存 </strong> 和 <strong> 保存退出 </strong> 两个键位。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> SmartQuit<span class="p">()</span>
     <span class="k">if</span> <span class="p">!</span>&amp;<span class="nb">modified</span>
         exec <span class="s2">&quot;quit&quot;</span>
     <span class="k">else</span>
@@ -189,12 +282,11 @@
         <span class="k">let</span> <span class="k">ret</span> <span class="p">=</span> nr2char<span class="p">(</span>getchar<span class="p">())</span>
 
         <span class="k">if</span> <span class="k">ret</span> <span class="p">==</span> <span class="s2">&quot;\&lt;C-b&gt;&quot;</span> <span class="p">||</span> <span class="k">ret</span> <span class="p">==</span> <span class="s2">&quot;\&lt;C-n&gt;&quot;</span>
-<span class="c">            &quot; BOOM! NUKE!</span>
             <span class="k">let</span> cmd <span class="p">=</span> <span class="s2">&quot;q!&quot;</span>
         <span class="k">elseif</span> <span class="k">ret</span> <span class="p">==</span> <span class="s2">&quot;\&lt;C-w&gt;&quot;</span>
-            <span class="k">let</span> cmd <span class="p">=</span> <span class="s2">&quot;w&quot;</span>
+            <span class="k">let</span> cmd <span class="p">=</span> <span class="s2">&quot;call SmartWrite(&#39;w&#39;)&quot;</span>
         <span class="k">elseif</span> <span class="k">ret</span> <span class="p">==</span> <span class="s2">&quot;\&lt;C-s&gt;&quot;</span>
-            <span class="k">let</span> cmd <span class="p">=</span> <span class="s2">&quot;x&quot;</span>
+            <span class="k">let</span> cmd <span class="p">=</span> <span class="s2">&quot;call SmartWrite(&#39;x&#39;)&quot;</span>
         <span class="k">endif</span>
 
         <span class="k">redraw</span>
@@ -203,31 +295,15 @@
         <span class="k">endif</span>
     <span class="k">endif</span>
 <span class="k">endfunction</span>
-
-<span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">c</span><span class="p">&gt;</span> :<span class="k">call</span> SmartQuit<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 </td></tr></table>
 
-<p> 这段代码很简单，我们将 <code>&lt;C-c&gt;</code> 映射到调用 <code>SmartQuit()</code> 函数。而这个函数会检查当前文件是否已经修改过。若没有修改，则直接退出；若有修改，则会提示你进行保存（<code>&lt;C-w&gt;</code>）、保存退出（<code>&lt;C-s&gt;</code>）、强制退出（<code>&lt;C-b&gt;</code> 或者 <code>&lt;C-n&gt;</code>）、或者取消操作（<code>&lt;C-c&gt;</code>）。最后根据选择执行相应的命令。</p>
-<p> 当然，如果你不喜欢这几个按键，或者不喜欢那个提示语，可以自行修改以适合自己口味。另外，这个函数在编写的过程中参考了 Stackoverflow 上的一个 <a href="http://stackoverflow.com/a/20075923/2787160"> 回答 </a>，你也可以进行一下对比，选取合适的部分，再加以发挥形成自己的 SmartQuit。</p>
-<p> 眼尖的读者可能已经发现了，这个配置是要用 <code>&lt;C-c&gt;</code> 来进行退出 Vim。其实我们也可以用这个按键代替 <code>&lt;Esc&gt;</code><sup id="fnref:!esc"><a class="footnote-ref" href="#fn:!esc" rel="footnote">2</a></sup> 来退出 Vim 中的各个模式。这在 Vim 中是一个默认设置，大多数情况下两者的行为是一致的。但有一个例外，就是用 <code>&lt;C-v&gt;</code> 和 <code>I</code> 进行多行首插入时。<code>:h i_ctrl-c</code> 中写明 <code>&lt;C-c&gt;</code> 在 insert 模式中不会触发 <code>InsertLeave</code> 事件，因此也就无法完成多行插入了。解决这个问题，也很简单，只要加入如下配置就好了。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">inoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">c</span><span class="p">&gt;</span> <span class="p">&lt;</span>Esc<span class="p">&gt;</span>
+<p> 最后的最后，别忘了我们的 <code>&lt;C-c&gt;</code> 键映射 </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">c</span><span class="p">&gt;</span> :<span class="k">call</span> SmartQuit<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 </td></tr></table>
 
-<p> 另外，以 MacBook Pro 为代表的新一代的笔电设计，愈发地将 <code>&lt;Esc&gt;</code> 缩小，并置于偏离键盘左上角的位置，对于 Vim 的使用造成了一定的不便，所以非常推荐大家用 <code>&lt;C-c&gt;</code> 代替 <code>&lt;Esc&gt;</code>。当然，<strong> 前提是要将 <code>&lt;CapsLock&gt;</code> 设置为 <code>&lt;Ctrl&gt;</code></strong>。否则，频繁使用 <code>&lt;C-c&gt;</code> 可能还会更痛苦。不过说到底，这个设置的好与不好，要不要采纳，大家还是要在使用中，根据自己的习惯做出适合自己的选择。</p>
 <p> 以上。</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:!neovim">
-<p> 目前针对 Vim 有一个名为 <a href="https://github.com/neovim/neovim">Neovim</a> 的改良项目。&#160;<a class="footnote-backref" href="#fnref:!neovim" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:!esc">
-<p><code>:h esc</code>，Vim 文档中对 <code>&lt;Esc&gt;</code> 的用途进行了详细的描述。&#160;<a class="footnote-backref" href="#fnref:!esc" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
   </div>
 
   <hr/>
@@ -246,9 +322,9 @@
 
     <ul class="list-group">
       <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
-        <a href="http://yuex.in/post/2015/02/vim-technique-smart-write.html">
+        <a href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html">
           <li class="list-group-item">
-Vim技巧之Smart Write</li>
+Vim技巧之Smart Quit</li>
         </a>
       </div>
     </ul>
@@ -257,12 +333,12 @@ Vim技巧之Smart Write</li>
 
 
       <ul class="pager">
-        <li class="previous">
-          <a href="http://yuex.in/post/2015/02/vim-technique-smart-write.html">
+        <li class="previous disabled">
+          <a >
           &laquo; Newer</a>
         </li>
         <li class="next">
-          <a href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
+          <a href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html">
           Older &raquo;</a>
         </li>
       </ul>
@@ -272,8 +348,8 @@ Vim技巧之Smart Write</li>
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
-  var disqus_identifier = 'vim-technique-smart-quit';
-  var disqus_url = 'http://yuex.in/post/2015/01/vim-technique-smart-quit.html';
+  var disqus_identifier = 'vim-technique-smart-write';
+  var disqus_url = 'http://yuex.in/post/2015/02/vim-technique-smart-write.html';
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {
