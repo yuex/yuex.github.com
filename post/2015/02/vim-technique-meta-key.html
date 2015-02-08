@@ -154,7 +154,7 @@
 </pre></div>
 
 
-<p> 在上面这段代码中，我们将诸如 <code>&lt;M-h&gt;</code> 这样的值设置为 <code>&lt;Esc&gt;h</code>，也就是前缀了这样在某些 terminal 中就可以正确地把 <code>&lt;Esc&gt;h</code> 的按键序列解析为 <code>&lt;M-h&gt;</code> 了。为了便 <code>&lt;M-h&gt;</code> 的组合键在 insert 模式中也能使用，我们要在上面的代码中加入了 <code>innoremap</code> 一句。之后，我们就可以用 <code>&lt;M-h&gt;</code> 来进行键位映射了，例如以下组合键就可以正常打印信息了。</p>
+<p> 在上面这段代码中，我们将诸如 <code>&lt;M-h&gt;</code> 这样的值设置为 <code>&lt;Esc&gt;h</code>，然后用 <code>&lt;M-h&gt;</code> 进行键位绑定，这样 Vim 在某些 terminal 中就可以把 <code>&lt;Esc&gt;h</code> 的按键序列正确地对应到 <code>&lt;M-h&gt;</code> 表示的按键操作上了。为了便 <code>&lt;M-h&gt;</code> 的组合键在 insert 模式中也能使用，我们在上面的代码中加入了 <code>innoremap</code> 一句。之后，我们就可以用 <code>&lt;M-h&gt;</code> 来进行键位映射了，例如以下组合键就可以正常打印信息了。</p>
 <div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>M<span class="p">-</span><span class="k">h</span><span class="p">&gt;</span> :echo <span class="s1">&#39;&lt;\M-h&gt;&#39;</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 

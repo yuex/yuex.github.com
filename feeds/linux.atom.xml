@@ -15,7 +15,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt; 在上面这段代码中，我们将诸如 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 这样的值设置为 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt;，也就是前缀了这样在某些 terminal 中就可以正确地把 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt; 的按键序列解析为 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 了。为了便 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 的组合键在 insert 模式中也能使用，我们要在上面的代码中加入了 &lt;code&gt;innoremap&lt;/code&gt; 一句。之后，我们就可以用 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 来进行键位映射了，例如以下组合键就可以正常打印信息了。&lt;/p&gt;
+&lt;p&gt; 在上面这段代码中，我们将诸如 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 这样的值设置为 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt;，然后用 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 进行键位绑定，这样 Vim 在某些 terminal 中就可以把 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt; 的按键序列正确地对应到 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 表示的按键操作上了。为了便 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 的组合键在 insert 模式中也能使用，我们在上面的代码中加入了 &lt;code&gt;innoremap&lt;/code&gt; 一句。之后，我们就可以用 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 来进行键位映射了，例如以下组合键就可以正常打印信息了。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;nnoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;M&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="k"&gt;h&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; :echo &lt;span class="s1"&gt;&amp;#39;&amp;lt;\M-h&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
