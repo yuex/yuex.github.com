@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/all-zh.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-02-01T00:00:00+08:00</updated><entry><title>Vim技巧之Smart Write</title><link href="http://yuex.in/post/2015/02/vim-technique-smart-write.html" rel="alternate"></link><updated>2015-02-01T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-02-01:post/2015/02/vim-technique-smart-write.html</id><summary type="html">&lt;p&gt; 上篇讲到 &lt;code&gt;SmartQuit()&lt;/code&gt;，通过处理 Vim 中的 &lt;code&gt;E37&lt;/code&gt; 异常，让我们可以更畅快地退出 Vim。但这个解法并不完美，例如我们通过 &lt;code&gt;vim&lt;/code&gt; 命令编辑无名文件时，&lt;code&gt;SmartQuit()&lt;/code&gt; 在退出时会尝试用 &lt;code&gt;w&lt;/code&gt; 进行保存，但由于当前文件没有文件名，所以会遭遇 Vim 中的 &lt;code&gt;E32&lt;/code&gt; 异常 &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/all-zh.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-02-08T00:00:00+08:00</updated><entry><title>Vim技巧之Meta键</title><link href="http://yuex.in/post/2015/02/vim-technique-meta-key.html" rel="alternate"></link><updated>2015-02-08T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-02-08:post/2015/02/vim-technique-meta-key.html</id><summary type="html">&lt;p&gt; 在 terminal 环境下使用 Vim 时，Meta 键（亦即 Alt）一般是不起作用的 &lt;sup id="fnref:!map-alt-keys"&gt;&lt;a class="footnote-ref" href="#fn:!map-alt-keys" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。但是随着插件越用越多，绑定的组合键越来越多，按键难免会出现越来越不够用的情况。若是可以使用 Meta 键进行键位组合，至少会增加 26 个组合键。这里给出一个通过配置 Vim 来启用 Meta 组合键的方法。&lt;/p&gt;
+&lt;p&gt; 还是直接上代码。这里启用了从 &lt;code&gt;&amp;lt;M-a&amp;gt;&lt;/code&gt; 到 &lt;code&gt;&amp;lt;M-z&amp;gt;&lt;/code&gt; 的 26 组合键和从 &lt;code&gt;&amp;lt;M-0&amp;gt;&lt;/code&gt; 到 &lt;code&gt;&amp;lt;M-9&amp;gt;&lt;/code&gt; 的 10 个组合键。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; range&lt;span class="p"&gt;(&lt;/span&gt;char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; nr2char&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    exec &lt;span class="s2"&gt;&amp;quot;set &amp;lt;M-&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot;&amp;gt;=\&amp;lt;Esc&amp;gt;&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;
+    exec &lt;span class="s2"&gt;&amp;quot;inoremap \&amp;lt;Esc&amp;gt;&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot; &amp;lt;M-&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;endfor&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; range&lt;span class="p"&gt;(&lt;/span&gt;char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;9&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; nr2char&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    exec &lt;span class="s2"&gt;&amp;quot;set &amp;lt;M-&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot;&amp;gt;=\&amp;lt;Esc&amp;gt;&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;
+    exec &lt;span class="s2"&gt;&amp;quot;inoremap \&amp;lt;Esc&amp;gt;&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot; &amp;lt;M-&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot;&amp;gt;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;endfor&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 在上面这段代码中，我们将诸如 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 这样的值设置为 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt;，也就是前缀了这样在某些 terminal 中就可以正确地把 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt; 的按键序列解析为 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 了。为了便 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 的组合键在 insert 模式中也能使用，我们要在上面的代码中加入了 &lt;code&gt;innoremap&lt;/code&gt; 一句。之后，我们就可以用 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 来进行键位映射了，例如以下组合键就可以正常打印信息了。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;nnoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;M&lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="k"&gt;h&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; :echo &lt;span class="s1"&gt;&amp;#39;&amp;lt;\M-h&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 实际上，这句映射相当于 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nb"&gt;nnoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;Esc&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;&lt;span class="k"&gt;h&lt;/span&gt; :echo &lt;span class="s1"&gt;&amp;#39;&amp;lt;\M-h&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 只不过 &lt;code&gt;&amp;lt;Esc&amp;gt;h&lt;/code&gt; 是针对某一类特殊 terminal 才管用的 dirty hack。用 &lt;code&gt;&amp;lt;M-h&amp;gt;&lt;/code&gt; 进行配置，代码的可读性更好一些，换到其它 terminal 下的移植性也更好一些。&lt;/p&gt;
+&lt;p&gt; 以上。&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:!map-alt-keys"&gt;
+&lt;p&gt;&lt;code&gt;:h map-alt-keys&lt;/code&gt; 详细解释了为什么 meta 键不起作用，并给出了一个设置 shell 的方法来解决这个问题。&amp;#160;&lt;a class="footnote-backref" href="#fnref:!map-alt-keys" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary><category term="vim"></category></entry><entry><title>Vim技巧之Smart Write</title><link href="http://yuex.in/post/2015/02/vim-technique-smart-write.html" rel="alternate"></link><updated>2015-02-01T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-02-01:post/2015/02/vim-technique-smart-write.html</id><summary type="html">&lt;p&gt; 上篇讲到 &lt;code&gt;SmartQuit()&lt;/code&gt;，通过处理 Vim 中的 &lt;code&gt;E37&lt;/code&gt; 异常，让我们可以更畅快地退出 Vim。但这个解法并不完美，例如我们通过 &lt;code&gt;vim&lt;/code&gt; 命令编辑无名文件时，&lt;code&gt;SmartQuit()&lt;/code&gt; 在退出时会尝试用 &lt;code&gt;w&lt;/code&gt; 进行保存，但由于当前文件没有文件名，所以会遭遇 Vim 中的 &lt;code&gt;E32&lt;/code&gt; 异常 &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;E32: No file name&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;

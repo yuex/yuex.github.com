@@ -135,10 +135,70 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month04">April</a>
+        <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month10">October</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle1">
+        <span class="pull-right badge">
+          #10
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2014/10/bash-template.html">
+          <li class="list-group-item">
+            <h1>使用bash渲染模板动态生成配置文件</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary" 
+      href="http://yuex.in/category/linux.html">linux</a>
+      <b> · </b>
+        <a class="label label-primary" 
+          href="http://yuex.in/tag/bash.html">bash</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2014">2014</a>-<a href="http://yuex.in/archives.html#Year2014Month10">10</a>-<a href="http://yuex.in/archives.html#Year2014Month10">14</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2014/10/bash-template.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 在使用 bash 自动化一些配置过程的时候，经常会遇到这样一种情况，我们需要向配置文件中写入一些信息，而这些信息是动态的，只有脚本实际运行的时候，才能知道这些信息。比如我需要自动启动一个由多个 docker container 组成的 cluster。这个 cluster 中的多个 container 形成一个 C/S 架构的星形拓扑。为了可以正常通信，client 至少应该知道 server 的 ip 地址。为了使这个部署可以更灵活，一般会选择使用 dhcp 来动态获取地址。所以，我们不能事先把地址写死，必须在 server container 运行之后动态生成 client 的配置文件。当然，我们也可以把脚本写成两步，先起 server，再起 client。但是这种方法自动化的不彻底，没有一下就把所有工作从头做到尾来得爽快，所以这里也就按下不表了。</p>
+<p> 上面说的这个情况，最直接的方法是用 <code>sed</code> 配合正则表达一处一处地修改。但是当要修改的地方很多时，这个方法会变得非常繁琐，后期维护也非常困难。我在这里提供一种利用 bash 渲染模板文件动态生成实际使用配置文件的方法。如果你有玩过 ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2014/10/bash-template.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="bash-template">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2014/10/bash-template.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2014/10/bash-template.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month04">April</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
         <span class="pull-right badge">
           #9
         </span>
@@ -156,7 +216,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -208,7 +268,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #8
         </span>
@@ -226,7 +286,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -284,7 +344,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month01">January</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #7
         </span>
@@ -302,7 +362,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -360,7 +420,7 @@
         <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month09">September</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #6
         </span>
@@ -378,7 +438,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary" 
@@ -412,74 +472,6 @@
               <a class="btn btn-primary" href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month09">September</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #5
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2013/09/config-sshd-using-pam.html">
-          <li class="list-group-item">
-            <h1>配置sshd使用pam认证小结</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary" 
-      href="http://yuex.in/category/linux.html">linux</a>
-      <b> · </b>
-        <a class="label label-primary" 
-          href="http://yuex.in/tag/sshd.html">sshd</a>
-        <a class="label label-primary" 
-          href="http://yuex.in/tag/pam.html">pam</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month09">09</a>-<a href="http://yuex.in/archives.html#Year2013Month09">25</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 <code>ssh -D</code>。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。</p>
-<p>ssh＋pam＋chroot 各模块的功能如下 </p>
-<ul>
-<li>ssh/sshd：client and server，支持密码用户 </li>
-<li>pam：提供基于用户名和 ip 地址段的登陆认证和限制 </li>
-<li>chroot：做成一个 chroot jail 限制用户在主机上的权限 </li>
-</ul>
-<h2 id="chroot-jail">chroot ...</h2></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="config-sshd-using-pam">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/config-sshd-using-pam.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -532,7 +524,7 @@
           </span>
           <span id="theme">
             with theme
-            <a href="http://github.com/yuex/pelican-chameleon">chameleon</a>
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
           </span>
           <span id="bootstrap">
             on top of
