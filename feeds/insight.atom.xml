@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/product.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2014-03-30T00:00:00+08:00</updated><entry><title>利用耗怒回血解决野蛮人的战斗恢复问题</title><link href="http://yuex.in/post/2014/03/diablo3-barb-build.html" rel="alternate"></link><updated>2014-03-30T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2014-03-30:post/2014/03/diablo3-barb-build.html</id><summary type="html">&lt;h1 id="build"&gt;Build 介绍 &lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/insight.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-02-15T00:00:00+08:00</updated><entry><title>辩证唯物主义中的矛盾</title><link href="http://yuex.in/post/2015/02/dialectical-materialism-contradiction.html" rel="alternate"></link><updated>2015-02-15T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-02-15:post/2015/02/dialectical-materialism-contradiction.html</id><summary type="html">&lt;p&gt; 我的关于于辩证唯物主义的浅见仅仅来源于课堂，以下论证必定有不尽的疏漏，敬乞宽谅。&lt;/p&gt;
+&lt;p&gt; 辩证唯物主义的基本观点可以概括如下 &lt;a class="footnote-reference" href="#a" id="id2"&gt;[1]&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 世界的本元是物质，世间的万事万物都是由物质派生出来的。&lt;/p&gt;
+&lt;p&gt; 物质是运动的，运动是有规律的，规律是客观的，不以人的意志为转移的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 任何一个哲学理论，都是对客观世界的一个建模。没有真假之分，只有是否合适之言，一如数学中的公理系统。更具体的，我们可以参照欧氏几何和非欧几何。但有一个要求，这个理论必须是自洽的。&lt;/p&gt;
+&lt;p&gt; 在辩证唯物主义中，顾名思义，应是物质一元论。物质派生出了世间的万事万物。除了意识之外，这派生出的万事万物当中自然也应该包括世界的客观规律。但是从科学上的认识来讲，规律是可以改变物质的，如衰变和聚变。于是作为补充，辩证唯物主义用以下的观点解释规律的派生 &lt;a class="footnote-reference" href="#b" id="id3"&gt;[2]&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 矛盾是事物普遍联系的根本内容。&lt;/p&gt;
+&lt;p&gt; 矛盾则深存于事物内部和事物之间，从而促成了发展。&lt;/p&gt;
+&lt;p&gt; 发展是永恒的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 换言之，世界的运动来源于事物本身的矛盾。那么世界的本元应该是矛盾才对，而物质也应该从矛盾中派生。否则，世界本元之物质的内部还存在其它实体，这又如何称得上是本元呢？如此，则至少辩证唯物主义的名字是不恰当的，应该称之为 &lt;em&gt; 辩证唯矛盾主义 &lt;/em&gt; 了。我们可以忽略这个名称的问题，但由于矛盾的普遍存在，作为世间万事万物之一的辩证唯物主义，其内部也应该深存矛盾。从一个理论自己的观点出发，得证这个理论本身存在矛盾，这个理论自然不应该是自洽的。&lt;/p&gt;
+&lt;p&gt; 为了在辩证唯物主义中弥补这个矛盾，至少有两种方法 &lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt; 放弃世界一元的观点。&lt;/li&gt;
+&lt;li&gt; 将规律作为世界的本元。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 以上。&lt;/p&gt;
+&lt;table class="docutils footnote" frame="void" id="a" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label" /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id2"&gt;[1]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a class="reference external" href="http://zh.wikipedia.org/wiki/%E8%BE%A9%E8%AF%81%E5%94%AF%E7%89%A9%E4%B8%BB%E4%B9%89"&gt; 辩证唯物主义 &lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table class="docutils footnote" frame="void" id="b" rules="none"&gt;
+&lt;colgroup&gt;&lt;col class="label" /&gt;&lt;col /&gt;&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id3"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a class="reference external" href="http://zh.wikipedia.org/wiki/%E5%94%AF%E7%89%A9%E8%BE%AF%E8%AD%89%E6%B3%95"&gt; 唯物辩证法 &lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</summary><category term="philosophy"></category></entry><entry><title>利用耗怒回血解决野蛮人的战斗恢复问题</title><link href="http://yuex.in/post/2014/03/diablo3-barb-build.html" rel="alternate"></link><updated>2014-03-30T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2014-03-30:post/2014/03/diablo3-barb-build.html</id><summary type="html">&lt;h1 id="build"&gt;Build 介绍 &lt;/h1&gt;
 &lt;p&gt; 在《夺魂之镰》之中，
 由于 “ 生命窃取 ” 的去除和 “ 战斗暴怒 ” 与 “ 狂战之怒 ” 两个技能某些符文的修改，
 在之前版本中广泛流行的 “ 双旋风 ”build 已经跑不起来了。
