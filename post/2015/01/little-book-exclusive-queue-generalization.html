@@ -47,9 +47,9 @@
 
       <!-- Search Box -->
           <form class="navbar-form navbar-right" role="search"
-            action="http://www.google.com/cse" 
-            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
-              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
               <input type="text" name="q" class="form-control" placeholder="Search">
           </form>
 
@@ -124,12 +124,12 @@
         <div class="row">
 
     <span id="article_info">
-    <a class="label label-primary" 
+    <a class="label label-primary"
       href="http://yuex.in/category/book.html">book</a>
       <b> · </b>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/system.html">system</a>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/semaphore.html">semaphore</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
@@ -155,16 +155,16 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">n</span> <span class="o">=</span> <span class="n">number</span> <span class="n">of</span> <span class="n">leaders</span> <span class="n">to</span> <span class="n">proceed</span>
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">number</span> <span class="n">of</span> <span class="n">leaders</span> <span class="n">to</span> <span class="n">proceed</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">number</span> <span class="n">of</span> <span class="n">followers</span> <span class="n">to</span> <span class="n">proceed</span>
-<span class="n">leader</span> <span class="o">=</span> <span class="n">follower</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c"># 用于记录已经到达的 leader 与 follower 个数 </span>
-<span class="n">countL</span> <span class="o">=</span> <span class="n">countF</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c"># 用于记录正在进行 dance() 的 leader 与 follower 个数 </span>
-<span class="n">mutex</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c"># 用于控制 leader 和 follower 的访问 </span>
-<span class="n">mutexCountL</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># 用于控制 countL 的访问 </span>
-<span class="n">mutexCountF</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># 用于控制 countF 的访问 </span>
-<span class="n">leaderQ</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>      <span class="c"># 用于 fire leader queue</span>
-<span class="n">followerQ</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c"># 用于 fire follower queue</span>
-<span class="n">rendezvous</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c"># 用于控制 leader 和 follower 的同步约定 </span>
+<span class="n">leader</span> <span class="o">=</span> <span class="n">follower</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># 用于记录已经到达的 leader 与 follower 个数 </span>
+<span class="n">countL</span> <span class="o">=</span> <span class="n">countF</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># 用于记录正在进行 dance() 的 leader 与 follower 个数 </span>
+<span class="n">mutex</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1"># 用于控制 leader 和 follower 的访问 </span>
+<span class="n">mutexCountL</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 用于控制 countL 的访问 </span>
+<span class="n">mutexCountF</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 用于控制 countF 的访问 </span>
+<span class="n">leaderQ</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>      <span class="c1"># 用于 fire leader queue</span>
+<span class="n">followerQ</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># 用于 fire follower queue</span>
+<span class="n">rendezvous</span> <span class="o">=</span> <span class="n">Semaphore</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># 用于控制 leader 和 follower 的同步约定 </span>
 </pre></div>
 </td></tr></table>
 
@@ -188,7 +188,7 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">mutex</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">mutex</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">follower</span> <span class="o">&gt;=</span> <span class="n">m</span> <span class="ow">and</span> <span class="n">leader</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
     <span class="n">follower</span> <span class="o">-=</span> <span class="n">m</span>
     <span class="n">leader</span> <span class="o">-=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
@@ -230,7 +230,7 @@
 16
 17
 18
-19</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">mutex</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">mutex</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">leader</span> <span class="o">&gt;=</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">follower</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
     <span class="n">leader</span> <span class="o">-=</span> <span class="n">n</span>
     <span class="n">follower</span> <span class="o">-=</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span>

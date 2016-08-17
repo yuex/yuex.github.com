@@ -47,9 +47,9 @@
 
       <!-- Search Box -->
           <form class="navbar-form navbar-right" role="search"
-            action="http://www.google.com/cse" 
-            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
-              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
               <input type="text" name="q" class="form-control" placeholder="Search">
           </form>
 
@@ -237,7 +237,7 @@
 <p><del>deleted</del></p>
 <p><em>emphsize</em> <strong>strong</strong></p>
 <h2 id="codes">codes</h2>
-<div class="codehilite"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">true</span>
 
 <span class="n">foo</span><span class="p">()</span>
@@ -250,45 +250,45 @@
 <span class="k">def</span> <span class="nf">extract_toc</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">contents</span><span class="o">.</span><span class="n">Static</span><span class="p">):</span>
         <span class="k">return</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">_content</span><span class="p">,</span><span class="s">&#39;html.parser&#39;</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">_content</span><span class="p">,</span><span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">source_path</span>
     <span class="n">extension</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">toc</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    <span class="n">toc</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">toc_lis</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c"># if it is a Markdown file</span>
+    <span class="c1"># if it is a Markdown file</span>
     <span class="k">if</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">readers</span><span class="o">.</span><span class="n">MarkdownReader</span><span class="o">.</span><span class="n">file_extensions</span><span class="p">:</span>
-        <span class="n">toc</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">&#39;toc&#39;</span><span class="p">)</span>
-    <span class="c"># else if it is a reST file</span>
+        <span class="n">toc</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;toc&#39;</span><span class="p">)</span>
+    <span class="c1"># else if it is a reST file</span>
     <span class="k">elif</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">readers</span><span class="o">.</span><span class="n">RstReader</span><span class="o">.</span><span class="n">file_extensions</span><span class="p">:</span>
-        <span class="n">toc</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s">&#39;contents topic&#39;</span><span class="p">)</span>
+        <span class="n">toc</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;contents topic&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">toc</span><span class="p">:</span>
         <span class="n">toc</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
         <span class="n">content</span><span class="o">.</span><span class="n">_content</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
         <span class="n">content</span><span class="o">.</span><span class="n">toc</span> <span class="o">=</span> <span class="n">toc</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
 
         <span class="k">def</span> <span class="nf">direct_lis</span><span class="p">(</span><span class="n">uls</span><span class="p">):</span>
-            <span class="n">uls</span> <span class="o">=</span> <span class="n">uls</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">)</span>
+            <span class="n">uls</span> <span class="o">=</span> <span class="n">uls</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">)</span>
             <span class="n">lis</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">uls</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">&#39;li&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">uls</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
                 <span class="n">child</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">name</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-                <span class="n">link</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">):</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="n">link</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">):</span>
                     <span class="n">child</span> <span class="o">=</span> <span class="n">direct_lis</span><span class="p">(</span><span class="n">li</span><span class="p">)</span>
                 <span class="n">lis</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">lis</span>
 
         <span class="k">def</span> <span class="nf">all_lis</span><span class="p">(</span><span class="n">uls</span><span class="p">):</span>
             <span class="n">lis</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">uls</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">&#39;li&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">uls</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">):</span>
                 <span class="n">child</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="n">name</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-                <span class="n">link</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="n">link</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
                 <span class="n">lis</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">name</span><span class="p">,</span> <span class="n">link</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
             <span class="k">return</span> <span class="n">lis</span>
 
         <span class="n">content</span><span class="o">.</span><span class="n">toc_lis</span> <span class="o">=</span> <span class="n">direct_lis</span><span class="p">(</span><span class="n">toc</span><span class="p">)</span>
-        <span class="c">#content.toc_lis = all_lis(toc)</span>
+        <span class="c1">#content.toc_lis = all_lis(toc)</span>
 
 <span class="k">def</span> <span class="nf">register</span><span class="p">():</span>
     <span class="n">signals</span><span class="o">.</span><span class="n">content_object_init</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">extract_toc</span><span class="p">)</span>
@@ -299,7 +299,7 @@
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">def</span> <span class="nf">foo</span><span class="p">:</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">true</span>
 
 <span class="n">foo</span><span class="p">()</span>

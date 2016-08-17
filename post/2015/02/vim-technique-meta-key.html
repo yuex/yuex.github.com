@@ -47,9 +47,9 @@
 
       <!-- Search Box -->
           <form class="navbar-form navbar-right" role="search"
-            action="http://www.google.com/cse" 
-            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
-              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
               <input type="text" name="q" class="form-control" placeholder="Search">
           </form>
 
@@ -124,10 +124,10 @@
         <div class="row">
 
     <span id="article_info">
-    <a class="label label-primary" 
+    <a class="label label-primary"
       href="http://yuex.in/category/linux.html">linux</a>
       <b> · </b>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/vim.html">vim</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
@@ -143,7 +143,7 @@
   <div id="article_content">
     <p> 在 terminal 环境下使用 Vim 时，Meta 键（亦即 Alt）一般是不起作用的 <sup id="fnref:!map-alt-keys"><a class="footnote-ref" href="#fn:!map-alt-keys" rel="footnote">1</a></sup>。但是随着插件越用越多，绑定的组合键越来越多，按键难免会出现越来越不够用的情况。若是可以使用 Meta 键进行键位组合，至少会增加 26 个组合键。这里给出一个通过配置 Vim 来启用 Meta 组合键的方法。</p>
 <p> 还是直接上代码。这里启用了从 <code>&lt;M-a&gt;</code> 到 <code>&lt;M-z&gt;</code> 的 26 组合键和从 <code>&lt;M-0&gt;</code> 到 <code>&lt;M-9&gt;</code> 的 10 个组合键。</p>
-<div class="codehilite"><pre><span class="k">for</span> <span class="k">i</span> <span class="k">in</span> range<span class="p">(</span>char2nr<span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> char2nr<span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="k">i</span> <span class="k">in</span> range<span class="p">(</span>char2nr<span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> char2nr<span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">))</span>
     <span class="k">let</span> <span class="k">i</span> <span class="p">=</span> nr2char<span class="p">(</span><span class="k">i</span><span class="p">)</span>
     exec <span class="s2">&quot;set &lt;M-&quot;</span>.<span class="k">i</span>.<span class="s2">&quot;&gt;=\&lt;Esc&gt;&quot;</span>.<span class="k">i</span>
     exec <span class="s2">&quot;inoremap \&lt;Esc&gt;&quot;</span>.<span class="k">i</span>.<span class="s2">&quot; &lt;M-&quot;</span>.<span class="k">i</span>.<span class="s2">&quot;&gt;&quot;</span>
@@ -158,12 +158,12 @@
 
 
 <p> 在上面这段代码中，我们将诸如 <code>&lt;M-h&gt;</code> 这样的值设置为 <code>&lt;Esc&gt;h</code>，然后用 <code>&lt;M-h&gt;</code> 进行键位绑定，这样 Vim 在某些 terminal 中就可以把 <code>&lt;Esc&gt;h</code> 的按键序列正确地对应到 <code>&lt;M-h&gt;</code> 表示的按键操作上了。为了便 <code>&lt;M-h&gt;</code> 的组合键在 insert 模式中也能使用，我们在上面的代码中加入了 <code>innoremap</code> 一句。之后，我们就可以用 <code>&lt;M-h&gt;</code> 来进行键位映射了，例如以下组合键就可以正常打印信息了。</p>
-<div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>M<span class="p">-</span><span class="k">h</span><span class="p">&gt;</span> :echo <span class="s1">&#39;&lt;\M-h&gt;&#39;</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>M<span class="p">-</span><span class="k">h</span><span class="p">&gt;</span> :echo <span class="s1">&#39;&lt;\M-h&gt;&#39;</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 
 
 <p> 实际上，这句映射相当于 </p>
-<div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>Esc<span class="p">&gt;</span><span class="k">h</span> :echo <span class="s1">&#39;&lt;\M-h&gt;&#39;</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
+<div class="codehilite"><pre><span></span><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>Esc<span class="p">&gt;</span><span class="k">h</span> :echo <span class="s1">&#39;&lt;\M-h&gt;&#39;</span><span class="p">&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 
 
@@ -184,7 +184,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading panel-title">
       <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
+        <a class="accordion-toggle" data-toggle="collapse"
           title="toggle folding"
           href="#collapseRelatedcollapse">
           <span class="badge pull-right">2</span>

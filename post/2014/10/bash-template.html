@@ -47,9 +47,9 @@
 
       <!-- Search Box -->
           <form class="navbar-form navbar-right" role="search"
-            action="http://www.google.com/cse" 
-            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
-              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
               <input type="text" name="q" class="form-control" placeholder="Search">
           </form>
 
@@ -124,10 +124,10 @@
         <div class="row">
 
     <span id="article_info">
-    <a class="label label-primary" 
+    <a class="label label-primary"
       href="http://yuex.in/category/linux.html">linux</a>
       <b> · </b>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/bash.html">bash</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
@@ -149,27 +149,27 @@
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre>cat <span class="k">${</span><span class="nv">template</span><span class="k">}</span> |
-awk <span class="s1">&#39;$0 !~ /^\s*#.*$/&#39;</span> |
-sed <span class="s1">&#39;s/[ &quot;]/\\&amp;/g&#39;</span> |
-<span class="k">while </span><span class="nb">read</span> -r line;do
-    <span class="nb">eval echo</span> <span class="k">${</span><span class="nv">line</span><span class="k">}</span>
-<span class="k">done</span> &gt;<span class="k">${</span><span class="nv">dst</span><span class="k">}</span>
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>cat <span class="si">${</span><span class="nv">template</span><span class="si">}</span> <span class="p">|</span>
+awk <span class="s1">&#39;$0 !~ /^\s*#.*$/&#39;</span> <span class="p">|</span>
+sed <span class="s1">&#39;s/[ &quot;]/\\&amp;/g&#39;</span> <span class="p">|</span>
+<span class="k">while</span> <span class="nb">read</span> -r line<span class="p">;</span><span class="k">do</span>
+    <span class="nb">eval</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">line</span><span class="si">}</span>
+<span class="k">done</span> &gt;<span class="si">${</span><span class="nv">dst</span><span class="si">}</span>
 </pre></div>
 </td></tr></table>
 
 <p> 以上代码中，<code>awk '$0 !~ /^\s*#.*$/'</code> 将 <code>cat</code> 所打印的注释行全部吃掉。<code>sed 's/[ "]/\\&amp;/g'</code> 将模板文件中的双引号和空格全部转义，用于抵消 <code>eval</code>。因为我的模板文件中只有这两个 magic character，所以没有处理多余的字符。如果你的模板文件中还使用了其它 magic character，如单引号、圆括弧等，可以根据实际情况修改这一句。<code>while</code> 循环逐行读入 p 之前管道的输出，<code>-r</code> 参数保证我们在 <code>sed</code> 中的转义不会被 <code>read</code> 吃掉。<code>eval</code> 将模板中定义的 bash variable 替换为脚本运行时环境中的变量值。最后，将全部结果写入到所欲存储的路径。</p>
 <p> 以下是我所用的模板中的一个片段（yaml 格式的 storm 配置文件）。<code>${ZK_IP}</code> 是所需要的一个 zookeeper 实例的 ip 地址，需要在 zookeeper container 运行起来之后才能确定。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="l-Scalar-Plain">storm.zookeeper.servers</span><span class="p-Indicator">:</span>
-    <span class="p-Indicator">-</span> <span class="s">&quot;${ZK_IP}&quot;</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">storm.zookeeper.servers</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;${ZK_IP}&quot;</span>
 </pre></div>
 </td></tr></table>
 
 <p> 经由上面的代码在运行时渲染后，<code>${ZK_IP}</code> 会被替换为一个 ipv4 地址，所以实际生成的配置文件可能是这个样子的 </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="l-Scalar-Plain">storm.zookeeper.servers</span><span class="p-Indicator">:</span>
-    <span class="p-Indicator">-</span> <span class="s">&quot;172.16.0.1&quot;</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">storm.zookeeper.servers</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="s">&quot;172.16.0.1&quot;</span>
 </pre></div>
 </td></tr></table>
 
@@ -182,7 +182,7 @@ sed <span class="s1">&#39;s/[ &quot;]/\\&amp;/g&#39;</span> |
   <div class="panel panel-primary">
     <div class="panel-heading panel-title">
       <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
+        <a class="accordion-toggle" data-toggle="collapse"
           title="toggle folding"
           href="#collapseRelatedcollapse">
           <span class="badge pull-right">1</span>

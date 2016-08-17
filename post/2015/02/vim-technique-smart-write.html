@@ -47,9 +47,9 @@
 
       <!-- Search Box -->
           <form class="navbar-form navbar-right" role="search"
-            action="http://www.google.com/cse" 
-            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
-              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
               <input type="text" name="q" class="form-control" placeholder="Search">
           </form>
 
@@ -124,10 +124,10 @@
         <div class="row">
 
     <span id="article_info">
-    <a class="label label-primary" 
+    <a class="label label-primary"
       href="http://yuex.in/category/linux.html">linux</a>
       <b> · </b>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/vim.html">vim</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
@@ -147,7 +147,7 @@
 </blockquote>
 <p> 在这篇文章里，我提供一个我在用的 <code>SmartWrite()</code> 函数，来解决 <code>E32</code>。闲言少叙，我们还是直接上代码 </p>
 <p> 首先，我们先将 <code>SmartWrite()</code> 的调用绑定到一个键位，这里暂时用 <code>wq</code> 替代好了。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="k">wq</span> :<span class="k">call</span> SmartWrite<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="k">wq</span> :<span class="k">call</span> SmartWrite<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 </td></tr></table>
 
@@ -197,7 +197,7 @@
 42
 43
 44
-45</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> SmartWrite<span class="p">(</span>...<span class="p">)</span>
+45</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> SmartWrite<span class="p">(</span>...<span class="p">)</span>
     <span class="k">let</span> cmd <span class="p">=</span> <span class="s1">&#39;w&#39;</span>
     <span class="k">if</span> <span class="k">a</span>:<span class="m">0</span> <span class="p">&gt;</span> <span class="m">0</span>
         <span class="k">let</span> cmd <span class="p">=</span> <span class="k">a</span>:<span class="m">1</span>
@@ -212,12 +212,12 @@
 <span class="k">function</span> WriteWithName<span class="p">(</span>cmd<span class="p">)</span>
     <span class="k">call</span> inputsave<span class="p">()</span>
 
-    <span class="k">let</span> <span class="k">filename</span> <span class="p">=</span> input<span class="p">(</span><span class="s1">&#39;:&#39;</span>.<span class="k">a</span>:cmd.<span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span>
-    <span class="k">let</span> cmds <span class="p">=</span> [<span class="k">a</span>:cmd<span class="p">,</span> <span class="k">filename</span>]
-    <span class="k">if</span> <span class="p">!</span>empty<span class="p">(</span>glob<span class="p">(</span><span class="k">filename</span><span class="p">))</span>
+    <span class="k">let</span> filename <span class="p">=</span> input<span class="p">(</span><span class="s1">&#39;:&#39;</span>.<span class="k">a</span>:cmd.<span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">)</span>
+    <span class="k">let</span> cmds <span class="p">=</span> [<span class="k">a</span>:cmd<span class="p">,</span> filename]
+    <span class="k">if</span> <span class="p">!</span>empty<span class="p">(</span>glob<span class="p">(</span>filename<span class="p">))</span>
         <span class="k">redraw</span>
         echohl WarningMsg
-        echo <span class="s1">&#39;&quot;&#39;</span>.<span class="k">filename</span>.<span class="s1">&#39;&quot; existed. Force &#39;</span>.<span class="k">a</span>:cmd.<span class="s1">&#39; [!] ? [Y/n] &#39;</span>
+        echo <span class="s1">&#39;&quot;&#39;</span>.filename.<span class="s1">&#39;&quot; existed. Force &#39;</span>.<span class="k">a</span>:cmd.<span class="s1">&#39; [!] ? [Y/n] &#39;</span>
         echohl None
 
         <span class="k">let</span> choice <span class="p">=</span> nr2char<span class="p">(</span>getchar<span class="p">())</span>
@@ -272,7 +272,7 @@
 23
 24
 25
-26</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">function</span> SmartQuit<span class="p">()</span>
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">function</span> SmartQuit<span class="p">()</span>
     <span class="k">if</span> <span class="p">!</span>&amp;<span class="nb">modified</span>
         exec <span class="s2">&quot;quit&quot;</span>
     <span class="k">else</span>
@@ -302,7 +302,7 @@
 </td></tr></table>
 
 <p> 最后的最后，别忘了我们的 <code>&lt;C-c&gt;</code> 键映射 </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">c</span><span class="p">&gt;</span> :<span class="k">call</span> SmartQuit<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nb">nnoremap</span> <span class="p">&lt;</span>unique<span class="p">&gt;</span> <span class="p">&lt;</span>C<span class="p">-</span><span class="k">c</span><span class="p">&gt;</span> :<span class="k">call</span> SmartQuit<span class="p">()&lt;</span>CR<span class="p">&gt;</span>
 </pre></div>
 </td></tr></table>
 
@@ -314,7 +314,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading panel-title">
       <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
+        <a class="accordion-toggle" data-toggle="collapse"
           title="toggle folding"
           href="#collapseRelatedcollapse">
           <span class="badge pull-right">2</span>

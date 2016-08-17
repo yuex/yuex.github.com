@@ -47,9 +47,9 @@
 
       <!-- Search Box -->
           <form class="navbar-form navbar-right" role="search"
-            action="http://www.google.com/cse" 
-            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank"> 
-              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" /> 
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
               <input type="text" name="q" class="form-control" placeholder="Search">
           </form>
 
@@ -124,12 +124,12 @@
         <div class="row">
 
     <span id="article_info">
-    <a class="label label-primary" 
+    <a class="label label-primary"
       href="http://yuex.in/category/linux.html">linux</a>
       <b> · </b>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/sshd.html">sshd</a>
-        <a class="label label-primary" 
+        <a class="label label-primary"
           href="http://yuex.in/tag/pam.html">pam</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
@@ -152,8 +152,8 @@
 </ul>
 <h2 id="chroot-jail">chroot jail</h2>
 <p> 在 sshd 中添加 </p>
-<div class="codehilite"><pre><span class="n">Match</span> <span class="n">Group</span> <span class="n">groupname</span>
-    <span class="n">ChrootDirectory</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">jail</span>
+<div class="codehilite"><pre><span></span>Match Group groupname
+    ChrootDirectory /path/to/jail
 </pre></div>
 
 
@@ -162,7 +162,7 @@
 <p>ssh 的问题主要是客户端。linux 和 mac 用户就不用说了，<code>ssh -D</code> 可以直接参考 manpage，还不会的就去面壁吧。windows 下可以使用 putty，并且 putty 可以事先设置好，直接分发给用户。用户先建立 ssh 连接，再用浏览器 socks 连接到本地绑定的端口。更进一步可以通过安装浏览器插件来根据规则自动地应用 socks，比如 chrome 上可以使用 Proxy Swichy</p>
 <h2 id="pam">pam</h2>
 <p>pam 有两方面的作用，一个是提供基于用户和地址的登陆验证，一个是限制用户使用系统资源。对于资源限制，主要是防止 fork bomb 和限制登陆数目。这两个都可以在 /etc/security/limits.conf 中完成。其实在 centos6 当中，对于 fork bomb 系统有防范，可以参考 /etc/security/limits.d/，这个值是 1024。另外，对于写的权限控制，最简单的方法是把 jail 建立在 /var 来解决，/var 对非 root:root 的用户是没有写的权限的。对于登陆验证，需要在 sshd_config 中打开 <code>UsePam yes</code>，并且在 /etc/pam.d/sshd 中加入 </p>
-<div class="codehilite"><pre>account    required     pam_nologin.so
+<div class="codehilite"><pre><span></span>account    required     pam_nologin.so
 account    required     pam_access.so  <span class="c1"># &lt;- added line</span>
 account    include      password<span class="o">-</span>auth
 </pre></div>
@@ -177,7 +177,7 @@ account    include      password<span class="o">-</span>auth
   <div class="panel panel-primary">
     <div class="panel-heading panel-title">
       <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
-        <a class="accordion-toggle" data-toggle="collapse" 
+        <a class="accordion-toggle" data-toggle="collapse"
           title="toggle folding"
           href="#collapseRelatedcollapse">
           <span class="badge pull-right">1</span>
