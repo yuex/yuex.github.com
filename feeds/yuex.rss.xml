@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人)</title><link>http://yuex.in/</link><description></description><lastBuildDate>Wed, 17 Aug 2016 00:00:00 +0800</lastBuildDate><item><title>匹兹堡见闻一二</title><link>http://yuex.in/post/2016/08/pittsburgh-first-impression.html</link><description>&lt;p&gt; 相比于费城、纽约、三潘这种城市，匹兹堡无论从历史、文化、科技上的名声都不太响亮
+<rss version="2.0"><channel><title>yuex (悟道洞穴人)</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sun, 21 Aug 2016 00:00:00 +0800</lastBuildDate><item><title>CSAPP 之 IEEE 754</title><link>http://yuex.in/post/2016/08/csapp-ieee754.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+数点来调整精度的方法。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 相比整数的二的补码表示要复杂了不少，不过仔细
+研究之后，这种表示方法还是相当巧妙的。这里只是对 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 一书中对 &lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的
+讲解进行一个总结，具体的还请参考 wikipedia 或者 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 原书相关章节。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中将数位分成了三部分 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;V = (-1)^s * M * 2^E
++-+-----------+-----------------------------------------+
+|s|  exp (e)  |             frac (f)                    |
++-+-----------+-----------------------------------------+
+f = .f1f2...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
+据数的类型来确定。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中根据所表示的数的数值大小范围定义了三种类型的数
+值。类型的区分是通过检查 e 的数值来确定的。e 的变换中经常用到一个 Bias 偏移量，这里
+先给出这个偏移量大小 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Bias = 01...1
+在计算涉及减 Bias 的运算时，可以使用二的补码
+e - Bias = e + ~Bias + 1
+但要注意结果也是二的补码表示
+但是这个可以通过观察 e 或者结果的最高位来轻松确定正负
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="normalized-values"&gt;Normalized Values&lt;/h1&gt;
+&lt;p&gt; 这种类型的数值用于表示那些即不是很小也不是很大的数。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;e 不是全 0，也不是全 1
+E = e - Bias    ( 减 Bias 做偏移，保证可以表示负指数 )
+M = 1 + f       ( 加 1 可以省掉一个数位，多表示一些数值 )
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="denormalized-values"&gt;Denormalized Values&lt;/h1&gt;
+&lt;p&gt; 这种类型用于表示那些很小的数。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;e 全 0
+E = 1 - Bias    ( 用 1 减是为了衔接 Normalized Values，其最小就是 1 - Bias)
+M = f           ( 没有加 1，为了衔接 e = 1 的 Normalized Values)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="special-values"&gt;Special Values&lt;/h1&gt;
+&lt;p&gt; 这种类型用于表示很大的数和无法表示的数 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;e 全 1
+f 全 0，表示 infinity
+f 非全 0，表示 NaN，not a number
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="note"&gt;Note&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的表示方法保证了二进表示的序和浮点表示的序是一致的。&lt;/p&gt;
+&lt;p&gt; 通过观察 E 的转换规则，可以发现 Normalized Values 中的数值步长总是 x2 增加的。这使得
+在数值变大时，步长也会变得更大，从而可以在更大的范围内表示数。而 Denormalized
+Values 的 E 是固定的。这使得在 0 附近，数的步长是固定而均匀的。M 转换中的加 1 与否，保
+证了 Normalized Values 和 Denormalized Values 之间的平滑衔接。需要注意的是均匀步长
+结束在 e = 1 的 Normalized Values 的最大值处，而非最大的 Denormalized Values 处。因为
+过渡是平滑的。&lt;/p&gt;
+&lt;p&gt; 有一个小窍门来记忆 M 变换中的加 1 与否。只要记住没有 e=0 这种情况，也就是不存在
+Denormalized Values。他们搞错了。e=0 其实就是 e=1，只是一旦你加了这个 1，f 的变换中
+就没有加 1 了，因为你已经把它用掉了。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 21 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-21:post/2016/08/csapp-ieee754.html</guid><category>csapp</category></item><item><title>匹兹堡见闻一二</title><link>http://yuex.in/post/2016/08/pittsburgh-first-impression.html</link><description>&lt;p&gt; 相比于费城、纽约、三潘这种城市，匹兹堡无论从历史、文化、科技上的名声都不太响亮
 。但细说起来，匹兹堡也算得上是改变了美国历史进程的城市之一。法印战争的第一枪就
 是在匹兹堡打响的。而法印战争作为英法七年战争的美洲战场，为美洲殖民地赢得了大量
 土地自是不在话下。更重要的是，英国政府在战后为了弥补战争开支，开始向美洲殖民地
