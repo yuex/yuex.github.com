@@ -191,7 +191,8 @@ f 非全 0，表示 NaN，not a number
 
 
 <h1 id="note">Note</h1>
-<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的表示方法保证了二进表示的序和浮点表示的序是一致的。</p>
+<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的表示方法保证了二进表示的序和浮点表示的序是一致的。近似的默认模式
+是 round to even。</p>
 <p> 通过观察 E 的转换规则，可以发现 Normalized Values 中的数值步长总是 x2 增加的。这使得
 在数值变大时，步长也会变得更大，从而可以在更大的范围内表示数。而 Denormalized
 Values 的 E 是固定的。这使得在 0 附近，数的步长是固定而均匀的。M 转换中的加 1 与否，保
