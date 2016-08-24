@@ -12,10 +12,10 @@ ret 会从栈上弹出一个地址到 pc
 行的，要注意的是 call 一般都是在参数传递压栈之后（也必须这样），所以函数调用的返
 回地址总是紧临被调用函数的 stack frame。&lt;/p&gt;
 &lt;p&gt; 在 32 位系统中，在每次调用后，被调用函数一般还要维护 esp 和 ebp。一般都是将 ebp 压到栈
-上，紧临返回地址。&lt;code&gt;leave&lt;/code&gt; 是一个复合指令，用于恢复 ebp&lt;/p&gt;
+上，紧临返回地址。&lt;code&gt;leave&lt;/code&gt; 是一个复合指令，用于弹栈以恢复 ebp。&lt;/p&gt;
 &lt;h1 id="_2"&gt; 参数传递 &lt;/h1&gt;
 &lt;p&gt;32 位系统中是依靠压栈进行参数传递的。而在 64 位系统中，小于等于六个的参数是通过寄
-存器传递的，这就需要有一个顺序问题。一般是按照以下顺序传递 &lt;/p&gt;
+存器传递的，这就涉及一个顺序问题。一般是按照以下顺序传递参数的 &lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;64 位参数传递顺序：rdi, rsi, rdx, rcx, r8, r9
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -27,15 +27,18 @@ ret 会从栈上弹出一个地址到 pc
 
 
 &lt;p&gt; 另外需要注意的是，intel 架构中浮点数的运算是通过单独的运算单元进行的，而不是通过
-ALU。因此浮点型参数传递会使用单独的浮点寄存器进行，不会占用 ALU 的参数传递名额和
-顺序。&lt;/p&gt;
+ALU。因此 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 浮点型参数传递会使用单独的浮点寄存器进行，不会占用 ALU 的参数传递名额和顺序
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h1 id="_3"&gt; 特殊指定提要 &lt;/h1&gt;
 &lt;p&gt;AT&amp;amp;T 风格的 asm 有些指令不太好记，这里简单提要一下 &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 内存访问：imm(ra, rb, mul) = ra + rb * mul + imm
-lea imm(ra, rb, mul), dst：不需要 src 是有效地址，一般用于优化加乘法计算
-test sec, fir：比较并设置 cc，之后使用条件跳转进行条件判断
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;memory access: imm(ra, rb, mul) = ra + rb * mul + imm
+lea imm(ra, rb, mul), dst: 不需要 src 是有效地址，一般用于优化加乘法计算
+test sec, fir: 比较并设置 cc，之后使用条件跳转进行条件判断
                需要注意条件跳转中的顺序是 fir ?? sec，刚好反过来
-if cond：一般是 cond false 跳转，cond true falls through
+if cond: 一般是 cond false 跳转，cond true falls through
          这样可以保证有 else 和无 else 语句时 asm 码结构一致
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -53,14 +56,14 @@ if cond：一般是 cond false 跳转，cond true falls through
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt; 简言之就是，尾部要填充以保证后续地址对齐到最大数据类型大小 &lt;/p&gt;
+&lt;p&gt; 简言之就是，尾部要填充以保证后续地址对齐到其内含的最大的数据类型大小 &lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2. 以上所有对齐的大小以指针大小为上限
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt; 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
 ，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
-为 double 大小已经超出了指针大小，会被视为复合类型而非基类型。&lt;/p&gt;
+为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3. 嵌套 struct 的对齐也要按照 struct 基本法
 &lt;/pre&gt;&lt;/div&gt;
 

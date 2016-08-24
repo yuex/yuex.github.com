@@ -154,10 +154,10 @@ ret 会从栈上弹出一个地址到 pc
 行的，要注意的是 call 一般都是在参数传递压栈之后（也必须这样），所以函数调用的返
 回地址总是紧临被调用函数的 stack frame。</p>
 <p> 在 32 位系统中，在每次调用后，被调用函数一般还要维护 esp 和 ebp。一般都是将 ebp 压到栈
-上，紧临返回地址。<code>leave</code> 是一个复合指令，用于恢复 ebp</p>
+上，紧临返回地址。<code>leave</code> 是一个复合指令，用于弹栈以恢复 ebp。</p>
 <h1 id="_2"> 参数传递 </h1>
 <p>32 位系统中是依靠压栈进行参数传递的。而在 64 位系统中，小于等于六个的参数是通过寄
-存器传递的，这就需要有一个顺序问题。一般是按照以下顺序传递 </p>
+存器传递的，这就涉及一个顺序问题。一般是按照以下顺序传递参数的 </p>
 <div class="codehilite"><pre><span></span>64 位参数传递顺序：rdi, rsi, rdx, rcx, r8, r9
 </pre></div>
 
@@ -169,15 +169,18 @@ ret 会从栈上弹出一个地址到 pc
 
 
 <p> 另外需要注意的是，intel 架构中浮点数的运算是通过单独的运算单元进行的，而不是通过
-ALU。因此浮点型参数传递会使用单独的浮点寄存器进行，不会占用 ALU 的参数传递名额和
-顺序。</p>
+ALU。因此 </p>
+<div class="codehilite"><pre><span></span> 浮点型参数传递会使用单独的浮点寄存器进行，不会占用 ALU 的参数传递名额和顺序
+</pre></div>
+
+
 <h1 id="_3"> 特殊指定提要 </h1>
 <p>AT&amp;T 风格的 asm 有些指令不太好记，这里简单提要一下 </p>
-<div class="codehilite"><pre><span></span> 内存访问：imm(ra, rb, mul) = ra + rb * mul + imm
-lea imm(ra, rb, mul), dst：不需要 src 是有效地址，一般用于优化加乘法计算
-test sec, fir：比较并设置 cc，之后使用条件跳转进行条件判断
+<div class="codehilite"><pre><span></span>memory access: imm(ra, rb, mul) = ra + rb * mul + imm
+lea imm(ra, rb, mul), dst: 不需要 src 是有效地址，一般用于优化加乘法计算
+test sec, fir: 比较并设置 cc，之后使用条件跳转进行条件判断
                需要注意条件跳转中的顺序是 fir ?? sec，刚好反过来
-if cond：一般是 cond false 跳转，cond true falls through
+if cond: 一般是 cond false 跳转，cond true falls through
          这样可以保证有 else 和无 else 语句时 asm 码结构一致
 </pre></div>
 
