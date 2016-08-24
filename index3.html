@@ -143,6 +143,70 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #11
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
+          <li class="list-group-item">
+            <h1>Exclusive Queue 的一个推广</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/system.html">system</a>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/semaphore.html">semaphore</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">18</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 <a href="http://greenteapress.com/semaphores/">The Little Book of Semaphores</a>，理清了许多以前了解得不很确实的知识。</p>
+<p> 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref:!rendezvous"><a class="footnote-ref" href="#fn:!rendezvous" rel="footnote">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 <sup id="fnref:!note"><a class="footnote-ref" href="#fn:!note" rel="footnote">2</a></sup>。</p>
+<p> 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1 ...</pre></div></td></tr></table></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="little-book-exclusive-queue-generalization">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month01">January</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #10
         </span>
       </a>
@@ -159,7 +223,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -206,7 +270,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month10">October</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #9
         </span>
@@ -224,7 +288,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -266,7 +330,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month04">April</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #8
         </span>
@@ -284,7 +348,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -336,7 +400,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #7
         </span>
@@ -354,7 +418,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -406,85 +470,6 @@
         </div>
       </ul>
     </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month01">January</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #6
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2014/01/technical-writing.html">
-          <li class="list-group-item">
-            <h1>如何撰写技术文档</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/list.html">list</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/writing.html">writing</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2014">2014</a>-<a href="http://yuex.in/archives.html#Year2014Month01">01</a>-<a href="http://yuex.in/archives.html#Year2014Month01">29</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2014/01/technical-writing.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。</p>
-<p> 如果你时间非常有限，我推荐以下两个文档 </p>
-<ul>
-<li>
-<dl>
-<dt>Michael Ernst's <a href="http://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html">Writing a Technical Paper</a></dt>
-<dd>Michael Ernst 给出一些关于会议论文写作的建议，包含了从文章构思、提纲拟定、写作风格、图表表现、命名、处理评审意见等多个方面。此外，Michael 的个人主页上还有很多有益于学术生涯的其它方面的建议，也非常值得一读。</dd>
-</dl>
-</li>
-<li>
-<dl>
-<dt>Norman Ramsey's <a href="http://www.cs.tufts.edu/~nr/pubs/two-abstract.html">Learning Technical Writing in Two Hours per Week</a></dt>
-<dd>Norman Ramsey 总结了 9 条科技写作原则，并设计了 7 个练习来帮助掌握这些原则。相比 Michael 的建议，Norman 的建议更精炼，更适合用来强化掌握。</dd>
-</dl>
-</li>
-</ul>
-<p> 如果你时间多一点，我额外推荐两本书 </p>
-<ul>
-<li>
-<dl>
-<dt>The Elements of Style, William Strunk ...</dt></dl></li></ul></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2014/01/technical-writing.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="technical-writing">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2014/01/technical-writing.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2014/01/technical-writing.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
   </div>
         </div>
 
@@ -506,6 +491,9 @@
         </li>
         <li>
           <a href="http://yuex.in/index4.html">4<span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+          <a href="http://yuex.in/index5.html">5<span class="sr-only">(current)</span></a>
         </li>
 
         <li>

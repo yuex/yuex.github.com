@@ -143,6 +143,81 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #21
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-asm-function.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 asm 函数调用</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">24</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-asm-function.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
+述。毕竟这是最基本的程序单元。</p>
+<h1 id="_1"> 地址跳转 </h1>
+<p>asm 中的地址跳转是通过 <code>call</code> 和 <code>ret</code> 进行的，但经常容易忽略的一个事实是 </p>
+<div class="codehilite"><pre><span></span>call 会将下一条指令的地址 (pc) 压栈
+ret 会从栈上弹出一个地址到 pc
+</pre></div>
+
+
+<p> 也就是说这两条指令都会导致栈指针的变化。在 32 位系统中，由于参数传递是通过压栈进
+行的，要注意的是 call 一般都是在参数传递压栈之后（也必须这样），所以函数调用的返
+回地址总是紧临被调用函数的 stack frame。</p>
+<p> 在 32 位系统中，在每次调用后，被调用函数一般还要维护 esp 和 ebp。一般都是将 ebp 压到栈
+上，紧临返回地址。<code>leave</code> 是一个复合指令，用于恢复 ebp</p>
+<h1 id="_2"> 参数传递 </h1>
+<p>32 位系统中是依靠压栈进行参数传递的。而在 64 位系统中，小于等于六个的参数是通过寄
+存器传递的 ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-asm-function.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-asm-function">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-asm-function.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-asm-function.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #20
         </span>
       </a>
@@ -159,7 +234,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -215,7 +290,7 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #19
         </span>
@@ -233,7 +308,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -293,7 +368,7 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #18
         </span>
@@ -311,7 +386,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -355,7 +430,7 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #17
         </span>
@@ -373,7 +448,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -412,72 +487,6 @@ f = .f1f2...
         </div>
       </ul>
     </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #16
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/02/zhongyong-version.html">
-          <li class="list-group-item">
-            <h1>《中庸》版本推荐</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/book.html">book</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/confucianism.html">confucianism</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month02">02</a>-<a href="http://yuex.in/archives.html#Year2015Month02">22</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/02/zhongyong-version.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 最近利用过年放假的时间仔细研读了《中庸》，对于相关版本的选择略有心得，简录如下，还是闲言少叙，先上结论：我推荐以下两个版本的讲解 </p>
-<ol class="arabic simple">
-<li> 张居正的《中庸》皇家读本 <a class="footnote-reference" href="#id4" id="id2">[1]</a></li>
-<li> 南怀瑾的《中庸讲记》 <a class="footnote-reference" href="#id7" id="id3">[2]</a></li>
-</ol>
-<p>《中庸》是由朱子作主，从《礼记》中提出而单成一书，断句集注，并且提升到四书的高度。《中庸》的评价甚高，素来有 “ 儒学心法 ” 之称。与《大学》不同是，朱子章句并没有打乱《中庸》的前后顺序，因此也就不像阳明子刊印《大学》古本那样，有一个章句和原本的版本之争。而且今天流传下来的《中庸》注解也基本都是顺承朱子章句集注而来。</p>
-<p> 虽然集注版本并无太多分别，但因为《中庸》是讲心法，许多地方如果只从集注的字面上理解，很难窥知文字背后的深意。最好的方式莫过于通过大家的解读，了解文章的前后逻辑，然后再结合个人的生活经验，不断体悟，最终得出自己的理解。</p>
-<p> 对于朱子章句的正统讲法，这里推荐张居正的《中庸》皇家读本。张阁老讲学庸，基本是顺承朱子章句集注的内容而来，只是在文章坚深之处，针对受业对象为天子的情况，进行了适当的引申和联系。遗憾的是张阁老相去阳明子不过二三世 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="zhongyong-version">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
   </div>
         </div>
 
@@ -499,6 +508,9 @@ f = .f1f2...
         </li>
         <li>
           <a href="http://yuex.in/index4.html">4<span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+          <a href="http://yuex.in/index5.html">5<span class="sr-only">(current)</span></a>
         </li>
 
         <li>
