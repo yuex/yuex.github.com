@@ -7,7 +7,7 @@
     <meta name="author" content="yuex">
     <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
 
-        <title>Category: book · yuex (悟道洞穴人)</title>
+        <title>CSAPP 之 struct 填充 · yuex (悟道洞穴人)</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -116,56 +116,119 @@
       <div class="col-md-8">
         <div class="row">
               <div class="page-header">
-        <h1><a href="http://yuex.in/category/book.html">Category: book</a></h1>
+        <h1><a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">CSAPP 之 struct 填充</a></h1>
     </div>
 
         </div>
 
         <div class="row">
-  
+
+    <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">24</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p> 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 </p>
+<div class="codehilite"><pre><span></span> 所有数据类型要对齐到其类型大小的内存地址上
+</pre></div>
+
+
+<p> 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 </p>
+<div class="codehilite"><pre><span></span>1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+</pre></div>
+
+
+<p> 简言之就是，尾部要填充以保证后续地址对齐到最大数据类型大小 </p>
+<div class="codehilite"><pre><span></span>2. 以上所有对齐的大小以指针大小为上限
+</pre></div>
+
+
+<p> 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基类型。</p>
+<div class="codehilite"><pre><span></span>3. 嵌套 struct 的对齐也要按照 struct 基本法
+</pre></div>
+
+
+<p> 一个常见的错误理解是在嵌套 struct 中将内层 struct 直接展开计算内存填充。这是不正确
+的。内嵌 struct 要对齐其最大的基本类型大小上。当然，这也暗示了这个大小仍然是以指
+针大小为上限的。</p>
+<p>-EOF-</p>
+  </div>
+
+  <hr/>
+    
   <div class="panel panel-primary">
     <div class="panel-heading panel-title">
-      <a id="book" href="#book">book</a>
+      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
         <a class="accordion-toggle" data-toggle="collapse"
           title="toggle folding"
-          href="#bookcollapse">
-          <span class="badge pull-right">6</span>
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">2</span>
         </a>
     </div>
 
     <div class="panel-body hidden"></div>
 
     <ul class="list-group">
-      <div class="panel-collapse collapse in" id="bookcollapse">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
         <a href="http://yuex.in/post/2016/08/csapp-asm-function.html">
           <li class="list-group-item">
 CSAPP 之 asm 函数调用</li>
         </a>
-        <a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
-          <li class="list-group-item">
-CSAPP 之 struct 填充</li>
-        </a>
         <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
           <li class="list-group-item">
 CSAPP 之 IEEE 754</li>
-        </a>
-        <a href="http://yuex.in/post/2015/02/zhongyong-version.html">
-          <li class="list-group-item">
-《中庸》版本推荐</li>
-        </a>
-        <a href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
-          <li class="list-group-item">
-Exclusive Queue 的一个推广</li>
-        </a>
-        <a href="http://yuex.in/post/2015/01/how-linux-work-review.html">
-          <li class="list-group-item">
-How Linux Work 笔记</li>
         </a>
       </div>
     </ul>
 
   </div>
 
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://yuex.in/post/2016/08/csapp-asm-function.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
+  var disqus_identifier = 'csapp-struct-padding';
+  var disqus_url = 'http://yuex.in/post/2016/08/csapp-struct-padding.html';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         </div>
 
         <div class="row">

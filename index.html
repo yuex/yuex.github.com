@@ -143,7 +143,7 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
-          #21
+          #22
         </span>
       </a>
       </div>
@@ -218,6 +218,86 @@ ret 会从栈上弹出一个地址到 pc
         title="toggle folding"
         href="#collapseArticle2">
         <span class="pull-right badge">
+          #21
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 struct 填充</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle2">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">24</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 </p>
+<div class="codehilite"><pre><span></span> 所有数据类型要对齐到其类型大小的内存地址上
+</pre></div>
+
+
+<p> 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 </p>
+<div class="codehilite"><pre><span></span>1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+</pre></div>
+
+
+<p> 简言之就是，尾部要填充以保证后续地址对齐到最大数据类型大小 </p>
+<div class="codehilite"><pre><span></span>2. 以上所有对齐的大小以指针大小为上限
+</pre></div>
+
+
+<p> 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基类型。</p>
+<div class="codehilite"><pre><span></span>3. 嵌套 struct 的对齐也要按照 struct ...</pre></div></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-struct-padding">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle3">
+        <span class="pull-right badge">
           #20
         </span>
       </a>
@@ -234,7 +314,7 @@ ret 会从栈上弹出一个地址到 pc
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -290,7 +370,7 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #19
         </span>
@@ -308,7 +388,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -368,7 +448,7 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #18
         </span>
@@ -386,7 +466,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -418,69 +498,6 @@ f = .f1f2...
               <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #17
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/03/notes-for-virtualenv.html">
-          <li class="list-group-item">
-            <h1>使用 virtualenv 要注意的地方</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/python.html">python</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/python.html">python</a>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/virtualenv.html">virtualenv</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month03">03</a>-<a href="http://yuex.in/archives.html#Year2015Month03">02</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p>virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。</p>
-<p> 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 <code>mkvirtualenv</code> 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。</p>
-<p> 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="notes-for-virtualenv">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>

@@ -40,7 +40,35 @@ if cond：一般是 cond false 跳转，cond true falls through
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 24 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-24:post/2016/08/csapp-asm-function.html</guid><category>csapp</category></item><item><title>CSAPP 之 IEEE 754</title><link>http://yuex.in/post/2016/08/csapp-ieee754.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 24 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-24:post/2016/08/csapp-asm-function.html</guid><category>csapp</category></item><item><title>CSAPP 之 struct 填充</title><link>http://yuex.in/post/2016/08/csapp-struct-padding.html</link><description>&lt;p&gt; 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 所有数据类型要对齐到其类型大小的内存地址上
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 简言之就是，尾部要填充以保证后续地址对齐到最大数据类型大小 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2. 以上所有对齐的大小以指针大小为上限
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基类型。&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3. 嵌套 struct 的对齐也要按照 struct 基本法
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 一个常见的错误理解是在嵌套 struct 中将内层 struct 直接展开计算内存填充。这是不正确
+的。内嵌 struct 要对齐其最大的基本类型大小上。当然，这也暗示了这个大小仍然是以指
+针大小为上限的。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 24 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-24:post/2016/08/csapp-struct-padding.html</guid><category>csapp</category></item><item><title>CSAPP 之 IEEE 754</title><link>http://yuex.in/post/2016/08/csapp-ieee754.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
 数点来调整精度的方法。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 相比整数的二的补码表示要复杂了不少，不过仔细
 研究之后，这种表示方法还是相当巧妙的。这里只是对 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 一书中对 &lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的
 讲解进行一个总结，具体的还请参考 wikipedia 或者 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 原书相关章节。&lt;/p&gt;

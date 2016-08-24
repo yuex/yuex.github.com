@@ -138,10 +138,73 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
+        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
         href="#collapseArticle1">
+        <span class="pull-right badge">
+          #17
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2015/03/notes-for-virtualenv.html">
+          <li class="list-group-item">
+            <h1>使用 virtualenv 要注意的地方</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/python.html">python</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/python.html">python</a>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/virtualenv.html">virtualenv</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month03">03</a>-<a href="http://yuex.in/archives.html#Year2015Month03">02</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p>virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。</p>
+<p> 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 <code>mkvirtualenv</code> 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。</p>
+<p> 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2 ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="notes-for-virtualenv">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
         <span class="pull-right badge">
           #16
         </span>
@@ -159,7 +222,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -207,7 +270,7 @@
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #15
         </span>
@@ -225,7 +288,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -276,7 +339,7 @@
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #14
         </span>
@@ -294,7 +357,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -340,7 +403,7 @@
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #13
         </span>
@@ -358,7 +421,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -397,73 +460,6 @@
               <a class="btn btn-primary" href="http://yuex.in/post/2015/02/vim-technique-smart-write.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2015/02/vim-technique-smart-write.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month01">January</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #12
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html">
-          <li class="list-group-item">
-            <h1>Vim 技巧之 Smart Quit</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/linux.html">linux</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/vim.html">vim</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">25</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 初学 Vim 时，我们都有这样的经历 ——“ 哇，怎么退出？！”。在尝试了 <code>&lt;Ctrl-C&gt;</code>、<code>&lt;Esc&gt;</code> 全都没有效果时，才会注意左下角状态栏的小提示：</p>
-<blockquote>
-<p><code>Type  :quit&lt;Enter&gt;  to exit Vim</code></p>
-</blockquote>
-<p> 在小心翼翼地键入这个命令完成退出之后，我们欣喜地自认为已经掌握了 Vim 的退出之法。然而，当我们在 Vim 中进行了一番探索、受了一些嘲弄、做了一些不听使唤的修改后，虔诚地键入 <code>:quit</code>，准备结束这次不成功的尝试，舒缓一下心神，重新来过之时，Vim 又会无情地用一行血红色的小字警告你：</p>
-<blockquote>
-<p><code>E37: No write since last change (add ! to override)</code></p>
-</blockquote>
-<p> 很多人的 Vim 之旅就此便戛然而止。许多年之后，那些并未放弃的人们，早已掌握了 Vim 中的大多数奥妙，但时不时地，仍然会在完成一些快速修改，准备退出进行一下验证或者修改下一个文件的时候，遭遇 Vim 的 <code>E37</code> 嘲弄。Vim ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="vim-technique-smart-quit">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/vim-technique-smart-quit.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
