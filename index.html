@@ -268,14 +268,13 @@ ret 会从栈上弹出一个地址到 pc
 
 
 <p> 简言之就是，尾部要填充以保证后续地址对齐到其内含的最大的数据类型大小 </p>
-<div class="codehilite"><pre><span></span>2. 以上所有对齐的大小以指针大小为上限
+<div class="codehilite"><pre><span></span>2. 32 位系统以的对齐以指针大小 4 为上限
 </pre></div>
 
 
 <p> 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
 ，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
-为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。</p>
-<div class="codehilite"><pre><span></span>3. 嵌套 struct 的对齐也要按照 struct ...</pre></div></li>
+为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。而在 64 ...</p></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html#disqus_thread" title="comments">
