@@ -143,6 +143,232 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #25
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csaap-fd-file.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 file descriptor</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csaap-fd-file.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 当文件与进程结合时，有以下几个地方需要注意 </p>
+<div class="codehilite"><pre><span></span>fd table -&gt; open file table -&gt; v-node table
+1. fd table 是每进程独立的数据
+2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
+   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
+   导致一个新的 open file table entry，即使打开的是同一文件。
+3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
+   问权限、文件类型、文件大小、三个时间等
+</pre></div>
+
+
+<p> 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
+件的读写位置的，虽然 fd 是独立的。</p>
+<p> 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-fd-file.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csaap-fd-file">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-fd-file.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-fd-file.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
+          #24
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csaap-thread.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 thread 与 signal</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle2">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csaap-thread.html">
+              </a>
+          </li>
+          <li class="list-group-item"><h1 id="thread">Thread</h1>
+<p> 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 </p>
+<div class="codehilite"><pre><span></span>thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+</pre></div>
+
+
+<p> 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。</p>
+<p> 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。</p>
+<p> 这里再给出 race 的定义 </p>
+<div class="codehilite"><pre><span></span>race：程序的执行结果的正确性取决于线程是如何调度的
+</pre></div>
+
+
+<h1 id="signal">Signal</h1>
+<p> 进程之间通过信号来进行同步中有很多小的细节容易被忽略。比如 </p>
+<div class="codehilite"><pre><span></span>1. 信号有可能在安装 signal handler 之前被收到和处理，这时会使用默认 handler
+2. 信号有可能在程序结束之后才被收到和处理，也就完全不会被处理了
+3. fork 和 exec 之后，信号的 block 状态是不会改变的
+4 ...</pre></div></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-thread.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csaap-thread">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-thread.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-thread.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle3">
+        <span class="pull-right badge">
+          #23
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-cache.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 cache 与 virtual memory</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle3">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-cache.html">
+              </a>
+          </li>
+          <li class="list-group-item"><h1 id="cache">Cache</h1>
+<p>cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
+line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
+行缓存访问定位 </p>
+<div class="codehilite"><pre><span></span>+---------------+------------+--------------+
+|      Tag      |  Set Index | Block Offset |
++---------------+------------+--------------+
+</pre></div>
+
+
+<p> 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
+同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
+（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
+tag 用于在同一个 set 中定位访问的 line。</p>
+<h1 id="virtual-memory">Virtual Memory</h1>
+<p> 在虚拟地址中 ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-cache">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle4">
+        <span class="pull-right badge">
           #22
         </span>
       </a>
@@ -159,7 +385,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -216,7 +442,7 @@ ret 会从栈上弹出一个地址到 pc
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #21
         </span>
@@ -234,7 +460,7 @@ ret 会从栈上弹出一个地址到 pc
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -283,220 +509,6 @@ ret 会从栈上弹出一个地址到 pc
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle3">
-        <span class="pull-right badge">
-          #20
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
-          <li class="list-group-item">
-            <h1>CSAPP 之 IEEE 754</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle3">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/book.html">book</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/csapp.html">csapp</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">21</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-ieee754.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
-数点来调整精度的方法。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 相比整数的二的补码表示要复杂了不少，不过仔细
-研究之后，这种表示方法还是相当巧妙的。这里只是对 <a href="http://csapp.cs.cmu.edu/">csapp</a> 一书中对 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的
-讲解进行一个总结，具体的还请参考 wikipedia 或者 <a href="http://csapp.cs.cmu.edu/">csapp</a> 原书相关章节。</p>
-<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中将数位分成了三部分 </p>
-<div class="codehilite"><pre><span></span>V = (-1)^s * M * 2^E
-+-+-----------+-----------------------------------------+
-|s|  exp (e)  |             frac (f)                    |
-+-+-----------+-----------------------------------------+
-f = .f1f2...
-</pre></div>
-
-
-<p> 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
-据数的类型来确定。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中根据所表示的数的数值大小范围定义了三种类型的数
-值。类型的区分是通过检查 e 的数值来确定的 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-ieee754">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle4">
-        <span class="pull-right badge">
-          #19
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html">
-          <li class="list-group-item">
-            <h1>匹兹堡见闻一二</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle4">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/insight.html">insight</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/cmu.html">CMU</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">17</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 相比于费城、纽约、三潘这种城市，匹兹堡无论从历史、文化、科技上的名声都不太响亮
-。但细说起来，匹兹堡也算得上是改变了美国历史进程的城市之一。法印战争的第一枪就
-是在匹兹堡打响的。而法印战争作为英法七年战争的美洲战场，为美洲殖民地赢得了大量
-土地自是不在话下。更重要的是，英国政府在战后为了弥补战争开支，开始向美洲殖民地
-征收印花税，而这最终导致了美国独立战争的爆发。来到匹兹堡之后，我有见闻一二，分
-享如下。</p>
-<h1 id="_1"> 哥伦布骑士团 </h1>
-<p> 我住的地方不远就是匹兹堡的 <a href="https://en.wikipedia.org/wiki/Saint_Paul_Cathedral_(Pittsburgh,_Pennsylvania)"> 圣保罗教堂 </a>。当然，全世界各地有很多圣保罗教堂，这
-里单说匹兹堡的这一间。这间教堂是罗马天主教匹兹堡教区的主堂。天主教堂的建筑风格
-一般都是哥特式或者巴洛克式的，极为富丽堂皇和雄伟恢宏。不过这里想说的是教堂门口
-正对路口那个奉给 <a href="https://en.wikipedia.org/wiki/Knights_of_Columbus"> 哥伦布骑士团 </a> 的纪念碑。</p>
-<p><img alt="knight_of_columbus" src="/image/knight_of_columbus.jpg" style="display:block; margin: 0 auto" /></p>
-<p> 图中两棵小松树之间的纪念碑就是奉给 <a href="https://en.wikipedia.org/wiki/Knights_of_Columbus"> 哥伦布骑士团 </a> 的。哥伦布骑士团是在美国组建
-的服务于天主教社区的志愿团体。成员必须是天主教徒。JFK 也是其成员之一。这里想说的
-是 <a href="https://en.wikipedia.org/wiki/Knights_of_Columbus"> 哥伦布骑士团 </a> 的信条 </p>
-<blockquote>
-<p>In service to One<br />
-  In service to all  </p>
-</blockquote>
-<p> 这两句信条恰好契合于中国士人精神 “ 精一执中，民胞物与 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="pittsburgh-first-impression">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #18
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html">
-          <li class="list-group-item">
-            <h1>吾道一贯有感</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/insight.html">insight</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/confucianism.html">confucianism</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month03">03</a>-<a href="http://yuex.in/archives.html#Year2015Month03">08</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 最近在看梁任公所辑的《曾文正公嘉言钞》，有一些浅见，叨烦如下。</p>
-<p>《大学》一文指出了儒学的修业的八目。其中最后四目是修身、齐家、治国、平天下。也就是说儒学之道，当从每个人的自身做起，一步步由近及远地推行，最后使大道行于天下。至于这四目的每一目具体怎么实施，我以前的认识是这样的：修身这一目理论上其实最容易，管好自己即可，实在不行像宗教家们的教诲的那样做一个大善人也算是违道不远嘛。齐家这一目呢，做成一个好儿子、好丈夫、好父母即可，对于家庭成员不好的行为要及时劝诫。而对于治国和平天下呢，就是选用有志于此道品德好的人，制定赏罚分明的法令诸如此类。</p>
-<p> 不难看出，这四目修行的具体的方法其实是不一样的。特别是在这种认识下，一旦由己身推广到他人，便不可避免地引入赏刑与说教。我倒并不是对法家和兵家有什么偏见，只是觉得从学理上而言，这样做其实是破坏了儒家理论体系的完备性。对于 “ 吾道一贯 ” 的儒学而言，这种理解也很难说是合于一。此外，这种做法还有一个流弊，就是具体的实行很大程度上是取决于中层的执行者的，非常容易转变为机械执行法令，不注重背后精神与具体情况，导致大道转变为独裁，教化转变为洗脑。这种流弊可从朱子注 “ 亲民 ” 为 “ 新民 ” 的后世影响略知一二。</p>
-<p> 而在《曾文正公嘉言钞》中，曾文正公反复强调的就是社会变革，也就是大道之行，的最有效的办法是促成风气。而促成风气最有效的办法就是由在上位者以身作则。简而言之就是 “ 倡而为风 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="wu-dao-yi-guan">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
