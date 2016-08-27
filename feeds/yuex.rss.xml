@@ -1,46 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人)</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sat, 27 Aug 2016 00:00:00 +0800</lastBuildDate><item><title>CSAPP 之 file descriptor</title><link>http://yuex.in/post/2016/08/csaap-fd-file.html</link><description>&lt;p&gt; 当文件与进程结合时，有以下几个地方需要注意 &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fd table -&amp;gt; open file table -&amp;gt; v-node table
-1. fd table 是每进程独立的数据
-2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
-   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
-   导致一个新的 open file table entry，即使打开的是同一文件。
-3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
-   问权限、文件类型、文件大小、三个时间等
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt; 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
-件的读写位置的，虽然 fd 是独立的。&lt;/p&gt;
-&lt;p&gt; 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr 的。&lt;/p&gt;
-&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:post/2016/08/csaap-fd-file.html</guid><category>csapp</category></item><item><title>CSAPP 之 thread 与 signal</title><link>http://yuex.in/post/2016/08/csaap-thread.html</link><description>&lt;h1 id="thread"&gt;Thread&lt;/h1&gt;
-&lt;p&gt; 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
-reentrant：不使用任何共享数据
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt; 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
-之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。&lt;/p&gt;
-&lt;p&gt; 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
-用的函数有一些共享数据，则完全可以通过同步来使其安全。&lt;/p&gt;
-&lt;p&gt; 这里再给出 race 的定义 &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;race：程序的执行结果的正确性取决于线程是如何调度的
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h1 id="signal"&gt;Signal&lt;/h1&gt;
-&lt;p&gt; 进程之间通过信号来进行同步中有很多小的细节容易被忽略。比如 &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. 信号有可能在安装 signal handler 之前被收到和处理，这时会使用默认 handler
-2. 信号有可能在程序结束之后才被收到和处理，也就完全不会被处理了
-3. fork 和 exec 之后，信号的 block 状态是不会改变的
-4. 信号的收发应该在多核并行场景下考虑，而不是仅在单核并发场景下
-5. pause() 可以用来等待信号，但信号完全有可能在 pause() 之前收到，而这有可能导
-   致程序挂起不会退出。
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:post/2016/08/csaap-thread.html</guid><category>csapp</category></item><item><title>CSAPP 之 cache 与 virtual memory</title><link>http://yuex.in/post/2016/08/csapp-cache.html</link><description>&lt;h1 id="cache"&gt;Cache&lt;/h1&gt;
+<rss version="2.0"><channel><title>yuex (悟道洞穴人)</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sat, 27 Aug 2016 00:00:00 +0800</lastBuildDate><item><title>CSAPP 之 cache 与 virtual memory</title><link>http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html</link><description>&lt;h1 id="cache"&gt;Cache&lt;/h1&gt;
 &lt;p&gt;cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
 line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
 行缓存访问定位 &lt;/p&gt;
@@ -75,7 +34,48 @@ Intel 架构的通常做法，其它架构还是要参考其用户手册。&lt;/
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:post/2016/08/csapp-cache.html</guid><category>csapp</category></item><item><title>CSAPP 之 asm 函数调用</title><link>http://yuex.in/post/2016/08/csapp-asm-function.html</link><description>&lt;p&gt; 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:post/2016/08/csapp-cache-virtual-memory.html</guid><category>csapp</category></item><item><title>CSAPP 之 file descriptor</title><link>http://yuex.in/post/2016/08/csapp-file-descriptor.html</link><description>&lt;p&gt; 当文件与进程结合时，有以下几个地方需要注意 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fd table -&amp;gt; open file table -&amp;gt; v-node table
+1. fd table 是每进程独立的数据
+2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
+   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
+   导致一个新的 open file table entry，即使打开的是同一文件。
+3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
+   问权限、文件类型、文件大小、三个时间等
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
+件的读写位置的，虽然 fd 是独立的。&lt;/p&gt;
+&lt;p&gt; 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr 的。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:post/2016/08/csapp-file-descriptor.html</guid><category>csapp</category></item><item><title>CSAPP 之 thread 与 signal</title><link>http://yuex.in/post/2016/08/csapp-thread-signal.html</link><description>&lt;h1 id="thread"&gt;Thread&lt;/h1&gt;
+&lt;p&gt; 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。&lt;/p&gt;
+&lt;p&gt; 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。&lt;/p&gt;
+&lt;p&gt; 这里再给出 race 的定义 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;race：程序的执行结果的正确性取决于线程是如何调度的
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1 id="signal"&gt;Signal&lt;/h1&gt;
+&lt;p&gt; 进程之间通过信号来进行同步中有很多小的细节容易被忽略。比如 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. 信号有可能在安装 signal handler 之前被收到和处理，这时会使用默认 handler
+2. 信号有可能在程序结束之后才被收到和处理，也就完全不会被处理了
+3. fork 和 exec 之后，信号的 block 状态是不会改变的
+4. 信号的收发应该在多核并行场景下考虑，而不是仅在单核并发场景下
+5. pause() 可以用来等待信号，但信号完全有可能在 pause() 之前收到，而这有可能导
+   致程序挂起不会退出。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:post/2016/08/csapp-thread-signal.html</guid><category>csapp</category></item><item><title>CSAPP 之 asm 函数调用</title><link>http://yuex.in/post/2016/08/csapp-asm-function.html</link><description>&lt;p&gt; 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
 述。毕竟这是最基本的程序单元。&lt;/p&gt;
 &lt;h1 id="_1"&gt; 地址跳转 &lt;/h1&gt;
 &lt;p&gt;asm 中的地址跳转是通过 &lt;code&gt;call&lt;/code&gt; 和 &lt;code&gt;ret&lt;/code&gt; 进行的，但经常容易忽略的一个事实是 &lt;/p&gt;

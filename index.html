@@ -153,9 +153,9 @@
       </div>
 
       <ul class="list-group">
-        <a href="http://yuex.in/post/2016/08/csaap-fd-file.html">
+        <a href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html">
           <li class="list-group-item">
-            <h1>CSAPP 之 file descriptor</h1>
+            <h1>CSAPP 之 cache 与 virtual memory</h1>
           </li>
         </a>
         <div class="collapse in"
@@ -176,31 +176,33 @@
     <a href="http://yuex.in/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="http://yuex.in/post/2016/08/csaap-fd-file.html">
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html">
               </a>
           </li>
-          <li class="list-group-item"><p> 当文件与进程结合时，有以下几个地方需要注意 </p>
-<div class="codehilite"><pre><span></span>fd table -&gt; open file table -&gt; v-node table
-1. fd table 是每进程独立的数据
-2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
-   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
-   导致一个新的 open file table entry，即使打开的是同一文件。
-3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
-   问权限、文件类型、文件大小、三个时间等
+          <li class="list-group-item"><h1 id="cache">Cache</h1>
+<p>cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
+line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
+行缓存访问定位 </p>
+<div class="codehilite"><pre><span></span>+---------------+------------+--------------+
+|      Tag      |  Set Index | Block Offset |
++---------------+------------+--------------+
 </pre></div>
 
 
-<p> 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
-件的读写位置的，虽然 fd 是独立的。</p>
-<p> 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr ...</p></li>
+<p> 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
+同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
+（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
+tag 用于在同一个 set 中定位访问的 line。</p>
+<h1 id="virtual-memory">Virtual Memory</h1>
+<p> 在虚拟地址中 ...</p></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-fd-file.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csaap-fd-file">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-cache-virtual-memory">
                 </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-fd-file.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-fd-file.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
@@ -225,9 +227,9 @@
       </div>
 
       <ul class="list-group">
-        <a href="http://yuex.in/post/2016/08/csaap-thread.html">
+        <a href="http://yuex.in/post/2016/08/csapp-file-descriptor.html">
           <li class="list-group-item">
-            <h1>CSAPP 之 thread 与 signal</h1>
+            <h1>CSAPP 之 file descriptor</h1>
           </li>
         </a>
         <div class="collapse in"
@@ -248,7 +250,79 @@
     <a href="http://yuex.in/about.html">yuex</a>
   </span>
 
-            <a class="pull-right" href="http://yuex.in/post/2016/08/csaap-thread.html">
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-file-descriptor.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 当文件与进程结合时，有以下几个地方需要注意 </p>
+<div class="codehilite"><pre><span></span>fd table -&gt; open file table -&gt; v-node table
+1. fd table 是每进程独立的数据
+2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
+   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
+   导致一个新的 open file table entry，即使打开的是同一文件。
+3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
+   问权限、文件类型、文件大小、三个时间等
+</pre></div>
+
+
+<p> 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
+件的读写位置的，虽然 fd 是独立的。</p>
+<p> 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-file-descriptor.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-file-descriptor">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-file-descriptor.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-file-descriptor.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle3">
+        <span class="pull-right badge">
+          #23
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-thread-signal.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 thread 与 signal</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle3">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-thread-signal.html">
               </a>
           </li>
           <li class="list-group-item"><h1 id="thread">Thread</h1>
@@ -275,86 +349,12 @@ reentrant：不使用任何共享数据
 4 ...</pre></div></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-thread.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csaap-thread">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-thread-signal">
                 </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-thread.html" title="permanent link">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csaap-thread.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle3">
-        <span class="pull-right badge">
-          #23
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2016/08/csapp-cache.html">
-          <li class="list-group-item">
-            <h1>CSAPP 之 cache 与 virtual memory</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle3">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/book.html">book</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/csapp.html">csapp</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-cache.html">
-              </a>
-          </li>
-          <li class="list-group-item"><h1 id="cache">Cache</h1>
-<p>cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
-line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
-行缓存访问定位 </p>
-<div class="codehilite"><pre><span></span>+---------------+------------+--------------+
-|      Tag      |  Set Index | Block Offset |
-+---------------+------------+--------------+
-</pre></div>
-
-
-<p> 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
-同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
-（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
-tag 用于在同一个 set 中定位访问的 line。</p>
-<h1 id="virtual-memory">Virtual Memory</h1>
-<p> 在虚拟地址中 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-cache">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache.html" title="read more">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
