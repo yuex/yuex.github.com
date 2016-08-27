@@ -166,7 +166,7 @@ reentrant：不使用任何共享数据
 5. pause() 可以用来等待信号，但信号完全有可能在 pause() 之前收到，而这有可能导
    致程序挂起不会退出。
 6. signal handler 完全有可能被其它类型的信号打断。因此在 signal handler 中正式
-   开始处理时，要先保证 errno 和 block 所有其它信号，并在处理完后恢复这两者。
+   开始处理时，要先保存 errno 和 block 所有其它信号，并在处理完后恢复这两者。
 </pre></div>
 
 
