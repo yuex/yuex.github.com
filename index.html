@@ -341,12 +341,11 @@ reentrant：不使用任何共享数据
 </pre></div>
 
 
-<h1 id="signal">Signal</h1>
-<p> 进程之间通过信号来进行同步中有很多小的细节容易被忽略。比如 </p>
-<div class="codehilite"><pre><span></span>1. 信号有可能在安装 signal handler 之前被收到和处理，这时会使用默认 handler
-2. 信号有可能在程序结束之后才被收到和处理，也就完全不会被处理了
-3. fork 和 exec 之后，信号的 block 状态是不会改变的
-4 ...</pre></div></li>
+<p>thread 相关的函数 </p>
+<div class="codehilite"><pre><span></span>pthread_create(tid, attr, func, arg): 创建线程。tid 用于返回线程号，func 是要
+    运行的线程逻辑函数，arg 是一个指针，指向要传递的函数参数。成功返回 0
+pthread_exit(rc): 结束当前线程
+pthread_cancel ...</pre></div></li>
           <li class="list-group-item text-right">
             <div class="btn-group">
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html#disqus_thread" title="comments">
