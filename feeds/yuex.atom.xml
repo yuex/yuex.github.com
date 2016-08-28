@@ -77,6 +77,13 @@ reentrant：不使用任何共享数据
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt; 需要注意的是这里的 signal 指的是系统进程间用于同步的软信号，会导致相应的软件
+signal hanlder 的触发。这一般发生在内核态向用户态切换时，如系统调用完成或者
+context switch 发生。而硬件本身还有一类硬信号，一般是由 IO 设备产生，直接设置 CPU 的
+中断线为高电平，再通过系统总线传入中断号。CPU 会在被每条指令结束之后检查中断线，
+如果电平高位，就会根据相应的中断号调用系统中的 interrupt handler 处理。而这与进程
+的软信号没有任何关系。其实某些情况下的 context switch 就是通过这种方式接收定时中
+断实现的。&lt;/p&gt;
 &lt;p&gt;-EOF-&lt;/p&gt;</summary><category term="csapp"></category></entry><entry><title>CSAPP 之 asm 函数调用</title><link href="http://yuex.in/post/2016/08/csapp-asm-function.html" rel="alternate"></link><published>2016-08-24T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-08-24:post/2016/08/csapp-asm-function.html</id><summary type="html">&lt;p&gt; 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
 述。毕竟这是最基本的程序单元。&lt;/p&gt;
 &lt;h1 id="_1"&gt; 地址跳转 &lt;/h1&gt;
