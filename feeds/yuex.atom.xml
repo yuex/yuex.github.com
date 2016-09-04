@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-08-27T00:00:00+08:00</updated><entry><title>CSAPP 之 cache 与 virtual memory</title><link href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" rel="alternate"></link><published>2016-08-27T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-08-27:post/2016/08/csapp-cache-virtual-memory.html</id><summary type="html">&lt;h1 id="cache"&gt;Cache&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-09-04T00:00:00+08:00</updated><entry><title>论知人</title><link href="http://yuex.in/post/2016/09/how-to-know-people.html" rel="alternate"></link><published>2016-09-04T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-09-04:post/2016/09/how-to-know-people.html</id><summary type="html">&lt;p&gt; 年纪愈长，见人愈多，愈知知人之难。据说曾文正公是通过看相来识人知人，更是著有《
+冰鉴》将自己看相识人的本领总结一番。不过居今反古终归是不太保险，况且我也不打算
+搞什么神秘主义。我倒是觉得诸葛先生的一段知人论，无论从理论还是实践上都是简洁明
+了，简单有效，不敢独享，分享给大家 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 夫知人之性，莫难查焉。美恶既殊，情貌不一。&lt;br /&gt;
+  有温良而为诈者，有外恭而内自欺者，有外勇而内怯者，有尽力而不忠者。&lt;br /&gt;
+  然知人之道有七焉：&lt;br /&gt;
+  一曰，问之以是非而观其志；&lt;br /&gt;
+  二曰，穷之以辞辨而观其变；&lt;br /&gt;
+  三曰，资之以计谋而观其识；&lt;br /&gt;
+  四曰，告之以祸福而观其勇；&lt;br /&gt;
+  五曰，醉之以酒以观其性；&lt;br /&gt;
+  六曰，临之以利以观其廉；&lt;br /&gt;
+  七曰，期之以事以观其信  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 当然啦，也有人说这段收录在《将苑》的文字并非诸葛先生所作，实乃后人托书伪作。纪
+晓岚纪大学士就是这种观点。但也有人说书中体现的思想倒也不出诸葛先生的思想之外。
+但不管怎么说，阳明子讲于事上磨练，想来于事上见人识人，应该也不会出太大问题吧。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</summary><category term="dao"></category></entry><entry><title>CSAPP 之 cache 与 virtual memory</title><link href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" rel="alternate"></link><published>2016-08-27T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-08-27:post/2016/08/csapp-cache-virtual-memory.html</id><summary type="html">&lt;h1 id="cache"&gt;Cache&lt;/h1&gt;
 &lt;p&gt;cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
 line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
 行缓存访问定位 &lt;/p&gt;
@@ -380,7 +399,7 @@ Denormalized Values。他们搞错了。e=0 其实就是 e=1，只是一旦你�
 &lt;p&gt; 当然，这些钱要花在值得花的地方才叫花得值。&lt;/p&gt;
 &lt;h1 id="_4"&gt; 后记 &lt;/h1&gt;
 &lt;p&gt; 要说这些见闻有多稀奇呢？实在是一点也不稀奇，都是老祖宗们几千年来反复念叨的东西。&lt;/p&gt;
-&lt;p&gt;-EOF-&lt;/p&gt;</summary><category term="CMU"></category></entry><entry><title>吾道一贯有感</title><link href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" rel="alternate"></link><published>2015-03-08T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2015-03-08:post/2015/03/wu-dao-yi-guan.html</id><summary type="html">&lt;p&gt; 最近在看梁任公所辑的《曾文正公嘉言钞》，有一些浅见，叨烦如下。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</summary><category term="dao"></category></entry><entry><title>吾道一贯有感</title><link href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" rel="alternate"></link><published>2015-03-08T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2015-03-08:post/2015/03/wu-dao-yi-guan.html</id><summary type="html">&lt;p&gt; 最近在看梁任公所辑的《曾文正公嘉言钞》，有一些浅见，叨烦如下。&lt;/p&gt;
 &lt;p&gt;《大学》一文指出了儒学的修业的八目。其中最后四目是修身、齐家、治国、平天下。也就是说儒学之道，当从每个人的自身做起，一步步由近及远地推行，最后使大道行于天下。至于这四目的每一目具体怎么实施，我以前的认识是这样的：修身这一目理论上其实最容易，管好自己即可，实在不行像宗教家们的教诲的那样做一个大善人也算是违道不远嘛。齐家这一目呢，做成一个好儿子、好丈夫、好父母即可，对于家庭成员不好的行为要及时劝诫。而对于治国和平天下呢，就是选用有志于此道品德好的人，制定赏罚分明的法令诸如此类。&lt;/p&gt;
 &lt;p&gt; 不难看出，这四目修行的具体的方法其实是不一样的。特别是在这种认识下，一旦由己身推广到他人，便不可避免地引入赏刑与说教。我倒并不是对法家和兵家有什么偏见，只是觉得从学理上而言，这样做其实是破坏了儒家理论体系的完备性。对于 “ 吾道一贯 ” 的儒学而言，这种理解也很难说是合于一。此外，这种做法还有一个流弊，就是具体的实行很大程度上是取决于中层的执行者的，非常容易转变为机械执行法令，不注重背后精神与具体情况，导致大道转变为独裁，教化转变为洗脑。这种流弊可从朱子注 “ 亲民 ” 为 “ 新民 ” 的后世影响略知一二。&lt;/p&gt;
 &lt;p&gt; 而在《曾文正公嘉言钞》中，曾文正公反复强调的就是社会变革，也就是大道之行，的最有效的办法是促成风气。而促成风气最有效的办法就是由在上位者以身作则。简而言之就是 “ 倡而为风，效而成俗 ”。由于 “ 上有所好，下必甚焉 ”，其实上位者也只需要做到 “ 如好好色，如恶恶臭 ” 就可以了。而其效果，正如孟子所言 “ 君子之德，风也；小人之德，草也。草上之风，必偃。” 曾文正公则形容其为 “ 挠万物莫疾乎风 ”。这样一来，大道之行不再完全依赖于中层执行者。一旦有了这种认识，选人用人也就没有理由再要求道德完人了，只要有志亲民，就可以 “ 掩其所短，用其所长 ” 地委以适用了。&lt;/p&gt;
@@ -388,7 +407,7 @@ Denormalized Values。他们搞错了。e=0 其实就是 e=1，只是一旦你�
 &lt;p&gt; 抓住了这一点，再往四书上想一想，帝舜的 “ 隐恶而扬善 ” 真的是有大智慧在里面。以前我的看法是，有恶就应该摆到桌面上，审问之、慎思之、明辨之，才算是正确的做法。现在看来，这也只能算是年少轻狂的小聪小明，实在算不上是人生的大智慧。对于见道、明道，这或许还能有些帮助，但对于行道则没什么用处。由此看来，孔子这一句 “ 舜其真大知也与 ” 的感叹真不是白来的。&lt;/p&gt;
 &lt;p&gt; 此外，由曾文正公这一风气之说，猜测开来，似乎他对宋明理学中的气学也颇有研究。说来也是个遗憾，理学和心学都已经发扬光大，但是气学这一派似乎张横渠之后便没有大家发扬。这对于学理上的探究真是个损失，但这也正是有志四为的后来人可以用功的方向，倘若再辅以一定的事功，比肩阳明子还是大可期待的。&lt;/p&gt;
 &lt;p&gt; 以上。&lt;/p&gt;
-</summary><category term="confucianism"></category></entry><entry><title>使用 virtualenv 要注意的地方</title><link href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" rel="alternate"></link><published>2015-03-02T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2015-03-02:post/2015/03/notes-for-virtualenv.html</id><summary type="html">&lt;p&gt;virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。&lt;/p&gt;
+</summary><category term="dao"></category></entry><entry><title>使用 virtualenv 要注意的地方</title><link href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" rel="alternate"></link><published>2015-03-02T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2015-03-02:post/2015/03/notes-for-virtualenv.html</id><summary type="html">&lt;p&gt;virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。&lt;/p&gt;
 &lt;p&gt; 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 &lt;code&gt;mkvirtualenv&lt;/code&gt; 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。&lt;/p&gt;
 &lt;p&gt; 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2，pip 是 pip2，
 而 virtualenv 安装之后，默认的解析是 python2/python/python2.7, pip/pip2.7。如果不检查就直接用习惯的
@@ -468,7 +487,7 @@ $ finish the work
 &lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id3"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a class="reference external" href="http://zh.wikipedia.org/wiki/%E5%94%AF%E7%89%A9%E8%BE%AF%E8%AD%89%E6%B3%95"&gt; 唯物辩证法 &lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</summary><category term="philosophy"></category></entry><entry><title>Vim 技巧之 Meta 键</title><link href="http://yuex.in/post/2015/02/vim-technique-meta-key.html" rel="alternate"></link><published>2015-02-08T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2015-02-08:post/2015/02/vim-technique-meta-key.html</id><summary type="html">&lt;p&gt; 在 terminal 环境下使用 Vim 时，Meta 键（亦即 Alt）一般是不起作用的 &lt;sup id="fnref:!map-alt-keys"&gt;&lt;a class="footnote-ref" href="#fn:!map-alt-keys" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。但是随着插件越用越多，绑定的组合键越来越多，按键难免会出现越来越不够用的情况。若是可以使用 Meta 键进行键位组合，至少会增加 26 个组合键。这里给出一个通过配置 Vim 来启用 Meta 组合键的方法。&lt;/p&gt;
+</summary><category term="dao"></category></entry><entry><title>Vim 技巧之 Meta 键</title><link href="http://yuex.in/post/2015/02/vim-technique-meta-key.html" rel="alternate"></link><published>2015-02-08T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2015-02-08:post/2015/02/vim-technique-meta-key.html</id><summary type="html">&lt;p&gt; 在 terminal 环境下使用 Vim 时，Meta 键（亦即 Alt）一般是不起作用的 &lt;sup id="fnref:!map-alt-keys"&gt;&lt;a class="footnote-ref" href="#fn:!map-alt-keys" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;。但是随着插件越用越多，绑定的组合键越来越多，按键难免会出现越来越不够用的情况。若是可以使用 Meta 键进行键位组合，至少会增加 26 个组合键。这里给出一个通过配置 Vim 来启用 Meta 组合键的方法。&lt;/p&gt;
 &lt;p&gt; 还是直接上代码。这里启用了从 &lt;code&gt;&amp;lt;M-a&amp;gt;&lt;/code&gt; 到 &lt;code&gt;&amp;lt;M-z&amp;gt;&lt;/code&gt; 的 26 组合键和从 &lt;code&gt;&amp;lt;M-0&amp;gt;&lt;/code&gt; 到 &lt;code&gt;&amp;lt;M-9&amp;gt;&lt;/code&gt; 的 10 个组合键。&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; range&lt;span class="p"&gt;(&lt;/span&gt;char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; nr2char&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -1305,52 +1324,7 @@ Arch 官方提供了 AUR ( Arch User Repository )，可以让用户自己提交 
 这里推荐使用击中生命恢复，可以提供额外的战斗恢复补充。&lt;/p&gt;
 &lt;h1 id="_19"&gt; 结语 &lt;/h1&gt;
 &lt;p&gt; 是男人就要刚正面 &lt;/p&gt;
-&lt;p&gt;&lt;img alt="barb-xuyunlong" src="/image/diablo3-build/barb-xuyunlong.jpg" /&gt;&lt;/p&gt;</summary><category term="diablo3"></category></entry><entry><title>如何撰写技术文档</title><link href="http://yuex.in/post/2014/01/technical-writing.html" rel="alternate"></link><published>2014-01-29T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2014-01-29:post/2014/01/technical-writing.html</id><summary type="html">&lt;p&gt; 这个页面包含一些我收集的与写作相关的资料。虽然其中一些原则是通用的，但这些资料主要还是针对计算机学科的技术写作的，如学术论文、技术文档。&lt;/p&gt;
-&lt;p&gt; 如果你时间非常有限，我推荐以下两个文档 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;dl&gt;
-&lt;dt&gt;Michael Ernst's &lt;a href="http://homes.cs.washington.edu/~mernst/advice/write-technical-paper.html"&gt;Writing a Technical Paper&lt;/a&gt;&lt;/dt&gt;
-&lt;dd&gt;Michael Ernst 给出一些关于会议论文写作的建议，包含了从文章构思、提纲拟定、写作风格、图表表现、命名、处理评审意见等多个方面。此外，Michael 的个人主页上还有很多有益于学术生涯的其它方面的建议，也非常值得一读。&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;dl&gt;
-&lt;dt&gt;Norman Ramsey's &lt;a href="http://www.cs.tufts.edu/~nr/pubs/two-abstract.html"&gt;Learning Technical Writing in Two Hours per Week&lt;/a&gt;&lt;/dt&gt;
-&lt;dd&gt;Norman Ramsey 总结了 9 条科技写作原则，并设计了 7 个练习来帮助掌握这些原则。相比 Michael 的建议，Norman 的建议更精炼，更适合用来强化掌握。&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 如果你时间多一点，我额外推荐两本书 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;dl&gt;
-&lt;dt&gt;The Elements of Style, William Strunk Jr. and E.B. White&lt;/dt&gt;
-&lt;dd&gt;ISBN: 9780205632640。需要注意的是，Strunk 的原版和 E.B. White 修订后的版本有比较大的不同。这里推荐的是 White 修订后的版本。&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;dl&gt;
-&lt;dt&gt;Style: Toward Clarity and Grace, Joseph M. Williams&lt;/dt&gt;
-&lt;dd&gt; 一句话评价稍后奉上 &lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt; 如果还想提高英语读写的话，我推荐以下两本书 &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;dl&gt;
-&lt;dt&gt;Triple Your Reading Speed, Wade E. Cutler&lt;/dt&gt;
-&lt;dd&gt; 本书讲述了速读术的基本原理，并辅以相应练习来帮助读者掌握。当然，掌握原理后的认真练习仍然是必不可少的。外研社出过一版该书的影印版，ISBN: 9787560045399&lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;dl&gt;
-&lt;dt&gt; 文法俱乐部，旋元佑 &lt;/dt&gt;
-&lt;dd&gt;ISBN: 9789578302006。该书从句子合成与简化的角度来讲解英语语法，深入浅出，将繁杂语法规则精炼为几条原则，来教会读者触类旁通。由于出版社倒闭，该书已经绝版，有一些扫描版流传于网络 &lt;/dd&gt;
-&lt;/dl&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="writing"></category></entry><entry><title>动手写 PAM 模块让 sshd 支持用户接入控制</title><link href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html" rel="alternate"></link><published>2013-09-29T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2013-09-29:post/2013/09/hands-on-pam-module-and-sshd.html</id><summary type="html">&lt;p&gt; 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="barb-xuyunlong" src="/image/diablo3-build/barb-xuyunlong.jpg" /&gt;&lt;/p&gt;</summary><category term="diablo3"></category></entry><entry><title>动手写 PAM 模块让 sshd 支持用户接入控制</title><link href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html" rel="alternate"></link><published>2013-09-29T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2013-09-29:post/2013/09/hands-on-pam-module-and-sshd.html</id><summary type="html">&lt;p&gt; 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。&lt;/p&gt;
 &lt;p&gt; 想当然的做法是用 /etc/security/limits.conf 中的 maxlogins 解决。但是这个是有问题的，maxlogins 是要用户登录到 shell 才会统计的。pam_limits.so 中读取的是 utmp，这个是存在 /var/run/utmp 中的，用 &lt;code&gt;w&lt;/code&gt; 可以查看。而 &lt;code&gt;ssh -N&lt;/code&gt; 是不会被 utmp 记录为 login 的。所以，如果用上篇 blog 中的方法实践的话，用户可以用 &lt;code&gt;ssh -N&lt;/code&gt; 绕过所有的接入控制。一般而言，这也不是什么大问题，因为用户 &lt;code&gt;ssh -N&lt;/code&gt; 接入的话，只能做端口转发这一件事情。而若 sshd 禁用端口转发的话，这个也就只能用来攻击了，而这种又太容易防范了（做贼还要用真名吗），所以也不会够成实质性的威胁。&lt;/p&gt;
 &lt;p&gt; 但对于希望把端口转发做为一项服务的某来话，这就是个大问题了。一项服务，如果不能进行用户权限控制的话，那只能算是自己给自己开了一个安全漏洞。解决的方法，最好就是 ssh 可以提供相应的功能。但目前来看，似乎不太可能。而且即使有这个可能，自己动手 commit 的话，直到 merge 也要太长的周期。所以某转而来调研 pam 是不是也能实现这个功能。&lt;/p&gt;
 &lt;p&gt; 答案是肯定的。而且更加方便的方法是用 pam_script.so 来做这件事。在进行账户验证的时候，执行脚本，来完成对 ssh 接入用户数和用户 ip 的检查，从而完成对单个账号登录和单个 ip 登录数目的限制。可惜的是，pam 的发行包中没有 pam_script 这个模块。网上可以找到一些别人写的，但大多语焉不详，有的是 doc 一笔带过，有的是编译无法一次通过。此外，某发现这些 pam_script.so 的实现，都只能针对 auth，password 和 session 进行插入，而独没有 account。根据 &lt;code&gt;man pam&lt;/code&gt; 中的解释 &lt;/p&gt;

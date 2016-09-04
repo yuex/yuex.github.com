@@ -153,13 +153,92 @@
       </div>
 
       <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 struct 填充</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">24</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 </p>
+<div class="codehilite"><pre><span></span> 所有数据类型要对齐到其类型大小的内存地址上
+</pre></div>
+
+
+<p> 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 </p>
+<div class="codehilite"><pre><span></span>1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+</pre></div>
+
+
+<p> 简言之就是，尾部要填充以保证后续地址对齐到其内含的最大的数据类型大小 </p>
+<div class="codehilite"><pre><span></span>2. 32 位系统以的对齐以指针大小 4 为上限
+</pre></div>
+
+
+<p> 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。而在 64 ...</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-struct-padding">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
+          #19
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
         <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
           <li class="list-group-item">
             <h1>CSAPP 之 IEEE 754</h1>
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -215,9 +294,9 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
-          #19
+          #18
         </span>
       </a>
       </div>
@@ -233,14 +312,14 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
       href="http://yuex.in/category/insight.html">insight</a>
       <b> · </b>
         <a class="label label-primary"
-          href="http://yuex.in/tag/cmu.html">CMU</a>
+          href="http://yuex.in/tag/dao.html">dao</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">17</a>
@@ -293,9 +372,9 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
-          #18
+          #17
         </span>
       </a>
       </div>
@@ -311,14 +390,14 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
       href="http://yuex.in/category/insight.html">insight</a>
       <b> · </b>
         <a class="label label-primary"
-          href="http://yuex.in/tag/confucianism.html">confucianism</a>
+          href="http://yuex.in/tag/dao.html">dao</a>
     <!--<span class="glyphicon glyphicon-calendar"></span>-->
       <b> · </b>
       <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month03">03</a>-<a href="http://yuex.in/archives.html#Year2015Month03">08</a>
@@ -355,9 +434,9 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
-          #17
+          #16
         </span>
       </a>
       </div>
@@ -373,7 +452,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -406,72 +485,6 @@ f = .f1f2...
               <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2015/03/notes-for-virtualenv.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #16
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/02/zhongyong-version.html">
-          <li class="list-group-item">
-            <h1>《中庸》版本推荐</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/book.html">book</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/confucianism.html">confucianism</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month02">02</a>-<a href="http://yuex.in/archives.html#Year2015Month02">22</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/02/zhongyong-version.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 最近利用过年放假的时间仔细研读了《中庸》，对于相关版本的选择略有心得，简录如下，还是闲言少叙，先上结论：我推荐以下两个版本的讲解 </p>
-<ol class="arabic simple">
-<li> 张居正的《中庸》皇家读本 <a class="footnote-reference" href="#id4" id="id2">[1]</a></li>
-<li> 南怀瑾的《中庸讲记》 <a class="footnote-reference" href="#id7" id="id3">[2]</a></li>
-</ol>
-<p>《中庸》是由朱子作主，从《礼记》中提出而单成一书，断句集注，并且提升到四书的高度。《中庸》的评价甚高，素来有 “ 儒学心法 ” 之称。与《大学》不同是，朱子章句并没有打乱《中庸》的前后顺序，因此也就不像阳明子刊印《大学》古本那样，有一个章句和原本的版本之争。而且今天流传下来的《中庸》注解也基本都是顺承朱子章句集注而来。</p>
-<p> 虽然集注版本并无太多分别，但因为《中庸》是讲心法，许多地方如果只从集注的字面上理解，很难窥知文字背后的深意。最好的方式莫过于通过大家的解读，了解文章的前后逻辑，然后再结合个人的生活经验，不断体悟，最终得出自己的理解。</p>
-<p> 对于朱子章句的正统讲法，这里推荐张居正的《中庸》皇家读本。张阁老讲学庸，基本是顺承朱子章句集注的内容而来，只是在文章坚深之处，针对受业对象为天子的情况，进行了适当的引申和联系。遗憾的是张阁老相去阳明子不过二三世 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="zhongyong-version">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>
