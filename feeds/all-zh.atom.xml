@@ -1,5 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/all-zh.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-09-04T00:00:00+08:00</updated><entry><title>论知人</title><link href="http://yuex.in/post/2016/09/how-to-know-people.html" rel="alternate"></link><published>2016-09-04T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-09-04:post/2016/09/how-to-know-people.html</id><summary type="html">&lt;p&gt; 年纪愈长，见人愈多，愈知知人之难。据说曾文正公是通过看相来识人知人，更是著有《
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/all-zh.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-09-12T00:00:00+08:00</updated><entry><title>Awesome LaTeX</title><link href="http://yuex.in/post/2016/09/awesome-latex.html" rel="alternate"></link><published>2016-09-12T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-09-12:post/2016/09/awesome-latex.html</id><summary type="html">&lt;p&gt;(Note, files metioned below is included in &lt;a href="https://github.com/yuex/awesome-latex"&gt;this&lt;/a&gt; github repo)&lt;/p&gt;
+&lt;p&gt;Well, it's complicated, sort of.&lt;/p&gt;
+&lt;p&gt;To appreciate the awesomeness of LaTeX, you need to put aside a few hours to
+fiddle with not only another gigantic tool and a not-so-easy-to-learn syntax
+but also another no-so-well-managed software distribution system.&lt;/p&gt;
+&lt;p&gt;To save your time, you can just install &lt;code&gt;texlive&lt;/code&gt; and use &lt;code&gt;homework.tex&lt;/code&gt;. It's a
+popular homework template at CMU introduced by the help page of &lt;a href="http://www.cs.cmu.edu/afs/cs/academic/class/15251/Site/current/Help/late"&gt;15251&lt;/a&gt;. When
+you are done with your homework using the template, just run&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pdflatex homework.tex
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;homework.tex&lt;/code&gt; should be happy with the default packages included in texlive.
+If everything goes well, a pdf file will be generated.&lt;/p&gt;
+&lt;p&gt;Alright, if you have some time or you find a cooler template on the Internet
+which requires additional LaTeX packages, then be prepared to get some
+frustrations. Here's the steps to make it work, probably.&lt;/p&gt;
+&lt;p&gt;First, install texlive using the package manager you hate or love or whatever
+provided by your distribution or 3rd party or some guys you have no idea of but
+you have to use.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# gentoo example
+# set aside half an hour at least, it will take some time to compile
+# if you want cjk support, turn the flag on manually (disabled by default)
+emerge -av textlive
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Second, try to compile the tex file and find out which package is missing&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pdflatex template.tex
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Third, fortunately &lt;code&gt;tlmgr&lt;/code&gt; provided by texlive is not working on gentoo so you
+get the chance to do it in the traditional way, i.e., manually. Checkout the
+&lt;a href="https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages"&gt;wikibook&lt;/a&gt;. In general you need to&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. find and download the package source from CTAN https://www.ctan.org/
+2. unzip and compile the source. some authors provide a Makefile to easy
+   this process. in that case you should thank his/her kindness
+
+       latex packname.idx
+       latex packname.dtx
+
+3. move generated files to their destinations according the table and their
+   suffixes as described in the wikibook. generally, using a local texmf
+   directory in your home directory is a good idea. create subdirectories
+   as needed
+4. use `texhash` to update the package database
+
+       texhash ~/texmf
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note the fun part is that if the package you are installing depends on other
+CTAN packages, you have to resolve the dependencies yourself manually. So
+please keep calm, carry on, and try hard to have some fun. Or what else you can
+do?&lt;/p&gt;
+&lt;p&gt;Awesome, right? If you don't feel so, then try harder.&lt;/p&gt;
+&lt;p&gt;BTW, if you want to give it a shot, try compile &lt;code&gt;assignment.tex&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</summary><category term="latex"></category></entry><entry><title>论知人</title><link href="http://yuex.in/post/2016/09/how-to-know-people.html" rel="alternate"></link><published>2016-09-04T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-09-04:post/2016/09/how-to-know-people.html</id><summary type="html">&lt;p&gt; 年纪愈长，见人愈多，愈知知人之难。据说曾文正公是通过看相来识人知人，更是著有《
 冰鉴》将自己看相识人的本领总结一番。不过居今反古终归是不太保险，况且我也不打算
 搞什么神秘主义。我倒是觉得诸葛先生的一段知人论，无论从理论还是实践上都是简洁明
 了，简单有效，不敢独享，分享给大家 &lt;/p&gt;
