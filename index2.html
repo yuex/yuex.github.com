@@ -143,6 +143,85 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #22
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-thread-signal.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 thread 与 signal</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-thread-signal.html">
+              </a>
+          </li>
+          <li class="list-group-item"><h1 id="thread">Thread</h1>
+<p> 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 </p>
+<div class="codehilite"><pre><span></span>thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+</pre></div>
+
+
+<p> 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。</p>
+<p> 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。</p>
+<p> 这里再给出 race 的定义 </p>
+<div class="codehilite"><pre><span></span>race：程序的执行结果的正确性取决于线程是如何调度的
+</pre></div>
+
+
+<p>thread 相关的函数 </p>
+<div class="codehilite"><pre><span></span>pthread_create(tid, attr, func, arg): 创建线程。tid 用于返回线程号，func 是要
+    运行的线程逻辑函数，arg 是一个指针，指向要传递的函数参数。成功返回 0
+pthread_exit(rc): 结束当前线程
+pthread_cancel ...</pre></div></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-thread-signal">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-thread-signal.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #21
         </span>
       </a>
@@ -159,7 +238,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -216,7 +295,7 @@ ret 会从栈上弹出一个地址到 pc
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #20
         </span>
@@ -234,7 +313,7 @@ ret 会从栈上弹出一个地址到 pc
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -295,7 +374,7 @@ ret 会从栈上弹出一个地址到 pc
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #19
         </span>
@@ -313,7 +392,7 @@ ret 会从栈上弹出一个地址到 pc
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -369,7 +448,7 @@ f = .f1f2...
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #18
         </span>
@@ -387,7 +466,7 @@ f = .f1f2...
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -435,68 +514,6 @@ f = .f1f2...
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #17
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html">
-          <li class="list-group-item">
-            <h1>吾道一贯有感</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/insight.html">insight</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/dao.html">dao</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month03">03</a>-<a href="http://yuex.in/archives.html#Year2015Month03">08</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 最近在看梁任公所辑的《曾文正公嘉言钞》，有一些浅见，叨烦如下。</p>
-<p>《大学》一文指出了儒学的修业的八目。其中最后四目是修身、齐家、治国、平天下。也就是说儒学之道，当从每个人的自身做起，一步步由近及远地推行，最后使大道行于天下。至于这四目的每一目具体怎么实施，我以前的认识是这样的：修身这一目理论上其实最容易，管好自己即可，实在不行像宗教家们的教诲的那样做一个大善人也算是违道不远嘛。齐家这一目呢，做成一个好儿子、好丈夫、好父母即可，对于家庭成员不好的行为要及时劝诫。而对于治国和平天下呢，就是选用有志于此道品德好的人，制定赏罚分明的法令诸如此类。</p>
-<p> 不难看出，这四目修行的具体的方法其实是不一样的。特别是在这种认识下，一旦由己身推广到他人，便不可避免地引入赏刑与说教。我倒并不是对法家和兵家有什么偏见，只是觉得从学理上而言，这样做其实是破坏了儒家理论体系的完备性。对于 “ 吾道一贯 ” 的儒学而言，这种理解也很难说是合于一。此外，这种做法还有一个流弊，就是具体的实行很大程度上是取决于中层的执行者的，非常容易转变为机械执行法令，不注重背后精神与具体情况，导致大道转变为独裁，教化转变为洗脑。这种流弊可从朱子注 “ 亲民 ” 为 “ 新民 ” 的后世影响略知一二。</p>
-<p> 而在《曾文正公嘉言钞》中，曾文正公反复强调的就是社会变革，也就是大道之行，的最有效的办法是促成风气。而促成风气最有效的办法就是由在上位者以身作则。简而言之就是 “ 倡而为风 ...</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="wu-dao-yi-guan">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/03/wu-dao-yi-guan.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>

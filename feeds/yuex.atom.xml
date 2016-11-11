@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-09-12T00:00:00+08:00</updated><entry><title>Awesome LaTeX</title><link href="http://yuex.in/post/2016/09/awesome-latex.html" rel="alternate"></link><published>2016-09-12T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-09-12:post/2016/09/awesome-latex.html</id><summary type="html">&lt;p&gt;(Note, files metioned below are included in &lt;a href="https://github.com/yuex/awesome-latex"&gt;this&lt;/a&gt; github repo)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-11-11T00:00:00+08:00</updated><entry><title>彩色终端</title><link href="http://yuex.in/post/2016/11/colorful-terminal.html" rel="alternate"></link><published>2016-11-11T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-11-11:post/2016/11/colorful-terminal.html</id><summary type="html">&lt;p&gt; 讲真，当发现 Emacs 还不支持全彩色时，我还是有点吃惊的。毕竟很多程序都已经开始支持
+了，比如 vim，neovim，konsole 等等。连 tmux 都从今年三月的 2.2 版本开始支持全彩色了。
+没有全彩色支持对于 terminal 下工作的人来说，真的很不爽，像是 solarized 常用的主题颜
+色在非全彩色情况下的退化表现一般都不是很理想。不过好在 emacs 上有全彩色的 patch，
+可以实现这个小目标。&lt;/p&gt;
+&lt;p&gt; 以 24.5 版本为例 &lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl https://goo.gl/a9qsIY &amp;gt; emacs-24.5-24bit.diff
+wget http://gnu.mirrors.pair.com/gnu/emacs/emacs-24.5.tar.gz
+tar xzf emacs-24.5.tar.gz
+cd emacs-24.5.tar.gz
+patch -p0 &amp;lt; ../emacs-24.5-24bit.diff
+./configure
+make
+sudo make install
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 最终的程序会被安装到 &lt;code&gt;/usr/local/bin/&lt;/code&gt; 下。另外需要注意的是，在 melpa 中，
+&lt;code&gt;solarized-theme&lt;/code&gt; 是全彩色的，效果会好一些。&lt;/p&gt;
+&lt;h1 id="reference"&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/XVilka/8346728"&gt; 常见工具的全彩色支持情况 &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gist.github.com/choppsv1/e8198df70cb1778b04d6"&gt;emacs-24.5 tc patch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://sunaku.github.io/tmux-24bit-color.html"&gt;tmux 24bit color&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="emacs"></category><category term="tmux"></category></entry><entry><title>Awesome LaTeX</title><link href="http://yuex.in/post/2016/09/awesome-latex.html" rel="alternate"></link><published>2016-09-12T00:00:00+08:00</published><author><name>yuex</name></author><id>tag:yuex.in,2016-09-12:post/2016/09/awesome-latex.html</id><summary type="html">&lt;p&gt;(Note, files metioned below are included in &lt;a href="https://github.com/yuex/awesome-latex"&gt;this&lt;/a&gt; github repo)&lt;/p&gt;
 &lt;p&gt;Well, it's complicated, sort of.&lt;/p&gt;
 &lt;p&gt;To appreciate the awesomeness of LaTeX, you need to put aside a few hours to
 fiddle with not only another gigantic tool and a not-so-easy-to-learn syntax
