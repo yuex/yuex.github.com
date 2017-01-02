@@ -1,8 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sun, 08 Mar 2015 00:00:00 +0800</lastBuildDate><item><title>吾道一贯有感</title><link>http://yuex.in/post/2015/03/wu-dao-yi-guan.html</link><description>&lt;p&gt; 最近在看梁任公所辑的《曾文正公嘉言钞》，有一些浅见，叨烦如下。&lt;/p&gt;
+<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Mon, 26 Dec 2016 00:00:00 +0800</lastBuildDate><item><title>Gentoo Installation on MacBook Pro (Mid 2015) - Base System</title><link>http://yuex.in/post/2016/12/gentoo-install-mbp-1.html</link><description>&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
+MacOs and Homebrew are cool. But still I want Gentoo Portage back. Actually I
+doubt if anyone can still date with other package system after you have seen
+the true beauty of Gentoo Portage. So I tried Gentoo Prefix. But unfortunately,
+at this point …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 26 Dec 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</guid><category>gentoo</category></item><item><title>彩色终端</title><link>http://yuex.in/post/2016/11/colorful-terminal.html</link><description>&lt;p&gt; 讲真，当发现 Emacs 还不支持全彩色时，我还是有点吃惊的。毕竟很多程序都已经开始支持
+了，比如 vim，neovim，konsole 等等。连 tmux 都从今年三月的 2.2 版本开始支持全彩色了。
+没有全彩色支持对于 terminal 下工作的人来说，真的很不爽，像是 solarized 常用的主题颜
+色在非全彩色情况下的退化表现一般都不是很理想。不过好在 emacs 上有全彩色的 patch，
+可以实现这个小目标。&lt;/p&gt;
+&lt;p&gt; 以 24.5 版本为例 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl https://goo.gl/a9qsIY &amp;gt; emacs-24.5-24bit.diff
+wget http://gnu.mirrors.pair.com/gnu/emacs/emacs-24.5.tar.gz
+tar xzf emacs-24.5.tar …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Fri, 11 Nov 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-11-11:/post/2016/11/colorful-terminal.html</guid><category>emacs</category><category>tmux</category></item><item><title>Awesome LaTeX</title><link>http://yuex.in/post/2016/09/awesome-latex.html</link><description>&lt;p&gt;(Note, files metioned below are included in &lt;a href="https://github.com/yuex/awesome-latex"&gt;this&lt;/a&gt; github repo)&lt;/p&gt;
+&lt;p&gt;Well, it's complicated, sort of.&lt;/p&gt;
+&lt;p&gt;To appreciate the awesomeness of LaTeX, you need to put aside a few hours to
+fiddle with not only another gigantic tool and a not-so-easy-to-learn syntax
+but also another no-so-well-managed software distribution system.&lt;/p&gt;
+&lt;p&gt;To save your time, you can just install &lt;code&gt;texlive&lt;/code&gt; and use &lt;code&gt;homework …&lt;/code&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 12 Sep 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-09-12:/post/2016/09/awesome-latex.html</guid><category>latex</category></item><item><title>论知人</title><link>http://yuex.in/post/2016/09/how-to-know-people.html</link><description>&lt;p&gt; 年纪愈长，见人愈多，愈知知人之难。据说曾文正公是通过看相来识人知人，更是著有《
+冰鉴》将自己看相识人的本领总结一番。不过居今反古终归是不太保险，况且我也不打算
+搞什么神秘主义。我倒是觉得诸葛先生的一段知人论，无论从理论还是实践上都是简洁明
+了，简单有效，不敢独享，分享给大家 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; 夫知人之性，莫难查焉。美恶既殊，情貌不一。&lt;br&gt;
+  有温良而为诈者，有外恭而内自欺者，有外勇而内怯者，有尽力而不忠者。&lt;br&gt;
+  然知人之道有七焉：&lt;br&gt;
+  一曰，问之以是非而观其志；&lt;br&gt;
+  二曰，穷之以辞辨而观其变；&lt;br&gt;
+  三曰，资之以计谋而观其识；&lt;br&gt;
+  四曰，告之以祸福而观其勇；&lt;br&gt;
+  五曰，醉之以酒以观其性；&lt;br&gt;
+  六曰，临之以利以观其廉；&lt;br&gt;
+  七曰，期之以事以观其信  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 当然啦，也有人说这段收录在《将苑》的文字并非诸葛先生所作，实乃后人托书伪作。纪
+晓岚纪大学士就是这种观点。但也有人说书中体现的思想倒也不出诸葛先生的思想之外。
+但不管怎么说，阳明子讲于事上磨练，想来于事上见人识人，应该也不会出太大问题吧。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 04 Sep 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-09-04:/post/2016/09/how-to-know-people.html</guid><category>dao</category></item><item><title>CSAPP 之 cache 与 virtual memory</title><link>http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html</link><description>&lt;h1&gt;Cache&lt;/h1&gt;
+&lt;p&gt;cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
+line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
+行缓存访问定位 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+---------------+------------+--------------+
+|      Tag      |  Set Index | Block Offset |
++---------------+------------+--------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
+同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
+（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
+tag 用于在同一个 set 中定位访问的 line。&lt;/p&gt;
+&lt;h1&gt;Virtual Memory&lt;/h1&gt;
+&lt;p&gt; 在虚拟地址中 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:/post/2016/08/csapp-cache-virtual-memory.html</guid><category>csapp</category></item><item><title>CSAPP 之 file descriptor</title><link>http://yuex.in/post/2016/08/csapp-file-descriptor.html</link><description>&lt;p&gt; 当文件与进程结合时，有以下几个地方需要注意 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fd table -&amp;gt; open file table -&amp;gt; v-node table
+1. fd table 是每进程独立的数据
+2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
+   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
+   导致一个新的 open file table entry，即使打开的是同一文件。
+3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
+   问权限、文件类型、文件大小、三个时间等
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
+件的读写位置的，虽然 fd 是独立的。&lt;/p&gt;
+&lt;p&gt; 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:/post/2016/08/csapp-file-descriptor.html</guid><category>csapp</category></item><item><title>CSAPP 之 thread 与 signal</title><link>http://yuex.in/post/2016/08/csapp-thread-signal.html</link><description>&lt;h1&gt;Thread&lt;/h1&gt;
+&lt;p&gt; 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。&lt;/p&gt;
+&lt;p&gt; 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。&lt;/p&gt;
+&lt;p&gt; 这里再给出 race 的定义 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;race：程序的执行结果的正确性取决于线程是如何调度的
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;thread 相关的函数 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pthread_create(tid, attr, func, arg): 创建线程。tid 用于返回线程号，func 是要
+    运行的线程逻辑函数，arg 是一个指针，指向要传递的函数参数。成功返回 0
+pthread_exit(rc): 结束当前线程
+pthread_cancel …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 27 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-27:/post/2016/08/csapp-thread-signal.html</guid><category>csapp</category></item><item><title>CSAPP 之 asm 函数调用</title><link>http://yuex.in/post/2016/08/csapp-asm-function.html</link><description>&lt;p&gt; 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
+述。毕竟这是最基本的程序单元。&lt;/p&gt;
+&lt;h1&gt; 地址跳转 &lt;/h1&gt;
+&lt;p&gt;asm 中的地址跳转是通过 &lt;code&gt;call&lt;/code&gt; 和 &lt;code&gt;ret&lt;/code&gt; 进行的，但经常容易忽略的一个事实是 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;call 会将下一条指令的地址 (pc) 压栈
+ret 会从栈上弹出一个地址到 pc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 也就是说这两条指令都会导致栈指针的变化。在 32 位系统中，由于参数传递是通过压栈进
+行的，要注意的是 call 一般都是在参数传递压栈之后（也必须这样），所以函数调用的返
+回地址总是紧临被调用函数的 stack frame。&lt;/p&gt;
+&lt;p&gt; 在 32 位系统中，在每次调用后，被调用函数一般还要维护 esp 和 ebp。一般都是将 ebp 压到栈
+上，紧临返回地址。&lt;code&gt;leave&lt;/code&gt; 是一个复合指令，用于弹栈以恢复 ebp。&lt;/p&gt;
+&lt;h1&gt; 参数传递 &lt;/h1&gt;
+&lt;p&gt;32 位系统中是依靠压栈进行参数传递的。而在 64 位系统中，小于等于六个的参数是通过寄
+存器传递的 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 24 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-24:/post/2016/08/csapp-asm-function.html</guid><category>csapp</category></item><item><title>CSAPP 之 struct 填充</title><link>http://yuex.in/post/2016/08/csapp-struct-padding.html</link><description>&lt;p&gt; 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 所有数据类型要对齐到其类型大小的内存地址上
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 简言之就是，尾部要填充以保证后续地址对齐到其内含的最大的数据类型大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2. 32 位系统以的对齐以指针大小 4 为上限
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。而在 64 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 24 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-24:/post/2016/08/csapp-struct-padding.html</guid><category>csapp</category></item><item><title>CSAPP 之 IEEE 754</title><link>http://yuex.in/post/2016/08/csapp-ieee754.html</link><description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+数点来调整精度的方法。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 相比整数的二的补码表示要复杂了不少，不过仔细
+研究之后，这种表示方法还是相当巧妙的。这里只是对 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 一书中对 &lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的
+讲解进行一个总结，具体的还请参考 wikipedia 或者 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 原书相关章节。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中将数位分成了三部分 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;V = (-1)^s * M * 2^E
++-+-----------+-----------------------------------------+
+|s|  exp (e)  |             frac (f)                    |
++-+-----------+-----------------------------------------+
+f = .f1f2...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
+据数的类型来确定。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中根据所表示的数的数值大小范围定义了三种类型的数
+值。类型的区分是通过检查 e 的数值来确定的 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 21 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-21:/post/2016/08/csapp-ieee754.html</guid><category>csapp</category></item><item><title>匹兹堡见闻一二</title><link>http://yuex.in/post/2016/08/pittsburgh-first-impression.html</link><description>&lt;p&gt; 相比于费城、纽约、三潘这种城市，匹兹堡无论从历史、文化、科技上的名声都不太响亮
+。但细说起来，匹兹堡也算得上是改变了美国历史进程的城市之一。法印战争的第一枪就
+是在匹兹堡打响的。而法印战争作为英法七年战争的美洲战场，为美洲殖民地赢得了大量
+土地自是不在话下。更重要的是，英国政府在战后为了弥补战争开支，开始向美洲殖民地
+征收印花税，而这最终导致了美国独立战争的爆发。来到匹兹堡之后，我有见闻一二，分
+享如下。&lt;/p&gt;
+&lt;h1&gt; 哥伦布骑士团 &lt;/h1&gt;
+&lt;p&gt; 我住的地方不远就是匹兹堡的 &lt;a href="https://en.wikipedia.org/wiki/Saint_Paul_Cathedral_(Pittsburgh,_Pennsylvania)"&gt; 圣保罗教堂 &lt;/a&gt;。当然，全世界各地有很多圣保罗教堂，这
+里单说匹兹堡的这一间。这间教堂是罗马天主教匹兹堡教区的主堂。天主教堂的建筑风格
+一般都是哥特式或者巴洛克式的，极为富丽堂皇和雄伟恢宏。不过这里想说的是教堂门口
+正对路口那个奉给 &lt;a href="https://en.wikipedia.org/wiki/Knights_of_Columbus"&gt; 哥伦布骑士团 &lt;/a&gt; 的纪念碑。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="knight_of_columbus" src="/image/knight_of_columbus.jpg" style="display:block; margin: 0 auto"&gt;&lt;/p&gt;
+&lt;p&gt; 图中两棵小松树之间的纪念碑就是奉给 &lt;a href="https://en.wikipedia.org/wiki/Knights_of_Columbus"&gt; 哥伦布骑士团 &lt;/a&gt; 的。哥伦布骑士团是在美国组建
+的服务于天主教社区的志愿团体。成员必须是天主教徒。JFK 也是其成员之一。这里想说的
+是 &lt;a href="https://en.wikipedia.org/wiki/Knights_of_Columbus"&gt; 哥伦布骑士团 &lt;/a&gt; 的信条 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In service to One&lt;br&gt;
+  In service to all  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 这两句信条恰好契合于中国士人精神 “ 精一执中，民胞物与 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 17 Aug 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-08-17:/post/2016/08/pittsburgh-first-impression.html</guid><category>dao</category></item><item><title>吾道一贯有感</title><link>http://yuex.in/post/2015/03/wu-dao-yi-guan.html</link><description>&lt;p&gt; 最近在看梁任公所辑的《曾文正公嘉言钞》，有一些浅见，叨烦如下。&lt;/p&gt;
 &lt;p&gt;《大学》一文指出了儒学的修业的八目。其中最后四目是修身、齐家、治国、平天下。也就是说儒学之道，当从每个人的自身做起，一步步由近及远地推行，最后使大道行于天下。至于这四目的每一目具体怎么实施，我以前的认识是这样的：修身这一目理论上其实最容易，管好自己即可，实在不行像宗教家们的教诲的那样做一个大善人也算是违道不远嘛。齐家这一目呢，做成一个好儿子、好丈夫、好父母即可，对于家庭成员不好的行为要及时劝诫。而对于治国和平天下呢，就是选用有志于此道品德好的人，制定赏罚分明的法令诸如此类。&lt;/p&gt;
 &lt;p&gt; 不难看出，这四目修行的具体的方法其实是不一样的。特别是在这种认识下，一旦由己身推广到他人，便不可避免地引入赏刑与说教。我倒并不是对法家和兵家有什么偏见，只是觉得从学理上而言，这样做其实是破坏了儒家理论体系的完备性。对于 “ 吾道一贯 ” 的儒学而言，这种理解也很难说是合于一。此外，这种做法还有一个流弊，就是具体的实行很大程度上是取决于中层的执行者的，非常容易转变为机械执行法令，不注重背后精神与具体情况，导致大道转变为独裁，教化转变为洗脑。这种流弊可从朱子注 “ 亲民 ” 为 “ 新民 ” 的后世影响略知一二。&lt;/p&gt;
-&lt;p&gt; 而在《曾文正公嘉言钞》中，曾文正公反复强调的就是社会变革，也就是大道之行，的最有效的办法是促成风气。而促成风气最有效的办法就是由在上位者以身作则。简而言之就是 “ 倡而为风 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 08 Mar 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-03-08:/post/2015/03/wu-dao-yi-guan.html</guid><category>dao</category></item><item><title>《中庸》版本推荐</title><link>http://yuex.in/post/2015/02/zhongyong-version.html</link><description>&lt;p&gt; 最近利用过年放假的时间仔细研读了《中庸》，对于相关版本的选择略有心得，简录如下，还是闲言少叙，先上结论：我推荐以下两个版本的讲解 &lt;/p&gt;
+&lt;p&gt; 而在《曾文正公嘉言钞》中，曾文正公反复强调的就是社会变革，也就是大道之行，的最有效的办法是促成风气。而促成风气最有效的办法就是由在上位者以身作则。简而言之就是 “ 倡而为风 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 08 Mar 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-03-08:/post/2015/03/wu-dao-yi-guan.html</guid><category>dao</category></item><item><title>使用 virtualenv 要注意的地方</title><link>http://yuex.in/post/2015/03/notes-for-virtualenv.html</link><description>&lt;p&gt;virtualenv 是 pypi 当中的一个包，用来虚拟一个 python 环境。实现上就是单独建立一个 locallib，并将 python 和 pip 的命令解析到这个 local lib 中。一般而言是将这个 lib 放在 /home/user/ 的家目录下，区别于系统的 /usr/lib 目录。将之用于开发，可以隔离各个包的依赖关系。这在开发过程中，可以保证在版本变化的情况下，已安装好的包的依赖关系的版本不变。&lt;/p&gt;
+&lt;p&gt; 由于目前 python2 和 python3 在很多 linux 发行版的源当中都是共存的，所以在使用 virtualenv 的时候要特别注意，用 &lt;code&gt;mkvirtualenv&lt;/code&gt; 新建 virtualenv 之后，其中的 python 和 pip 解析到什么样的命令。否则可以会造成安装偏差。&lt;/p&gt;
+&lt;p&gt; 以笔者的系统为例 (archlinux, 2013-03-02)，python2.7 在系统上的命令是 python2 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 02 Mar 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-03-02:/post/2015/03/notes-for-virtualenv.html</guid><category>python</category><category>virtualenv</category></item><item><title>《中庸》版本推荐</title><link>http://yuex.in/post/2015/02/zhongyong-version.html</link><description>&lt;p&gt; 最近利用过年放假的时间仔细研读了《中庸》，对于相关版本的选择略有心得，简录如下，还是闲言少叙，先上结论：我推荐以下两个版本的讲解 &lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt; 张居正的《中庸》皇家读本 &lt;a class="footnote-reference" href="#id4" id="id2"&gt;[1]&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt; 南怀瑾的《中庸讲记》 &lt;a class="footnote-reference" href="#id7" id="id3"&gt;[2]&lt;/a&gt;&lt;/li&gt;
@@ -19,4 +175,110 @@
 &lt;blockquote&gt;
 哲学家们只是用不同的方式解释世界，而问题在于改造世界 &lt;/blockquote&gt;
 &lt;p&gt; 这也一如数学中的公理系统。更具体的，我们可以用欧氏几何和非欧几何作例。二者无关对错，只有不同应用场景下的合适与否。但有一个最低的要求，就是这个理论必须是自洽的。&lt;/p&gt;
-</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 15 Feb 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-02-15:/post/2015/02/dialectical-materialism-contradiction.html</guid><category>dao</category></item></channel></rss>
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 15 Feb 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-02-15:/post/2015/02/dialectical-materialism-contradiction.html</guid><category>dao</category></item><item><title>Vim 技巧之 Meta 键</title><link>http://yuex.in/post/2015/02/vim-technique-meta-key.html</link><description>&lt;p&gt; 在 terminal 环境下使用 Vim 时，Meta 键（亦即 Alt）一般是不起作用的 &lt;sup id="fnref-!map-alt-keys"&gt;&lt;a class="footnote-ref" href="#fn-!map-alt-keys"&gt;1&lt;/a&gt;&lt;/sup&gt;。但是随着插件越用越多，绑定的组合键越来越多，按键难免会出现越来越不够用的情况。若是可以使用 Meta 键进行键位组合，至少会增加 26 个组合键。这里给出一个通过配置 Vim 来启用 Meta 组合键的方法。&lt;/p&gt;
+&lt;p&gt; 还是直接上代码。这里启用了从 &lt;code&gt;&amp;lt;M-a&amp;gt;&lt;/code&gt; 到 &lt;code&gt;&amp;lt;M-z&amp;gt;&lt;/code&gt; 的 26 组合键和从 &lt;code&gt;&amp;lt;M-0&amp;gt;&lt;/code&gt; 到 &lt;code&gt;&amp;lt;M-9&amp;gt;&lt;/code&gt; 的 10 个组合键。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; range&lt;span class="p"&gt;(&lt;/span&gt;char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; char2nr&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;z&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;let&lt;/span&gt; &lt;span class="k"&gt;i&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; nr2char&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    exec &lt;span class="s2"&gt;&amp;quot;set &amp;lt;M-&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;.&lt;span class="s2"&gt;&amp;quot;&amp;gt;=\&amp;lt;Esc&amp;gt;&amp;quot;&lt;/span&gt;.&lt;span class="k"&gt;i&lt;/span&gt;
+    exec &lt;span class="s2"&gt;&amp;quot;inoremap \&amp;lt;Esc …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 08 Feb 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-02-08:/post/2015/02/vim-technique-meta-key.html</guid><category>vim</category></item><item><title>Vim 技巧之 Smart Write</title><link>http://yuex.in/post/2015/02/vim-technique-smart-write.html</link><description>&lt;p&gt; 上篇讲到 &lt;code&gt;SmartQuit()&lt;/code&gt;，通过处理 Vim 中的 &lt;code&gt;E37&lt;/code&gt; 异常，让我们可以更畅快地退出 Vim。但这个解法并不完美，例如我们通过 &lt;code&gt;vim&lt;/code&gt; 命令编辑无名文件时，&lt;code&gt;SmartQuit()&lt;/code&gt; 在退出时会尝试用 &lt;code&gt;w&lt;/code&gt; 进行保存，但由于当前文件没有文件名，所以会遭遇 Vim 中的 &lt;code&gt;E32&lt;/code&gt; 异常 &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;E32: No file name&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 在这篇文章里，我提供一个我在用的 &lt;code&gt;SmartWrite()&lt;/code&gt; 函数，来解决 &lt;code&gt;E32&lt;/code&gt;。闲言少叙，我们还是直接上代码 &lt;/p&gt;
+&lt;p&gt; 首先，我们先将 &lt;code&gt;SmartWrite()&lt;/code&gt; 的调用绑定到一个键位，这里暂时用 &lt;code&gt;wq&lt;/code&gt; 替代好了。&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;nnoremap&lt;/span&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;unique&lt;span class="p"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;wq&lt;/span&gt; :&lt;span class="k"&gt;call&lt;/span&gt; SmartWrite&lt;span class="p"&gt;()&amp;lt;&lt;/span&gt;CR&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt; 一个更好的方法是将 &lt;code&gt;;&lt;/code&gt; 映射为 &lt;code&gt;&amp;lt;Leader&amp;gt;&lt;/code&gt; 键，然后用 &lt;code&gt;&amp;lt;Leader&amp;gt;w&lt;/code&gt; 来调用 &lt;code&gt;SmartWrite()&lt;/code&gt;，这个键位按起来很方便而且很好记。当然 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 01 Feb 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-02-01:/post/2015/02/vim-technique-smart-write.html</guid><category>vim</category></item><item><title>Vim 技巧之 Smart Quit</title><link>http://yuex.in/post/2015/01/vim-technique-smart-quit.html</link><description>&lt;p&gt; 初学 Vim 时，我们都有这样的经历 ——“ 哇，怎么退出？！”。在尝试了 &lt;code&gt;&amp;lt;Ctrl-C&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;Esc&amp;gt;&lt;/code&gt; 全都没有效果时，才会注意左下角状态栏的小提示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Type  :quit&amp;lt;Enter&amp;gt;  to exit Vim&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 在小心翼翼地键入这个命令完成退出之后，我们欣喜地自认为已经掌握了 Vim 的退出之法。然而，当我们在 Vim 中进行了一番探索、受了一些嘲弄、做了一些不听使唤的修改后，虔诚地键入 &lt;code&gt;:quit&lt;/code&gt;，准备结束这次不成功的尝试，舒缓一下心神，重新来过之时，Vim 又会无情地用一行血红色的小字警告你：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;E37: No write since last change (add ! to override)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt; 很多人的 Vim 之旅就此便戛然而止。许多年之后，那些并未放弃的人们，早已掌握了 Vim 中的大多数奥妙，但时不时地，仍然会在完成一些快速修改，准备退出进行一下验证或者修改下一个文件的时候，遭遇 Vim 的 &lt;code&gt;E37&lt;/code&gt; 嘲弄。Vim …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 25 Jan 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-01-25:/post/2015/01/vim-technique-smart-quit.html</guid><category>vim</category></item><item><title>Exclusive Queue 的一个推广</title><link>http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html</link><description>&lt;p&gt; 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 &lt;a href="http://greenteapress.com/semaphores/"&gt;The Little Book of Semaphores&lt;/a&gt;，理清了许多以前了解得不很确实的知识。&lt;/p&gt;
+&lt;p&gt; 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous&lt;sup id="fnref-!rendezvous"&gt;&lt;a class="footnote-ref" href="#fn-!rendezvous"&gt;1&lt;/a&gt;&lt;/sup&gt;，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 &lt;sup id="fnref-!note"&gt;&lt;a class="footnote-ref" href="#fn-!note"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt; 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1 …&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 18 Jan 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-01-18:/post/2015/01/little-book-exclusive-queue-generalization.html</guid><category>system</category><category>semaphore</category></item><item><title>How Linux Work 笔记</title><link>http://yuex.in/post/2015/01/how-linux-work-review.html</link><description>&lt;p&gt; 最近看了一本 Linux 方面的 2014 年新书，是 &lt;a href="http://book.douban.com/subject/26266751/"&gt;How Linux Work&lt;/a&gt; 第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 &lt;a href="http://www.ituring.com.cn/book/1548"&gt; 中文版 &lt;/a&gt;，今年年底前应该可以和大家见面。&lt;/p&gt;
+&lt;p&gt; 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。&lt;/p&gt;
+&lt;p&gt; 使用 mktemp 生成临时文件。只要在 shell 脚本中使用 &lt;code&gt;TEMPFILE=$(mktemp)&lt;/code&gt; 就会在 &lt;code&gt;/tmp&lt;/code&gt; 中生成一个临时文件，然后可以通过访问 &lt;code&gt;${TEMPFILE}&lt;/code&gt; 进行使用，非常方便。&lt;/p&gt;
+&lt;p&gt;Shell 脚本的劣势，有以下三点，结合以前的开发经验，还真是这样的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 算术计算，特别是浮点运算，基本不可以原生地做；&lt;/li&gt;
+&lt;li&gt; 字符串处理 …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 11 Jan 2015 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2015-01-11:/post/2015/01/how-linux-work-review.html</guid><category>linux</category></item><item><title>使用 bash 渲染模板动态生成配置文件</title><link>http://yuex.in/post/2014/10/bash-template.html</link><description>&lt;p&gt; 在使用 bash 自动化一些配置过程的时候，经常会遇到这样一种情况，我们需要向配置文件中写入一些信息，而这些信息是动态的，只有脚本实际运行的时候，才能知道这些信息。比如我需要自动启动一个由多个 docker container 组成的 cluster。这个 cluster 中的多个 container 形成一个 C/S 架构的星形拓扑。为了可以正常通信，client 至少应该知道 server 的 ip 地址。为了使这个部署可以更灵活，一般会选择使用 dhcp 来动态获取地址。所以，我们不能事先把地址写死，必须在 server container 运行之后动态生成 client 的配置文件。当然，我们也可以把脚本写成两步，先起 server，再起 client。但是这种方法自动化的不彻底，没有一下就把所有工作从头做到尾来得爽快，所以这里也就按下不表了。&lt;/p&gt;
+&lt;p&gt; 上面说的这个情况，最直接的方法是用 &lt;code&gt;sed&lt;/code&gt; 配合正则表达一处一处地修改。但是当要修改的地方很多时，这个方法会变得非常繁琐，后期维护也非常困难。我在这里提供一种利用 bash 渲染模板文件动态生成实际使用配置文件的方法。如果你有玩过 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Tue, 14 Oct 2014 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2014-10-14:/post/2014/10/bash-template.html</guid><category>bash</category></item><item><title>Arch Linux 上手指南</title><link>http://yuex.in/post/2014/04/arch-guide.html</link><description>&lt;h1&gt; 缘起 &lt;/h1&gt;
+&lt;p&gt; 一直都想写一篇关于 Arch Linux 的博客，可以用来帮助 Arch 新玩家上路，
+又可以总结一下自己入坑三四年来的一些心得。
+年前的时候，我的 Thinkpad X220 双硬盘中的 mSATA SSD 挂了，援救了一下数据和系统。
+本打算借机写写 Arch Linux 的安装，也积累了一些素材。但思来想去，
+每个人的硬件型号、网络环境、分区习惯、软件选择的品味等等，不尽相同，
+一份安装指南不一定会对每个人都有用，甚至还有可能在某些情况下起到截然相反的效果，
+影响观者对于 Arch 的热情，所以最后也就没有落笔。&lt;/p&gt;
+&lt;p&gt; 然而，今天又有同事问起 Arch Linux，同事有一些 Linux 基础，对 Arch 比较好奇。
+我想不如准备一些参考资料，说说自己作为 Arch 用户的使用心得，
+来告诉新玩家 Arch 是什么，使用 Arch 会遇到怎样的问题，这样来得更实在一些。
+像安装指南、发行版比较之类，已经有不少很好的资料了，实在不需要我的狗尾续貂 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Fri, 18 Apr 2014 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2014-04-18:/post/2014/04/arch-guide.html</guid><category>archlinux</category></item><item><title>利用耗怒回血解决野蛮人的战斗恢复问题</title><link>http://yuex.in/post/2014/03/diablo3-barb-build.html</link><description>&lt;h1&gt;Build 介绍 &lt;/h1&gt;
+&lt;p&gt; 在《夺魂之镰》之中，
+由于 “ 生命窃取 ” 的去除和 “ 战斗暴怒 ” 与 “ 狂战之怒 ” 两个技能某些符文的修改，
+在之前版本中广泛流行的 “ 双旋风 ”build 已经跑不起来了。
+作为近战职业之一的野蛮人，寻找新的战斗恢复方式迫在眉睫。
+在本文中我想到和试验了一个围绕被动技能 “ 嗜血狂人 ” 建立的 build，
+可以在不牺牲装备上任何主要属性的前提之下（不会牺牲 dps），
+通过合理搭配稀有装备的属性，让野蛮人达到战撸苦痛 I、II、III 的目的。&lt;/p&gt;
+&lt;p&gt; 以下会先说明耗怒回血的原理，接着会根据这个原理展示我目前在用的几个 build，
+和几个可能的变种 build。最后是装备选择和巅峰点数的选择。
+各位读者可以根据耗怒回血的原理自由发挥，选择自己喜欢的技能奋战《夺魂之镰》。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 耐性不够的朋友可以直接跳转到 “ 技能选择 ” 章节，但我还是建议你看完原理部分 &lt;/strong&gt;&lt;/p&gt;
+&lt;h1&gt;Build 特点 &lt;/h1&gt;
+&lt;p&gt; 优势 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 治疗的提升不以牺牲 dps 和 ehp 为前提，充分利用装备上的词缀，让三者可以共同提升，互不干扰 &lt;/li&gt;
+&lt;li&gt; 渐进的装备更新路线，不需要特定传奇的支持，野蛮人可以从稀有装备慢慢过渡到传奇 &lt;/li&gt;
+&lt;li&gt; 较好的技能兼容，围绕耗怒回血 …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 30 Mar 2014 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2014-03-30:/post/2014/03/diablo3-barb-build.html</guid><category>diablo3</category></item><item><title>动手写 PAM 模块让 sshd 支持用户接入控制</title><link>http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html</link><description>&lt;p&gt; 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。&lt;/p&gt;
+&lt;p&gt; 想当然的做法是用 /etc/security/limits.conf 中的 maxlogins 解决。但是这个是有问题的，maxlogins 是要用户登录到 shell 才会统计的。pam_limits.so 中读取的是 utmp，这个是存在 /var/run/utmp 中的，用 &lt;code&gt;w&lt;/code&gt; 可以查看。而 &lt;code&gt;ssh -N&lt;/code&gt; 是不会被 utmp 记录为 login 的。所以，如果用上篇 blog 中的方法实践的话，用户可以用 &lt;code&gt;ssh -N&lt;/code&gt; 绕过所有的接入控制。一般而言，这也不是什么大问题，因为用户 &lt;code&gt;ssh -N&lt;/code&gt; 接入的话 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 29 Sep 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2013-09-29:/post/2013/09/hands-on-pam-module-and-sshd.html</guid><category>sshd</category><category>pam</category><category>python</category></item><item><title>配置 sshd 使用 pam 认证小结</title><link>http://yuex.in/post/2013/09/config-sshd-using-pam.html</link><description>&lt;p&gt; 某今年新入了一台 linode 主机，最便宜的 plan，年中的时候，linode 流量从 2GB 免费升级到了 2TB。因为某的博客是直接放到 github 上的，所以对 linode 的使用一直都不怎么充分。仅限于几个朋友之间的 L2TP 和自己的 &lt;code&gt;ssh -D&lt;/code&gt;。一直都有一个架立一个 socks 伺服的想法，来给大家免费用。无奈于大部分的浏览器都不支持有密码的 socks 认证，如果架设一个没有验证的伺服又有很严重的管理和用户性能区分保证的问题，所以这个想法一直没有落实。今天花了一些时间，用 ssh＋pam＋chroot jail 完成了这个想法，将思路大概记录一下，希望对有同样需求的同学有所帮助。&lt;/p&gt;
+&lt;p&gt;ssh＋pam＋chroot 各模块的功能如下 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ssh/sshd：client and server，支持密码用户 &lt;/li&gt;
+&lt;li&gt;pam：提供基于用户名和 ip 地址段的登陆认证和限制 &lt;/li&gt;
+&lt;li&gt;chroot：做成一个 chroot jail 限制用户在主机上的权限 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;chroot …&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 25 Sep 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2013-09-25:/post/2013/09/config-sshd-using-pam.html</guid><category>sshd</category><category>pam</category></item><item><title>terminal 切换小结</title><link>http://yuex.in/post/2013/09/terminal-switching.html</link><description>&lt;p&gt; 早就听说 xterm 和 urxvt 是轻量高可配置，所以想利用周末的时间把某现在在用的 terminator 切换到 xterm 或者 urxvt。结果放弃了。倒不是因为配置太过复杂，而是某觉得，在进行了一定配置之后，对比需求 / 成本 / 收益觉得，这样的配置不能称之为有效。某认为将这些东西总结一下，可能有助于有同样切换初衷的同学少走一些弯路。&lt;/p&gt;
+&lt;p&gt; 某切换 terminal 的初始需求 :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt; 可全屏 &lt;/li&gt;
+&lt;li&gt; 支持 solarized 的颜色设置 &lt;/li&gt;
+&lt;li&gt; 支持 inconsolata-g 和 wenquanyi 中文 &lt;/li&gt;
+&lt;li&gt; 支持 tab&lt;/li&gt;
+&lt;li&gt; 可以和 tmux 和 powerline 和谐相处 &lt;/li&gt;
+&lt;li&gt; 轻量化 &lt;/li&gt;
+&lt;li&gt;copy and paste&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 因为 urxvt 的初衷就是取代 xterm。而 terminator，konsole，gnome-terminal，xfce4-terminal 的设置都是大同小异。所以下面的讨论主要以 urxvt 和 terminator 为例。&lt;/p&gt;
+&lt;p&gt; 第一条 …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Tue, 24 Sep 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2013-09-24:/post/2013/09/terminal-switching.html</guid><category>terminal</category><category>xterm</category><category>urxvt</category></item><item><title>Archlinux 环境下 pdf 注记工具推荐</title><link>http://yuex.in/post/2013/03/pdf-annotation.html</link><description>&lt;p&gt; 从事学术工作的朋友可能像笔者一样，经常会遇到要帮助别人修改文章，或者自己阅读文献要进行批注的情况。由于并不是人人都使用 Linux 和 Latex，所以一般大家会默认地将写好的文章转换为 pdf 格式，然后再进行修改 &lt;sup id="fnref-1"&gt;&lt;a class="footnote-ref" href="#fn-1"&gt;1&lt;/a&gt;&lt;/sup&gt;。这样在 Linux 下选择一款得心应手的带有注记功能的 pdf viewer 软件就十分重要了。&lt;/p&gt;
+&lt;p&gt; 在 Archlinux 上，有如下几种选择 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Okular          - extra, kde&lt;/li&gt;
+&lt;li&gt;evince          - extra, gnome&lt;/li&gt;
+&lt;li&gt;masterpdfeditor - aur&lt;/li&gt;
+&lt;li&gt;xournal         - extra&lt;/li&gt;
+&lt;li&gt;mendeleydesktop - aur&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 不过这些都和 Adobe Acrobat 的用户体验有所差距。有些虽然具有 sticky note 和 highlight 功能，但是 export 之后，在某些 pdf viewer 当中查看存在兼容性问题。几经比较，最后笔者选择了如下的组合 &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.tracker-software.com/product/pdf-xchange-viewer"&gt;PDF-XChange Viewer&lt;/a&gt; - needs wine support&lt;/li&gt;
+&lt;li&gt;acroread - aur …&lt;/li&gt;&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 16 Mar 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2013-03-16:/post/2013/03/pdf-annotation.html</guid><category>pdf</category><category>archlinux</category></item><item><title>在 shell 中区分 option 与 args</title><link>http://yuex.in/post/2013/03/differ-optons-from-args-in-shell.html</link><description>&lt;p&gt; 使用 &lt;code&gt;--&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt; 如下，&lt;code&gt;-rf&lt;/code&gt; 会解析为 option，而 &lt;code&gt;--help&lt;/code&gt; 会解析为 args&lt;sup id="fnref-1"&gt;&lt;a class="footnote-ref" href="#fn-1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ rm -rf -- --help
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn-1"&gt;
+&lt;p&gt;&lt;code&gt;man bash&lt;/code&gt; 之后 &lt;code&gt;/--&lt;/code&gt;，可以了解更多信息 &amp;#160;&lt;a class="footnote-backref" href="#fnref-1" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sat, 02 Mar 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2013-03-02:/post/2013/03/differ-optons-from-args-in-shell.html</guid><category>bash</category></item></channel></rss>

@@ -1,5 +1,433 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人) - book</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/book.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2015-02-22T00:00:00+08:00</updated><entry><title>《中庸》版本推荐</title><link href="http://yuex.in/post/2015/02/zhongyong-version.html" rel="alternate"></link><published>2015-02-22T00:00:00+08:00</published><updated>2015-02-22T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-02-22:/post/2015/02/zhongyong-version.html</id><summary type="html">&lt;p&gt; 最近利用过年放假的时间仔细研读了《中庸》，对于相关版本的选择略有心得，简录如下，还是闲言少叙，先上结论：我推荐以下两个版本的讲解 &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人) - book</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/book.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-08-27T00:00:00+08:00</updated><entry><title>CSAPP 之 cache 与 virtual memory</title><link href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" rel="alternate"></link><published>2016-08-27T00:00:00+08:00</published><updated>2016-08-27T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-08-27:/post/2016/08/csapp-cache-virtual-memory.html</id><summary type="html">&lt;h1&gt;Cache&lt;/h1&gt;
+&lt;p&gt;cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
+line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
+行缓存访问定位 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+---------------+------------+--------------+
+|      Tag      |  Set Index | Block Offset |
++---------------+------------+--------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
+同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
+（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
+tag 用于在同一个 set 中定位访问的 line。&lt;/p&gt;
+&lt;h1&gt;Virtual Memory&lt;/h1&gt;
+&lt;p&gt; 在虚拟地址中 …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Cache&lt;/h1&gt;
+&lt;p&gt;cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
+line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
+行缓存访问定位 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;+---------------+------------+--------------+
+|      Tag      |  Set Index | Block Offset |
++---------------+------------+--------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
+同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
+（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
+tag 用于在同一个 set 中定位访问的 line。&lt;/p&gt;
+&lt;h1&gt;Virtual Memory&lt;/h1&gt;
+&lt;p&gt; 在虚拟地址中，一般是先进行地址翻译，再进行缓存查找。因为这样缓存的都是物理地址
+，可以缓存不同虚拟地址所映射到的相同物理地址，提高缓存性能。而地址翻译所用到的
+缓存叫 TLB（Translation Lookaside Buffer）。虚拟地址的切分如下 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;|&amp;lt;-   Virtual Page Number  -&amp;gt;|
++---------------+------------+--------------+
+|    TLB Tag    |  TLB Index | Page Offset  |
++---------------+------------+--------------+
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 对于多级地址翻译的，一般会将相关的状态 bit 存储在 page table entry 中的最后几个用于
+存 Page Offset 的比特位上。最后一位通常是用于标识所标 page 是否有效。当然这只是
+Intel 架构的通常做法，其它架构还是要参考其用户手册。&lt;/p&gt;
+&lt;h1&gt;Garbage Collecton&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Mark&amp;amp;Sweep
+1. depth-first or breadth-first mark starts from root
+2. all heap scan sweep unmark marked block and free unmarked block
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-EOF-&lt;/p&gt;</content><category term="csapp"></category></entry><entry><title>CSAPP 之 file descriptor</title><link href="http://yuex.in/post/2016/08/csapp-file-descriptor.html" rel="alternate"></link><published>2016-08-27T00:00:00+08:00</published><updated>2016-08-27T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-08-27:/post/2016/08/csapp-file-descriptor.html</id><summary type="html">&lt;p&gt; 当文件与进程结合时，有以下几个地方需要注意 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fd table -&amp;gt; open file table -&amp;gt; v-node table
+1. fd table 是每进程独立的数据
+2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
+   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
+   导致一个新的 open file table entry，即使打开的是同一文件。
+3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
+   问权限、文件类型、文件大小、三个时间等
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
+件的读写位置的，虽然 fd 是独立的。&lt;/p&gt;
+&lt;p&gt; 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr …&lt;/p&gt;</summary><content type="html">&lt;p&gt; 当文件与进程结合时，有以下几个地方需要注意 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;fd table -&amp;gt; open file table -&amp;gt; v-node table
+1. fd table 是每进程独立的数据
+2. open file table 是所有进程共享的系统全局数据。这里维护了每个打开文件的反
+   向映射数目和当前光标位置。当映射数目为 0 时，文件会被关闭。每个 open() 都会
+   导致一个新的 open file table entry，即使打开的是同一文件。
+3. v-node table 是所有进程共享的系统全局数据。这里维护了每个文件的信息，如访
+   问权限、文件类型、文件大小、三个时间等
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 基于以上事实，如果文件打开之后进行 fork，那么 fork 后的子母进程其实是共享了打开文
+件的读写位置的，虽然 fd 是独立的。&lt;/p&gt;
+&lt;p&gt; 当然 fd table 中的前三号是默认帮你打开到 stdin/stdout/stderr 的。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</content><category term="csapp"></category></entry><entry><title>CSAPP 之 thread 与 signal</title><link href="http://yuex.in/post/2016/08/csapp-thread-signal.html" rel="alternate"></link><published>2016-08-27T00:00:00+08:00</published><updated>2016-08-27T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-08-27:/post/2016/08/csapp-thread-signal.html</id><summary type="html">&lt;h1&gt;Thread&lt;/h1&gt;
+&lt;p&gt; 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。&lt;/p&gt;
+&lt;p&gt; 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。&lt;/p&gt;
+&lt;p&gt; 这里再给出 race 的定义 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;race：程序的执行结果的正确性取决于线程是如何调度的
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;thread 相关的函数 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pthread_create(tid, attr, func, arg): 创建线程。tid 用于返回线程号，func 是要
+    运行的线程逻辑函数，arg 是一个指针，指向要传递的函数参数。成功返回 0
+pthread_exit(rc): 结束当前线程
+pthread_cancel …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Thread&lt;/h1&gt;
+&lt;p&gt; 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。&lt;/p&gt;
+&lt;p&gt; 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。&lt;/p&gt;
+&lt;p&gt; 这里再给出 race 的定义 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;race：程序的执行结果的正确性取决于线程是如何调度的
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;thread 相关的函数 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pthread_create(tid, attr, func, arg): 创建线程。tid 用于返回线程号，func 是要
+    运行的线程逻辑函数，arg 是一个指针，指向要传递的函数参数。成功返回 0
+pthread_exit(rc): 结束当前线程
+pthread_cancel(tid): 结束线程 tid
+pthread_join(tid, ret): tid 是要 join 的线程号，ret 用于接收线程返回值，实际是
+    一个指针，因此可以用于实现多值返回
+pthread_detach(tid): 将线程 tid detach，会使线程在结束时自动被 reap 而无需 join
+    。无须返回值的线程可以在线程开始时设
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Signal&lt;/h1&gt;
+&lt;p&gt; 进程之间通过信号来进行同步中有很多小的细节容易被忽略。比如 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. 信号有可能在安装 signal handler 之前被收到和处理，这时会使用默认 handler
+2. 信号有可能在程序结束之后才被收到和处理，也就完全不会被处理了
+3. fork 和 exec 之后，信号的 block 状态是不会改变的
+4. 信号的收发应该在多核并行场景下考虑，而不是仅在单核并发场景下
+5. pause() 可以用来等待信号，但信号完全有可能在 pause() 之前收到，而这有可能导
+   致程序挂起不会退出。
+6. signal handler 完全有可能被其它类型的信号打断。因此在 signal handler 中正式
+   开始处理时，要先保存 errno 和 block 所有其它信号，并在处理完后恢复这两者。
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 需要注意的是这里的 signal 指的是系统进程间用于同步的软信号，会导致相应的软件
+signal hanlder 的触发。这一般发生在内核态向用户态切换时，如系统调用完成或者
+context switch 发生。而硬件本身还有一类硬信号，一般是由 IO 设备产生，直接设置 CPU 的
+中断线为高电平，再通过系统总线传入中断号。CPU 会在被每条指令结束之后检查中断线，
+如果电平高位，就会根据相应的中断号调用系统中的 interrupt handler 处理。而这与进程
+的软信号没有任何关系。其实某些情况下的 context switch 就是通过这种方式接收定时中
+断实现的。&lt;/p&gt;
+&lt;p&gt; 在编写 signal handler 时有以下几点要注意 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. 逻辑尽量简单。比如 handler 只设置标志，然后由 main 来定期处理
+2. 仅调用 async-singal-safe 函数。特别地，printf, sprintf, malloc, exit 都不在
+   此类。唯一安全的产生输出的方式是使用 write
+3. 保存和恢复 errno
+4. 当访问共享数据时，通过 block 所有信号来尽量保证数据一致性
+5. 将全局变量声明为 volatile。强制对其的每次读写都要通过内存访问进行，以免编
+   译器对其进行寄存器缓存
+6. 将全局 flag 声明为 sig_atomic_t，这可以使对其的读写变为原子操作。但需要注意
+   的是即使进行了此声明，像 flag++/flag += 10 这种操作仍会是非原子操作，因为
+   其本身就涉及到多条指令
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;signal 相关的函数有以下几个 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;waitpid(pid, statusp, options): 等待子进程 pid 结束。当 pid 为 0 时，等待任何 pid
+    结束。当没有子进程需要被等待时，返回 -1 和 errno = ECHILD。当 waitpid 被信号
+    中断时，返回 -1 和 errno = EINTR。成功时，返回结束子进程的 pid。
+    statusp 用于返回子进程相关的结束信息
+    options 可以设置 waitpid 的等待行为
+        WNOHANG：立即返回，不挂起进程
+        WUNTRACED: 等待子进程直到某个被 terminated 或者 stopped
+        WCONTINUED: 等待子进程直接某个被 terminated 或者某个 stopped 子进程被
+            SIGCONT 唤醒。
+wait(statusp): 等同于 waitpid(-1, statusp, 0)
+
+kill(pid, sig)：发送信号到进程 pid，失败返回 -1
+kill(-pid, sig)：发送信号到进程组 pid，失败返回 -1
+alarm(secs)：在 secs 秒之后向自己发送 SIGALARM 的定时信号
+
+signal(sig, handler)：将 handler 安装绑定到信号 sig 上，handler 可以使用 SIG_IGN
+    或 SIG_DFL 来指定忽略或者默认
+
+sigprocmask(how, set, oldset)：使用 set 来设置 signal mask，旧的 set 会通过
+    oldset 返回。其中 how 有三种模式，SIG_BLOCK, SIG_UNBLOCK, SIG_SETMASK
+    示例
+    sigemptyset(&amp;amp;mask);
+    sigaddset(&amp;amp;mask, SIGINT);
+
+    sigprocmask(SIG_BLOCK, &amp;amp;mask, &amp;amp;prev);
+    /* critical region without interruption from SIGING */
+    sigprocmask(SIG_SETMASK, &amp;amp;prev, NULL);
+
+sigsuspend(mask)：临时使用 mask 代替当前 signal mask，并挂起进程直接接收到一个
+    未被 block 的信号。一般用于等待某个信号的到达。一般需要先屏蔽信号以进行必
+    要初始化，然后再通过 sigsuspend 取消屏蔽以进行信号处理
+    示例
+    volatile sig_atomic_t pid;
+
+    sigchld_handler:
+    int olderrno = errno
+    pid = waitpid(-1, NULL, 0)
+    errno = olderrno
+
+    main:
+    sigprocmask(SIG_BLOCK, &amp;amp;mask, &amp;amp;prev); /* block SIGCHLD */
+
+    if (fork() == 0) /* child */
+        exit(0);
+
+    pid = 0;
+    while (!pid) /* wait for SIGCHLD */
+        /* cuz SIGCHLD is blocked, it can only be received CORRECTLY here */
+        sigsuspend(&amp;amp;prev)
+
+    sigprocmask(SIG_SETMASK, &amp;amp;prev, NULL); /* unblock SIGCHLD */
+
+sigaction(sig, act, oldact)：用于显式指定 signal 的行为，以提高代码可移植性
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Nonlocal Jump&lt;/h1&gt;
+&lt;p&gt;setjmp(env) 会将当前的 calling environment 存入 env，返回 0。而 longjmp(env, rc) 可以
+跳转到最近调用的 setjmp(env) 处返回，返回值为 rc。可以如下组合来模拟 try catch&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;switch(setjmp(env)) {
+    case 1:
+        /* catch exception #1 */
+        break;
+    case 2:
+        /* catch exception #2 */
+        break;
+    case 0:
+        /* try_body */
+        ...
+
+        /* raise exception #1 */
+        longjmp(env, 1);
+
+        /* raise exception #2 */
+        longjmp(env, 2);
+}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;sigsetjmp(env, savesigs) 和 siglongjmp(env, rc) 是对应的 signal handler 版本。其中的
+savesigs 是个 flag，用于标示是否需要保存当前的 signal mask 到 env 中。这对组合可以用
+来实现在接收某些信号时从 signal handler 中跳转到 main 开始的初始化部分，从而 restart
+整个程序。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</content><category term="csapp"></category></entry><entry><title>CSAPP 之 asm 函数调用</title><link href="http://yuex.in/post/2016/08/csapp-asm-function.html" rel="alternate"></link><published>2016-08-24T00:00:00+08:00</published><updated>2016-08-24T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-08-24:/post/2016/08/csapp-asm-function.html</id><summary type="html">&lt;p&gt; 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
+述。毕竟这是最基本的程序单元。&lt;/p&gt;
+&lt;h1&gt; 地址跳转 &lt;/h1&gt;
+&lt;p&gt;asm 中的地址跳转是通过 &lt;code&gt;call&lt;/code&gt; 和 &lt;code&gt;ret&lt;/code&gt; 进行的，但经常容易忽略的一个事实是 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;call 会将下一条指令的地址 (pc) 压栈
+ret 会从栈上弹出一个地址到 pc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 也就是说这两条指令都会导致栈指针的变化。在 32 位系统中，由于参数传递是通过压栈进
+行的，要注意的是 call 一般都是在参数传递压栈之后（也必须这样），所以函数调用的返
+回地址总是紧临被调用函数的 stack frame。&lt;/p&gt;
+&lt;p&gt; 在 32 位系统中，在每次调用后，被调用函数一般还要维护 esp 和 ebp。一般都是将 ebp 压到栈
+上，紧临返回地址。&lt;code&gt;leave&lt;/code&gt; 是一个复合指令，用于弹栈以恢复 ebp。&lt;/p&gt;
+&lt;h1&gt; 参数传递 &lt;/h1&gt;
+&lt;p&gt;32 位系统中是依靠压栈进行参数传递的。而在 64 位系统中，小于等于六个的参数是通过寄
+存器传递的 …&lt;/p&gt;</summary><content type="html">&lt;p&gt; 可能你已经比较熟悉 asm 函数调用的参数传递和地址跳转了，不过这里还是做一个简单的概
+述。毕竟这是最基本的程序单元。&lt;/p&gt;
+&lt;h1&gt; 地址跳转 &lt;/h1&gt;
+&lt;p&gt;asm 中的地址跳转是通过 &lt;code&gt;call&lt;/code&gt; 和 &lt;code&gt;ret&lt;/code&gt; 进行的，但经常容易忽略的一个事实是 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;call 会将下一条指令的地址 (pc) 压栈
+ret 会从栈上弹出一个地址到 pc
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 也就是说这两条指令都会导致栈指针的变化。在 32 位系统中，由于参数传递是通过压栈进
+行的，要注意的是 call 一般都是在参数传递压栈之后（也必须这样），所以函数调用的返
+回地址总是紧临被调用函数的 stack frame。&lt;/p&gt;
+&lt;p&gt; 在 32 位系统中，在每次调用后，被调用函数一般还要维护 esp 和 ebp。一般都是将 ebp 压到栈
+上，紧临返回地址。&lt;code&gt;leave&lt;/code&gt; 是一个复合指令，用于弹栈以恢复 ebp。&lt;/p&gt;
+&lt;h1&gt; 参数传递 &lt;/h1&gt;
+&lt;p&gt;32 位系统中是依靠压栈进行参数传递的。而在 64 位系统中，小于等于六个的参数是通过寄
+存器传递的，这就涉及一个顺序问题。一般是按照以下顺序传递参数的 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;64 位参数传递顺序：rdi, rsi, rdx, rcx, r8, r9
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 这里有一个助记法，屌丝屌操 69（dsdc89）。心里记住就好，别声张，都是文化人 ……&lt;/p&gt;
+&lt;p&gt; 函数返回值无论 32 位还是 64 位都是一样的 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 函数返回值：rax or eax
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 另外需要注意的是，intel 架构中浮点数的运算是通过单独的运算单元进行的，而不是通过
+ALU。因此 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 浮点型参数传递会使用单独的浮点寄存器进行，不会占用 ALU 的参数传递名额和顺序
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt; 特殊指定提要 &lt;/h1&gt;
+&lt;p&gt;AT&amp;amp;T 风格的 asm 有些指令不太好记，这里简单提要一下 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;memory access: imm(ra, rb, mul) = ra + rb * mul + imm
+lea imm(ra, rb, mul), dst: 不需要 src 是有效地址，一般用于优化加乘法计算
+test sec, fir: 比较并设置 cc，之后使用条件跳转进行条件判断
+               需要注意条件跳转中的顺序是 fir ?? sec，刚好反过来
+if cond: 一般是 cond false 跳转，cond true falls through
+         这样可以保证有 else 和无 else 语句时 asm 码结构一致
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;-EOF-&lt;/p&gt;</content><category term="csapp"></category></entry><entry><title>CSAPP 之 struct 填充</title><link href="http://yuex.in/post/2016/08/csapp-struct-padding.html" rel="alternate"></link><published>2016-08-24T00:00:00+08:00</published><updated>2016-08-24T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-08-24:/post/2016/08/csapp-struct-padding.html</id><summary type="html">&lt;p&gt; 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 所有数据类型要对齐到其类型大小的内存地址上
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 简言之就是，尾部要填充以保证后续地址对齐到其内含的最大的数据类型大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2. 32 位系统以的对齐以指针大小 4 为上限
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。而在 64 …&lt;/p&gt;</summary><content type="html">&lt;p&gt; 在 C 语言中计算定义的 struct 类型的大小应该是每个 C 语言初学者绕不过的门槛。毕竟这是
+一门系统编程语言，如果连自己定义的数据类型的内存大小都算不对，那么哪里还谈得上
+压榨系统性能呢？struct 填充初看其实非常简单 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; 所有数据类型要对齐到其类型大小的内存地址上
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 但其实这其中还有几个点很容易被忽略。而一旦忽略了这几个点，在某些情况下就会计算
+不对 struct 类型的大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;1. struct 类型的尾部要进行填充，以保证下一个连续的同类型的 struct 可以正常对齐
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 简言之就是，尾部要填充以保证后续地址对齐到其内含的最大的数据类型大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2. 32 位系统以的对齐以指针大小 4 为上限
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 这在 64 位系统中可能感觉不深，因为最大的基本数据长度就是 8 个字节嘛。但在 32 位系统中
+，地址大小是 4 个字节，如果内含了 double 类型，需要注意这个变量是对齐到 4 而不是 8。因
+为 double 大小已经超出了指针大小，会被视为复合类型而非基本类型。而在 64 位中，无论
+是 double 的 8 还是 long double 的 16 都是作为基本类型对待的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;3. 嵌套 struct 的对齐也要按照 struct 基本法
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 一个常见的错误理解是在嵌套 struct 中将内层 struct 直接展开计算内存填充。这是不正确
+的。内嵌 struct 要对齐其最大的基本类型大小上。当然，这也暗示了这个大小仍然是以指
+针大小为上限的。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</content><category term="csapp"></category></entry><entry><title>CSAPP 之 IEEE 754</title><link href="http://yuex.in/post/2016/08/csapp-ieee754.html" rel="alternate"></link><published>2016-08-21T00:00:00+08:00</published><updated>2016-08-21T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-08-21:/post/2016/08/csapp-ieee754.html</id><summary type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+数点来调整精度的方法。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 相比整数的二的补码表示要复杂了不少，不过仔细
+研究之后，这种表示方法还是相当巧妙的。这里只是对 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 一书中对 &lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的
+讲解进行一个总结，具体的还请参考 wikipedia 或者 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 原书相关章节。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中将数位分成了三部分 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;V = (-1)^s * M * 2^E
++-+-----------+-----------------------------------------+
+|s|  exp (e)  |             frac (f)                    |
++-+-----------+-----------------------------------------+
+f = .f1f2...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
+据数的类型来确定。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中根据所表示的数的数值大小范围定义了三种类型的数
+值。类型的区分是通过检查 e 的数值来确定的 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+数点来调整精度的方法。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 相比整数的二的补码表示要复杂了不少，不过仔细
+研究之后，这种表示方法还是相当巧妙的。这里只是对 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 一书中对 &lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的
+讲解进行一个总结，具体的还请参考 wikipedia 或者 &lt;a href="http://csapp.cs.cmu.edu/"&gt;csapp&lt;/a&gt; 原书相关章节。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中将数位分成了三部分 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;V = (-1)^s * M * 2^E
++-+-----------+-----------------------------------------+
+|s|  exp (e)  |             frac (f)                    |
++-+-----------+-----------------------------------------+
+f = .f1f2...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt; 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
+据数的类型来确定。&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 中根据所表示的数的数值大小范围定义了三种类型的数
+值。类型的区分是通过检查 e 的数值来确定的。e 的变换中经常用到一个 Bias 偏移量，这里
+先给出这个偏移量大小 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Bias = 01...1
+在计算涉及减 Bias 的运算时，可以使用二的补码
+e - Bias = e + ~Bias + 1
+但要注意结果也是二的补码表示
+但是这个可以通过观察 e 或者结果的最高位来轻松确定正负
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Normalized Values&lt;/h1&gt;
+&lt;p&gt; 这种类型的数值用于表示那些即不是很小也不是很大的数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;e 不是全 0，也不是全 1
+E = e - Bias    ( 减 Bias 做偏移，保证可以表示负指数 )
+M = 1 + f       ( 加 1 可以省掉一个数位，多表示一些数值 )
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Denormalized Values&lt;/h1&gt;
+&lt;p&gt; 这种类型用于表示那些很小的数。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;e 全 0
+E = 1 - Bias    ( 用 1 减是为了衔接 Normalized Values，其最小就是 1 - Bias)
+M = f           ( 没有加 1，为了衔接 e = 1 的 Normalized Values)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Special Values&lt;/h1&gt;
+&lt;p&gt; 这种类型用于表示很大的数和无法表示的数 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;e 全 1
+f 全 0，表示 infinity
+f 非全 0，表示 NaN，not a number
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Note&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/IEEE_floating_point"&gt;IEEE 754&lt;/a&gt; 的表示方法保证了二进表示的序和浮点表示的序是一致的。近似的默认模式
+是 round to even。&lt;/p&gt;
+&lt;p&gt; 通过观察 E 的转换规则，可以发现 Normalized Values 中的数值步长总是 x2 增加的。这使得
+在数值变大时，步长也会变得更大，从而可以在更大的范围内表示数。而 Denormalized
+Values 的 E 是固定的。这使得在 0 附近，数的步长是固定而均匀的。M 转换中的加 1 与否，保
+证了 Normalized Values 和 Denormalized Values 之间的平滑衔接。需要注意的是均匀步长
+结束在 e = 1 的 Normalized Values 的最大值处，而非最大的 Denormalized Values 处。因为
+过渡是平滑的。&lt;/p&gt;
+&lt;p&gt; 有一个小窍门来记忆 M 变换中的加 1 与否。只要记住没有 e=0 这种情况，也就是不存在
+Denormalized Values。他们搞错了。e=0 其实就是 e=1，只是一旦你加了这个 1，f 的变换中
+就没有加 1 了，因为你已经把它用掉了。&lt;/p&gt;
+&lt;p&gt;-EOF-&lt;/p&gt;</content><category term="csapp"></category></entry><entry><title>《中庸》版本推荐</title><link href="http://yuex.in/post/2015/02/zhongyong-version.html" rel="alternate"></link><published>2015-02-22T00:00:00+08:00</published><updated>2015-02-22T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-02-22:/post/2015/02/zhongyong-version.html</id><summary type="html">&lt;p&gt; 最近利用过年放假的时间仔细研读了《中庸》，对于相关版本的选择略有心得，简录如下，还是闲言少叙，先上结论：我推荐以下两个版本的讲解 &lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
 &lt;li&gt; 张居正的《中庸》皇家读本 &lt;a class="footnote-reference" href="#id4" id="id2"&gt;[1]&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt; 南怀瑾的《中庸讲记》 &lt;a class="footnote-reference" href="#id7" id="id3"&gt;[2]&lt;/a&gt;&lt;/li&gt;
@@ -32,4 +460,160 @@
 &lt;tr&gt;&lt;td class="label"&gt;&lt;a class="fn-backref" href="#id3"&gt;[2]&lt;/a&gt;&lt;/td&gt;&lt;td&gt; 由于南师的《中庸讲记》尚未整理结册出版，网络上有一些手工整理的资料 &lt;a class="reference external" href="http://www.quanxue.cn/CT_NanHuaiJin/ZhongYongIndex.html"&gt; 可供参考 &lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-</content><category term="confucianism"></category></entry></feed>
+</content><category term="confucianism"></category></entry><entry><title>Exclusive Queue 的一个推广</title><link href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" rel="alternate"></link><published>2015-01-18T00:00:00+08:00</published><updated>2015-01-18T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-18:/post/2015/01/little-book-exclusive-queue-generalization.html</id><summary type="html">&lt;p&gt; 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 &lt;a href="http://greenteapress.com/semaphores/"&gt;The Little Book of Semaphores&lt;/a&gt;，理清了许多以前了解得不很确实的知识。&lt;/p&gt;
+&lt;p&gt; 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous&lt;sup id="fnref-!rendezvous"&gt;&lt;a class="footnote-ref" href="#fn-!rendezvous"&gt;1&lt;/a&gt;&lt;/sup&gt;，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 &lt;sup id="fnref-!note"&gt;&lt;a class="footnote-ref" href="#fn-!note"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt; 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1 …&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt; 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 &lt;a href="http://greenteapress.com/semaphores/"&gt;The Little Book of Semaphores&lt;/a&gt;，理清了许多以前了解得不很确实的知识。&lt;/p&gt;
+&lt;p&gt; 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous&lt;sup id="fnref-!rendezvous"&gt;&lt;a class="footnote-ref" href="#fn-!rendezvous"&gt;1&lt;/a&gt;&lt;/sup&gt;，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 &lt;sup id="fnref-!note"&gt;&lt;a class="footnote-ref" href="#fn-!note"&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt; 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;leaders&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;proceed&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;number&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;followers&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;proceed&lt;/span&gt;
+&lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;   &lt;span class="c1"&gt;# 用于记录已经到达的 leader 与 follower 个数 &lt;/span&gt;
+&lt;span class="n"&gt;countL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;countF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;     &lt;span class="c1"&gt;# 用于记录正在进行 dance() 的 leader 与 follower 个数 &lt;/span&gt;
+&lt;span class="n"&gt;mutex&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# 用于控制 leader 和 follower 的访问 &lt;/span&gt;
+&lt;span class="n"&gt;mutexCountL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# 用于控制 countL 的访问 &lt;/span&gt;
+&lt;span class="n"&gt;mutexCountF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  &lt;span class="c1"&gt;# 用于控制 countF 的访问 &lt;/span&gt;
+&lt;span class="n"&gt;leaderQ&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;      &lt;span class="c1"&gt;# 用于 fire leader queue&lt;/span&gt;
+&lt;span class="n"&gt;followerQ&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    &lt;span class="c1"&gt;# 用于 fire follower queue&lt;/span&gt;
+&lt;span class="n"&gt;rendezvous&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Semaphore&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;# 用于控制 leader 和 follower 的同步约定 &lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt; 以下给出推广问题解的 leader 的代码：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mutex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;
+    &lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;followerQ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;leaderQ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;mutex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;leaderQ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;dance&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;rendezvous&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;mutexCountL&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;countL&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;countL&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;countL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;mutex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;mutexCountL&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;singal&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt; 以下给出推广问题解的 follower 的代码：&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mutex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;leader&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;
+    &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;leaderQ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;followerQ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;follower&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;mutex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;followerQ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;dance&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;mutexCountF&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;wait&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;countF&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;countF&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;countF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;rendezvous&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;signal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;mutexCountF&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;singal&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt; 代码，以上。&lt;/p&gt;
+&lt;p&gt; 不过请注意，这里的 n 个 leader 只有在 m 个 follower 全部完成 dance() 之后，才能开始进行第一个 dance()。在 &lt;code&gt;n == m&lt;/code&gt; 的情况下，或者更广泛一点讲，只要 n 和 m 互为整倍数关系时，可以有一个改进，使得固定的一个或几个 follower 完成 dance() 之后，就 fire 成比例的 rendezvous 给 leader。这样 follower 和 leader 就可以一定程度上的并发行进了。&lt;/p&gt;
+&lt;p&gt; 拙文，以上。&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn-!rendezvous"&gt;
+&lt;p&gt;rendezvous 的词源是 render (to present) + vous (you)，引申为约会、约会地、集会地。具体可以参考 &lt;a href="http://www.etymonline.com/index.php?term=rendezvous"&gt;etymonline&lt;/a&gt;&amp;#160;&lt;a class="footnote-backref" href="#fnref-!rendezvous" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn-!note"&gt;
+&lt;p&gt; 书还没有看完，我怀疑书后面的章节中可能会有问题涉及到这个推广，所以在书的前面也就没有提及。倘若真是这种情况，之后再补上相关的说明。&amp;#160;&lt;a class="footnote-backref" href="#fnref-!note" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content><category term="system"></category><category term="semaphore"></category></entry><entry><title>How Linux Work 笔记</title><link href="http://yuex.in/post/2015/01/how-linux-work-review.html" rel="alternate"></link><published>2015-01-11T00:00:00+08:00</published><updated>2015-01-11T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2015-01-11:/post/2015/01/how-linux-work-review.html</id><summary type="html">&lt;p&gt; 最近看了一本 Linux 方面的 2014 年新书，是 &lt;a href="http://book.douban.com/subject/26266751/"&gt;How Linux Work&lt;/a&gt; 第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 &lt;a href="http://www.ituring.com.cn/book/1548"&gt; 中文版 &lt;/a&gt;，今年年底前应该可以和大家见面。&lt;/p&gt;
+&lt;p&gt; 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。&lt;/p&gt;
+&lt;p&gt; 使用 mktemp 生成临时文件。只要在 shell 脚本中使用 &lt;code&gt;TEMPFILE=$(mktemp)&lt;/code&gt; 就会在 &lt;code&gt;/tmp&lt;/code&gt; 中生成一个临时文件，然后可以通过访问 &lt;code&gt;${TEMPFILE}&lt;/code&gt; 进行使用，非常方便。&lt;/p&gt;
+&lt;p&gt;Shell 脚本的劣势，有以下三点，结合以前的开发经验，还真是这样的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 算术计算，特别是浮点运算，基本不可以原生地做；&lt;/li&gt;
+&lt;li&gt; 字符串处理 …&lt;/li&gt;&lt;/ul&gt;</summary><content type="html">&lt;p&gt; 最近看了一本 Linux 方面的 2014 年新书，是 &lt;a href="http://book.douban.com/subject/26266751/"&gt;How Linux Work&lt;/a&gt; 第二版。一开始看名字，以为是 Linux 内核方面相关的，或者是讲如何自制 Linux 发行版的。但最后发现其实就是讲怎么使用 Linux 的。而且这本书也很特别，从内容上来讲，既不是完全给新手看的，也不是完全给老手看，很是别扭。但好在这本书讲到的所有东西都不是很艰深，很多都是信息性的内容，快速过一遍也只要两三个小时。国内人民邮电已经引入了 &lt;a href="http://www.ituring.com.cn/book/1548"&gt; 中文版 &lt;/a&gt;，今年年底前应该可以和大家见面。&lt;/p&gt;
+&lt;p&gt; 但诚如至圣先师孔子所言：三人行必有我师。这本书还是让我收获了很多。以下撷取其中的一些内容，与大家分享。&lt;/p&gt;
+&lt;p&gt; 使用 mktemp 生成临时文件。只要在 shell 脚本中使用 &lt;code&gt;TEMPFILE=$(mktemp)&lt;/code&gt; 就会在 &lt;code&gt;/tmp&lt;/code&gt; 中生成一个临时文件，然后可以通过访问 &lt;code&gt;${TEMPFILE}&lt;/code&gt; 进行使用，非常方便。&lt;/p&gt;
+&lt;p&gt;Shell 脚本的劣势，有以下三点，结合以前的开发经验，还真是这样的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; 算术计算，特别是浮点运算，基本不可以原生地做；&lt;/li&gt;
+&lt;li&gt; 字符串处理 ; &lt;/li&gt;
+&lt;li&gt; 数据库操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; 利用 python 速起 http 服务：&lt;code&gt;python -m SimpleHTTPServer&lt;/code&gt;。以后给别人传东西就可以不用 U 盘了。&lt;/p&gt;
+&lt;p&gt;rsync 中 &lt;code&gt;/&lt;/code&gt; 的区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;rsync -a dir/ dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/ 下 &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsync -a dir  dest_dir&lt;/code&gt; 会把 dir 下所有内容拷贝到 dest_dir/dir/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;X Window 的替代项目。众所周知，X Window 到现在，时间已经比较长了，不可避免地会有很多历史的包袱，对于平板和智能手机这类的新环境的适应也不会那么灵活，所以有几个新项目出现，以 freedesktop 领衔的 &lt;a href="https://en.wikipedia.org/wiki/Wayland_(display_server_protocol)"&gt;Wayland&lt;/a&gt; 和 Canonical 领衔的 &lt;a href="https://en.wikipedia.org/wiki/Mir_(software)"&gt;Mir&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;D-Bus 是 Desktop-Bus 的缩写，是一个消息传递系统，在桌面应用之间提供一个进程间通信机制，由 Red Hat 牵头开发。&lt;/p&gt;
+&lt;p&gt; 另有一个技巧，可以把 vim 用作二进制编辑器。如下 &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt; 以 &lt;code&gt;vim -b file&lt;/code&gt; 打开文件 &lt;/li&gt;
+&lt;li&gt; 执行 &lt;code&gt;:%!xxd&lt;/code&gt; 将 ascii 转换为 hex 显示 &lt;/li&gt;
+&lt;li&gt; 在 hex 下进行修改 &lt;/li&gt;
+&lt;li&gt; 执行 &lt;code&gt;:%!xxd -r&lt;/code&gt; 将 hex 转换回 ascii&lt;/li&gt;
+&lt;li&gt; 保存退出 &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; 以上。&lt;/p&gt;</content><category term="linux"></category></entry></feed>

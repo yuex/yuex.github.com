@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="yuex (悟道洞穴人)">
+    <meta name="author" content="yuex">
+    <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
+
+        <title>Gentoo Installation on MacBook Pro (Mid 2015) - Base System · yuex (悟道洞穴人)</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/code.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://yuex.in">yuex (悟道洞穴人)</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+          <form class="navbar-form navbar-right" role="search"
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
+              <input type="text" name="q" class="form-control" placeholder="Search">
+          </form>
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://yuex.in/" >Home</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/about.html" >About</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/atom.xml"     target="_blank"
+>Feeds</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/tags.html" >Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/categories.html" >Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/archives.html" >Chronological</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/image/email.png" >Email</a>
+                  </li>
+                  <li >
+                    <a href="http://www.douban.com/people/niumiz/"     target="_blank"
+>Douban</a>
+                  </li>
+                  <li >
+                    <a href="https://github.com/yuex"     target="_blank"
+>Github</a>
+                  </li>
+                </ul>
+              </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://yuex.in/post/2016/12/gentoo-install-mbp-1.html">Gentoo Installation on MacBook Pro (Mid 2015) - Base System</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/linux.html">linux</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/gentoo.html">gentoo</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month12">12</a>-<a href="http://yuex.in/archives.html#Year2016Month12">26</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
+MacOs and Homebrew are cool. But still I want Gentoo Portage back. Actually I
+doubt if anyone can still date with other package system after you have seen
+the true beauty of Gentoo Portage. So I tried Gentoo Prefix. But unfortunately,
+at this point, due to the new release of MacOS Sierra and LLVM, bintutils-apple
+failed to compile with clang-3.9. I tried to use the system clang (Apple 8.0.0)
+and clang-3.8.  binutils-apple could compile. But later on glib failed to
+compile. It looks like glib used some new features supported in clang-3.9. That
+was where I gave up.  Maybe I will try it again later.</p>
+<p>Anyway, here I am, going to install Gentoo natively on this MacBook Pro mid
+2015 15" laptop. Its product number is MJLT2LL/A if you want details. Believe
+me, we're gonna have a lot of details here. I think there are not too many
+differences between installation on Mac or on PC. The biggest one comes from
+the kernel configuration since hardware always varies from laptop to laptop,
+even under same brand same product number. So generally, the installation guide
+below also applies to PC except the kernel options configuration part.</p>
+<p>Installation of Gentoo is not easy. You may have successfully installed
+ArchLinux once or two. Gentoo installation is a little bit harder than that.
+But not too much, just that you need to configure the kernel yourself using
+some Gentoo-specific tools. But if your only Linux installation exprience comes
+from Ubuntu, Fedora, or CentOS with a nice graphics installation interface,
+then you're gonna have troubles. You can still try.  But my advice is to find
+yourself two or three days and follow <a href="https://wiki.gentoo.org/wiki/Sakaki%27s_EFI_Install_Guide">Sakaki's Guide</a>. Because there
+are gonna be a lot new concepts.</p>
+<h1>Acknoledgements</h1>
+<p>Thanks to Artem and, parts of this guide are adapted from their installation
+guide. In case you have troubles in following this guide, you may want to check
+out theirs. BTW, they use 2013 models.</p>
+<ul>
+<li><a href="https://www.artembutusov.com/gentoo-on-macbook-pro-retina-part-1-base-system/">Artem's Guide</a></li>
+<li><a href="https://vitobotta.com/encrypted-gentoo-macbook-pro/">Vito's Guide</a></li>
+</ul>
+<p>And of course, I want to thank Sakaki. My first Gentoo installation is
+following <a href="https://wiki.gentoo.org/wiki/Sakaki%27s_EFI_Install_Guide">his guide</a>. But the problem is that he uses his own
+tools like buildkernel and showem which are provided by adding a portage
+overlay. I think that's too much for a Gentoo newbie and obscure the original
+installation process and the relationships among Gentoo Portage, Kernel, Xorg,
+and Gnome or KDE. So here I will stick with genkernel.</p>
+<h1>Expectation</h1>
+<p>In this guide, I will introduce step by step how to install a dual-boot Gentoo
+on MacBook Pro 15" (mid 2015). The filesystem will be encrypted by using luks
+and lvm. We use systemd and grub2 here. After the installation, you should be
+able to boot into Gentoo to see a console command line or into MacOs to see
+GUI. In following posts, I will introduce how to install KDE from there. Once
+you have a bootable Gentoo, it's pretty easy to install KDE or Gnome.</p>
+<p>Besides, following guide assuems that you have a wireless network (you don't
+have Ethernet port on Mac, right?). Though not necessary, another laptop with
+SSH client at your hands will be much pretty handier.</p>
+<h1>Prepare Boot Media and Disk</h1>
+<p>Unlike PC, Mac is an UEFI-only system. We cannot just <code>dd</code> an ISO image to an
+USB stick and boot. We have to make an UEFI-bootable USB stick. It's just a
+little bit more than <code>dd</code>. You need to install and configure a bootloader like
+grub or syslinux on that USB sticks.  That's a little bit tedious. So here I
+will use some tool.</p>
+<p>Here, you may be interested of the difference between BIOS and UEFI, and
+perhaps Linus's comments on UEFI</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface">Wikipedia UEFI</a></li>
+<li><a href="https://en.wikipedia.org/wiki/BIOS">Wikipedia BIOS</a></li>
+<li><a href="http://yarchive.net/comp/linux/efi.html">Linus on UEFI</a></li>
+</ul>
+<p>In <a href="https://wiki.gentoo.org/wiki/UEFI_Gentoo_Quick_Install_Guide">UEFI Gentoo Quick Install Gudie</a>, it is recommended to use
+<a href="http://www.system-rescue-cd.org/SystemRescueCd_Homepage">SystemRescureCD</a>. It's a Gentoo-based rescue system. You need to download it
+from their website.</p>
+<p>To make the USB stick, we will use [UNetbootin][] here. It supports all three
+platform. After download, the burning is easy. Just remeber, before burning,
+you have to format the USB stick as a FAT filesystem. If you are using Linux,
+you need to mount it then.</p>
+<p>Suppose your USB stick is <code>/dev/sdb1</code></p>
+<div class="highlight"><pre><span></span>mkfs.fat /dev/sdb1
+mount /dev/sdb1 /media
+</pre></div>
+
+
+<p>Then, use unetbootin to make the USB stick.</p>
+<p>Then, if you want dual boot to MacOS, you need to resize the disk to save some
+space for Gentoo. It can be done by using Disk Utility. The filesystem format
+doesn't matter. We will re-format it later. The label doesn't matter right too
+because we can set it later. But I recommend you set it now, just name it as
+Gentoo HD or some thing else you like. Usually, fresh Gentoo needs 20GiB.  But
+if you are planning to use it afterwards, I recommend no less than 100GiB.</p>
+<h1>Boot from USB Stick</h1>
+<p>Plug in your USB stick and reboot. Hold Alt (or Option) key after you hear the
+boot sound. Then choose to boot from USB stick. Press Enter until you see the
+welcome message to command line and the prompt is ready.</p>
+<h1>Setup Remote Access</h1>
+<p>You can install by using the console command line. But probably you have found
+that the fonts are too small. Even if they were large enough, typing commands
+there is still painful. So here we are gonna set up remote access so that you
+can login remotely by using SSH.</p>
+<p>First, we need to connect to the WIFI</p>
+<div class="highlight"><pre><span></span>nmcli dev wifi connect &quot;ap-name&quot; password &quot;pass&quot;
+</pre></div>
+
+
+<p>If you are using Ethernet or you want GUI, you can try</p>
+<div class="highlight"><pre><span></span>net-setup
+</pre></div>
+
+
+<p>But personally, I prefer <code>nmcli</code>.</p>
+<p>Next, modify</p>
+<div class="highlight"><pre><span></span># /etc/ssh/sshd_config
+PasswordAuthentication yes
+PermitRootLogin yes
+</pre></div>
+
+
+<p>Then, since the resuce system is using OpenRC, you need to restart sshd by</p>
+<div class="highlight"><pre><span></span>/etc/init.d/sshd restart
+</pre></div>
+
+
+<p>And last, don't forget to setup the password for root by</p>
+<div class="highlight"><pre><span></span>passwd
+</pre></div>
+
+
+<h1>Create the Disk</h1>
+<p>To create some encrypted disk, we need to load the encryption modules first</p>
+<div class="highlight"><pre><span></span>modprobe dm-crypt
+modprobe aes
+# error means no hardware cryptographic device
+# run modprobe aes_generic
+modprobe sha256
+</pre></div>
+
+
+<p>Next, check out your partition for Gentoo</p>
+<div class="highlight"><pre><span></span>blkid
+</pre></div>
+
+
+<p>Make sure which one you want to format. You should be able to identify the
+label when you resize the disk for Gentoo. In my case it is <code>/dev/sda4</code></p>
+<div class="highlight"><pre><span></span>cryptsetup luksFormat /dev/sda4 # enter your passphrase
+cryptsetup luksOpen /dev/sda4 gentoo
+</pre></div>
+
+
+<p>Here, we formated the disk and opened it as <code>/dev/mapper/gentoo</code>.</p>
+<p>Then, create lvm which enable you to adjust your disk's size without
+reformating. This is the thing that Windows still doesn't support.</p>
+<div class="highlight"><pre><span></span>pvcreate /dev/mapper/gentoo
+vgcreate vg /dev/mapper/gentoo
+</pre></div>
+
+
+<p>Here, we created a virtual group named as <code>vg</code></p>
+<p>Finally, we create a partion for root and format it as Ext4</p>
+<div class="highlight"><pre><span></span>lvcreate -l 100%FREE -n root vg
+mkfs.ext4 /dev/vg/root
+</pre></div>
+
+
+<p>Since we are using SSD with 8 or 16 GiB memory, I think swap is not necessary.
+People may argue that we need swap to support hibernation. But usually for
+laptop with a buit-in battery, what we need is sleep instead of hibernation.</p>
+<p>Please checkout</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Hibernation_(computing)#Comparison_to_sleep_mode">Wikipedia Hibernation Comparison to Sleep</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">Wikipedia LVM</a></li>
+</ul>
+<h1>Prepare Portage</h1>
+<p>Gentoo's package system is Portage.  You can simply think Portage as a
+collections of recipes defining how to accquire, compile, and install some
+source code.  It use tools like <code>emerge</code> to install packages. Like Debian,
+<code>emerge</code> uses other tools to search. To compiler kernel, we need to setup
+Portage first.</p>
+<p>Synchronize time is not necessary, but it doesn't hurt</p>
+<div class="highlight"><pre><span></span>ntpdate -s time.nist.gov
+</pre></div>
+
+
+<p>Mount the file system we created</p>
+<div class="highlight"><pre><span></span>mount /dev/vg/root /mnt/gentoo
+cd /mnt/gentoo
+</pre></div>
+
+
+<p>Get the Gentoo stage3 snapshot, you should check <a href="http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/">Gentoo Mirror</a>
+to get the latest snapshot for systemd.</p>
+<div class="highlight"><pre><span></span>wget http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20161218.tar.bz2
+tar xvf stage3*
+</pre></div>
+
+
+<p>For what is stage3, please checkout <a href="https://wiki.gentoo.org/wiki/Stage_tarball">Gentoo Stage</a>. Actually, if you try
+Gentoo Prefix, all stages will be went through. But here, stage3 is enough.</p>
+<p>Get the latest Portage</p>
+<div class="highlight"><pre><span></span>wget http://distfiles.gentoo.org/releases/snapshots/current/portage-latest.tar.xz
+tar xvf portage* -C /mnt/gentoo/usr
+</pre></div>
+
+
+<p>But still Portage needs some configuration. First we change root to our future
+file system. But before that, we need to mount it.</p>
+<div class="highlight"><pre><span></span>mount -t proc none /mnt/gentoo/proc
+mount -o bind /dev /mnt/gentoo/dev
+mount -o bind /sys /mnt/gentoo/sys
+</pre></div>
+
+
+<p>Next, copy the name resolution file</p>
+<div class="highlight"><pre><span></span>cp -L /etc/resolve.conf /mnt/gentoo/etc
+</pre></div>
+
+
+<p>Then change root, and up</p>
+<div class="highlight"><pre><span></span>chroot /mnt/gentoo /bin/bash
+env-update &amp;&amp; source /etc/profile
+</pre></div>
+
+
+<p>Now, we need to edit <code>/etc/portage/make.conf</code>. But first, you may want to
+install vim</p>
+<div class="highlight"><pre><span></span>emerge vim
+vim /etc/portage/make.conf
+</pre></div>
+
+
+<p>For now, the most important thing is to add some compile options.</p>
+<div class="highlight"><pre><span></span>/etc/portage/make.conf
+# Doc https://wiki.gentoo.org/wiki//etc/portage/make.conf
+
+CFLAGS=&quot;-O2 -pipe -march=native&quot;
+CXXFLAGS=&quot;<span class="cp">${</span><span class="n">CFLAGS</span><span class="cp">}</span>&quot;
+CHOST=&quot;x86_64-pc-linux-gnu&quot;
+
+# cores + 1
+MAKEOPTS=&quot;-j5&quot;
+EMERGE_DEFAULT_OPTS=&quot;--jobs 4&quot;
+
+ACCEPT_LICENSE=&quot;*&quot;
+ACCEPT_KEYWORDS=&quot;amd64&quot;
+
+VIDEO_CARDS=&quot;radeon radeonsi intel&quot;
+INPUT_DEVICES=&quot;evdev synaptics mtrack mouse&quot;
+
+PORTDIR=&quot;/usr/portage&quot;
+DISTDIR=&quot;<span class="cp">${</span><span class="n">PORTDIR</span><span class="cp">}</span>/distfiles&quot;
+PKGDIR=&quot;<span class="cp">${</span><span class="n">PORTDIR</span><span class="cp">}</span>/packages&quot;
+
+FEATURES=&quot;binpkg-logs clean-logs split-log&quot;
+
+USE=&quot;unicode nls bluetooth alsa infinality cjk&quot;
+</pre></div>
+
+
+<p>Another thing is to define <code>CPU_FLAGS_X86</code> so that <code>emerge</code> can use these
+CPU-specific flags to optimize the generated code. There is a tool to generate
+these flags for you</p>
+<div class="highlight"><pre><span></span>emerge cpuid2cpuflags -1
+cpuinfo2cpuflags-x86 &gt;&gt; /etc/portage/make.conf
+</pre></div>
+
+
+<h1>Kernel</h1>
+<p>Before configuring kernel, we modify the <code>/etc/fstab</code></p>
+<div class="highlight"><pre><span></span>vim /etc/fstab
+/dev/sda1               /boot/efi       vfat            defaults,noauto,noatime,discard 1 2
+/dev/vg/root            /               ext4            defaults,noatime,discard        0 1
+</pre></div>
+
+
+<p>Here, <code>/dev/sda1</code> is Mac's original EFI partition.</p>
+<p>Then, we install kernel sources and build tool <code>genkernel-next</code>. Since we want
+to use an encrypted disk, <code>genkernel-next</code> needs to pull in some support.</p>
+<div class="highlight"><pre><span></span>mkdir -p /etc/portage/package.use
+touch -p /etc/portage/package.use/zzz_via_automask
+echo &quot;sys-kernel/genkernel-next cryptsetup&quot; &gt; /etc/portage/package.use/genkernel-next
+emerge gentoo-sources
+emerge genkernel-next
+emerge linux-firmwares
+</pre></div>
+
+
+<p><code>genkernel-next</code> also needs some configuration</p>
+<div class="highlight"><pre><span></span>INSTALL=&quot;yes&quot;
+OLDCONFIG=&quot;yes&quot;
+MENUCONFIG=&quot;yes&quot;
+NCONFIG=&quot;no&quot;
+CLEAN=&quot;yes&quot;
+MRPROPER=&quot;no&quot;
+MOUNTBOOT=&quot;no&quot;
+SAVE_CONFIG=&quot;yes&quot;
+USECOLOR=&quot;yes&quot;
+MAKEOPTS=&quot;-j5&quot;
+LVM=&quot;yes&quot;
+LUKS=&quot;yes&quot;
+GPG=&quot;no&quot;
+DMRAID=&quot;no&quot;
+BUSYBOX=&quot;yes&quot;
+UDEV=&quot;yes&quot;
+MDADM=&quot;no&quot;
+ISCSI=&quot;no&quot;
+E2FSPROGS=&quot;no&quot;
+FIRMWARE=&quot;yes&quot;
+FIRMWARE_DIR=&quot;/lib/firmware&quot;
+BOOTLOADER=&quot;grub&quot;
+</pre></div>
+
+
+<p>Next, we configure the kernel. Though this is interesting, it is also very
+tedious. For example, you need to configure kernel options for</p>
+<ul>
+<li>Systemd https://wiki.gentoo.org/wiki/Systemd#Kernel</li>
+<li>Thunderbolt</li>
+<li>Thunderbolt Ethernet</li>
+<li>SD Card</li>
+<li>Others Misc https://wiki.gentoo.org/wiki/Apple_Macbook_Pro_Retina_(early_2013)</li>
+<li>Wireless https://wiki.gentoo.org/wiki/Wifi</li>
+<li>Bluetooth https://wiki.gentoo.org/wiki/Bluetooth</li>
+<li>Radeon https://wiki.gentoo.org/wiki/Radeon</li>
+</ul>
+<p>I won't go into details here. If you like, you can use
+<a href="https://github.com/yuex/gentoo/blob/master/kernel-config-x86_64-4.4.26-gentoo">my configuration</a>
+. It's for 4.4.26. Save it under <code>/etc/kernels/</code>.</p>
+<p>Now, compile and install the kernel</p>
+<div class="highlight"><pre><span></span>genkernel all
+</pre></div>
+
+
+<p>It takes some time. You should be able to hear the roar of your fans.</p>
+<h1>Bootloader</h1>
+<p>First, mount Mac's EFI partition</p>
+<div class="highlight"><pre><span></span>mkdir -p /boot/efi
+mount /dev/sda1 /boot/efi
+</pre></div>
+
+
+<p>Then, we need to install Grub. Since we are using lvm and luks, we need Grub to
+support device mapper.</p>
+<div class="highlight"><pre><span></span>echo &quot;sys-boot/grub device-mapper&quot; &gt;&gt; /etc/portage/package.use/grub 
+emerge grub
+</pre></div>
+
+
+<p>Lvm should be pulled in by grub. We need some configurations</p>
+<div class="highlight"><pre><span></span>vim /etc/lvm/lvm.conf
+use_lvmetad = 0
+</pre></div>
+
+
+<p>Then restart</p>
+<div class="highlight"><pre><span></span>/etc/init.d/lvm restart
+</pre></div>
+
+
+<p>Next, we configure Grub</p>
+<div class="highlight"><pre><span></span>vim /etc/default/grub
+GRUB_CMDLINE_LINUX=&quot;init=/usr/lib/systemd/systemd crypt_root=/dev/sda4 root=/dev/mapper/vg-root dolvm rootfstype=ext4&quot;
+GRUB_ENABLE_CRYPTODISK=y
+</pre></div>
+
+
+<p>Add an entry to boot MacOS from Grub</p>
+<div class="highlight"><pre><span></span><span class="x">vim /etc/grub.d/40_custom</span>
+<span class="x">menuentry &quot;Mac OS X&quot; </span><span class="err">{</span><span class="x"></span>
+<span class="x">    insmod hfsplus</span>
+<span class="x">    set root=&#39;(hd1,gpt3)&#39;</span>
+<span class="x">    chainloader (</span><span class="p">$</span><span class="nv">root</span><span class="x">)/System/Library/CoreServices/boot.efi</span>
+<span class="x">}</span>
+</pre></div>
+
+
+<p>You can use <code>efibootmgr</code> to check out EFI entries</p>
+<div class="highlight"><pre><span></span># check
+efibootmgr -v
+
+# add an entry
+efibootmgr --create --label Gentoo --loader &quot;\EFI\gentoo\grubx64.efi&quot;
+
+# remove an entry
+efibootmgr -B -b &lt;hex&gt;
+</pre></div>
+
+
+<p>Install Grub</p>
+<div class="highlight"><pre><span></span>grub-install --efi-directory=/boot/efi
+</pre></div>
+
+
+<p>Generate Grub configuration</p>
+<div class="highlight"><pre><span></span>grub-mkconfig -o /boot/grub/grub.cfg
+</pre></div>
+
+
+<h1>Ready to Boot</h1>
+<p>Now, we are just one step away from boot into Gentoo. Before that, we need to
+configure some profiles for Gentoo</p>
+<div class="highlight"><pre><span></span>eselect profile set default/linux/amd64/13.0/systemd
+emerge --ask --update --deep --newuse @world
+</pre></div>
+
+
+<p>Then install NetworkManager to manage network after we boot into Gentoo</p>
+<div class="highlight"><pre><span></span>emerge networkmanager
+</pre></div>
+
+
+<p>Setup a password for root so that you can login</p>
+<div class="highlight"><pre><span></span>passwd
+</pre></div>
+
+
+<p>Now, try to reboot</p>
+<div class="highlight"><pre><span></span>reboot
+</pre></div>
+
+
+<h1>Systemd Configuration</h1>
+<p>If everything goes fine, you should be able to boot into a command line console
+after entering the passphrase for decrypting disk and password for logining.</p>
+<p>Now, we need to configure Systemd to finalize our installation</p>
+<div class="highlight"><pre><span></span>systemd-machine-id-setup
+</pre></div>
+
+
+<p>Auto start Network Manager</p>
+<div class="highlight"><pre><span></span>systemctl enable NetworkManager
+systemctl start NetworkManager
+</pre></div>
+
+
+<p>Connect to network</p>
+<div class="highlight"><pre><span></span>nmcli dev wifi connect &quot;ap-name&quot; password &quot;pass&quot;
+</pre></div>
+
+
+<p>Setup hostname</p>
+<div class="highlight"><pre><span></span>hostnamectl set-hostname macbookpro
+</pre></div>
+
+
+<p>Setup locales</p>
+<div class="highlight"><pre><span></span>/etc/locale.conf
+en_US.UTF-8 UTF-8
+locale-gen
+localectl set-locale LANG=en_US.UTF-8
+localectl set-keymap us
+</pre></div>
+
+
+<p>Setup timezone</p>
+<div class="highlight"><pre><span></span>timedatectl set-timezone US/Eastern
+timedatectl set-ntp 1
+</pre></div>
+
+
+<p>If you like, you can also add a normal user now.</p>
+  </div>
+
+  <hr/>
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2016/11/colorful-terminal.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
+  var disqus_identifier = 'gentoo-install-mbp-1';
+  var disqus_url = 'http://yuex.in/post/2016/12/gentoo-install-mbp-1.html';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

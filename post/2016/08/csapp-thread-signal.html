@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="yuex (悟道洞穴人)">
+    <meta name="author" content="yuex">
+    <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
+
+        <title>CSAPP 之 thread 与 signal · yuex (悟道洞穴人)</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/code.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://yuex.in">yuex (悟道洞穴人)</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+          <form class="navbar-form navbar-right" role="search"
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
+              <input type="text" name="q" class="form-control" placeholder="Search">
+          </form>
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://yuex.in/" >Home</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/about.html" >About</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/atom.xml"     target="_blank"
+>Feeds</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/tags.html" >Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/categories.html" >Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/archives.html" >Chronological</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/image/email.png" >Email</a>
+                  </li>
+                  <li >
+                    <a href="http://www.douban.com/people/niumiz/"     target="_blank"
+>Douban</a>
+                  </li>
+                  <li >
+                    <a href="https://github.com/yuex"     target="_blank"
+>Github</a>
+                  </li>
+                </ul>
+              </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://yuex.in/post/2016/08/csapp-thread-signal.html">CSAPP 之 thread 与 signal</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <h1>Thread</h1>
+<p> 函数与 thread 结合起来有几个概念，还比较绕，这里总结一下。一个函数被称为 </p>
+<div class="highlight"><pre><span></span>thread-safe：总是给出正确运行结果即使是从多个同步线程中反复调用
+reentrant：不使用任何共享数据
+</pre></div>
+
+
+<p> 需要注意的是，reentrant function 一定是 thread-safe 的，因为完全没有共享数据。而反
+之则不然，例如一个 thread-safe 的函数可以使用同步机制来同步对于共享数据的访问。</p>
+<p> 另外，调用 thread-unsafe 函数的函数不一定就是 thread-unsafe 的。例如，如果只是被调
+用的函数有一些共享数据，则完全可以通过同步来使其安全。</p>
+<p> 这里再给出 race 的定义 </p>
+<div class="highlight"><pre><span></span>race：程序的执行结果的正确性取决于线程是如何调度的
+</pre></div>
+
+
+<p>thread 相关的函数 </p>
+<div class="highlight"><pre><span></span>pthread_create(tid, attr, func, arg): 创建线程。tid 用于返回线程号，func 是要
+    运行的线程逻辑函数，arg 是一个指针，指向要传递的函数参数。成功返回 0
+pthread_exit(rc): 结束当前线程
+pthread_cancel(tid): 结束线程 tid
+pthread_join(tid, ret): tid 是要 join 的线程号，ret 用于接收线程返回值，实际是
+    一个指针，因此可以用于实现多值返回
+pthread_detach(tid): 将线程 tid detach，会使线程在结束时自动被 reap 而无需 join
+    。无须返回值的线程可以在线程开始时设
+</pre></div>
+
+
+<h1>Signal</h1>
+<p> 进程之间通过信号来进行同步中有很多小的细节容易被忽略。比如 </p>
+<div class="highlight"><pre><span></span>1. 信号有可能在安装 signal handler 之前被收到和处理，这时会使用默认 handler
+2. 信号有可能在程序结束之后才被收到和处理，也就完全不会被处理了
+3. fork 和 exec 之后，信号的 block 状态是不会改变的
+4. 信号的收发应该在多核并行场景下考虑，而不是仅在单核并发场景下
+5. pause() 可以用来等待信号，但信号完全有可能在 pause() 之前收到，而这有可能导
+   致程序挂起不会退出。
+6. signal handler 完全有可能被其它类型的信号打断。因此在 signal handler 中正式
+   开始处理时，要先保存 errno 和 block 所有其它信号，并在处理完后恢复这两者。
+</pre></div>
+
+
+<p> 需要注意的是这里的 signal 指的是系统进程间用于同步的软信号，会导致相应的软件
+signal hanlder 的触发。这一般发生在内核态向用户态切换时，如系统调用完成或者
+context switch 发生。而硬件本身还有一类硬信号，一般是由 IO 设备产生，直接设置 CPU 的
+中断线为高电平，再通过系统总线传入中断号。CPU 会在被每条指令结束之后检查中断线，
+如果电平高位，就会根据相应的中断号调用系统中的 interrupt handler 处理。而这与进程
+的软信号没有任何关系。其实某些情况下的 context switch 就是通过这种方式接收定时中
+断实现的。</p>
+<p> 在编写 signal handler 时有以下几点要注意 </p>
+<div class="highlight"><pre><span></span>1. 逻辑尽量简单。比如 handler 只设置标志，然后由 main 来定期处理
+2. 仅调用 async-singal-safe 函数。特别地，printf, sprintf, malloc, exit 都不在
+   此类。唯一安全的产生输出的方式是使用 write
+3. 保存和恢复 errno
+4. 当访问共享数据时，通过 block 所有信号来尽量保证数据一致性
+5. 将全局变量声明为 volatile。强制对其的每次读写都要通过内存访问进行，以免编
+   译器对其进行寄存器缓存
+6. 将全局 flag 声明为 sig_atomic_t，这可以使对其的读写变为原子操作。但需要注意
+   的是即使进行了此声明，像 flag++/flag += 10 这种操作仍会是非原子操作，因为
+   其本身就涉及到多条指令
+</pre></div>
+
+
+<p>signal 相关的函数有以下几个 </p>
+<div class="highlight"><pre><span></span>waitpid(pid, statusp, options): 等待子进程 pid 结束。当 pid 为 0 时，等待任何 pid
+    结束。当没有子进程需要被等待时，返回 -1 和 errno = ECHILD。当 waitpid 被信号
+    中断时，返回 -1 和 errno = EINTR。成功时，返回结束子进程的 pid。
+    statusp 用于返回子进程相关的结束信息
+    options 可以设置 waitpid 的等待行为
+        WNOHANG：立即返回，不挂起进程
+        WUNTRACED: 等待子进程直到某个被 terminated 或者 stopped
+        WCONTINUED: 等待子进程直接某个被 terminated 或者某个 stopped 子进程被
+            SIGCONT 唤醒。
+wait(statusp): 等同于 waitpid(-1, statusp, 0)
+
+kill(pid, sig)：发送信号到进程 pid，失败返回 -1
+kill(-pid, sig)：发送信号到进程组 pid，失败返回 -1
+alarm(secs)：在 secs 秒之后向自己发送 SIGALARM 的定时信号
+
+signal(sig, handler)：将 handler 安装绑定到信号 sig 上，handler 可以使用 SIG_IGN
+    或 SIG_DFL 来指定忽略或者默认
+
+sigprocmask(how, set, oldset)：使用 set 来设置 signal mask，旧的 set 会通过
+    oldset 返回。其中 how 有三种模式，SIG_BLOCK, SIG_UNBLOCK, SIG_SETMASK
+    示例
+    sigemptyset(&amp;mask);
+    sigaddset(&amp;mask, SIGINT);
+
+    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev);
+    /* critical region without interruption from SIGING */
+    sigprocmask(SIG_SETMASK, &amp;prev, NULL);
+
+sigsuspend(mask)：临时使用 mask 代替当前 signal mask，并挂起进程直接接收到一个
+    未被 block 的信号。一般用于等待某个信号的到达。一般需要先屏蔽信号以进行必
+    要初始化，然后再通过 sigsuspend 取消屏蔽以进行信号处理
+    示例
+    volatile sig_atomic_t pid;
+
+    sigchld_handler:
+    int olderrno = errno
+    pid = waitpid(-1, NULL, 0)
+    errno = olderrno
+
+    main:
+    sigprocmask(SIG_BLOCK, &amp;mask, &amp;prev); /* block SIGCHLD */
+
+    if (fork() == 0) /* child */
+        exit(0);
+
+    pid = 0;
+    while (!pid) /* wait for SIGCHLD */
+        /* cuz SIGCHLD is blocked, it can only be received CORRECTLY here */
+        sigsuspend(&amp;prev)
+
+    sigprocmask(SIG_SETMASK, &amp;prev, NULL); /* unblock SIGCHLD */
+
+sigaction(sig, act, oldact)：用于显式指定 signal 的行为，以提高代码可移植性
+</pre></div>
+
+
+<h1>Nonlocal Jump</h1>
+<p>setjmp(env) 会将当前的 calling environment 存入 env，返回 0。而 longjmp(env, rc) 可以
+跳转到最近调用的 setjmp(env) 处返回，返回值为 rc。可以如下组合来模拟 try catch</p>
+<div class="highlight"><pre><span></span>switch(setjmp(env)) {
+    case 1:
+        /* catch exception #1 */
+        break;
+    case 2:
+        /* catch exception #2 */
+        break;
+    case 0:
+        /* try_body */
+        ...
+
+        /* raise exception #1 */
+        longjmp(env, 1);
+
+        /* raise exception #2 */
+        longjmp(env, 2);
+}
+</pre></div>
+
+
+<p>sigsetjmp(env, savesigs) 和 siglongjmp(env, rc) 是对应的 signal handler 版本。其中的
+savesigs 是个 flag，用于标示是否需要保存当前的 signal mask 到 env 中。这对组合可以用
+来实现在接收某些信号时从 signal handler 中跳转到 main 开始的初始化部分，从而 restart
+整个程序。</p>
+<p>-EOF-</p>
+  </div>
+
+  <hr/>
+    
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
+        <a class="accordion-toggle" data-toggle="collapse"
+          title="toggle folding"
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">5</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
+        <a href="http://yuex.in/post/2016/08/csapp-asm-function.html">
+          <li class="list-group-item">
+CSAPP 之 asm 函数调用</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-file-descriptor.html">
+          <li class="list-group-item">
+CSAPP 之 file descriptor</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html">
+          <li class="list-group-item">
+CSAPP 之 cache 与 virtual memory</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+          <li class="list-group-item">
+CSAPP 之 struct 填充</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
+          <li class="list-group-item">
+CSAPP 之 IEEE 754</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://yuex.in/post/2016/08/csapp-file-descriptor.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2016/08/csapp-asm-function.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
+  var disqus_identifier = 'csapp-thread-signal';
+  var disqus_url = 'http://yuex.in/post/2016/08/csapp-thread-signal.html';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

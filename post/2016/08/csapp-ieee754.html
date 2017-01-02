@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="yuex (悟道洞穴人)">
+    <meta name="author" content="yuex">
+    <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
+
+        <title>CSAPP 之 IEEE 754 · yuex (悟道洞穴人)</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/code.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://yuex.in">yuex (悟道洞穴人)</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+          <form class="navbar-form navbar-right" role="search"
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
+              <input type="text" name="q" class="form-control" placeholder="Search">
+          </form>
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://yuex.in/" >Home</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/about.html" >About</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/atom.xml"     target="_blank"
+>Feeds</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/tags.html" >Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/categories.html" >Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/archives.html" >Chronological</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/image/email.png" >Email</a>
+                  </li>
+                  <li >
+                    <a href="http://www.douban.com/people/niumiz/"     target="_blank"
+>Douban</a>
+                  </li>
+                  <li >
+                    <a href="https://github.com/yuex"     target="_blank"
+>Github</a>
+                  </li>
+                </ul>
+              </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://yuex.in/post/2016/08/csapp-ieee754.html">CSAPP 之 IEEE 754</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">21</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+数点来调整精度的方法。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 相比整数的二的补码表示要复杂了不少，不过仔细
+研究之后，这种表示方法还是相当巧妙的。这里只是对 <a href="http://csapp.cs.cmu.edu/">csapp</a> 一书中对 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的
+讲解进行一个总结，具体的还请参考 wikipedia 或者 <a href="http://csapp.cs.cmu.edu/">csapp</a> 原书相关章节。</p>
+<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中将数位分成了三部分 </p>
+<div class="highlight"><pre><span></span>V = (-1)^s * M * 2^E
++-+-----------+-----------------------------------------+
+|s|  exp (e)  |             frac (f)                    |
++-+-----------+-----------------------------------------+
+f = .f1f2...
+</pre></div>
+
+
+<p> 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
+据数的类型来确定。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中根据所表示的数的数值大小范围定义了三种类型的数
+值。类型的区分是通过检查 e 的数值来确定的。e 的变换中经常用到一个 Bias 偏移量，这里
+先给出这个偏移量大小 </p>
+<div class="highlight"><pre><span></span>Bias = 01...1
+在计算涉及减 Bias 的运算时，可以使用二的补码
+e - Bias = e + ~Bias + 1
+但要注意结果也是二的补码表示
+但是这个可以通过观察 e 或者结果的最高位来轻松确定正负
+</pre></div>
+
+
+<h1>Normalized Values</h1>
+<p> 这种类型的数值用于表示那些即不是很小也不是很大的数。</p>
+<div class="highlight"><pre><span></span>e 不是全 0，也不是全 1
+E = e - Bias    ( 减 Bias 做偏移，保证可以表示负指数 )
+M = 1 + f       ( 加 1 可以省掉一个数位，多表示一些数值 )
+</pre></div>
+
+
+<h1>Denormalized Values</h1>
+<p> 这种类型用于表示那些很小的数。</p>
+<div class="highlight"><pre><span></span>e 全 0
+E = 1 - Bias    ( 用 1 减是为了衔接 Normalized Values，其最小就是 1 - Bias)
+M = f           ( 没有加 1，为了衔接 e = 1 的 Normalized Values)
+</pre></div>
+
+
+<h1>Special Values</h1>
+<p> 这种类型用于表示很大的数和无法表示的数 </p>
+<div class="highlight"><pre><span></span>e 全 1
+f 全 0，表示 infinity
+f 非全 0，表示 NaN，not a number
+</pre></div>
+
+
+<h1>Note</h1>
+<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的表示方法保证了二进表示的序和浮点表示的序是一致的。近似的默认模式
+是 round to even。</p>
+<p> 通过观察 E 的转换规则，可以发现 Normalized Values 中的数值步长总是 x2 增加的。这使得
+在数值变大时，步长也会变得更大，从而可以在更大的范围内表示数。而 Denormalized
+Values 的 E 是固定的。这使得在 0 附近，数的步长是固定而均匀的。M 转换中的加 1 与否，保
+证了 Normalized Values 和 Denormalized Values 之间的平滑衔接。需要注意的是均匀步长
+结束在 e = 1 的 Normalized Values 的最大值处，而非最大的 Denormalized Values 处。因为
+过渡是平滑的。</p>
+<p> 有一个小窍门来记忆 M 变换中的加 1 与否。只要记住没有 e=0 这种情况，也就是不存在
+Denormalized Values。他们搞错了。e=0 其实就是 e=1，只是一旦你加了这个 1，f 的变换中
+就没有加 1 了，因为你已经把它用掉了。</p>
+<p>-EOF-</p>
+  </div>
+
+  <hr/>
+    
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
+        <a class="accordion-toggle" data-toggle="collapse"
+          title="toggle folding"
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">5</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
+        <a href="http://yuex.in/post/2016/08/csapp-asm-function.html">
+          <li class="list-group-item">
+CSAPP 之 asm 函数调用</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-file-descriptor.html">
+          <li class="list-group-item">
+CSAPP 之 file descriptor</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-thread-signal.html">
+          <li class="list-group-item">
+CSAPP 之 thread 与 signal</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html">
+          <li class="list-group-item">
+CSAPP 之 cache 与 virtual memory</li>
+        </a>
+        <a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+          <li class="list-group-item">
+CSAPP 之 struct 填充</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
+      <ul class="pager">
+        <li class="previous">
+          <a href="http://yuex.in/post/2016/08/csapp-struct-padding.html">
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2016/08/pittsburgh-first-impression.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
+  var disqus_identifier = 'csapp-ieee754';
+  var disqus_url = 'http://yuex.in/post/2016/08/csapp-ieee754.html';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
