@@ -9,15 +9,15 @@ didn't get used to BSD toolchains.&lt;/p&gt;
 MacOs and Homebrew are cool. But still I want Gentoo Portage back. Actually I
 doubt if anyone can still date with other package system after you have seen
 the true beauty of Gentoo Portage. So I tried Gentoo Prefix. But unfortunately,
-at this …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 26 Dec 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</guid><category>gentoo</category></item><item><title>彩色终端</title><link>http://yuex.in/post/2016/11/colorful-terminal.html</link><description>&lt;p&gt; 讲真，当发现 Emacs 还不支持全彩色时，我还是有点吃惊的。毕竟很多程序都已经开始支持
-了，比如 vim，neovim，konsole 等等。连 tmux 都从今年三月的 2.2 版本开始支持全彩色了。
+at this …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 26 Dec 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</guid><category>gentoo</category></item><item><title>彩色终端</title><link>http://yuex.in/post/2016/11/colorful-terminal.html</link><description>&lt;p&gt; 说真的，当发现 Emacs 还不支持全彩色时，我还是有点吃惊的。毕竟很多程序都已经开始支
+持了，比如 vim，neovim，konsole 等等。连 tmux 都从今年三月的 2.2 版本开始支持全彩色了。
 没有全彩色支持对于 terminal 下工作的人来说，真的很不爽，像是 solarized 常用的主题颜
-色在非全彩色情况下的退化表现一般都不是很理想。不过好在 emacs 上有全彩色的 patch，
-可以实现这个小目标。&lt;/p&gt;
+色在非全彩色情况下的退化表现一般都不是很理想。不过好在 emacs 上有全彩色的 patch，可
+以实现这个小目标。&lt;/p&gt;
 &lt;p&gt; 以 24.5 版本为例 &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl https://goo.gl/a9qsIY &amp;gt; emacs-24.5-24bit.diff
 wget http://gnu.mirrors.pair.com/gnu/emacs/emacs-24.5.tar.gz
-tar xzf emacs-24.5.tar …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Fri, 11 Nov 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-11-11:/post/2016/11/colorful-terminal.html</guid><category>emacs</category><category>tmux</category></item><item><title>Awesome LaTeX</title><link>http://yuex.in/post/2016/09/awesome-latex.html</link><description>&lt;p&gt;(Note, files metioned below are included in &lt;a href="https://github.com/yuex/awesome-latex"&gt;this&lt;/a&gt; github repo)&lt;/p&gt;
+tar xzf emacs-24.5 …&lt;/pre&gt;&lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Fri, 11 Nov 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-11-11:/post/2016/11/colorful-terminal.html</guid><category>emacs</category><category>tmux</category></item><item><title>Awesome LaTeX</title><link>http://yuex.in/post/2016/09/awesome-latex.html</link><description>&lt;p&gt;(Note, files metioned below are included in &lt;a href="https://github.com/yuex/awesome-latex"&gt;this&lt;/a&gt; github repo)&lt;/p&gt;
 &lt;p&gt;Well, it's complicated, sort of.&lt;/p&gt;
 &lt;p&gt;To appreciate the awesomeness of LaTeX, you need to put aside a few hours to
 fiddle with not only another gigantic tool and a not-so-easy-to-learn syntax
