@@ -1,9 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人) - yuex</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2016-12-26T00:00:00+08:00</updated><entry><title>Gentoo Installation on MacBook Pro (Mid 2015) - Base System</title><link href="http://yuex.in/post/2016/12/gentoo-install-mbp-1.html" rel="alternate"></link><published>2016-12-26T00:00:00+08:00</published><updated>2016-12-26T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</id><summary type="html">&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人) - yuex</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-01-04T00:00:00+08:00</updated><entry><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link href="http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html" rel="alternate"></link><published>2017-01-04T00:00:00+08:00</published><updated>2017-01-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-01-04:/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
+is really awesome. MacOS has got some software supports as pretty as Windows.
+Graphical applications like Steam and BattleNet are available. But still I
+didn't get used to BSD toolchains.&lt;/p&gt;
+&lt;p&gt;At first thought, I told myself not to be so close-minded.  So I tried …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
+is really awesome. MacOS has got some software supports as pretty as Windows.
+Graphical applications like Steam and BattleNet are available. But still I
+didn't get used to BSD toolchains.&lt;/p&gt;
+&lt;p&gt;At first thought, I told myself not to be so close-minded.  So I tried Gentoo
+Prefix, then MacPorts and HomeBrew. Gentoo Prefix was bootstrapped successfully
+after manually patched several packages. But the support is not excellent (as
+stated on Gentoo Prefix's Gentoo wiki page). Some packages' compilations are
+broken on MacOS because the environment is so different to Linux. Let alone some
+Linux-specific packages like procps are no way to compile. It seems that there
+is also a lack of maintainers for Gentoo Prefix on Mac. After all, it's the
+amd64 Linux where Gentoo shines.&lt;/p&gt;
+&lt;p&gt;So I turned to MacPorts and HomeBrew.&lt;/p&gt;
+&lt;p&gt;HomeBrew is awesome. The development is active. The community is large. But the
+problem is it doesn't handle dependencies well. To me, after the revelation to
+emerge, this is a huge defect.  But it doesn't mean the HomeBrew finds no place
+in my toolbox. Still I am very happy to use HomeBrew Cask to install GUI apps
+which has no dependencies. Besides, HomeBrew doesn't provide packages to install
+pip or cabal modules yet.&lt;/p&gt;
+&lt;p&gt;Like Portage, MacPorts derives from Unix Port too. But its toolkits are somehow
+primitive to Portage. You have no way to search files with packages like &lt;code&gt;yum
+whatprovides&lt;/code&gt; unless you have installed it. For Portage, this function is
+provided by &lt;code&gt;e-file&lt;/code&gt; command of pfl which search in an external indexing
+database. And there are also some broken dependencies. For example, VirtualBox
+Guestion Additions requires gcc-42 to build. But this package is not provided
+for MacOS beyond El Capitan. Also the ghc package has been broken for quite a
+while and doesn't show any indication to change (the maintainer explained the
+obstacles in the mailing list in Q3 or Q4 of 2016).&lt;/p&gt;
+&lt;p&gt;The conclusion is that to my knowledge Gentoo Portage on amd64 is still the best
+choice. Let alone there is also &lt;code&gt;layman&lt;/code&gt; by which you can introduce an extra
+layer to the Portage tree where you can customize your our own versions of some
+packages. This feature is not provided by HomeBrew or MacPorts yet.&lt;/p&gt;
+&lt;p&gt;Now the problem is how to get myself a Linux environment on MacOS. First, I
+tried Docker. But with no Linux kernel, Docker for Mac also has to use a VM to
+map Linux API to OSX. Well, this just give it no pros. The cons comes from
+ctrl-p. I have no idea why I have to type ctrl-p twice in the Docker tty to go
+last command. The ctrl-n and up arrow are good. Also by using Docker, we have
+no way to customize the kernel.&lt;/p&gt;
+&lt;p&gt;So finally, I decided to go to virtual machine. One of the cons is that you have
+to go through the installation again. Like I said, it's fun but tedious. The
+first thought was that I had to use vagrant. The second thought is that if
+someone had already prepared some Gentoo images. I checked out the most
+downloaded Gentoo image from vagrant box list. But later I found it was using
+OpenRC instead of systemd. and disk was not using LVM. That was why I decided to
+DIY a vagrant box.&lt;/p&gt;
+&lt;p&gt;I also tried chroot. But I can not do it natively on MacOS. Because I want a
+pure GNU/Linux environment. I tried to use docker or virtualbox to start a Linux
+kernel and then chroot to shared folder to install Gentoo Portage. But the
+problem is that both vboxfs and osxfs have some problems. vboxfs doesn't allow
+permission change within the guest OS which will cause you a permission deny
+hell even if you switched to root. osxfs has some performance issue just like
+vboxfs. But the most severe problem is that osxfs will just hang. I have to
+reset Docker for Mac to kill it. But this way works on Linux. So I guess it's a
+bug related to Moby VM or osxfs.&lt;/p&gt;
+&lt;p&gt;Anyway, to get yourself a vagrant box, there are just two steps&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First, you install a Gentoo to a VM&lt;/li&gt;
+&lt;li&gt;Second, you packge the VM and put it online&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Install Gentoo to VirtualBox&lt;/h1&gt;
+&lt;p&gt;The process is very similar to install it to a PC but somehow different to my
+previous post. First, we have to prepare the disk using parted. Second, we also
+need to configure VirtualBox a little bit to be able to ssh to.&lt;/p&gt;
+&lt;p&gt;Still, we use [SystemRescueCD][]. Insert it into the Optical Drive of the VM. By
+default, VirtualBox's network uses NAT. To make ssh easier, we change it to
+Bridged Adapter to get the VM a dedicated IP address so that we needn't to
+configure port forwarding. Configure CPU cores and memory close to host machine
+so that the compilation will be quicker. 20 or 30 Gib should be enough for
+Gentoo system. We don't taken into user data here because I am sure you want to
+mount it as a shared folder. Because the disk image is always configured as
+dynamically allocated, I recomment to double it to 60GiB just in case. I use the
+vmdk format. It's more popularly supported than vdi. Remember to enable EFI in
+the VM setting.&lt;/p&gt;
+&lt;p&gt;Now boot the VM, enter &lt;CR&gt; until you see the prompt.&lt;/p&gt;
+&lt;p&gt;First, we start sshd&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;/etc/ssh/sshd_config
+PasswordAuthentication yes
+PermitRootLogin yes
+
+/etc/init.d/sshd restart
+passwd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Check out the IP address and ssh to the VM.&lt;/p&gt;
+&lt;p&gt;Now we prepare the disk using &lt;code&gt;parted&lt;/code&gt;. Still, I don't use a swap here. Because
+I think that sleep or hibernate a VM is pretty rare. In case the memory is used
+up, you can just allocate more or even over-allocate. But this time we need a
+EFI partition to install Grub. Again I use LVM here. Just in case you ran out of
+memory, you can still add a second disk image and extend your LVM VG and still
+present a single disk to OS. But Luks is not needed anymore. Entrypted a VM? We
+should encrypt the host OS.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;parted /dev/sda
+mklabel gpt
+mkpart efi fat32 # hundreds of MB should be enough
+mkpart root ext4 # all remaining
+set 1 boot on
+set 2 lvm on
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Quit the &lt;code&gt;parted&lt;/code&gt;. Since the EFI partition has to be FAT32, we format it as
+needed&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkfs.vfat -F32 /dev/sda1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then the LVM partition&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pvcreate /dev/sda2
+vgcreate vg /dev/sda2
+lvcreate -l 100%FREE -n root vg
+mkfs.ext4 /dev/vg/root
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next, mount the filesystems and download stage3 and portage&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount /dev/vg/root /mnt
+cd /mnt
+wget http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/&amp;lt;latest&amp;gt;
+tar xvf stage3*
+wget http://distfiles.gentoo.org/releases/snapshots/current/portage-latest.tar.xz
+tar xvf portage* -C usr
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, prepare to chroot&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mount -t proc /proc proc/
+mount -o bind /sys sys/
+mount -o bind /dev dev/
+cp -L /etc/resolv.conf etc/
+chroot . /bin/bash
+env-update
+source /etc/profile
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After that, you may want to install vim and configure &lt;code&gt;/etc/portage/make.conf&lt;/code&gt;.
+The most imoprtant thing is to add &lt;code&gt;MAKEOPTS&lt;/code&gt; and &lt;code&gt;CPU_FLAGS_X86&lt;/code&gt;. The later one
+can be automatically generated by &lt;code&gt;cpuid2cpuflags&lt;/code&gt;. But first you need to
+installed.&lt;/p&gt;
+&lt;p&gt;Before compiling kernel, we modify &lt;code&gt;/etc/fstab&lt;/code&gt; to reflect our disk scheme.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim /etc/fstab
+/dev/sda1      /boot/efi    vfat    defaults,noauto,noatime,discard    1 2
+/dev/vg/root   /            ext4    defaults,noauto,noatime,discard    0 1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, let's compile the kernel. Because we are using a VM, we don't need to worry
+about drivers. linux-firmware is not need. Just&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge gentoo-sources genkernel-next
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Edit &lt;code&gt;/etc/genkernel.conf&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;INSTALL=&amp;quot;yes&amp;quot;
+OLDCONFIG=&amp;quot;yes&amp;quot;
+MENUCONFIG=&amp;quot;yes&amp;quot;
+NCONFIG=&amp;quot;no&amp;quot;
+CLEAN=&amp;quot;yes&amp;quot;
+MRPROPER=&amp;quot;no&amp;quot;
+MOUNTBOOT=&amp;quot;no&amp;quot;
+SAVE_CONFIG=&amp;quot;yes&amp;quot;
+USECOLOR=&amp;quot;yes&amp;quot;
+MAKEOPTS=&amp;quot;-j5&amp;quot;
+LVM=&amp;quot;yes&amp;quot;
+UDEV=&amp;quot;yes&amp;quot;
+BOOTLOADER=&amp;quot;grub&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here, we use kernel's default configurations. Thus exit the menuconfig&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;genkernel all
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After a while, the kernel will be compiled and installed. Let's turn to
+bootloader. First, mount the EFI partition&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir -p /boot/efi
+mount /dev/sda1 boot/efi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then install grub&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo &amp;quot;sys-boot/grub device-mapper&amp;quot; &amp;gt;&amp;gt; /etc/portage/package.use/grub
+emerge grub
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next, install it. But before that, configure and restart LVM&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim /etc/lvm/lvm.conf
+use_lvmetad = 0
+/etc/init.d/lvm restart
+grub-install --efi-directory=/boot/efi
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you forget to enable EFI for the VM, &lt;code&gt;grub-install&lt;/code&gt; will tell not able to
+embed to BIOS. Just reboot after enable it.&lt;/p&gt;
+&lt;p&gt;Finally, configure grub and generate the cfg file&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim /etc/default/grub
+GRUB_CMDLINE_LINUX=&amp;quot;init=/usr/lib/systemd/systemd root=/dev/vg/root dolvm rootfstype=ext4&amp;quot;
+grub-mkconfig -o /boot/grub/grub.cfg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can now verify EFI boot configuration by&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;efibootmgr -v
+
+efibootmgr -o # change order
+efibootmgr --create --label Gentoo --loader &amp;quot;\EFI\gentoo\grubx64.efi&amp;quot; # add new entry
+efibootmgr -Bb &amp;lt;hex&amp;gt; # remove entry
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Before reboot, remember to check profile and update world&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;eselect profile set default/linux/amd64/13.0/systemd
+emerge --ask --update --deep --newuse @world
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There shouldn't be too much to update if you are using the latest stage3 and
+portage.&lt;/p&gt;
+&lt;p&gt;Also remember to install NetworkManager and passwd root so that you can login&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge networkmanager
+passwd
+reboot
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If it goes well, you should be prompt to login. But it seems VirtualBox will
+lost the EFI boot configuration when devices change like remove install image
+from optical drive. In that case, you will be prompted a EFI shell. Then&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Shell&amp;gt;fs0:
+FS0:\&amp;gt;edit startup.nsh
+
+FS0:\EFI\gentoo\grubx64.efi
+&amp;lt;ctrl-s&amp;gt;&amp;lt;CR&amp;gt;&amp;lt;CR&amp;gt; to save
+&amp;lt;ctrl-q&amp;gt;&amp;lt;CR&amp;gt; to quit
+&amp;lt;reboot&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And afterwards, when the EFI have no way to boot you can just type &lt;code&gt;&amp;lt;CR&amp;gt;&lt;/code&gt;
+several times to activate this default script to boot grub.&lt;/p&gt;
+&lt;p&gt;You can also quickly type &lt;code&gt;&amp;lt;F12&amp;gt;&lt;/code&gt; when you see the splash after booting the VM
+to enter VirtualBox's EFI Manager Program to change the order.&lt;/p&gt;
+&lt;h1&gt;Package It as A Vagrant Box&lt;/h1&gt;
+&lt;p&gt;Before packaging it as a vagrant box, we have to finish some configurations.&lt;/p&gt;
+&lt;p&gt;First, we finalize systemd's configuration&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemd-machine-id-setup
+systemctl enable NetworkManager
+systemctl start NetworkManager
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can also setup hostname or timezone here. After that, go check the
+requirements of a vagrant box, if you like&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.vagrantup.com/docs/boxes/base.html"&gt;https://www.vagrantup.com/docs/boxes/base.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.vagrantup.com/docs/virtualbox/boxes.html"&gt;https://www.vagrantup.com/docs/virtualbox/boxes.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The things are&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;set up a normal user named vagrant&lt;/li&gt;
+&lt;li&gt;add an insecure pubkey for vagrant&lt;/li&gt;
+&lt;li&gt;add it to sudo&lt;/li&gt;
+&lt;li&gt;passwd root&lt;/li&gt;
+&lt;li&gt;setup and enable sshd&lt;/li&gt;
+&lt;li&gt;install VirtualBox Guest Additions and enable it as startup services&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We'll go through this list one by one. Create user vagrant is easy&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;useradd -m vagrant
+su vagrant
+passwd
+&amp;lt;vagrant&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, we add an insecure pubkey to enable private key ssh. This key will be
+replaced with a randomly generated one upon the first time login of vagrant
+automatically.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd ~/.ssh
+wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
+mv vagrant.pub authorized_keys
+chmod 600 authorized_keys
+chmod 700 ~/.ssh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we add vagrant to sudoer. But first you may need to install sudo&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge sys-admin/sudo
+vim /etc/sudoers
+vagrant ALL=(ALL) NOPASSWD:ALL
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Next passwd root&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;passwd
+&amp;lt;vagrant&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then enable sshd&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl enable sshd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And finally, we need to install VirtualBox Guest Additions. You may need to
+download it with the same version of the VirtualBox from their
+mirror
+&lt;a href="http://download.virtualbox.org/virtualbox/"&gt;http://download.virtualbox.org/virtualbox/&lt;/a&gt;.
+Insert into the optical drive of the VM and reboot. After that, you need to
+mount it&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;lsblk # to check out the right device to mount
+mount /dev/sr0 /mnt
+sh /mnt/VBoxLinuxAdditions.run
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It will install some service scripts to &lt;code&gt;/etc/init.d/&lt;/code&gt;. But since we are using
+systemd here, we have to write some unit files and enable them. [Riann's Post][]
+has already provided some examples. You can take them from there. Just remember
+to enable them&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;systemctl enable vboxadd
+systemctl enable vboxadd-service
+systemctl enable vboxadd-x11
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Before packaging, we can do two things to reduce the image size. First, we can
+remove the gentoo-sources. Second, we can remove the portage tree. These can
+save nearly 2GiB.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;emerge -ac gentoo-sources
+emerge --depclean
+rm -rf /usr/portage
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now poweroff the VM and change the network back to NAT and run&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vagrant package --base &amp;lt;name-of-the-VM-as-showed-in-VirtualBox&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will generate a &lt;code&gt;package.box&lt;/code&gt; file. Before uploading it to vagrant's boxes
+list, we can test it locally&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vagrant box add gentoo /path/to/the/package.box
+vagrant init gentoo
+vagrant up
+vagrant ssh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Acutally, your can skip the steps to add unit files for vboxadd. But then you
+need to install a vagrant plugin&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vagrant plugin install vagrant-vbguest
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This automatically detect if the vboxadd is installed. If it is installed but
+not enabled, it will automatically start it.&lt;/p&gt;
+&lt;p&gt;Now, you can register an accound on Vagrant's website and upload the box. Next
+time, you add your box from the box list before start a VM&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vagrant box add yuex/gentoo
+vagrant up
+vagrant ssh
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On MacOS, you can also install vagrant-manager. It will add an system tray to
+the menubar to help to monitor and manage your vagrant VMs.&lt;/p&gt;</content><category term="gentoo"></category></entry><entry><title>Gentoo Installation on MacBook Pro (Mid 2015) - Base System</title><link href="http://yuex.in/post/2016/12/gentoo-install-mbp-1.html" rel="alternate"></link><published>2016-12-26T00:00:00+08:00</published><updated>2016-12-26T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
 MacOs and Homebrew are cool. But still I want Gentoo Portage back. Actually I
 doubt if anyone can still date with other package system after you have seen
 the true beauty of Gentoo Portage. So I tried Gentoo Prefix. But unfortunately,
-at this point …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
+at this …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
 MacOs and Homebrew are cool. But still I want Gentoo Portage back. Actually I
 doubt if anyone can still date with other package system after you have seen
 the true beauty of Gentoo Portage. So I tried Gentoo Prefix. But unfortunately,
@@ -531,6 +908,7 @@ get the chance to do it in the traditional way, i.e., manually. Checkout the
 
        latex packname.idx
        latex packname.dtx
+       latex packname.ins
 
 3. move generated files to their destinations according the table and their
    suffixes as described in the wikibook. generally, using a local texmf

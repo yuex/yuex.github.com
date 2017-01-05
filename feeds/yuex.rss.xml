@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Mon, 26 Dec 2016 00:00:00 +0800</lastBuildDate><item><title>Gentoo Installation on MacBook Pro (Mid 2015) - Base System</title><link>http://yuex.in/post/2016/12/gentoo-install-mbp-1.html</link><description>&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
+<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Wed, 04 Jan 2017 00:00:00 +0800</lastBuildDate><item><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link>http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</link><description>&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
+is really awesome. MacOS has got some software supports as pretty as Windows.
+Graphical applications like Steam and BattleNet are available. But still I
+didn't get used to BSD toolchains.&lt;/p&gt;
+&lt;p&gt;At first thought, I told myself not to be so close-minded.  So I tried …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Wed, 04 Jan 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2017-01-04:/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</guid><category>gentoo</category></item><item><title>Gentoo Installation on MacBook Pro (Mid 2015) - Base System</title><link>http://yuex.in/post/2016/12/gentoo-install-mbp-1.html</link><description>&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;I got a MacBook Pro recently, the mid 2015 15" version. I have to admit that
 MacOs and Homebrew are cool. But still I want Gentoo Portage back. Actually I
 doubt if anyone can still date with other package system after you have seen
 the true beauty of Gentoo Portage. So I tried Gentoo Prefix. But unfortunately,
-at this point …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 26 Dec 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</guid><category>gentoo</category></item><item><title>彩色终端</title><link>http://yuex.in/post/2016/11/colorful-terminal.html</link><description>&lt;p&gt; 讲真，当发现 Emacs 还不支持全彩色时，我还是有点吃惊的。毕竟很多程序都已经开始支持
+at this …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 26 Dec 2016 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2016-12-26:/post/2016/12/gentoo-install-mbp-1.html</guid><category>gentoo</category></item><item><title>彩色终端</title><link>http://yuex.in/post/2016/11/colorful-terminal.html</link><description>&lt;p&gt; 讲真，当发现 Emacs 还不支持全彩色时，我还是有点吃惊的。毕竟很多程序都已经开始支持
 了，比如 vim，neovim，konsole 等等。连 tmux 都从今年三月的 2.2 版本开始支持全彩色了。
 没有全彩色支持对于 terminal 下工作的人来说，真的很不爽，像是 solarized 常用的主题颜
 色在非全彩色情况下的退化表现一般都不是很理想。不过好在 emacs 上有全彩色的 patch，

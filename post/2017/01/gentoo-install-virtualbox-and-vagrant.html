@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="yuex (悟道洞穴人)">
+    <meta name="author" content="yuex">
+    <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
+
+        <title>Install Gentoo to VirtualBox and Package It to Vagrant · yuex (悟道洞穴人)</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/code.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://yuex.in">yuex (悟道洞穴人)</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+          <form class="navbar-form navbar-right" role="search"
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
+              <input type="text" name="q" class="form-control" placeholder="Search">
+          </form>
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://yuex.in/" >Home</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/about.html" >About</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/atom.xml"     target="_blank"
+>Feeds</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/tags.html" >Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/categories.html" >Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/archives.html" >Chronological</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/image/email.png" >Email</a>
+                  </li>
+                  <li >
+                    <a href="http://www.douban.com/people/niumiz/"     target="_blank"
+>Douban</a>
+                  </li>
+                  <li >
+                    <a href="https://github.com/yuex"     target="_blank"
+>Github</a>
+                  </li>
+                </ul>
+              </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html">Install Gentoo to VirtualBox and Package It to Vagrant</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/linux.html">linux</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/gentoo.html">gentoo</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2017">2017</a>-<a href="http://yuex.in/archives.html#Year2017Month01">01</a>-<a href="http://yuex.in/archives.html#Year2017Month01">04</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <h1>Introduction</h1>
+<p>I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
+is really awesome. MacOS has got some software supports as pretty as Windows.
+Graphical applications like Steam and BattleNet are available. But still I
+didn't get used to BSD toolchains.</p>
+<p>At first thought, I told myself not to be so close-minded.  So I tried Gentoo
+Prefix, then MacPorts and HomeBrew. Gentoo Prefix was bootstrapped successfully
+after manually patched several packages. But the support is not excellent (as
+stated on Gentoo Prefix's Gentoo wiki page). Some packages' compilations are
+broken on MacOS because the environment is so different to Linux. Let alone some
+Linux-specific packages like procps are no way to compile. It seems that there
+is also a lack of maintainers for Gentoo Prefix on Mac. After all, it's the
+amd64 Linux where Gentoo shines.</p>
+<p>So I turned to MacPorts and HomeBrew.</p>
+<p>HomeBrew is awesome. The development is active. The community is large. But the
+problem is it doesn't handle dependencies well. To me, after the revelation to
+emerge, this is a huge defect.  But it doesn't mean the HomeBrew finds no place
+in my toolbox. Still I am very happy to use HomeBrew Cask to install GUI apps
+which has no dependencies. Besides, HomeBrew doesn't provide packages to install
+pip or cabal modules yet.</p>
+<p>Like Portage, MacPorts derives from Unix Port too. But its toolkits are somehow
+primitive to Portage. You have no way to search files with packages like <code>yum
+whatprovides</code> unless you have installed it. For Portage, this function is
+provided by <code>e-file</code> command of pfl which search in an external indexing
+database. And there are also some broken dependencies. For example, VirtualBox
+Guestion Additions requires gcc-42 to build. But this package is not provided
+for MacOS beyond El Capitan. Also the ghc package has been broken for quite a
+while and doesn't show any indication to change (the maintainer explained the
+obstacles in the mailing list in Q3 or Q4 of 2016).</p>
+<p>The conclusion is that to my knowledge Gentoo Portage on amd64 is still the best
+choice. Let alone there is also <code>layman</code> by which you can introduce an extra
+layer to the Portage tree where you can customize your our own versions of some
+packages. This feature is not provided by HomeBrew or MacPorts yet.</p>
+<p>Now the problem is how to get myself a Linux environment on MacOS. First, I
+tried Docker. But with no Linux kernel, Docker for Mac also has to use a VM to
+map Linux API to OSX. Well, this just give it no pros. The cons comes from
+ctrl-p. I have no idea why I have to type ctrl-p twice in the Docker tty to go
+last command. The ctrl-n and up arrow are good. Also by using Docker, we have
+no way to customize the kernel.</p>
+<p>So finally, I decided to go to virtual machine. One of the cons is that you have
+to go through the installation again. Like I said, it's fun but tedious. The
+first thought was that I had to use vagrant. The second thought is that if
+someone had already prepared some Gentoo images. I checked out the most
+downloaded Gentoo image from vagrant box list. But later I found it was using
+OpenRC instead of systemd. and disk was not using LVM. That was why I decided to
+DIY a vagrant box.</p>
+<p>I also tried chroot. But I can not do it natively on MacOS. Because I want a
+pure GNU/Linux environment. I tried to use docker or virtualbox to start a Linux
+kernel and then chroot to shared folder to install Gentoo Portage. But the
+problem is that both vboxfs and osxfs have some problems. vboxfs doesn't allow
+permission change within the guest OS which will cause you a permission deny
+hell even if you switched to root. osxfs has some performance issue just like
+vboxfs. But the most severe problem is that osxfs will just hang. I have to
+reset Docker for Mac to kill it. But this way works on Linux. So I guess it's a
+bug related to Moby VM or osxfs.</p>
+<p>Anyway, to get yourself a vagrant box, there are just two steps</p>
+<ul>
+<li>First, you install a Gentoo to a VM</li>
+<li>Second, you packge the VM and put it online</li>
+</ul>
+<h1>Install Gentoo to VirtualBox</h1>
+<p>The process is very similar to install it to a PC but somehow different to my
+previous post. First, we have to prepare the disk using parted. Second, we also
+need to configure VirtualBox a little bit to be able to ssh to.</p>
+<p>Still, we use [SystemRescueCD][]. Insert it into the Optical Drive of the VM. By
+default, VirtualBox's network uses NAT. To make ssh easier, we change it to
+Bridged Adapter to get the VM a dedicated IP address so that we needn't to
+configure port forwarding. Configure CPU cores and memory close to host machine
+so that the compilation will be quicker. 20 or 30 Gib should be enough for
+Gentoo system. We don't taken into user data here because I am sure you want to
+mount it as a shared folder. Because the disk image is always configured as
+dynamically allocated, I recomment to double it to 60GiB just in case. I use the
+vmdk format. It's more popularly supported than vdi. Remember to enable EFI in
+the VM setting.</p>
+<p>Now boot the VM, enter <CR> until you see the prompt.</p>
+<p>First, we start sshd</p>
+<div class="highlight"><pre><span></span>/etc/ssh/sshd_config
+PasswordAuthentication yes
+PermitRootLogin yes
+
+/etc/init.d/sshd restart
+passwd
+</pre></div>
+
+
+<p>Check out the IP address and ssh to the VM.</p>
+<p>Now we prepare the disk using <code>parted</code>. Still, I don't use a swap here. Because
+I think that sleep or hibernate a VM is pretty rare. In case the memory is used
+up, you can just allocate more or even over-allocate. But this time we need a
+EFI partition to install Grub. Again I use LVM here. Just in case you ran out of
+memory, you can still add a second disk image and extend your LVM VG and still
+present a single disk to OS. But Luks is not needed anymore. Entrypted a VM? We
+should encrypt the host OS.</p>
+<div class="highlight"><pre><span></span>parted /dev/sda
+mklabel gpt
+mkpart efi fat32 # hundreds of MB should be enough
+mkpart root ext4 # all remaining
+set 1 boot on
+set 2 lvm on
+</pre></div>
+
+
+<p>Quit the <code>parted</code>. Since the EFI partition has to be FAT32, we format it as
+needed</p>
+<div class="highlight"><pre><span></span>mkfs.vfat -F32 /dev/sda1
+</pre></div>
+
+
+<p>Then the LVM partition</p>
+<div class="highlight"><pre><span></span>pvcreate /dev/sda2
+vgcreate vg /dev/sda2
+lvcreate -l 100%FREE -n root vg
+mkfs.ext4 /dev/vg/root
+</pre></div>
+
+
+<p>Next, mount the filesystems and download stage3 and portage</p>
+<div class="highlight"><pre><span></span>mount /dev/vg/root /mnt
+cd /mnt
+wget http://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-systemd/&lt;latest&gt;
+tar xvf stage3*
+wget http://distfiles.gentoo.org/releases/snapshots/current/portage-latest.tar.xz
+tar xvf portage* -C usr
+</pre></div>
+
+
+<p>Now, prepare to chroot</p>
+<div class="highlight"><pre><span></span>mount -t proc /proc proc/
+mount -o bind /sys sys/
+mount -o bind /dev dev/
+cp -L /etc/resolv.conf etc/
+chroot . /bin/bash
+env-update
+source /etc/profile
+</pre></div>
+
+
+<p>After that, you may want to install vim and configure <code>/etc/portage/make.conf</code>.
+The most imoprtant thing is to add <code>MAKEOPTS</code> and <code>CPU_FLAGS_X86</code>. The later one
+can be automatically generated by <code>cpuid2cpuflags</code>. But first you need to
+installed.</p>
+<p>Before compiling kernel, we modify <code>/etc/fstab</code> to reflect our disk scheme.</p>
+<div class="highlight"><pre><span></span>vim /etc/fstab
+/dev/sda1      /boot/efi    vfat    defaults,noauto,noatime,discard    1 2
+/dev/vg/root   /            ext4    defaults,noauto,noatime,discard    0 1
+</pre></div>
+
+
+<p>Now, let's compile the kernel. Because we are using a VM, we don't need to worry
+about drivers. linux-firmware is not need. Just</p>
+<div class="highlight"><pre><span></span>emerge gentoo-sources genkernel-next
+</pre></div>
+
+
+<p>Edit <code>/etc/genkernel.conf</code></p>
+<div class="highlight"><pre><span></span>INSTALL=&quot;yes&quot;
+OLDCONFIG=&quot;yes&quot;
+MENUCONFIG=&quot;yes&quot;
+NCONFIG=&quot;no&quot;
+CLEAN=&quot;yes&quot;
+MRPROPER=&quot;no&quot;
+MOUNTBOOT=&quot;no&quot;
+SAVE_CONFIG=&quot;yes&quot;
+USECOLOR=&quot;yes&quot;
+MAKEOPTS=&quot;-j5&quot;
+LVM=&quot;yes&quot;
+UDEV=&quot;yes&quot;
+BOOTLOADER=&quot;grub&quot;
+</pre></div>
+
+
+<p>Here, we use kernel's default configurations. Thus exit the menuconfig</p>
+<div class="highlight"><pre><span></span>genkernel all
+</pre></div>
+
+
+<p>After a while, the kernel will be compiled and installed. Let's turn to
+bootloader. First, mount the EFI partition</p>
+<div class="highlight"><pre><span></span>mkdir -p /boot/efi
+mount /dev/sda1 boot/efi
+</pre></div>
+
+
+<p>Then install grub</p>
+<div class="highlight"><pre><span></span>echo &quot;sys-boot/grub device-mapper&quot; &gt;&gt; /etc/portage/package.use/grub
+emerge grub
+</pre></div>
+
+
+<p>Next, install it. But before that, configure and restart LVM</p>
+<div class="highlight"><pre><span></span>vim /etc/lvm/lvm.conf
+use_lvmetad = 0
+/etc/init.d/lvm restart
+grub-install --efi-directory=/boot/efi
+</pre></div>
+
+
+<p>If you forget to enable EFI for the VM, <code>grub-install</code> will tell not able to
+embed to BIOS. Just reboot after enable it.</p>
+<p>Finally, configure grub and generate the cfg file</p>
+<div class="highlight"><pre><span></span>vim /etc/default/grub
+GRUB_CMDLINE_LINUX=&quot;init=/usr/lib/systemd/systemd root=/dev/vg/root dolvm rootfstype=ext4&quot;
+grub-mkconfig -o /boot/grub/grub.cfg
+</pre></div>
+
+
+<p>You can now verify EFI boot configuration by</p>
+<div class="highlight"><pre><span></span>efibootmgr -v
+
+efibootmgr -o # change order
+efibootmgr --create --label Gentoo --loader &quot;\EFI\gentoo\grubx64.efi&quot; # add new entry
+efibootmgr -Bb &lt;hex&gt; # remove entry
+</pre></div>
+
+
+<p>Before reboot, remember to check profile and update world</p>
+<div class="highlight"><pre><span></span>eselect profile set default/linux/amd64/13.0/systemd
+emerge --ask --update --deep --newuse @world
+</pre></div>
+
+
+<p>There shouldn't be too much to update if you are using the latest stage3 and
+portage.</p>
+<p>Also remember to install NetworkManager and passwd root so that you can login</p>
+<div class="highlight"><pre><span></span>emerge networkmanager
+passwd
+reboot
+</pre></div>
+
+
+<p>If it goes well, you should be prompt to login. But it seems VirtualBox will
+lost the EFI boot configuration when devices change like remove install image
+from optical drive. In that case, you will be prompted a EFI shell. Then</p>
+<div class="highlight"><pre><span></span>Shell&gt;fs0:
+FS0:\&gt;edit startup.nsh
+
+FS0:\EFI\gentoo\grubx64.efi
+&lt;ctrl-s&gt;&lt;CR&gt;&lt;CR&gt; to save
+&lt;ctrl-q&gt;&lt;CR&gt; to quit
+&lt;reboot&gt;
+</pre></div>
+
+
+<p>And afterwards, when the EFI have no way to boot you can just type <code>&lt;CR&gt;</code>
+several times to activate this default script to boot grub.</p>
+<p>You can also quickly type <code>&lt;F12&gt;</code> when you see the splash after booting the VM
+to enter VirtualBox's EFI Manager Program to change the order.</p>
+<h1>Package It as A Vagrant Box</h1>
+<p>Before packaging it as a vagrant box, we have to finish some configurations.</p>
+<p>First, we finalize systemd's configuration</p>
+<div class="highlight"><pre><span></span>systemd-machine-id-setup
+systemctl enable NetworkManager
+systemctl start NetworkManager
+</pre></div>
+
+
+<p>You can also setup hostname or timezone here. After that, go check the
+requirements of a vagrant box, if you like</p>
+<ul>
+<li><a href="https://www.vagrantup.com/docs/boxes/base.html">https://www.vagrantup.com/docs/boxes/base.html</a></li>
+<li><a href="https://www.vagrantup.com/docs/virtualbox/boxes.html">https://www.vagrantup.com/docs/virtualbox/boxes.html</a></li>
+</ul>
+<p>The things are</p>
+<ul>
+<li>set up a normal user named vagrant</li>
+<li>add an insecure pubkey for vagrant</li>
+<li>add it to sudo</li>
+<li>passwd root</li>
+<li>setup and enable sshd</li>
+<li>install VirtualBox Guest Additions and enable it as startup services</li>
+</ul>
+<p>We'll go through this list one by one. Create user vagrant is easy</p>
+<div class="highlight"><pre><span></span>useradd -m vagrant
+su vagrant
+passwd
+&lt;vagrant&gt;
+</pre></div>
+
+
+<p>Then, we add an insecure pubkey to enable private key ssh. This key will be
+replaced with a randomly generated one upon the first time login of vagrant
+automatically.</p>
+<div class="highlight"><pre><span></span>cd ~/.ssh
+wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
+mv vagrant.pub authorized_keys
+chmod 600 authorized_keys
+chmod 700 ~/.ssh
+</pre></div>
+
+
+<p>Now we add vagrant to sudoer. But first you may need to install sudo</p>
+<div class="highlight"><pre><span></span>emerge sys-admin/sudo
+vim /etc/sudoers
+vagrant ALL=(ALL) NOPASSWD:ALL
+</pre></div>
+
+
+<p>Next passwd root</p>
+<div class="highlight"><pre><span></span>passwd
+&lt;vagrant&gt;
+</pre></div>
+
+
+<p>Then enable sshd</p>
+<div class="highlight"><pre><span></span>systemctl enable sshd
+</pre></div>
+
+
+<p>And finally, we need to install VirtualBox Guest Additions. You may need to
+download it with the same version of the VirtualBox from their
+mirror
+<a href="http://download.virtualbox.org/virtualbox/">http://download.virtualbox.org/virtualbox/</a>.
+Insert into the optical drive of the VM and reboot. After that, you need to
+mount it</p>
+<div class="highlight"><pre><span></span>lsblk # to check out the right device to mount
+mount /dev/sr0 /mnt
+sh /mnt/VBoxLinuxAdditions.run
+</pre></div>
+
+
+<p>It will install some service scripts to <code>/etc/init.d/</code>. But since we are using
+systemd here, we have to write some unit files and enable them. [Riann's Post][]
+has already provided some examples. You can take them from there. Just remember
+to enable them</p>
+<div class="highlight"><pre><span></span>systemctl enable vboxadd
+systemctl enable vboxadd-service
+systemctl enable vboxadd-x11
+</pre></div>
+
+
+<p>Before packaging, we can do two things to reduce the image size. First, we can
+remove the gentoo-sources. Second, we can remove the portage tree. These can
+save nearly 2GiB.</p>
+<div class="highlight"><pre><span></span>emerge -ac gentoo-sources
+emerge --depclean
+rm -rf /usr/portage
+</pre></div>
+
+
+<p>Now poweroff the VM and change the network back to NAT and run</p>
+<div class="highlight"><pre><span></span>vagrant package --base &lt;name-of-the-VM-as-showed-in-VirtualBox&gt;
+</pre></div>
+
+
+<p>This will generate a <code>package.box</code> file. Before uploading it to vagrant's boxes
+list, we can test it locally</p>
+<div class="highlight"><pre><span></span>vagrant box add gentoo /path/to/the/package.box
+vagrant init gentoo
+vagrant up
+vagrant ssh
+</pre></div>
+
+
+<p>Acutally, your can skip the steps to add unit files for vboxadd. But then you
+need to install a vagrant plugin</p>
+<div class="highlight"><pre><span></span>vagrant plugin install vagrant-vbguest
+</pre></div>
+
+
+<p>This automatically detect if the vboxadd is installed. If it is installed but
+not enabled, it will automatically start it.</p>
+<p>Now, you can register an accound on Vagrant's website and upload the box. Next
+time, you add your box from the box list before start a VM</p>
+<div class="highlight"><pre><span></span>vagrant box add yuex/gentoo
+vagrant up
+vagrant ssh
+</pre></div>
+
+
+<p>On MacOS, you can also install vagrant-manager. It will add an system tray to
+the menubar to help to monitor and manage your vagrant VMs.</p>
+  </div>
+
+  <hr/>
+    
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
+        <a class="accordion-toggle" data-toggle="collapse"
+          title="toggle folding"
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">1</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
+        <a href="http://yuex.in/post/2016/12/gentoo-install-mbp-1.html">
+          <li class="list-group-item">
+Gentoo Installation on MacBook Pro (Mid 2015) - Base System</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2016/12/gentoo-install-mbp-1.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
+  var disqus_identifier = 'gentoo-install-virtualbox-and-vagrant';
+  var disqus_url = 'http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>
