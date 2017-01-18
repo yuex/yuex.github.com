@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Wed, 04 Jan 2017 00:00:00 +0800</lastBuildDate><item><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link>http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</link><description>&lt;h1&gt;Introduction&lt;/h1&gt;
+<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Tue, 17 Jan 2017 00:00:00 +0800</lastBuildDate><item><title>"All the Single Ladies, Now Put Your Hands Up"</title><link>http://yuex.in/post/2017/01/single-number.html</link><description>&lt;p&gt;&lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt; is to find the number which apprears exactly once in an array
+assuming other numbers always appear exactly three times. It's very easy to come
+up with a linear runtime algorithm by using hash table which takes O(n) space. A
+better approach is to modulo count the number of occurrences of 1 at every bit
+and compose …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Tue, 17 Jan 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2017-01-17:/post/2017/01/single-number.html</guid><category>leetcode</category></item><item><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link>http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</link><description>&lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
 is really awesome. MacOS has got some software supports as pretty as Windows.
 Graphical applications like Steam and BattleNet are available. But still I

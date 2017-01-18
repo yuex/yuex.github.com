@@ -143,6 +143,70 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #10
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
+          <li class="list-group-item">
+            <h1>Exclusive Queue 的一个推广</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/system.html">system</a>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/semaphore.html">semaphore</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month01">01</a>-<a href="http://yuex.in/archives.html#Year2015Month01">18</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p> 最近断断续续地在看一本非常棒的书，Allen B. Downey 的 <a href="http://greenteapress.com/semaphores/">The Little Book of Semaphores</a>，理清了许多以前了解得不很确实的知识。</p>
+<p> 这两天看到的书中 3.7 节的 Exclusive Queue。书中介绍了一个可以 1:1 并发向前的队列。一个很自然的想法是如何将其推广到 n:m 的情形。但非常奇怪的是书中并没有像前几节中推广二人约定 Rendezvous<sup id="fnref-!rendezvous"><a class="footnote-ref" href="#fn-!rendezvous">1</a></sup>，使之成为多人约定 Barrier 那样，将 1:1 的 Exclusive Queue 推广到 n:m。所以我在这篇拙文中斗胆狗尾续貂，补上这个推广 <sup id="fnref-!note"><a class="footnote-ref" href="#fn-!note">2</a></sup>。</p>
+<p> 首先，和书中之前的定义一样，n:m 情形下，要求有且仅有 n 个 leader 和 m 个 follower 同时进行 dance()。变量定义如下 </p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1 …</pre></div></td></tr></table></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="little-book-exclusive-queue-generalization">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2015/01/little-book-exclusive-queue-generalization.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month01">January</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #9
         </span>
       </a>
@@ -159,7 +223,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -206,7 +270,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month10">October</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #8
         </span>
@@ -224,7 +288,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -266,7 +330,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month04">April</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #7
         </span>
@@ -284,7 +348,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -336,7 +400,7 @@
         <a href="http://yuex.in/archives.html#Year2014">2014</a> - <a href="http://yuex.in/archives.html#Year2014Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #6
         </span>
@@ -354,7 +418,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -400,70 +464,6 @@
               <a class="btn btn-primary" href="http://yuex.in/post/2014/03/diablo3-barb-build.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2014/03/diablo3-barb-build.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2013">2013</a> - <a href="http://yuex.in/archives.html#Year2013Month09">September</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #5
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html">
-          <li class="list-group-item">
-            <h1>动手写 PAM 模块让 sshd 支持用户接入控制</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/linux.html">linux</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/sshd.html">sshd</a>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/pam.html">pam</a>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/python.html">python</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2013">2013</a>-<a href="http://yuex.in/archives.html#Year2013Month09">09</a>-<a href="http://yuex.in/archives.html#Year2013Month09">29</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 承接上一篇 blog，某本意是想用 pam_limits.so 来做用户登录限制，从而可以让多个用户共用一台机器做 ssh 代理。这样一来，服务器端就必须要对用户进行基于用户名和登录 ip 的。</p>
-<p> 想当然的做法是用 /etc/security/limits.conf 中的 maxlogins 解决。但是这个是有问题的，maxlogins 是要用户登录到 shell 才会统计的。pam_limits.so 中读取的是 utmp，这个是存在 /var/run/utmp 中的，用 <code>w</code> 可以查看。而 <code>ssh -N</code> 是不会被 utmp 记录为 login 的。所以，如果用上篇 blog 中的方法实践的话，用户可以用 <code>ssh -N</code> 绕过所有的接入控制。一般而言，这也不是什么大问题，因为用户 <code>ssh -N</code> 接入的话 …</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="hands-on-pam-module-and-sshd">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2013/09/hands-on-pam-module-and-sshd.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>

@@ -1,5 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人) - yuex</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-01-04T00:00:00+08:00</updated><entry><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link href="http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html" rel="alternate"></link><published>2017-01-04T00:00:00+08:00</published><updated>2017-01-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-01-04:/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人) - yuex</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/feeds/yuex.atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-01-17T00:00:00+08:00</updated><entry><title>"All the Single Ladies, Now Put Your Hands Up"</title><link href="http://yuex.in/post/2017/01/single-number.html" rel="alternate"></link><published>2017-01-17T00:00:00+08:00</published><updated>2017-01-17T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-01-17:/post/2017/01/single-number.html</id><summary type="html">&lt;p&gt;&lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt; is to find the number which apprears exactly once in an array
+assuming other numbers always appear exactly three times. It's very easy to come
+up with a linear runtime algorithm by using hash table which takes O(n) space. A
+better approach is to modulo count the number of occurrences of 1 at every bit
+and compose …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt; is to find the number which apprears exactly once in an array
+assuming other numbers always appear exactly three times. It's very easy to come
+up with a linear runtime algorithm by using hash table which takes O(n) space. A
+better approach is to modulo count the number of occurrences of 1 at every bit
+and compose the final result based on this information. But to implement it
+efficiently, some bitwise tricks are used which remind me some good old college
+time when I was learning Digital Circuit and CPU Architeture. So I think I
+should take these notes down here. Also, this problem could be generalize to
+find the number which apprears exactly p times in an array while others always
+appear k times, assuming (p &amp;lt; k). And for &lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt;, there is also a
+two-line solution based on the special parameters (k, p) = (3, 1). I will talk
+about it at the end.&lt;/p&gt;
+&lt;p&gt;First, we can use hash table to count the appearance of every number and then
+check which number's count is exactly one. This can give a linear runtime
+algorithm having linear space complexity. Some people argues that this is gonna
+be practically slow because hashing is an expensive operation. But for this
+special problem, we can use a simple modulo function to compute the hash
+number. But one thing to note is that although we can choose a prime large
+enough to give extremely low collision rate, this algorithm is not strictly
+guaranteed to be always correct.&lt;/p&gt;
+&lt;p&gt;Another idea is that we can count the occurence of 1 at every bit of the
+numbers. The difference is that whenever the count reaches k we reset it to 0
+and carry on. At the end, since all numbers except one appear k times, the final
+value of the count is actually p or 0. We can easily construct the number itself
+based on this information. The only thing here is how to implement these
+counters efficiently. A trivial implementation could use an array and calculate
+every bit of every number and count it accordingly. Definitely, the time
+complexity will be &lt;code&gt;O(nlog(MAX_INT))&lt;/code&gt;and the space complexity
+&lt;code&gt;O(log(MAX_INT))&lt;/code&gt;. But by using some bitwise tricks, we can change these two
+metrics to have a &lt;code&gt;log(k)&lt;/code&gt; scale factor. When k is less than MAX_INT, we can
+have an algorithm with better asymptotic performance.&lt;/p&gt;
+&lt;p&gt;For simplicity, we will assume the numbers are 32 bits long. So we need 32
+counters in total. The key observation here is that if k is of m bits, we are
+having a (32, m) matrix of 1-bit value. The above algorithm we mentioned are
+updating the counters from a row based point of view. But we can also update it
+in a column based way.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    m...321
+ 1  .......
+ 2  .......
+ 3  .......
+ .
+32  .......
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we can found a way to update &lt;code&gt;counter[i][1]&lt;/code&gt;..&lt;code&gt;counter[i][m]&lt;/code&gt; bitwisely with
+1-bit number n. Then we can pack the updates of all 32 counters at an
+integer. We can see this technique as a bitwise level parallel computation. But
+how can we update &lt;code&gt;counter[i][1..m]&lt;/code&gt; bitwisely? For simplicity, we use xm...x1 to
+represent the counter. There are two things we need to work out&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;How to add 1 to it&lt;/li&gt;
+&lt;li&gt;How to reset it to 0 when it reaches k&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The reset part is relative easy. If you have experience with circuit design, it
+is easily to see that we can check if k reaches by compute a value out of
+xm..x1. The fundamental rule of circuit design or digital logic is that you can
+work out a mapping between any bit pattern once you have write down the truth
+table. Assume k = 0b101, we are expecting following truth table for reset&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 321  -&amp;gt;  x 321
+  000        000
+  001        001
+  010        010
+  011        011
+  100        100
+k 101        000
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;We can see only when &lt;code&gt;x3x2x1 == 101&lt;/code&gt;, &lt;code&gt;x3 &amp;amp; (~x2) &amp;amp; (x1) == 1&lt;/code&gt;. Then the reset
+could be expressed as&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mask = ~(x3 &amp;amp; (~x2) &amp;amp; x1)
+x3 = x3 &amp;amp; mask
+x2 = x2 &amp;amp; mask
+x1 = x1 &amp;amp; mask
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To work out the add part, we start with x1. Because for x1, this is no
+carry. We are expecting following truth table&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 0 n -&amp;gt; x 0
+  0 0      0
+  1 0      1
+  0 1      1
+  1 1      0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The mapping could be written out directly as &lt;code&gt;x0 = ((x0) &amp;amp; (~n)) | ((~x0) &amp;amp; (n))
+= x0 ^ n&lt;/code&gt;. Perhaps, this is why XOR sign is chosen to be a circle plus, just to
+remind you of its ability to act as a circle around in-place plus without carry
+for circuit design.&lt;/p&gt;
+&lt;p&gt;To calculate x2..xm, we need to take carry into consideration.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x i carry -&amp;gt; x i
+  0   0        0
+  1   0        1
+  0   1        1
+  1   1        0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Actually, it's the same table for x0. So we can write out &lt;code&gt;xi = xi ^ carry_i&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;But how to compute carry? Just think when we will have a carry for xi. Only when
+xi-1, ..., x1, and n are all 1. This leads to&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;carry_i = xi-1 &amp;amp; .. &amp;amp; x1 &amp;amp; n
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we can write out the code to update these counters. Note, we generalize the
+compuatation of x0 by using n as carry0&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s s-Atom"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="k"&gt;_&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;k&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;bin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s s-Atom"&gt;::-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;n&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nn"&gt;nums&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;n&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;i&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;
+        &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s s-Atom"&gt;carry&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="s s-Atom"&gt;^&lt;/span&gt; &lt;span class="s s-Atom"&gt;carry&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;amp;&lt;/span&gt; &lt;span class="s s-Atom"&gt;carry&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;i&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;
+        &lt;span class="s s-Atom"&gt;mi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="s s-Atom"&gt;if&lt;/span&gt; &lt;span class="s s-Atom"&gt;k&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span class="s s-Atom"&gt;else&lt;/span&gt; &lt;span class="s s-Atom"&gt;~x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="s s-Atom"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;mask&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;amp;&lt;/span&gt; &lt;span class="s s-Atom"&gt;mi&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;~mask&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;i&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;
+        &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;amp;&lt;/span&gt; &lt;span class="s s-Atom"&gt;mask&lt;/span&gt;
+
+&lt;span class="s s-Atom"&gt;the_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;i&lt;/span&gt; &lt;span class="s s-Atom"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt;
+    &lt;span class="s s-Atom"&gt;the_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s s-Atom"&gt;the_number&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s s-Atom"&gt;x&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s s-Atom"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="s s-Atom"&gt;return&lt;/span&gt; &lt;span class="s s-Atom"&gt;the_number&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Since the final 1 occurence count at any bit is either p or 0, the bit value at
+ith bit of the single number can be computed by&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;the_number = xm | ... | x1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If we can know k for sure, then we can do better. As in &lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt;, k
+= 3. The counte updating truth table is&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 10 n -&amp;gt; x 10
+  00 0      00
+  01 0      01 .
+  10 0      10
+  00 1      01 .
+  01 1      10
+  10 1      00
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here is the true beauty of circuit design of digital logic, that we can write
+out the mapping directly as&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x0 = ((~x1) &amp;amp; x0 &amp;amp; (~n)) | ((~x1) &amp;amp; (~x0) &amp;amp; n)
+x0 = (~x1) &amp;amp; ((x0 &amp;amp; (~n)) | ((~x0) &amp;amp; n)) = (~x1) &amp;amp; (x0 ^ n)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You can save the original value of x0, and then use it to calculate x1. But
+here, we use the computed value of x0 as new input to calculate x1. Namely, we
+change the left x0 column with the right x0 column in above truth table. Then we
+have&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 10 n -&amp;gt; x 10
+  00 0      00
+  01 0      01
+  10 0    . 10
+  01 1      01
+  00 1    . 10
+  10 1      00
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Remeber, the true beauty. We have&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x1 = (x1 &amp;amp; (~x0) &amp;amp; (~n)) | ((~x1) &amp;amp; (~x0) &amp;amp; n)
+x1 = (~x0) &amp;amp; ((x1 &amp;amp; (~n)) | (~x1) &amp;amp; n) = (~x0) &amp;amp; (x1 ^ n)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then we have these two magic lines to solve the problem. Remember, p = 1
+here. It means x1 will always be 0 at last.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x = [0, 0]
+for n in nums:
+    x[0] = (~x[1]) &amp;amp; (x[0] ^ n)
+    x[1] = (~x[0]) &amp;amp; (x[1] ^ n)
+return x[0]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;At last, remember the true beauty of digital logic. It could be singular as well
+as single.&lt;/p&gt;</content><category term="leetcode"></category></entry><entry><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link href="http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html" rel="alternate"></link><published>2017-01-04T00:00:00+08:00</published><updated>2017-01-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-01-04:/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
 is really awesome. MacOS has got some software supports as pretty as Windows.
 Graphical applications like Steam and BattleNet are available. But still I
