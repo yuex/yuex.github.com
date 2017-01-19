@@ -1125,6 +1125,9 @@ please keep calm, carry on, and try hard to have some fun. Or what else you can
 do?&lt;/p&gt;
 &lt;p&gt;Awesome, right? If you don't feel so, then try harder.&lt;/p&gt;
 &lt;p&gt;BTW, if you want to give it a shot, try compile &lt;code&gt;assignment.tex&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;EDIT: I found actually many frequently used latex packages are packaged up by
+texlive as a texlive-latexextra in portage or texlive-latex-extra in
+macports. You can just install them to save a lot of time.&lt;/p&gt;
 &lt;p&gt;-EOF-&lt;/p&gt;</content><category term="latex"></category></entry><entry><title>论知人</title><link href="http://yuex.in/post/2016/09/how-to-know-people.html" rel="alternate"></link><published>2016-09-04T00:00:00+08:00</published><updated>2016-09-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2016-09-04:/post/2016/09/how-to-know-people.html</id><summary type="html">&lt;p&gt; 年纪愈长，见人愈多，愈知知人之难。据说曾文正公是通过看相来识人知人，更是著有《
 冰鉴》将自己看相识人的本领总结一番。不过居今反古终归是不太保险，况且我也不打算
 搞什么神秘主义。我倒是觉得诸葛先生的一段知人论，无论从理论还是实践上都是简洁明
