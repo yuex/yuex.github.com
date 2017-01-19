@@ -51,8 +51,8 @@ in a column based way.&lt;/p&gt;
 &lt;p&gt;If we can found a way to update &lt;code&gt;counter[i][1]&lt;/code&gt;..&lt;code&gt;counter[i][m]&lt;/code&gt; bitwisely with
 1-bit number n. Then we can pack the updates of all 32 counters at an
 integer. We can see this technique as a bitwise level parallel computation. But
-how can we update &lt;code&gt;counter[i][1..m]&lt;/code&gt; bitwisely? For simplicity, we use xm...x1 to
-represent the counter. There are two things we need to work out&lt;/p&gt;
+how can we update &lt;code&gt;counter[i][1..m]&lt;/code&gt; bitwisely? For simplicity, we use xm...x1
+to represent the counter. There are two things we need to work out&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;How to add 1 to it&lt;/li&gt;
 &lt;li&gt;How to reset it to 0 when it reaches k&lt;/li&gt;
@@ -60,7 +60,7 @@ represent the counter. There are two things we need to work out&lt;/p&gt;
 &lt;p&gt;The reset part is relative easy. If you have experience with circuit design, it
 is easily to see that we can check if k reaches by compute a value out of
 xm..x1. The fundamental rule of circuit design or digital logic is that you can
-work out a mapping between any bit pattern once you have write down the truth
+work out a mapping between any bit pattern once you have written down the truth
 table. Assume k = 0b101, we are expecting following truth table for reset&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 321  -&amp;gt;  x 321
   000        000
@@ -134,14 +134,16 @@ compuatation of x0 by using n as carry0&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Since the final 1 occurence count at any bit is either p or 0, the bit value at
-ith bit of the single number can be computed by&lt;/p&gt;
+&lt;p&gt;At the end of above code, we add a loop to compute the single number. Since its
+final occurence count of '1' at any bit is either p or 0, the bit value at ith
+bit of the single number can be computed the single number by&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;the_number = xm | ... | x1
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;If we can know k for sure, then we can do better. As in &lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt;, k
-= 3. The counte updating truth table is&lt;/p&gt;
+&lt;p&gt;Besides the general solution, there could also be a specialized solution for
+specific k. If we know any specific k for sure, we can do better. As
+in &lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt;, k = 3. The truth table to update count is&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 10 n -&amp;gt; x 10
   00 0      00
   01 0      01 .
@@ -152,17 +154,18 @@ ith bit of the single number can be computed by&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Here is the true beauty of circuit design of digital logic, that we can write
-out the mapping directly as&lt;/p&gt;
+&lt;p&gt;Here comes the true beauty of digital logic. We can write out the mapping
+directly as&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x0 = ((~x1) &amp;amp; x0 &amp;amp; (~n)) | ((~x1) &amp;amp; (~x0) &amp;amp; n)
-x0 = (~x1) &amp;amp; ((x0 &amp;amp; (~n)) | ((~x0) &amp;amp; n)) = (~x1) &amp;amp; (x0 ^ n)
+   = (~x1) &amp;amp; ((x0 &amp;amp; (~n)) | ((~x0) &amp;amp; n))
+   = (~x1) &amp;amp; (x0 ^ n)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;You can save the original value of x0, and then use it to calculate x1. But
-here, we use the computed value of x0 as new input to calculate x1. Namely, we
-change the left x0 column with the right x0 column in above truth table. Then we
-have&lt;/p&gt;
+&lt;p&gt;You can save the original value of x0, and then use it to calculate x1 in the
+smae way above. But we can also use the computed value of x0 as a new input to
+calculate x1. Namely, we substitute the left x0 column with the right x0 column
+in above truth table. Then we have&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x 10 n -&amp;gt; x 10
   00 0      00
   01 0      01
@@ -175,12 +178,13 @@ have&lt;/p&gt;
 
 &lt;p&gt;Remeber, the true beauty. We have&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x1 = (x1 &amp;amp; (~x0) &amp;amp; (~n)) | ((~x1) &amp;amp; (~x0) &amp;amp; n)
-x1 = (~x0) &amp;amp; ((x1 &amp;amp; (~n)) | (~x1) &amp;amp; n) = (~x0) &amp;amp; (x1 ^ n)
+   = (~x0) &amp;amp; ((x1 &amp;amp; (~n)) | (~x1) &amp;amp; n)
+   = (~x0) &amp;amp; (x1 ^ n)
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Then we have these two magic lines to solve the problem. Remember, p = 1
-here. It means x1 will always be 0 at last.&lt;/p&gt;
+&lt;p&gt;Then we have a few lines of magic to solve the problem. Remember, p = 1 here. It
+means x1 will always be 0 at the end.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x = [0, 0]
 for n in nums:
     x[0] = (~x[1]) &amp;amp; (x[0] ^ n)
@@ -189,8 +193,8 @@ return x[0]
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;At last, remember the true beauty of digital logic. It could be singular as well
-as single.&lt;/p&gt;</content><category term="leetcode"></category></entry><entry><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link href="http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html" rel="alternate"></link><published>2017-01-04T00:00:00+08:00</published><updated>2017-01-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-01-04:/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;At the end of this post, take a while to savor the true beauty of digital
+logic. It could be singular as well as single.&lt;/p&gt;</content><category term="leetcode"></category></entry><entry><title>Install Gentoo to VirtualBox and Package It to Vagrant</title><link href="http://yuex.in/post/2017/01/gentoo-install-virtualbox-and-vagrant.html" rel="alternate"></link><published>2017-01-04T00:00:00+08:00</published><updated>2017-01-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-01-04:/post/2017/01/gentoo-install-virtualbox-and-vagrant.html</id><summary type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;I have been fiddling with MacBook Pro in the past few days. The Quartz Desktop
 is really awesome. MacOS has got some software supports as pretty as Windows.
 Graphical applications like Steam and BattleNet are available. But still I
