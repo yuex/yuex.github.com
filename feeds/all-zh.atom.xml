@@ -183,7 +183,7 @@ in above truth table. Then we have&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Then we have a few lines of magic to solve the problem. Remember, p = 1 here. It
+&lt;p&gt;Then we have following lines of magic to solve &lt;a href="https://leetcode.com/problems/single-number-ii/"&gt;LeetCode 137&lt;/a&gt;. Note p = 1.  It
 means x1 will always be 0 at the end.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;x = [0, 0]
 for n in nums:
