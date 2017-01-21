@@ -177,13 +177,13 @@ counters in total. The key observation here is that if k is of m bits, we are
 having a (32, m) matrix of 1-bit value. The above algorithm we mentioned are
 updating the counters from a row based point of view. But we can also update it
 in a column based way.</p>
-<div class="highlight"><pre><span></span>    m...321  --&gt;  n1  n2  n3  ...  nk  ...
- 1  .......  --&gt;   .   .   .        .
- 2  .......  --&gt;   .   .   .        .
- 3  .......  --&gt;   .   .   .        .
- .     .      .    .   .   .        .
- .     .      .    .   .   .        .
-32  .......  --&gt;   .   .   .        .
+<div class="highlight"><pre><span></span>    m...321  count  n1  n2  n3  <span class="kc">...</span>  nk  <span class="kc">...</span>
+ <span class="m">1</span>  <span class="m">....</span><span class="kc">...</span>    <span class="o">&lt;-</span>    <span class="m">.</span>   <span class="m">.</span>   <span class="m">.</span>        <span class="m">.</span>
+ <span class="m">2</span>  <span class="m">....</span><span class="kc">...</span>    <span class="o">&lt;-</span>    <span class="m">.</span>   <span class="m">.</span>   <span class="m">.</span>        <span class="m">.</span>
+ <span class="m">3</span>  <span class="m">....</span><span class="kc">...</span>    <span class="o">&lt;-</span>    <span class="m">.</span>   <span class="m">.</span>   <span class="m">.</span>        <span class="m">.</span>
+ <span class="m">.</span>     <span class="m">.</span>        <span class="m">.</span>    <span class="m">.</span>   <span class="m">.</span>   <span class="m">.</span>        <span class="m">.</span>
+ <span class="m">.</span>     <span class="m">.</span>        <span class="m">.</span>    <span class="m">.</span>   <span class="m">.</span>   <span class="m">.</span>        <span class="m">.</span>
+<span class="m">32</span>  <span class="m">....</span><span class="kc">...</span>    <span class="o">&lt;-</span>    <span class="m">.</span>   <span class="m">.</span>   <span class="m">.</span>        <span class="m">.</span>
 </pre></div>
 
 

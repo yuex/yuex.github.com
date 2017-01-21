@@ -39,13 +39,13 @@ counters in total. The key observation here is that if k is of m bits, we are
 having a (32, m) matrix of 1-bit value. The above algorithm we mentioned are
 updating the counters from a row based point of view. But we can also update it
 in a column based way.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    m...321  --&amp;gt;  n1  n2  n3  ...  nk  ...
- 1  .......  --&amp;gt;   .   .   .        .
- 2  .......  --&amp;gt;   .   .   .        .
- 3  .......  --&amp;gt;   .   .   .        .
- .     .      .    .   .   .        .
- .     .      .    .   .   .        .
-32  .......  --&amp;gt;   .   .   .        .
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    m...321  count  n1  n2  n3  &lt;span class="kc"&gt;...&lt;/span&gt;  nk  &lt;span class="kc"&gt;...&lt;/span&gt;
+ &lt;span class="m"&gt;1&lt;/span&gt;  &lt;span class="m"&gt;....&lt;/span&gt;&lt;span class="kc"&gt;...&lt;/span&gt;    &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt;    &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;
+ &lt;span class="m"&gt;2&lt;/span&gt;  &lt;span class="m"&gt;....&lt;/span&gt;&lt;span class="kc"&gt;...&lt;/span&gt;    &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt;    &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;
+ &lt;span class="m"&gt;3&lt;/span&gt;  &lt;span class="m"&gt;....&lt;/span&gt;&lt;span class="kc"&gt;...&lt;/span&gt;    &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt;    &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;
+ &lt;span class="m"&gt;.&lt;/span&gt;     &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;    &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;
+ &lt;span class="m"&gt;.&lt;/span&gt;     &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;    &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;
+&lt;span class="m"&gt;32&lt;/span&gt;  &lt;span class="m"&gt;....&lt;/span&gt;&lt;span class="kc"&gt;...&lt;/span&gt;    &lt;span class="o"&gt;&amp;lt;-&lt;/span&gt;    &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;   &lt;span class="m"&gt;.&lt;/span&gt;        &lt;span class="m"&gt;.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
