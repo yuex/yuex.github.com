@@ -737,12 +737,12 @@ GRUB_ENABLE_CRYPTODISK=y
 
 
 &lt;p&gt;Add an entry to boot MacOS from Grub&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="x"&gt;vim /etc/grub.d/40_custom&lt;/span&gt;
-&lt;span class="x"&gt;menuentry &amp;quot;Mac OS X&amp;quot; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="x"&gt;&lt;/span&gt;
-&lt;span class="x"&gt;    insmod hfsplus&lt;/span&gt;
-&lt;span class="x"&gt;    set root=&amp;#39;(hd1,gpt3)&amp;#39;&lt;/span&gt;
-&lt;span class="x"&gt;    chainloader (&lt;/span&gt;&lt;span class="p"&gt;$&lt;/span&gt;&lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="x"&gt;)/System/Library/CoreServices/boot.efi&lt;/span&gt;
-&lt;span class="x"&gt;}&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;vim /etc/grub.d/40_custom
+menuentry &amp;quot;Mac OS X&amp;quot; {
+    insmod hfsplus
+    set root=&amp;#39;(hd1,gpt3)&amp;#39;
+    chainloader ($root)/System/Library/CoreServices/boot.efi
+}
 &lt;/pre&gt;&lt;/div&gt;
 
 

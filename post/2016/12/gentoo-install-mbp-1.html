@@ -499,12 +499,12 @@ GRUB_ENABLE_CRYPTODISK=y
 
 
 <p>Add an entry to boot MacOS from Grub</p>
-<div class="highlight"><pre><span></span><span class="x">vim /etc/grub.d/40_custom</span>
-<span class="x">menuentry &quot;Mac OS X&quot; </span><span class="err">{</span><span class="x"></span>
-<span class="x">    insmod hfsplus</span>
-<span class="x">    set root=&#39;(hd1,gpt3)&#39;</span>
-<span class="x">    chainloader (</span><span class="p">$</span><span class="nv">root</span><span class="x">)/System/Library/CoreServices/boot.efi</span>
-<span class="x">}</span>
+<div class="highlight"><pre><span></span>vim /etc/grub.d/40_custom
+menuentry &quot;Mac OS X&quot; {
+    insmod hfsplus
+    set root=&#39;(hd1,gpt3)&#39;
+    chainloader ($root)/System/Library/CoreServices/boot.efi
+}
 </pre></div>
 
 
