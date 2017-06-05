@@ -189,12 +189,12 @@ end of story&lt;/p&gt;
 &lt;h1&gt;Final Trick&lt;/h1&gt;
 &lt;p&gt;If you observe carefully, it is not hard to see that the mismatch transition
 from state 0 is always to state 0. Thus we can save one memory cell. Definitely,
-it will make the NFA index off by 1. But it will also affect the inner loop
+it will make the NFA index off by 1. But it also affects the inner loop
 execution order. The overall effect is that &lt;code&gt;nfa[i] = j&lt;/code&gt; has to be put at end of
-the loop instead of beginning. The KMP algorithm in CLRS' &lt;em&gt;Introduction t
-_Algorithms&lt;/em&gt; uses this implementation. But I found it is too clever to be smart,
-make the algorithm more twisted. The gain doesn't qualify the loss. But that's
-only my opinion.&lt;/p&gt;
+the loop instead of beginning. The KMP algorithm introduced in CLRS'
+&lt;em&gt;Introduction t _Algorithms&lt;/em&gt; uses this implementation. But I found it is too
+clever to be smart, make the algorithm more twisted. The gain doesn't qualify
+the loss. But that's only my opinion.&lt;/p&gt;
 &lt;h1&gt;Summary&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;An algorithm must be seen to be believed
