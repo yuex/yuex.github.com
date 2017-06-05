@@ -1,5 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-03-06T00:00:00+08:00</updated><entry><title>Black Art in Machine Learning</title><link href="http://yuex.in/post/2017/03/ml-black-art.html" rel="alternate"></link><published>2017-03-06T00:00:00+08:00</published><updated>2017-03-06T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-03-06:/post/2017/03/ml-black-art.html</id><summary type="html">&lt;p&gt;I came across a paper called &lt;a href="http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"&gt;A Few Useful Things to Know about Machine Learning&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-06-04T00:00:00+08:00</updated><entry><title>KMP's True Beauty: from DFA to NFA</title><link href="http://yuex.in/post/2017/06/kmp-beauty.html" rel="alternate"></link><published>2017-06-04T00:00:00+08:00</published><updated>2017-06-04T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-06-04:/post/2017/06/kmp-beauty.html</id><summary type="html">&lt;h1&gt;Poetry, Algorithm, and KMP&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Great algorithms are poetry of computation
+&lt;small&gt;Francis Sullivan&lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Poetry always give us an enjoyable exprience if not a meaningful enlightenment
+to the true nature of life. But 10 years ago when I first read about KMP on
+CLRS' classic &lt;em&gt;Introduction to Algorithms&lt;/em&gt;, what I went through was only
+confusion.  Though the code was succinct like a …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Poetry, Algorithm, and KMP&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Great algorithms are poetry of computation
+&lt;small&gt;Francis Sullivan&lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Poetry always give us an enjoyable exprience if not a meaningful enlightenment
+to the true nature of life. But 10 years ago when I first read about KMP on
+CLRS' classic &lt;em&gt;Introduction to Algorithms&lt;/em&gt;, what I went through was only
+confusion.  Though the code was succinct like a poem, I was always wondering how
+could someone came up with such a exotic if not esoteric but still efficient
+algorithm.  It felt like someone just got lucky enough to be striked by a
+thunder, until I have read Sedgewick's fantastic &lt;em&gt;Algorithms&lt;/em&gt;. He expalins this
+great algorithm from a DFA angle which reveals the delicacy of this algorithm in
+a intuitive and natural way.&lt;/p&gt;
+&lt;p&gt;But Sedgewick only explains the K part of KMP in his lecture and book, i.e.
+Knuth's original algorithm which uses a DFA branching on an alphabet.  The flaw
+is obvious that if we have a large alphabet like Unicode the memory needed to
+store this DFA will be huge even if the pattern is composed by only a few
+different letters. This is where Knuth's student Pratt came in and came up with
+a way to reduce space. Like Sedgewick has mentioned in his lecture, the improved
+algorithm is more complicated. That's why he doesn't talk it in details in his
+lecture. But to my surprise, the improved algorithm is still quite unstandable
+if we follow the way he shows us how to build a DFA. The only difference is what
+we need now is a NFA.&lt;/p&gt;
+&lt;p&gt;This is why I am writing this blog. I will briefly recap the DFA explanation of
+KMP first. Then I will explain the improved algorithm from a NFA point. Finally,
+we will modify this NFA a little bit to make it search all occurences in the
+text. The reader should at least know what problem the KMP algorithm is
+solving. Section 5.3 of Sedgewick's &lt;em&gt;Algorithm&lt;/em&gt; is recommended. The parts
+explaining the Brute-Force search and KMP search are strongly recommended.&lt;/p&gt;
+&lt;h1&gt;Recap&lt;/h1&gt;
+&lt;p&gt;The recap here is by no intention to be thorough. Please check Sedgewick's
+&lt;a href="https://youtu.be/n-7n-FDEWzc"&gt;Lecture on KMP&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;KMP is classic linear algorithm to do substring match. The critical idea is to
+avoid backup so that we can move down the text directly. The key part is that
+when a mismatch happens we know exactly which pattern index should we compare
+against with current text index. We don't want backup so we would never decrease
+text index. We can think of the pattern index as a state. A match has proceeded
+to &lt;code&gt;pat[j]&lt;/code&gt; means we have already matched &lt;code&gt;j&lt;/code&gt; characters. Let's call it match
+state. Assume we have such a machine that once we told it current state and the
+next character, it would tell us which pattern index to match against next. Then
+the match would be much simpler&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;dfa&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c1"&gt;# match state&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;By nature, this machine is a DFA since once the state and the input are
+determined so is the result.&lt;/p&gt;
+&lt;p&gt;Fortunately, this machine could be constructed recursively. Let's work on an
+exmaple pattern &lt;code&gt;ABABAC&lt;/code&gt;. The match case is easy, we just increment the state.&lt;/p&gt;
+&lt;p&gt;For the mismatch case, let's say we are now at &lt;code&gt;pat[3]&lt;/code&gt;. The thing we know about
+is that the past 3 chars are "ABA" both in text and pattern, i.e. &lt;code&gt;txt[i-3:i] ==
+"ABA"&lt;/code&gt;. If backup is allowed, we need to compare &lt;code&gt;txt[i-2]&lt;/code&gt; which is &lt;code&gt;'B'&lt;/code&gt; with
+&lt;code&gt;pat[0]&lt;/code&gt;. But since we have already recursively constructed the DFA and we also
+know the inputs (&lt;code&gt;"BA"&lt;/code&gt;), we can compute the final state virtually by feeding
+&lt;code&gt;"BA"&lt;/code&gt; to a DFA with state 0. It turns out the final state will be 1.  Then The
+destinations of mismatch transitions at state 3 are same as start from state 1.&lt;/p&gt;
+&lt;p&gt;Since this virtual state also follows a recursive manner, we could compute it
+together along with the DFA construction in one pass&lt;/p&gt;
+&lt;p&gt;&lt;img alt="dfa" src="/image/kmp-beauty/dfa.png"&gt;&lt;/p&gt;
+&lt;p&gt;Here's the Python implementation of the DFA construction&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;build&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;dfa&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c1"&gt;# virtual state run through dfa&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;R&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="n"&gt;dfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="n"&gt;dfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;dfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;dfa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;From DFA to NFA&lt;/h1&gt;
+&lt;p&gt;One idea to save space is that we don't record transitions for every input. One
+natural way is that we only differenciate match and mismatch. This means in the
+FSM we have only two transition at any state: match and mismatch. It's easy to
+see that extra space needed would be linear with respect to M (the length of
+pattern). But the problem is that since we only differenciate match and
+mismatch, we have no way to be deterministic when mismatch occurs. Indeed, there
+is only one deterministic way to match for any state. But there are many ways to
+mismatch. Which means that if we take a mismatch transition, we have to check
+again to if there is a match. If there is a match, okay, we can now take a
+deterministic match transition. If there is not, by definition, we have to take
+another mismatch transition and check again until we have reached state 0.&lt;/p&gt;
+&lt;p&gt;This may feel like someone is again got striked by a thunder. But believe me if
+you work on the DFA for a while and seize the two-type-transition-only idea
+tightly, it is quite natural to come to this NFA method.&lt;/p&gt;
+&lt;p&gt;Another thing to notice is that, we don't need to maintain match transition at
+all. Because at any time, we could check &lt;code&gt;txt[i] ==? pat[j]&lt;/code&gt; to determine if
+there is a match. And if there is a match, we increment state. The NFA we need
+is to tell us which pattern index to try next if we tell it which match state we
+are at. The input is always implicitly mismatch. Suppose we have already got
+this NFA, the match will be&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c1"&gt;# match state&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Like DFA, the NFA could be constructed recursively too. But since the machine is
+now non-deterministic, the destination of mismatch transition only indicate next
+state to try. Quite like the DFA construction, this virtual state could also be
+computed along with the NFA construction. Let's take &lt;code&gt;"ABABAC"&lt;/code&gt; as the exmaple
+pattern again, the FSM will be&lt;/p&gt;
+&lt;p&gt;&lt;img alt="nfa1" src="/image/kmp-beauty/nfa1.png"&gt;&lt;/p&gt;
+&lt;p&gt;Here's the code to construct it&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;build&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;nfa&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c1"&gt;# virtual state run through nfa&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Match Them All&lt;/h1&gt;
+&lt;p&gt;The idea to match all occurences is that after finding one match, we continue
+the match process by taking any input as mismatch. What we need to do is add
+this transition to the above FSM. As always, let's assume we alreay have this
+NFA. The match is quite straightforward&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;match_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;ret&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="c1"&gt;# all occurences&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;    &lt;span class="c1"&gt;# match state&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;txt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;ret&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# wild mismatch&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;ret&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Let take &lt;code&gt;"ABABAC"&lt;/code&gt; again as the example pattern. The modified FSM will be&lt;/p&gt;
+&lt;p&gt;&lt;img alt="nfa2" src="/image/kmp-beauty/nfa2.png"&gt;&lt;/p&gt;
+&lt;p&gt;Please notice, in this example, the mismatch transition at state 6 is
+to 0. But this DOT NOT means that we reset the state when we have a complete
+match. The mismatch transition has to be recursively computed from state 5. It
+happens to be 0 in this example. Because when at state 5, the mismatch
+transition is to state 3. But the match transition characters at state 3 and
+state 5 are different, we need to take another mismatch transition from
+state 3. It is to state 1. But once again, the match transition characters at
+state 1 and state 5 are different, we mismatch transit again to state 0. That's
+end of story&lt;/p&gt;
+&lt;p&gt;The Python implementation of build will be&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;build_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;nfa&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+    &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="c1"&gt;# virtual state&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;
+        &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;nfa&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;nfa&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Final Trick&lt;/h1&gt;
+&lt;p&gt;If you observe carefully, it is not hard to see that the mismatch transition
+from state 0 is always to state 0. Thus we can save one memory cell. Definitely,
+it will make the NFA index off by 1. But it will also affect the inner loop
+execution order. The overall effect is that &lt;code&gt;nfa[i] = j&lt;/code&gt; has to be put at end of
+the loop instead of beginning. The KMP algorithm in CLRS' &lt;em&gt;Introduction t
+_Algorithms&lt;/em&gt; uses this implementation. But I found it is too clever to be smart,
+make the algorithm more twisted. The gain doesn't qualify the loss. But that's
+only my opinion.&lt;/p&gt;
+&lt;h1&gt;Summary&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An algorithm must be seen to be believed
+&lt;small&gt;Donald Knuth&lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Sedgewick use this quote of Knuth somewhat as the footnote of his research on
+algorithm visualization. But I kind of feel that Knuth is talking about the
+beauty of algorithms, as a poem must be sung to be fully enjoyed.&lt;/p&gt;</content><category term="leetcode"></category></entry><entry><title>Black Art in Machine Learning</title><link href="http://yuex.in/post/2017/03/ml-black-art.html" rel="alternate"></link><published>2017-03-06T00:00:00+08:00</published><updated>2017-03-06T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-03-06:/post/2017/03/ml-black-art.html</id><summary type="html">&lt;p&gt;I came across a paper called &lt;a href="http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"&gt;A Few Useful Things to Know about Machine Learning&lt;/a&gt;
 which summarized some black arts in machine learning.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Learning = Representation + Evaluation + Optimization&lt;/li&gt;

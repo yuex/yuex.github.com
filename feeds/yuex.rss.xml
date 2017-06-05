@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Mon, 06 Mar 2017 00:00:00 +0800</lastBuildDate><item><title>Black Art in Machine Learning</title><link>http://yuex.in/post/2017/03/ml-black-art.html</link><description>&lt;p&gt;I came across a paper called &lt;a href="http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"&gt;A Few Useful Things to Know about Machine Learning&lt;/a&gt;
+<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sun, 04 Jun 2017 00:00:00 +0800</lastBuildDate><item><title>KMP's True Beauty: from DFA to NFA</title><link>http://yuex.in/post/2017/06/kmp-beauty.html</link><description>&lt;h1&gt;Poetry, Algorithm, and KMP&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Great algorithms are poetry of computation
+&lt;small&gt;Francis Sullivan&lt;/small&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Poetry always give us an enjoyable exprience if not a meaningful enlightenment
+to the true nature of life. But 10 years ago when I first read about KMP on
+CLRS' classic &lt;em&gt;Introduction to Algorithms&lt;/em&gt;, what I went through was only
+confusion.  Though the code was succinct like a …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 04 Jun 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2017-06-04:/post/2017/06/kmp-beauty.html</guid><category>leetcode</category></item><item><title>Black Art in Machine Learning</title><link>http://yuex.in/post/2017/03/ml-black-art.html</link><description>&lt;p&gt;I came across a paper called &lt;a href="http://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"&gt;A Few Useful Things to Know about Machine Learning&lt;/a&gt;
 which summarized some black arts in machine learning.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Learning = Representation + Evaluation + Optimization&lt;/li&gt;
