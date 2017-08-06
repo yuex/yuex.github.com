@@ -64,19 +64,18 @@ this definition is quite natural.&lt;/p&gt;
 &lt;li&gt;red edge of a node must be on the left&lt;/li&gt;
 &lt;li&gt;every path from root to null has same number of black edges&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;From this definition, red edges only occurs at leaf nodes. We can only have 3
-different types of nodes&lt;/p&gt;
-&lt;h1&gt;pic node&lt;/h1&gt;
-&lt;p&gt;There are 3 operations related to red black tree&lt;/p&gt;
-&lt;h1&gt;pic operations&lt;/h1&gt;
+&lt;p&gt;From this definition, red edges occurs only at leaf nodes. Thus, we have only 3
+different types of nodes. Two of them are leaves. There are also 3 operations
+related to red black tree&lt;/p&gt;
+&lt;p&gt;&lt;img alt="operation" src="/image/red-black-tree-in-action/node-operation.jpg"&gt;&lt;/p&gt;
 &lt;p&gt;To keep the BST balanced, we have to adjust the tree if insertion causes an
 unbalanced BST. Since we only have two different types of leaves, we will only
 have five different cases to insert a node. Here, we assume &lt;span class="math"&gt;\(a \lt b \lt c\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h1&gt;pic insertion case&lt;/h1&gt;
-&lt;p&gt;To get neat implementation, there are three key points. First we maintain
-the color of an edge at the destination node. Second we insert
-recursively. Third, the five cases could be reduce to three if we insert
-recursively as indicated in above picture.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="case" src="/image/red-black-tree-in-action/case.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;To get neat implementation, there are three key points. First we maintain the
+color of an edge at the destination node. Second we insert recursively. Third,
+the five cases could be reduce to four if we insert recursively as indicated in
+above picture. And only three of them need adjustment.&lt;/p&gt;
 &lt;p&gt;After some work, we can carry out the implementation.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;counSmaller&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
 

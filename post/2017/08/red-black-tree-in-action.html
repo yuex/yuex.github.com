@@ -202,19 +202,18 @@ this definition is quite natural.</p>
 <li>red edge of a node must be on the left</li>
 <li>every path from root to null has same number of black edges</li>
 </ol>
-<p>From this definition, red edges only occurs at leaf nodes. We can only have 3
-different types of nodes</p>
-<h1>pic node</h1>
-<p>There are 3 operations related to red black tree</p>
-<h1>pic operations</h1>
+<p>From this definition, red edges occurs only at leaf nodes. Thus, we have only 3
+different types of nodes. Two of them are leaves. There are also 3 operations
+related to red black tree</p>
+<p><img alt="operation" src="/image/red-black-tree-in-action/node-operation.jpg"></p>
 <p>To keep the BST balanced, we have to adjust the tree if insertion causes an
 unbalanced BST. Since we only have two different types of leaves, we will only
 have five different cases to insert a node. Here, we assume <span class="math">\(a \lt b \lt c\)</span>.</p>
-<h1>pic insertion case</h1>
-<p>To get neat implementation, there are three key points. First we maintain
-the color of an edge at the destination node. Second we insert
-recursively. Third, the five cases could be reduce to three if we insert
-recursively as indicated in above picture.</p>
+<p><img alt="case" src="/image/red-black-tree-in-action/case.jpg"></p>
+<p>To get neat implementation, there are three key points. First we maintain the
+color of an edge at the destination node. Second we insert recursively. Third,
+the five cases could be reduce to four if we insert recursively as indicated in
+above picture. And only three of them need adjustment.</p>
 <p>After some work, we can carry out the implementation.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">counSmaller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ns</span><span class="p">):</span>
 
