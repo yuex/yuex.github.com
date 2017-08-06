@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="yuex (悟道洞穴人)">
+    <meta name="author" content="yuex">
+    <link rel="icon" type="image/png" href="http://yuex.in/image/favicon.png">
+
+        <title>Red Black Tree in Action · yuex (悟道洞穴人)</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/flatly/bootstrap.min.css" type="text/css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/main.css">
+
+    <link rel="stylesheet" href="http://yuex.in/theme/css/code.css">
+
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container" id="wrap">
+      <nav id="navbar" class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+      <!--navbar-header-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://yuex.in">yuex (悟道洞穴人)</a>
+      </div> <!--navbar-header-->
+
+      <!-- Search Box -->
+          <form class="navbar-form navbar-right" role="search"
+            action="http://www.google.com/cse"
+            id="searchbox_010115183842216248216:xa0zrczzxyk" target="_blank">
+              <input type="hidden" name="cx" value="010115183842216248216:xa0zrczzxyk" />
+              <input type="text" name="q" class="form-control" placeholder="Search">
+          </form>
+
+      <!--Menuitems, collapable-->
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right" id="menuitem-list">
+                <li >
+                  <a href="http://yuex.in/" >Home</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/about.html" >About</a>
+                </li>
+
+                <li >
+                  <a href="http://yuex.in/atom.xml"     target="_blank"
+>Feeds</a>
+                </li>
+
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archives<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/tags.html" >Tags</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/categories.html" >Categories</a>
+                  </li>
+                  <li >
+                    <a href="http://yuex.in/archives.html" >Chronological</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="btn-group">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">FindMe<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li >
+                    <a href="http://yuex.in/image/email.png" >Email</a>
+                  </li>
+                  <li >
+                    <a href="http://www.douban.com/people/niumiz/"     target="_blank"
+>Douban</a>
+                  </li>
+                  <li >
+                    <a href="https://github.com/yuex"     target="_blank"
+>Github</a>
+                  </li>
+                </ul>
+              </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+
+    </div> <!--container-->
+  </nav>
+
+
+    <div class="container">
+      <div class="col-md-2">
+      </div>
+
+      <div class="col-md-8">
+        <div class="row">
+              <div class="page-header">
+        <h1><a href="http://yuex.in/post/2017/08/red-black-tree-in-action.html">Red Black Tree in Action</a></h1>
+    </div>
+
+        </div>
+
+        <div class="row">
+
+    <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/algorithms.html">algorithms</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/leetcode.html">leetcode</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2017">2017</a>-<a href="http://yuex.in/archives.html#Year2017Month08">08</a>-<a href="http://yuex.in/archives.html#Year2017Month08">06</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+  <hr/>
+
+  <div id="article_content">
+    <p>The first time I get to know red black tree is quite a few years ago when I was
+reading CLRS' famous <em>Introduction to Algorithms</em>. But at that time their
+explaination of red black tree was very tedious and couter-intuitive. Perhaps
+that's because the original red black tree is not very neat by itself. But
+anyway, Sedgewick later discovered the left-leaning red black tree which leads
+to a very neat implementation. It's so neat that it actually can be added
+incrementally to your non-balanced tree implementation.</p>
+<p>Let's try it out on <a href="https://leetcode.com/problems/count-of-smaller-numbers-after-self">Leetcode 315</a>. This problem could be solved trivally by
+brute-force which results in <span class="math">\(O(n^2)\)</span> time complexity. A better way is scan from
+right to left and insert integers into a BST while maintaining the number of
+nodes on the left of each node. If the BST is always balanced, the total time
+comlexity should be <span class="math">\(O(nlogn)\)</span>.</p>
+<p>The non-balanced solution is given below</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">countSmaller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ns</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">,</span><span class="n">node</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">+=</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># ==</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">return</span> <span class="n">root</span><span class="p">,</span><span class="n">size</span>
+
+    <span class="n">ret</span><span class="p">,</span><span class="n">root</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">],</span><span class="bp">None</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">root</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">new</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+
+
+<p>Definitely, the worst-case time complexity is still <span class="math">\(O(n^2)\)</span>. Now let's modified
+above code incrementally to be a red black tree (left leaning)
+implementation. But first let's talk about some theories. This explaination is
+largely based on <a href="https://www.youtube.com/watch?v=2Ae0D6EXBV4">Sedgewick's video</a> which is not same with the explaination
+from wikipedia where the color is taken as a property of a node instead an edge.
+The wikipedia's explaination is probably based on the original red black tree
+instead of the left leaning one. You can see at the end that the left leaning
+red black tree has much less cases and much neater code.</p>
+<p>A red black tree is defined as binary tree. At first this definition may seem
+weird. But if you understand <a href="https://www.youtube.com/watch?v=qC1BLLPK_5w">2-3 tree</a> where red black tree originates from,
+this definition is quite natural.</p>
+<ol>
+<li>edges are either red or black</li>
+<li>a node can have at most 1 red edge to its children</li>
+<li>red edge of a node must be on the left</li>
+<li>every path from root to null has same number of black edges</li>
+</ol>
+<p>From this definition, red edges only occurs at leaf nodes. We can only have 3
+different types of nodes</p>
+<h1>pic node</h1>
+<p>There are 3 operations related to red black tree</p>
+<h1>pic operations</h1>
+<p>To keep the BST balanced, we have to adjust the tree if insertion causes an
+unbalanced BST. Since we only have two different types of leaves, we will only
+have five different cases to insert a node. Here, we assume <span class="math">\(a \lt b \lt c\)</span>.</p>
+<h1>pic insertion case</h1>
+<p>To get neat implementation, there are three key points. First we maintain
+the color of an edge at the destination node. Second we insert
+recursively. Third, the five cases could be reduce to three if we insert
+recursively as indicated in above picture.</p>
+<p>After some work, we can carry out the implementation.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">counSmaller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ns</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="k">def</span> <span class="nf">rotate_left</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">color</span><span class="p">,</span><span class="n">right</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">color</span><span class="p">,</span><span class="n">root</span><span class="o">.</span><span class="n">color</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="n">right</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="n">root</span>
+        <span class="n">right</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">right</span>
+
+    <span class="k">def</span> <span class="nf">rotate_right</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">color</span><span class="p">,</span><span class="n">left</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">color</span><span class="p">,</span><span class="n">root</span><span class="o">.</span><span class="n">color</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="n">left</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="n">root</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">-=</span> <span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">left</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">left</span>
+
+    <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">root</span>
+
+    <span class="k">def</span> <span class="nf">red</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">node</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">color</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">,</span><span class="n">node</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">root</span><span class="p">,</span><span class="n">root</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># node.val &gt; root.val:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span><span class="n">node</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">+=</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">root</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">red</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">red</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">):</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">rotate_left</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">red</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="n">red</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">left</span><span class="p">):</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">rotate_right</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">red</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="n">red</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">):</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">flip</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">root</span><span class="p">,</span><span class="n">size</span>
+
+
+    <span class="n">ret</span><span class="p">,</span><span class="n">root</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">ns</span><span class="p">],</span><span class="bp">None</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">root</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">new</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="k">return</span> <span class="n">ret</span>
+</pre></div>
+
+
+<p>As you can see, except those helper functions, only 6 lines of code are added at
+the end of <code>insert()</code>. Although I shortcut the equal case, it's not very
+substancial. The helper functions are also very easy to implement. So probably
+you can try to give a red black tree implement during a 45-mintue interview.
+It's quite feasible. But due to the test cases design of this problem, the red
+black tree implementation is acutally one time slower in terms of total
+execution time than the non-balance implementaion.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+
+  <hr/>
+    
+  <div class="panel panel-primary">
+    <div class="panel-heading panel-title">
+      <a id="collapseRelated" href="#collapseRelated">Related Posts</a>
+        <a class="accordion-toggle" data-toggle="collapse"
+          title="toggle folding"
+          href="#collapseRelatedcollapse">
+          <span class="badge pull-right">2</span>
+        </a>
+    </div>
+
+    <div class="panel-body hidden"></div>
+
+    <ul class="list-group">
+      <div class="panel-collapse collapse in" id="collapseRelatedcollapse">
+        <a href="http://yuex.in/post/2017/01/single-number.html">
+          <li class="list-group-item">
+"All the Single Ladies, Now Put Your Hands Up"</li>
+        </a>
+        <a href="http://yuex.in/post/2017/06/kmp-beauty.html">
+          <li class="list-group-item">
+The True Beauty of KMP: from DFA to NFA</li>
+        </a>
+      </div>
+    </ul>
+
+  </div>
+
+
+      <ul class="pager">
+        <li class="previous disabled">
+          <a >
+          &laquo; Newer</a>
+        </li>
+        <li class="next">
+          <a href="http://yuex.in/post/2017/06/kmp-beauty.html">
+          Older &raquo;</a>
+        </li>
+      </ul>
+
+    <hr/>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'yuex'; // required: replace example with your forum shortname
+  var disqus_identifier = 'red-black-tree-in-action';
+  var disqus_url = 'http://yuex.in/post/2017/08/red-black-tree-in-action.html';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+
+        <div class="row">
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+      </div>
+    </div>
+
+
+  </div>
+
+    <nav id="footer" class="navbar navbar-default">
+    <div class="container">
+        <p id="footer-text" class="navbar-text text-center">
+          <span id="engine">
+            Compiled using
+            <a href="http://docs.getpelican.com">Pelican</a>
+          </span>
+          <span id="theme">
+            with theme
+            <a href="http://github.com/yuex/pelican-chameleon">Chameleon</a>
+          </span>
+          <span id="bootstrap">
+            on top of
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+          </span>
+        </p>
+      </div>
+    </div>
+  </nav>
+
+
+</body>
+</html>

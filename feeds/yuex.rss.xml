@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sun, 04 Jun 2017 00:00:00 +0800</lastBuildDate><item><title>KMP's True Beauty: from DFA to NFA</title><link>http://yuex.in/post/2017/06/kmp-beauty.html</link><description>&lt;h1&gt;Poetry, Algorithm, and KMP&lt;/h1&gt;
+<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sun, 06 Aug 2017 00:00:00 +0800</lastBuildDate><item><title>Red Black Tree in Action</title><link>http://yuex.in/post/2017/08/red-black-tree-in-action.html</link><description>&lt;p&gt;The first time I get to know red black tree is quite a few years ago when I was
+reading CLRS' famous &lt;em&gt;Introduction to Algorithms&lt;/em&gt;. But at that time their
+explaination of red black tree was very tedious and couter-intuitive. Perhaps
+that's because the original red black tree is not very neat by itself. But
+anyway, Sedgewick later discovered the …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Sun, 06 Aug 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2017-08-06:/post/2017/08/red-black-tree-in-action.html</guid><category>leetcode</category></item><item><title>The True Beauty of KMP: from DFA to NFA</title><link>http://yuex.in/post/2017/06/kmp-beauty.html</link><description>&lt;h1&gt;Poetry, Algorithm, and KMP&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Great algorithms are poetry of computation
 &lt;small&gt;Francis Sullivan&lt;/small&gt;&lt;/p&gt;
