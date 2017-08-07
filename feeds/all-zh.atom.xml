@@ -56,8 +56,8 @@ The wikipedia's explaination is probably based on the original red black tree
 instead of the left leaning one. You can see at the end that the left leaning
 red black tree has much less cases and much neater code.&lt;/p&gt;
 &lt;p&gt;A red black tree is defined as binary tree. At first this definition may seem
-weird. But if you understand &lt;a href="https://www.youtube.com/watch?v=qC1BLLPK_5w"&gt;2-3 tree&lt;/a&gt; where red black tree originates from,
-this definition is quite natural.&lt;/p&gt;
+weird. But if you understand &lt;a href="https://www.youtube.com/watch?v=qC1BLLPK_5w"&gt;2-3 tree&lt;/a&gt; where this type of red black tree is
+orginated from, following definition is quite natural.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;edges are either red or black&lt;/li&gt;
 &lt;li&gt;a node can have at most 1 red edge to its children&lt;/li&gt;
