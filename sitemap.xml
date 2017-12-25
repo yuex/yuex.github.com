@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://yuex.in/</loc>
-<lastmod>2017-11-19T02:08:31-00:00</lastmod>
+<lastmod>2017-12-25T16:40:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
 <loc>http://yuex.in/archives.html</loc>
-<lastmod>2017-11-19T02:08:31-00:00</lastmod>
+<lastmod>2017-12-25T16:40:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
 <loc>http://yuex.in/tags.html</loc>
-<lastmod>2017-11-19T02:08:31-00:00</lastmod>
+<lastmod>2017-12-25T16:40:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
 
 <url>
 <loc>http://yuex.in/categories.html</loc>
-<lastmod>2017-11-19T02:08:31-00:00</lastmod>
+<lastmod>2017-12-25T16:40:53-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>
@@ -71,6 +71,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <lastmod>2014-01-29T00:00:00+08:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://yuex.in/post/2017/12/2017-review.html</loc>
+<lastmod>2017-12-25T00:00:00+08:00</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.8</priority>
 </url>
 
 <url>
@@ -347,6 +354,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://yuex.in/category/ttk.html</loc>
+<lastmod>2017-12-25T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>1.0</priority>
+</url>
+
+<url>
 <loc>http://yuex.in/tag/csapp.html</loc>
 <lastmod>2016-08-27T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
@@ -516,7 +530,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://yuex.in/author/yuex.html</loc>
-<lastmod>2017-08-06T00:00:00+08:06</lastmod>
+<lastmod>2017-12-25T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>1.0</priority>
 </url>

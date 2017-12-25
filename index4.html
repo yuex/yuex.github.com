@@ -143,6 +143,80 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #19
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 IEEE 754</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">21</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-ieee754.html">
+              </a>
+          </li>
+          <li class="list-group-item"><p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
+数点来调整精度的方法。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 相比整数的二的补码表示要复杂了不少，不过仔细
+研究之后，这种表示方法还是相当巧妙的。这里只是对 <a href="http://csapp.cs.cmu.edu/">csapp</a> 一书中对 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的
+讲解进行一个总结，具体的还请参考 wikipedia 或者 <a href="http://csapp.cs.cmu.edu/">csapp</a> 原书相关章节。</p>
+<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中将数位分成了三部分 </p>
+<div class="highlight"><pre><span></span>V = (-1)^s * M * 2^E
++-+-----------+-----------------------------------------+
+|s|  exp (e)  |             frac (f)                    |
++-+-----------+-----------------------------------------+
+f = .f1f2...
+</pre></div>
+
+
+<p> 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
+据数的类型来确定。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中根据所表示的数的数值大小范围定义了三种类型的数
+值。类型的区分是通过检查 e 的数值来确定的 …</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-ieee754">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #18
         </span>
       </a>
@@ -159,7 +233,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -219,7 +293,7 @@
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #17
         </span>
@@ -237,7 +311,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -281,7 +355,7 @@
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month03">March</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #16
         </span>
@@ -299,7 +373,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -344,7 +418,7 @@
         <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #15
         </span>
@@ -362,7 +436,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -398,75 +472,6 @@
               <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2015/02/zhongyong-version.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2015">2015</a> - <a href="http://yuex.in/archives.html#Year2015Month02">February</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #14
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2015/02/dialectical-materialism-contradiction.html">
-          <li class="list-group-item">
-            <h1>辩证唯物主义中的矛盾</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/insight.html">insight</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/dao.html">dao</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2015">2015</a>-<a href="http://yuex.in/archives.html#Year2015Month02">02</a>-<a href="http://yuex.in/archives.html#Year2015Month02">15</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2015/02/dialectical-materialism-contradiction.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p> 我的关于于辩证唯物主义的浅见仅仅来源于课堂，以下论证必定有不尽的疏漏，敬乞宽谅。</p>
-<p> 辩证唯物主义的基本观点可以概括如下 <a class="footnote-reference" href="#id4" id="id2">[1]</a></p>
-<blockquote>
-<p> 世界的本元是物质，世间的万事万物都是由物质派生出来的。</p>
-<p> 物质是运动的，运动是有规律的，规律是客观的，不以人的意志为转移的。</p>
-</blockquote>
-<p> 任何一个哲学理论，都只是对客观世界的一个解释。没有对错之分，只有将其应用于改造世界之时的是否合适之别。用马克思自己的话讲，就是 </p>
-<blockquote>
-哲学家们只是用不同的方式解释世界，而问题在于改造世界 </blockquote>
-<p> 这也一如数学中的公理系统。更具体的，我们可以用欧氏几何和非欧几何作例。二者无关对错，只有不同应用场景下的合适与否。但有一个最低的要求，就是这个理论必须是自洽的。</p>
-</li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/dialectical-materialism-contradiction.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="dialectical-materialism-contradiction">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/dialectical-materialism-contradiction.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2015/02/dialectical-materialism-contradiction.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>

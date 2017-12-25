@@ -143,6 +143,80 @@
         title="toggle folding"
         href="#collapseArticle1">
         <span class="pull-right badge">
+          #24
+        </span>
+      </a>
+      </div>
+
+      <div class="panel-body hidden">
+
+      </div>
+
+      <ul class="list-group">
+        <a href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html">
+          <li class="list-group-item">
+            <h1>CSAPP 之 cache 与 virtual memory</h1>
+          </li>
+        </a>
+        <div class="collapse in"
+          id="collapseArticle1">
+          <li class="list-group-item">
+              <span id="article_info">
+    <a class="label label-primary"
+      href="http://yuex.in/category/book.html">book</a>
+      <b> · </b>
+        <a class="label label-primary"
+          href="http://yuex.in/tag/csapp.html">csapp</a>
+    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+      <b> · </b>
+      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">27</a>
+
+    <!--<span class="glyphicon glyphicon-user"></span>-->
+      <b> · </b>
+    <a href="http://yuex.in/about.html">yuex</a>
+  </span>
+
+            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html">
+              </a>
+          </li>
+          <li class="list-group-item"><h1>Cache</h1>
+<p>cache 结构中有 set/line/block 的概念。一般是一个 cache 中有多个 set，每个 set 中有多条
+line，每条 line 由多个字节 block 组成。而地址会被切分成三个部分来在这个三层结构中进
+行缓存访问定位 </p>
+<div class="highlight"><pre><span></span>+---------------+------------+--------------+
+|      Tag      |  Set Index | Block Offset |
++---------------+------------+--------------+
+</pre></div>
+
+
+<p> 其中有几条 line 就叫几路关联（n-way associative），因为 line 的访问是顺序查找的，相
+同 set 内的缓存块可以缓存在任何一条 line 中。特别地，如果只有一个 set，叫全关联缓存
+（full-associative）。如果每个 set 只有一条 line，叫直接映射缓存（direct-mapped）。
+tag 用于在同一个 set 中定位访问的 line。</p>
+<h1>Virtual Memory</h1>
+<p> 在虚拟地址中 …</p></li>
+          <li class="list-group-item text-right">
+            <div class="btn-group">
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html#disqus_thread" title="comments">
+                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-cache-virtual-memory">
+                </span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" title="permanent link">
+                <span class="glyphicon glyphicon-link"></span></a>
+              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-cache-virtual-memory.html" title="read more">
+                <span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading panel-title">
+        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
+      <a class="accordion-toggle" data-toggle="collapse" 
+        title="toggle folding"
+        href="#collapseArticle2">
+        <span class="pull-right badge">
           #23
         </span>
       </a>
@@ -159,7 +233,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle1">
+          id="collapseArticle2">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -213,7 +287,7 @@
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle2">
+        href="#collapseArticle3">
         <span class="pull-right badge">
           #22
         </span>
@@ -231,7 +305,7 @@
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle2">
+          id="collapseArticle3">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -292,7 +366,7 @@ pthread_cancel …</pre></div></li>
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle3">
+        href="#collapseArticle4">
         <span class="pull-right badge">
           #21
         </span>
@@ -310,7 +384,7 @@ pthread_cancel …</pre></div></li>
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle3">
+          id="collapseArticle4">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -367,7 +441,7 @@ ret 会从栈上弹出一个地址到 pc
         <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
       <a class="accordion-toggle" data-toggle="collapse" 
         title="toggle folding"
-        href="#collapseArticle4">
+        href="#collapseArticle5">
         <span class="pull-right badge">
           #20
         </span>
@@ -385,7 +459,7 @@ ret 会从栈上弹出一个地址到 pc
           </li>
         </a>
         <div class="collapse in"
-          id="collapseArticle4">
+          id="collapseArticle5">
           <li class="list-group-item">
               <span id="article_info">
     <a class="label label-primary"
@@ -434,80 +508,6 @@ ret 会从栈上弹出一个地址到 pc
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="permanent link">
                 <span class="glyphicon glyphicon-link"></span></a>
               <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-struct-padding.html" title="read more">
-                <span class="glyphicon glyphicon-plus"></span></a>
-            </div>
-          </li>
-        </div>
-      </ul>
-    </div>
-
-    <div class="panel panel-primary">
-      <div class="panel-heading panel-title">
-        <a href="http://yuex.in/archives.html#Year2016">2016</a> - <a href="http://yuex.in/archives.html#Year2016Month08">August</a>
-      <a class="accordion-toggle" data-toggle="collapse" 
-        title="toggle folding"
-        href="#collapseArticle5">
-        <span class="pull-right badge">
-          #19
-        </span>
-      </a>
-      </div>
-
-      <div class="panel-body hidden">
-
-      </div>
-
-      <ul class="list-group">
-        <a href="http://yuex.in/post/2016/08/csapp-ieee754.html">
-          <li class="list-group-item">
-            <h1>CSAPP 之 IEEE 754</h1>
-          </li>
-        </a>
-        <div class="collapse in"
-          id="collapseArticle5">
-          <li class="list-group-item">
-              <span id="article_info">
-    <a class="label label-primary"
-      href="http://yuex.in/category/book.html">book</a>
-      <b> · </b>
-        <a class="label label-primary"
-          href="http://yuex.in/tag/csapp.html">csapp</a>
-    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-      <b> · </b>
-      <a href="http://yuex.in/archives.html#Year2016">2016</a>-<a href="http://yuex.in/archives.html#Year2016Month08">08</a>-<a href="http://yuex.in/archives.html#Year2016Month08">21</a>
-
-    <!--<span class="glyphicon glyphicon-user"></span>-->
-      <b> · </b>
-    <a href="http://yuex.in/about.html">yuex</a>
-  </span>
-
-            <a class="pull-right" href="http://yuex.in/post/2016/08/csapp-ieee754.html">
-              </a>
-          </li>
-          <li class="list-group-item"><p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 规范了一种用来表示浮点数的方法。顾名思义，这种表示方法采用了浮动小
-数点来调整精度的方法。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 相比整数的二的补码表示要复杂了不少，不过仔细
-研究之后，这种表示方法还是相当巧妙的。这里只是对 <a href="http://csapp.cs.cmu.edu/">csapp</a> 一书中对 <a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 的
-讲解进行一个总结，具体的还请参考 wikipedia 或者 <a href="http://csapp.cs.cmu.edu/">csapp</a> 原书相关章节。</p>
-<p><a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中将数位分成了三部分 </p>
-<div class="highlight"><pre><span></span>V = (-1)^s * M * 2^E
-+-+-----------+-----------------------------------------+
-|s|  exp (e)  |             frac (f)                    |
-+-+-----------+-----------------------------------------+
-f = .f1f2...
-</pre></div>
-
-
-<p> 而这个二进制所表示的具体数值 V 中的 M 和 E 都需要从 e 和 f 转换得来。而具体的转换规则要根
-据数的类型来确定。<a href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE 754</a> 中根据所表示的数的数值大小范围定义了三种类型的数
-值。类型的区分是通过检查 e 的数值来确定的 …</p></li>
-          <li class="list-group-item text-right">
-            <div class="btn-group">
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html#disqus_thread" title="comments">
-                <span class="glyphicon glyphicon-comment" data-disqus-identifier="csapp-ieee754">
-                </span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html" title="permanent link">
-                <span class="glyphicon glyphicon-link"></span></a>
-              <a class="btn btn-primary" href="http://yuex.in/post/2016/08/csapp-ieee754.html" title="read more">
                 <span class="glyphicon glyphicon-plus"></span></a>
             </div>
           </li>

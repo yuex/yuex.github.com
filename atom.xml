@@ -1,5 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-08-06T00:00:00+08:00</updated><entry><title>Red Black Tree in Action</title><link href="http://yuex.in/post/2017/08/red-black-tree-in-action.html" rel="alternate"></link><published>2017-08-06T00:00:00+08:00</published><updated>2017-08-06T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-08-06:/post/2017/08/red-black-tree-in-action.html</id><summary type="html">&lt;p&gt;The first time I get to know red black tree is quite a few years ago when I was
+<feed xmlns="http://www.w3.org/2005/Atom"><title>yuex (悟道洞穴人)</title><link href="http://yuex.in/" rel="alternate"></link><link href="http://yuex.in/atom.xml" rel="self"></link><id>http://yuex.in/</id><updated>2017-12-25T00:00:00+08:00</updated><entry><title>2017 Review</title><link href="http://yuex.in/post/2017/12/2017-review.html" rel="alternate"></link><published>2017-12-25T00:00:00+08:00</published><updated>2017-12-25T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-12-25:/post/2017/12/2017-review.html</id><summary type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#sec-1"&gt;1. Compare with Past Years&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sec-2"&gt;2. Highlights&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sec-3"&gt;3. Some Thoughts about Next Year&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1&gt;Compare with Past Years&lt;a id="sec-1" name="sec-1"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;I spent 1581/10 on 1st tasks which is about 60 hours less than last year and
+230 hours less than the year before last year. Though it is primarily due to
+my relocation to PA and then to CA …&lt;/p&gt;</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#sec-1"&gt;1. Compare with Past Years&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sec-2"&gt;2. Highlights&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sec-3"&gt;3. Some Thoughts about Next Year&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1&gt;Compare with Past Years&lt;a id="sec-1" name="sec-1"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;I spent 1581/10 on 1st tasks which is about 60 hours less than last year and
+230 hours less than the year before last year. Though it is primarily due to
+my relocation to PA and then to CA which keeps creating a totally new
+environment to me, I should be able to improve it by purchasing a better table
+and a better chair to make the working environment more comfortable.&lt;/p&gt;
+&lt;p&gt;In fact, I did pretty well in the first half of 2017. I scored 35/01, 49/40,
+47/54, and 42/04 in the first four month due to the heavy load course such as
+15410, 15312, and 15417 of CMU. But starting from the summer, I have been
+slacking. It dropped below 30. In the fall semester I spent a lot of time on
+job hunting. After that I felt lack of motivation to do more tasks.&lt;/p&gt;
+&lt;p&gt;I also scored less in total tracked time which is only 1581/10, way less than
+past years during which I could track over 2500 very easily.&lt;/p&gt;
+&lt;h1&gt;Highlights&lt;a id="sec-2" name="sec-2"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;260/ on 15410. 112/30 to finish a 32bit fully-preemptive OS kernel. I spent
+another 18/ to make it able to support virtualization with some hack. This
+work was done in a team of two.&lt;/p&gt;
+&lt;p&gt;163/30 on 15417. 123/ on the project to finish some key phases of a SML
+compiler, such as phase splitting, cps conversion, closure conversion, and
+hoisting. The final deliverable could compile SML code to C code and then use
+gcc to compile it to binary executable. A Cheney-Scan copying GC was
+implemented with only 100 line of C.&lt;/p&gt;
+&lt;p&gt;82/ on 15883. Though there are still a lot of topics in this course I don't
+fully unstand, I feel excited to learn more about human brain. Topics such
+LTP, LTD, NMDA, cerebellum, hippocampus, conditioning, and dopamine in basal
+ganglia are very interesting. I feel that I can project some of these
+low-level mechnisms to some high-level psychology phenomena.&lt;/p&gt;
+&lt;p&gt;In the fall semester, I also took some side courses, science of growth and
+negotiation. It is awesome to learn something other algorithm and system. I
+never think that negotiation could be a subject of science. It turns out
+there are some scientic and systematic approaches that you could take when
+preparing for a negotiation, though a large part of it is still art.&lt;/p&gt;
+&lt;p&gt;I also started to trade stocks. Though making money makes me happy, the more
+important thing is that it gives a chance to ponder about those irrational
+behaviors of human, especially of myself, as a representative example.&lt;/p&gt;
+&lt;p&gt;I spend 356/20 on the preparation and conduction of interviews. 299/50 on
+leetcode. It is comparable to the hours I will spent on a single games a few
+years before. When you recognize some patterns out of it, it somehow becomes
+a game which is sort of addictive.&lt;/p&gt;
+&lt;p&gt;I also got my CA dirver license for both passenger vehicles and motorcycles.
+Only 66 is required. But waiting the DMV to mail me the offical driver
+license took much longer time.&lt;/p&gt;
+&lt;p&gt;In this year, I got more used to emacs and picked up org mode.&lt;/p&gt;
+&lt;h1&gt;Some Thoughts about Next Year&lt;a id="sec-3" name="sec-3"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;I want to make some changes to my tracking system. I want use the time
+counting feature of org mode to track and summarize time. Though org mode
+doesn't provide sufficient sort functionalities, it should be okay to work
+around this issue.&lt;/p&gt;
+&lt;p&gt;Time tracking will be done by time counting individual tasks by using capture.
+The records will be moved to a separate file at the end of day to classify it
+to its category. I hope this method could encourage more frequent daily and
+weekly review of my short-term and long-term goals. I hope this could help to
+the summary time from 7 hours to dozens of minutes.&lt;/p&gt;
+&lt;p&gt;Another change is that I will count a year from Chrismas week to Chrismas week
+so that I can use the Chrismas holiday to review the year. It is more consistent
+with western calendar. It will also help me to come up with the new year
+resolution.&lt;/p&gt;
+&lt;p&gt;Third change is that start from this year, besides the stats that I have
+collected, I will also provide a short note like this to review the year in
+details. Hope this will give me a better recall about the year.&lt;/p&gt;</content></entry><entry><title>Red Black Tree in Action</title><link href="http://yuex.in/post/2017/08/red-black-tree-in-action.html" rel="alternate"></link><published>2017-08-06T00:00:00+08:00</published><updated>2017-08-06T00:00:00+08:00</updated><author><name>yuex</name></author><id>tag:yuex.in,2017-08-06:/post/2017/08/red-black-tree-in-action.html</id><summary type="html">&lt;p&gt;The first time I get to know red black tree is quite a few years ago when I was
 reading CLRS' famous &lt;em&gt;Introduction to Algorithms&lt;/em&gt;. But at that time their
 explaination of red black tree was very tedious and couter-intuitive. Perhaps
 that's because the original red black tree is not very neat by itself. But

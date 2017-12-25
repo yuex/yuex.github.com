@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Sun, 06 Aug 2017 00:00:00 +0800</lastBuildDate><item><title>Red Black Tree in Action</title><link>http://yuex.in/post/2017/08/red-black-tree-in-action.html</link><description>&lt;p&gt;The first time I get to know red black tree is quite a few years ago when I was
+<rss version="2.0"><channel><title>yuex (悟道洞穴人) - yuex</title><link>http://yuex.in/</link><description></description><lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0800</lastBuildDate><item><title>2017 Review</title><link>http://yuex.in/post/2017/12/2017-review.html</link><description>&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#sec-1"&gt;1. Compare with Past Years&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sec-2"&gt;2. Highlights&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#sec-3"&gt;3. Some Thoughts about Next Year&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h1&gt;Compare with Past Years&lt;a id="sec-1" name="sec-1"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;I spent 1581/10 on 1st tasks which is about 60 hours less than last year and
+230 hours less than the year before last year. Though it is primarily due to
+my relocation to PA and then to CA …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">yuex</dc:creator><pubDate>Mon, 25 Dec 2017 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:yuex.in,2017-12-25:/post/2017/12/2017-review.html</guid></item><item><title>Red Black Tree in Action</title><link>http://yuex.in/post/2017/08/red-black-tree-in-action.html</link><description>&lt;p&gt;The first time I get to know red black tree is quite a few years ago when I was
 reading CLRS' famous &lt;em&gt;Introduction to Algorithms&lt;/em&gt;. But at that time their
 explaination of red black tree was very tedious and couter-intuitive. Perhaps
 that's because the original red black tree is not very neat by itself. But
